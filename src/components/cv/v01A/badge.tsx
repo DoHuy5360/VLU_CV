@@ -16,9 +16,9 @@ function Badge({ title, achievements }: BadgeProps) {
 				<div className='h-[2px] w-full bg-black'></div>
 			</div>
 			<div className='text-xs flex flex-col gap-2'>
-				{achievements.map((a) => {
+				{achievements.map((a, i) => {
 					return (
-						<div>
+						<div key={i}>
 							<div>{a.time}</div>
 							<div className='font-bold'>{a.name}</div>
 							<div>{a.where}</div>

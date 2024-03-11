@@ -15,9 +15,9 @@ function Certificate({ title, certificates }: CertificateProps) {
 				<div className='h-[2px] w-full bg-black'></div>
 			</div>
 			<div className='text-xs flex flex-col gap-2'>
-				{certificates.map((c) => {
+				{certificates.map((c, i) => {
 					return (
-						<div>
+						<div key={i}>
 							<div>{c.time}</div>
 							<div className='font-bold'>{c.name}</div>
 							<div>{c.where}</div>

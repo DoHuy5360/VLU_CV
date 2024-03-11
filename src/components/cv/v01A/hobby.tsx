@@ -15,9 +15,9 @@ function Hobby({ title, hobbies }: HobbyProps) {
 				<div className='h-[2px] w-full bg-black'></div>
 			</div>
 			<div className='text-xs flex flex-col gap-2'>
-				{hobbies.map((h) => {
+				{hobbies.map((h, i) => {
 					return (
-						<div>
+						<div key={i}>
 							<div className='font-bold'>{h.name}</div>
 							<div>{h.status}</div>
 						</div>

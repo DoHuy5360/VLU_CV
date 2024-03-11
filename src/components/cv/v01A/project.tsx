@@ -22,9 +22,9 @@ function Project({ title, products }: ProjectProps) {
 					<div className='h-[2px] w-full bg-black'></div>
 				</div>
 				<div className='flex flex-col text-xs'>
-					{products.map((p) => {
+					{products.map((p, i) => {
 						return (
-							<div className='grid grid-cols-[100px_auto] gap-10'>
+							<div key={i} className='grid grid-cols-[100px_auto] gap-10'>
 								<div className='flex flex-col gap-1'>
 									<div className='text-nowrap font-bold'>{p.name}</div>
 									<div className='text-nowrap'>{p.time}</div>
@@ -35,12 +35,12 @@ function Project({ title, products }: ProjectProps) {
 									<div className='w-2 h-2 rounded-full bg-black absolute top-0 left-0 translate-x-[-50%] translate-y-[-50%]'></div>
 									<div className='font-bold'>{p.position}</div>
 									<div>
-										{p.tasks.map((t) => (
-											<div>{t}</div>
+										{p.tasks.map((t, j) => (
+											<div key={j}>{t}</div>
 										))}
 										<br />
-										{p.techs.map((t) => (
-											<div>{t}</div>
+										{p.techs.map((t, j) => (
+											<div key={j}>{t}</div>
 										))}
 									</div>
 								</div>

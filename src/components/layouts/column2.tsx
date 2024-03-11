@@ -1,4 +1,4 @@
-import { Transfer } from "@/app/cv/page";
+import { Transfer } from "@/app/cv/[id]/page";
 
 type Column2Props = {
 	left: any;

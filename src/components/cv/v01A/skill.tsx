@@ -16,9 +16,9 @@ function Skill({ title, skills }: SkillProps) {
 				<div className='h-[2px] w-full bg-black'></div>
 			</div>
 			<div className='text-xs flex flex-col gap-2'>
-				{skills.map((s) => {
+				{skills.map((s, i) => {
 					return (
-						<div>
+						<div key={i}>
 							<div className='font-bold'>{s.name}</div>
 							<div>{s.status}</div>
 						</div>

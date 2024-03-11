@@ -16,14 +16,14 @@ function Activity({ title, activities }: ActivityProps) {
 				<div className='h-[2px] w-full bg-black'></div>
 			</div>
 			<div className='text-xs flex flex-col gap-2'>
-				{activities.map((a) => {
+				{activities.map((a, i) => {
 					return (
-						<div>
+						<div key={i}>
 							<div>{a.time}</div>
 							<div className='font-bold'>{a.name}</div>
 
-							{a.tasks.map((t) => (
-								<div>{t}</div>
+							{a.tasks.map((t, j) => (
+								<div key={j}>{t}</div>
 							))}
 						</div>
 					);

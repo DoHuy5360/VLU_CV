@@ -16,9 +16,9 @@ function Reference({ title, references }: ReferenceProps) {
 				<div className='h-[2px] w-full bg-black'></div>
 			</div>
 			<div className='text-xs flex flex-col gap-2'>
-				{references.map((r) => {
+				{references.map((r, i) => {
 					return (
-						<div>
+						<div key={i}>
 							<div>{r.name}</div>
 							<div>{r.where}</div>
 							<div>{r.phone}</div>
