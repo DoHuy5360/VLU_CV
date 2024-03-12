@@ -1,12 +1,32 @@
 "use client";
 import HomeLayout from "@/components/layouts/app/home";
-import { V01ACertificate, V01AReference, V01AActivity, V01AHobby, V01AOther, V01AHead, V01AGoal, V01AExperience, V01AProject, V01AEducation, V01ASkill, V01ABadge } from "@/components/cv/v01A/export";
-import { Column02, Column03 } from "@/components/layouts/export";
+import {
+	V01ACertificate,
+	V01AReference,
+	V01AActivity,
+	V01AHobby,
+	V01AOther,
+	V01AHead,
+	V01AGoal,
+	V01AExperience,
+	V01AProject,
+	V01AEducation,
+	V01ASkill,
+	V01ABadge,
+} from "@/components/cv/v01A/export";
+import {
+	Column02,
+	Column03,
+} from "@/components/layouts/symmetric/export";
 import { useEffect, useState } from "react";
+import A01Template from "@/components/layouts/templates/a01Template";
+import A02Template from "@/components/layouts/templates/a02Template";
 interface TransferType {
 	[key: string]: (props: any) => JSX.Element;
 }
 export const Transfer: TransferType = {
+	A01Template: A01Template,
+	A02Template: A02Template,
 	Column02: Column02,
 	Column03: Column03,
 	V01AHead: V01AHead,
@@ -22,48 +42,51 @@ export const Transfer: TransferType = {
 	V01AHobby: V01AHobby,
 	V01AOther: V01AOther,
 };
-const de = [
-	{
-		name: "V01AHead",
-		attrs: {
+
+export const de = {
+	template: "A01Template",
+	attrs: {
+		head: {
 			name: "Do Huy",
+			avatar:
+				"https://static.topcv.vn/user_avatars/4xcZ41tkbfgjjzvXWmjv_651574082716e_av.jpg",
 			position: "Web dev",
 			phone: "0963758993",
 			email: "dohuy.200276@gmail.com",
 			address: "Binh Chanh, TP.HCM",
+			website: "https://github.com/DoHuy5360",
+			birth: "17/08/2002",
+			gender: "Male",
 		},
-	},
-	{
-		name: "V01AGoal",
-		attrs: {
+		goal: {
 			title: "Goal",
 			content:
 				"Áp dụng những kinh nghiệm về kỹ năng bán hàng và sự hiểu biết về thị trường để trở thành một nhân viên bán hàng chuyên nghiệp, mang đến nhiều giá trị cho khách hàng. Từ đó giúp Công ty tăng số lượng khách hàng và mở rộng tập khách hàng.",
 		},
-	},
-	{
-		name: "V01AExperience",
-		attrs: {
+		experience: {
 			title: "Experience",
 			works: [
 				{
 					name: "TopCV company",
 					time: "03/2015 - current",
 					position: "NHÂN VIÊN BÁN HÀNG",
-					tasks: ["- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...", "- Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email."],
+					tasks: [
+						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...",
+						"- Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
+					],
 				},
 				{
 					name: "TopCV company",
 					time: "03/2015 - current",
 					position: "NHÂN VIÊN BÁN HÀNG",
-					tasks: ["- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...", "- Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email."],
+					tasks: [
+						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...",
+						"- Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
+					],
 				},
 			],
 		},
-	},
-	{
-		name: "V01AProject",
-		attrs: {
+		project: {
 			title: "Project",
 			products: [
 				{
@@ -72,145 +95,273 @@ const de = [
 					where: "ANZ TOPCV",
 					member: "8",
 					position: "LẬP TRÌNH VIÊN",
-					tasks: ["Phân tích và thiết kế hệ thống", "- Phát triển module", "- Tối ưu code", "- Sửa lỗi"],
-					techs: ["- Android Studio 1.4, Java, Android 4.0", "- Google Cloud Message"],
+					tasks: [
+						"Phân tích và thiết kế hệ thống",
+						"- Phát triển module",
+						"- Tối ưu code",
+						"- Sửa lỗi",
+					],
+					techs: [
+						"- Android Studio 1.4, Java, Android 4.0",
+						"- Google Cloud Message",
+					],
 				},
 			],
 		},
-	},
-	{
-		name: "Column02",
-		attrs: {
-			left: {
-				name: "V01AEducation",
-				attrs: {
-					title: "Education",
-					time: "10/2010 - 05/2014",
-					major: "QUẢN TRỊ DOANH NGHIỆP",
-					school: "Đại học TOPCV",
-					status: "Tốt nghiệp loại Giỏi, điểm trung bình 8.0",
+		education: {
+			title: "Education",
+			time: "10/2010 - 05/2014",
+			major: "QUẢN TRỊ DOANH NGHIỆP",
+			school: "Đại học TOPCV",
+			status: "Tốt nghiệp loại Giỏi, điểm trung bình 8.0",
+		},
+		skill: {
+			title: "Skills",
+			skills: [
+				{
+					name: "Tin học văn phòng TOPCV",
+					status:
+						"- Sử dụng thành thạo các công cụ Word, Excel, Power Point",
 				},
-			},
-			right: {
-				name: "V01ASkill",
-				attrs: {
-					title: "Skills",
-					skills: [
-						{
-							name: "Tin học văn phòng TOPCV",
-							status: "- Sử dụng thành thạo các công cụ Word, Excel, Power Point",
-						},
-						{
-							name: "Tiếng Anh",
-							status: "- Khả năng giao tiếp Tiếng Anh trôi chảy",
-						},
+				{
+					name: "Tiếng Anh",
+					status: "- Khả năng giao tiếp Tiếng Anh trôi chảy",
+				},
+			],
+		},
+		badge: {
+			title: "Badge",
+			achievements: [
+				{
+					time: "2014",
+					name: "Nhân viên xuất sắc năm công ty",
+					where: "TOPCV",
+				},
+			],
+		},
+		certificate: {
+			title: "Certificate",
+			certificates: [
+				{
+					time: "2013",
+					name: "Giải nhất Tài năng TOPCV",
+					where: "TopCV",
+				},
+			],
+		},
+		reference: {
+			title: "Reference",
+			references: [
+				{
+					name: "Anh... - Trưởng phòng Marketing",
+					where: "Công ty TOPCV",
+					phone: "023093024",
+				},
+			],
+		},
+		activity: {
+			title: "Activity",
+			activities: [
+				{
+					time: "10/2013 - 08/2014",
+					name: "NHÓM TÌNH NGUYỆN TOPCV",
+					position: "Tình nguyện viên",
+					tasks: [
+						"Tập hợp các món quà và phân phát tới người vô gia cư.",
+						"- Chia sẻ, động viên họ vượt qua giai đoạn khó khăn, giúp họ có những suy nghĩ lạc quan.",
 					],
 				},
-			},
+			],
+		},
+		hobby: {
+			title: "Hobby",
+			hobbies: [
+				{
+					name: "Đọc sách:",
+					status: "- Mỗi tháng đọc 1 quyển sách về kinh doanh.",
+				},
+				{
+					name: "Đá bóng:",
+					status:
+						"- Tham gia hoạt động đá bóng của công ty hàng tuần",
+				},
+			],
+		},
+		other: {
+			title: "Other",
+			content: "(Nếu có)",
 		},
 	},
-	{
-		name: "Column03",
-		attrs: {
-			left: {
-				name: "V01ABadge",
-				attrs: {
-					title: "Badge",
-					achievements: [
-						{
-							time: "2014",
-							name: "Nhân viên xuất sắc năm công ty",
-							where: "TOPCV",
-						},
+};
+const de2 = {
+	template: "A02Template",
+	attrs: {
+		head: {
+			name: "Do Huy",
+			avatar:
+				"https://static.topcv.vn/user_avatars/4xcZ41tkbfgjjzvXWmjv_651574082716e_av.jpg",
+			position: "Web dev",
+			phone: "0963758993",
+			email: "dohuy.200276@gmail.com",
+			address: "Binh Chanh, TP.HCM",
+			website: "https://github.com/DoHuy5360",
+			birth: "17/08/2002",
+			gender: "Male",
+		},
+		goal: {
+			title: "Goal",
+			content:
+				"Áp dụng những kinh nghiệm về kỹ năng bán hàng và sự hiểu biết về thị trường để trở thành một nhân viên bán hàng chuyên nghiệp, mang đến nhiều giá trị cho khách hàng. Từ đó giúp Công ty tăng số lượng khách hàng và mở rộng tập khách hàng.",
+		},
+		experience: {
+			title: "Experience",
+			works: [
+				{
+					name: "TopCV company",
+					time: "03/2015 - current",
+					position: "NHÂN VIÊN BÁN HÀNG",
+					tasks: [
+						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...",
+						"- Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
 					],
 				},
-			},
-			middle: {
-				name: "V01ACertificate",
-				attrs: {
-					title: "Certificate",
-					certificates: [
-						{
-							time: "2013",
-							name: "Giải nhất Tài năng TOPCV",
-							where: "TopCV",
-						},
+				{
+					name: "TopCV company",
+					time: "03/2015 - current",
+					position: "NHÂN VIÊN BÁN HÀNG",
+					tasks: [
+						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...",
+						"- Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
 					],
 				},
-			},
-			right: {
-				name: "V01AReference",
-				attrs: {
-					title: "Reference",
-					references: [
-						{
-							name: "Anh... - Trưởng phòng Marketing",
-							where: "Công ty TOPCV",
-							phone: "023093024",
-						},
+			],
+		},
+		project: {
+			title: "Project",
+			products: [
+				{
+					name: "Rainway Group",
+					time: "03/2015 - current",
+					where: "ANZ TOPCV",
+					member: "8",
+					position: "LẬP TRÌNH VIÊN",
+					tasks: [
+						"Phân tích và thiết kế hệ thống",
+						"- Phát triển module",
+						"- Tối ưu code",
+						"- Sửa lỗi",
+					],
+					techs: [
+						"- Android Studio 1.4, Java, Android 4.0",
+						"- Google Cloud Message",
 					],
 				},
-			},
+			],
+		},
+		education: {
+			title: "Education",
+			time: "10/2010 - 05/2014",
+			major: "QUẢN TRỊ DOANH NGHIỆP",
+			school: "Đại học TOPCV",
+			status: "Tốt nghiệp loại Giỏi, điểm trung bình 8.0",
+		},
+		skill: {
+			title: "Skills",
+			skills: [
+				{
+					name: "Tin học văn phòng TOPCV",
+					status:
+						"- Sử dụng thành thạo các công cụ Word, Excel, Power Point",
+				},
+				{
+					name: "Tiếng Anh",
+					status: "- Khả năng giao tiếp Tiếng Anh trôi chảy",
+				},
+			],
+		},
+		badge: {
+			title: "Badge",
+			achievements: [
+				{
+					time: "2014",
+					name: "Nhân viên xuất sắc năm công ty",
+					where: "TOPCV",
+				},
+			],
+		},
+		certificate: {
+			title: "Certificate",
+			certificates: [
+				{
+					time: "2013",
+					name: "Giải nhất Tài năng TOPCV",
+					where: "TopCV",
+				},
+			],
+		},
+		reference: {
+			title: "Reference",
+			references: [
+				{
+					name: "Anh... - Trưởng phòng Marketing",
+					where: "Công ty TOPCV",
+					phone: "023093024",
+				},
+			],
+		},
+		activity: {
+			title: "Activity",
+			activities: [
+				{
+					time: "10/2013 - 08/2014",
+					name: "NHÓM TÌNH NGUYỆN TOPCV",
+					position: "Tình nguyện viên",
+					tasks: [
+						"Tập hợp các món quà và phân phát tới người vô gia cư.",
+						"- Chia sẻ, động viên họ vượt qua giai đoạn khó khăn, giúp họ có những suy nghĩ lạc quan.",
+					],
+				},
+			],
+		},
+		hobby: {
+			title: "Hobby",
+			hobbies: [
+				{
+					name: "Đọc sách:",
+					status: "- Mỗi tháng đọc 1 quyển sách về kinh doanh.",
+				},
+				{
+					name: "Đá bóng:",
+					status:
+						"- Tham gia hoạt động đá bóng của công ty hàng tuần",
+				},
+			],
+		},
+		other: {
+			title: "Other",
+			content: "(Nếu có)",
 		},
 	},
-	{
-		name: "Column03",
-		attrs: {
-			left: {
-				name: "V01AActivity",
-				attrs: {
-					title: "Activity",
-					activities: [
-						{
-							time: "10/2013 - 08/2014",
-							name: "NHÓM TÌNH NGUYỆN TOPCV",
-							tasks: ["Tình nguyện viên", "Tập hợp các món quà và phân phát tới người vô gia cư.", "- Chia sẻ, động viên họ vượt qua giai đoạn khó khăn, giúp họ có những suy nghĩ lạc quan."],
-						},
-					],
-				},
-			},
-			middle: {
-				name: "V01AHobby",
-				attrs: {
-					title: "Hobby",
-					hobbies: [
-						{
-							name: "Đọc sách:",
-							status: "- Mỗi tháng đọc 1 quyển sách về kinh doanh.",
-						},
-						{
-							name: "Đá bóng:",
-							status: "- Tham gia hoạt động đá bóng của công ty hàng tuần",
-						},
-					],
-				},
-			},
-			right: {
-				name: "V01AOther",
-				attrs: {
-					title: "Other",
-					content: "(Nếu có)",
-				},
-			},
-		},
-	},
-];
-function ViewCV() {
-	const [userData, setUserData] = useState<any[]>([]);
+};
+const cvs = {
+	"1": de,
+	"2": de2,
+};
+function ViewCV({ params }: { params: { id: String } }) {
+	const [userData, setUserData] = useState<any | null>(null);
 	useEffect(() => {
-		setUserData(de);
+		const getUserData = () => {
+			setUserData(cvs[params.id as keyof typeof cvs]);
+		};
+		getUserData();
 	}, []);
 	return (
 		<HomeLayout>
-			<div className='w-full p-2 bg-slate-200'>
-				<div className='m-auto sm:w-11/12 md:w-2/3 lg:w-2/3 xl:w-2/4  p-4 bg-white'>
-					<div id='sectionParent' className='flex flex-col gap-4'>
-						{userData.map((section, index) => (
-							<div key={index}>{Transfer[section.name](section.attrs)}</div>
-						))}
-					</div>
-				</div>
-			</div>
+			{userData !== null ? (
+				Transfer[userData.template](userData.attrs)
+			) : (
+				<div>No data render</div>
+			)}
 		</HomeLayout>
 	);
 }

@@ -9,9 +9,9 @@ type Column3Props = {
 function Column3({ left, middle, right }: Column3Props) {
 	return (
 		<div className='sections grid grid-cols-3 gap-4'>
-			{Transfer[left.name](left.attrs)}
-			{Transfer[middle.name](middle.attrs)}
-			{Transfer[right.name](right.attrs)}
+			{left}
+			{middle}
+			{right}
 		</div>
 	);
 }

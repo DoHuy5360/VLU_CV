@@ -7,9 +7,9 @@ type Column2Props = {
 
 function Column2({ left, right }: Column2Props) {
 	return (
-		<div className='sections grid grid-cols-2 gap-4'>
-			{Transfer[left.name](left.attrs)}
-			{Transfer[right.name](right.attrs)}
+		<div className='sections grid grid-cols-2 gap-10'>
+			{left}
+			{right}
 		</div>
 	);
 }
