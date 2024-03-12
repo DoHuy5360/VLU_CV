@@ -67,10 +67,15 @@ function Page() {
 						}}
 					/>
 				</div>
-				<div className='overflow-hidden'>
+				<div className='overflow-scroll'>
 					{currentTab === "profile" && (
 						<div className=''>
 							<Profile />
+						</div>
+					)}
+					{currentTab === "experience" && (
+						<div className=''>
+							<Experience />
 						</div>
 					)}
 				</div>
@@ -228,6 +233,84 @@ function Profile() {
 						type='text'
 					/>
 				</div>
+			</div>
+			<div className='flex justify-end'>
+				<button
+					className='bg-green-300 px-4 py-2 rounded-full text-sm '
+					type='button'
+				>
+					Save
+				</button>
+			</div>
+		</div>
+	);
+}
+function Experience() {
+	return (
+		<div className='flex flex-col gap-2 p-4'>
+			<div className='text-sm flex gap-2 flex-wrap'>
+				{de.attrs.experience.works.map((w, i) => {
+					return (
+						<div
+							key={i}
+							className='flex flex-col gap-2 bg-slate-100 p-2 w-full'
+						>
+							<div className='flex flex-col gap-1'>
+								<label
+									className='text-xs text-slate-500'
+									htmlFor='name'
+								>
+									Name
+								</label>
+								<input
+									id='name'
+									value={w.name}
+									className='border-slate-200 border-[1px] p-1'
+									type='text'
+								/>
+							</div>
+							<div className='flex flex-col gap-1'>
+								<label
+									className='text-xs text-slate-500'
+									htmlFor='position'
+								>
+									Position
+								</label>
+								<input
+									id='position'
+									value={w.position}
+									className='border-slate-200 border-[1px] p-1'
+									type='text'
+								/>
+							</div>
+							<div className='flex flex-col gap-1'>
+								<label
+									className='text-xs text-slate-500'
+									htmlFor='time'
+								>
+									Time
+								</label>
+								<input
+									id='time'
+									value={w.time}
+									className='border-slate-200 border-[1px] p-1'
+									type='text'
+								/>
+							</div>
+							<div className='flex flex-col gap-1'>
+								<label
+									className='text-xs text-slate-500'
+									htmlFor='tasks'
+								>
+									Tasks
+								</label>
+								<textarea id='tasks' className='resize-none h-20 p-2'>
+									{w.tasks}
+								</textarea>
+							</div>
+						</div>
+					);
+				})}
 			</div>
 			<div className='flex justify-end'>
 				<button

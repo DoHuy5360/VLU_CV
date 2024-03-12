@@ -70,19 +70,15 @@ export const de = {
 					name: "TopCV company",
 					time: "03/2015 - current",
 					position: "NHÂN VIÊN BÁN HÀNG",
-					tasks: [
-						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...",
-						"- Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
-					],
+					tasks:
+						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...\n - Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
 				},
 				{
 					name: "TopCV company",
 					time: "03/2015 - current",
 					position: "NHÂN VIÊN BÁN HÀNG",
-					tasks: [
-						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...",
-						"- Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
-					],
+					tasks:
+						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...\n- Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
 				},
 			],
 		},
@@ -220,19 +216,15 @@ const de2 = {
 					name: "TopCV company",
 					time: "03/2015 - current",
 					position: "NHÂN VIÊN BÁN HÀNG",
-					tasks: [
-						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...",
-						"- Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
-					],
+					tasks:
+						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...\n - Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
 				},
 				{
 					name: "TopCV company",
 					time: "03/2015 - current",
 					position: "NHÂN VIÊN BÁN HÀNG",
-					tasks: [
-						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...",
-						"- Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
-					],
+					tasks:
+						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...\n - Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
 				},
 			],
 		},

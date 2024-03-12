@@ -1,12 +1,12 @@
 type ExperienceDetail = {
-	name: String;
-	time: String;
-	position: String;
-	tasks: String[];
+	name: string;
+	time: string;
+	position: string;
+	tasks: string;
 };
 
 type ExperienceProps = {
-	title: String;
+	title: string;
 	works: ExperienceDetail[];
 };
 
@@ -23,11 +23,7 @@ function Experience({ title, works }: ExperienceProps) {
 							<div className='text-nowrap'>{w.time}</div>
 							<div className='font-bold'>{w.position}</div>
 							<div className='font-bold'>{w.name}</div>
-							<div>
-								{w.tasks.map((t, j) => (
-									<div key={j}>{t}</div>
-								))}
-							</div>
+							<div>{w.tasks}</div>
 						</div>
 					);
 				})}
