@@ -345,25 +345,10 @@ function Wrap({ children }: { children: JSX.Element }) {
 }
 
 function ViewCV({ params }: { params: { id: String } }) {
-	const [userData, setUserData] = useState<any | null>(null);
-	const { state, dispatch } = useContext(CvContext);
-	// useEffect(() => {
-	// 	const getUserData = () => {
-	// 		setUserData(cvs[params.id as keyof typeof cvs]);
-	// 	};
-	// 	getUserData();
-	// }, []);
-	// console.log(state);
+	const { state } = useContext(CvContext);
 	return (
 		<HomeLayout>
-			<Wrap>
-				{Transfer[state.template](state.attrs)}
-				{/* {userData !== null ? (
-					// Transfer[userData.template](userData.attrs)
-				) : (
-					<div>No data render</div>
-				)} */}
-			</Wrap>
+			<Wrap>{Transfer[state.template](state.attrs)}</Wrap>
 		</HomeLayout>
 	);
 }

@@ -1,6 +1,8 @@
+"use client";
 import { Dispatch, createContext, useReducer } from "react";
 
-type State = {
+type Action = {
+	type: any;
 	value: any;
 };
 
@@ -151,15 +153,35 @@ const initCvContext: any = {
 	},
 };
 
-const reducer = (state: State, action: any): State => {
+const reducer = (state: any, action: Action): any => {
 	switch (action.type) {
-		case "update_name":
-			state.value.attrs.head.name = state.value;
+		case "update-user-name":
+			state.attrs.head.name = action.value;
 			return {
-				...state.value,
+				...state,
+			};
+		case "update-user-position":
+			state.attrs.head.position = action.value;
+			return {
+				...state,
+			};
+		case "update-user-phone":
+			state.attrs.head.phone = action.value;
+			return {
+				...state,
+			};
+		case "update-user-email":
+			state.attrs.head.email = action.value;
+			return {
+				...state,
+			};
+		case "update-user-address":
+			state.attrs.head.address = action.value;
+			return {
+				...state,
 			};
 		default:
-			return state.value;
+			return state;
 	}
 };
 

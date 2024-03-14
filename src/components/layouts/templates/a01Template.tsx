@@ -1,4 +1,17 @@
-import { V01AHead, V01AGoal, V01AExperience, V01AProject, V01AEducation, V01ASkill, V01ABadge, V01ACertificate, V01AReference, V01AActivity, V01AHobby, V01AOther } from "@/components/cv/v01A/export";
+import {
+	V01AHead,
+	V01AGoal,
+	V01AExperience,
+	V01AProject,
+	V01AEducation,
+	V01ASkill,
+	V01ABadge,
+	V01ACertificate,
+	V01AReference,
+	V01AActivity,
+	V01AHobby,
+	V01AOther,
+} from "@/components/cv/v01A/export";
 import { Column02, Column03 } from "../symmetric/export";
 
 function A01Template(attrs: any) {

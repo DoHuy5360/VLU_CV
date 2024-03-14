@@ -9,7 +9,7 @@ import {
 } from "react";
 
 function Page() {
-	const [currentTab, setCurrentTab] = useState("");
+	const [currentTab, setCurrentTab] = useState("profile");
 	useEffect(() => {
 		const queryParams = new URLSearchParams(window.location.search);
 		const savedState = queryParams.get("tab");
