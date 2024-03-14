@@ -18,9 +18,10 @@ import {
 	Column02,
 	Column03,
 } from "@/components/layouts/symmetric/export";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useReducer, useState } from "react";
 import A01Template from "@/components/layouts/templates/a01Template";
 import A02Template from "@/components/layouts/templates/a02Template";
+import CvProvider, { CvContext } from "@/contexts/cvProvider";
 interface TransferType {
 	[key: string]: (props: any) => JSX.Element;
 }
@@ -339,21 +340,30 @@ const cvs = {
 	"1": de,
 	"2": de2,
 };
+function Wrap({ children }: { children: JSX.Element }) {
+	return <CvProvider>{children}</CvProvider>;
+}
+
 function ViewCV({ params }: { params: { id: String } }) {
 	const [userData, setUserData] = useState<any | null>(null);
-	useEffect(() => {
-		const getUserData = () => {
-			setUserData(cvs[params.id as keyof typeof cvs]);
-		};
-		getUserData();
-	}, []);
+	const { state, dispatch } = useContext(CvContext);
+	// useEffect(() => {
+	// 	const getUserData = () => {
+	// 		setUserData(cvs[params.id as keyof typeof cvs]);
+	// 	};
+	// 	getUserData();
+	// }, []);
+	// console.log(state);
 	return (
 		<HomeLayout>
-			{userData !== null ? (
-				Transfer[userData.template](userData.attrs)
-			) : (
-				<div>No data render</div>
-			)}
+			<Wrap>
+				{Transfer[state.template](state.attrs)}
+				{/* {userData !== null ? (
+					// Transfer[userData.template](userData.attrs)
+				) : (
+					<div>No data render</div>
+				)} */}
+			</Wrap>
 		</HomeLayout>
 	);
 }
