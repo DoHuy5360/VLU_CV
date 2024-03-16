@@ -1,22 +1,16 @@
-type Act = {
-	time: string;
-	name: string;
-	position: string;
-	tasks: string[];
-};
+import { CvContext } from "@/contexts/cvProvider";
+import { useContext } from "react";
 
-type ActivityProps = {
-	title: string;
-	activities: Act[];
-};
-function Activity({ title, activities }: ActivityProps) {
+function Activity() {
+	const { state } = useContext(CvContext);
+
 	return (
 		<div className='section flex flex-col gap-2'>
 			<div className='font-bold text-nowrap text-blue-500'>
-				{title}
+				{state.attrs.activity.title}
 			</div>
 			<div className='text-xs flex flex-col gap-2'>
-				{activities.map((a, i) => {
+				{state.attrs.activity.activities.map((a, i) => {
 					return (
 						<div key={i} className='flex flex-col gap-1'>
 							<div>{a.time}</div>

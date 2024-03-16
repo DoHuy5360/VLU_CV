@@ -1,3 +1,4 @@
+import CvProvider from "@/contexts/cvProvider";
 import Link from "next/link";
 
 function HomeLayout({ children }: { children: JSX.Element }) {
@@ -17,9 +18,17 @@ function HomeLayout({ children }: { children: JSX.Element }) {
 					>
 						Hồ sơ cá nhân
 					</Link>
+					<Link
+						className='px-2 py-1 hover:bg-slate-300'
+						href='/template/cv'
+					>
+						Mẫu CV
+					</Link>
 				</nav>
 			</header>
-			<main className='h-full'>{children}</main>
+			<main className='h-full'>
+				<CvProvider>{children}</CvProvider>
+			</main>
 			<footer>{/* Đặt nội dung footer ở đây */}</footer>
 		</div>
 	);

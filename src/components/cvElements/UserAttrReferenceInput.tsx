@@ -10,13 +10,12 @@ function UserAttrReferenceInput({
 	value: string;
 	className?: string;
 }) {
-	const { dispatch } = useContext(CvContext);
-	const [editable, setEditable] = useState(false);
+	const { dispatch, editable, setEditable } = useContext(CvContext);
 	return (
 		<input
-			disabled={editable}
+			disabled={!editable}
 			className={
-				editable ? `disabled:bg-transparent ${className}` : className
+				!editable ? `disabled:bg-transparent ${className}` : className
 			}
 			onChange={(e) => {
 				dispatch({

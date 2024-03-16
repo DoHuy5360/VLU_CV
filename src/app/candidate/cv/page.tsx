@@ -31,9 +31,15 @@ function CV() {
 		<HomeLayout>
 			<div className='flex flex-col'>
 				{cvs.map((cv, index) => (
-					<div key={index} className='grid grid-cols-[20px_auto_100px] p-1 hover:bg-slate-200'>
+					<div
+						key={index}
+						className='grid grid-cols-[20px_auto_100px] p-1 hover:bg-slate-200'
+					>
 						<div>{index + 1}</div>
-						<Link className='underline hover:text-blue-500' href={`/cv/${cv.id}`}>
+						<Link
+							className='underline hover:text-blue-500'
+							href={`/candidate/cv/${cv.id}`}
+						>
 							{cv.name}
 						</Link>
 						<div>{cv.created}</div>

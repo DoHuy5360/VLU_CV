@@ -14,33 +14,33 @@ import {
 } from "@/components/cv/v01A/export";
 import { Column02, Column03 } from "../symmetric/export";
 
-function A01Template(attrs: any) {
+function A01Template() {
 	return (
 		<div className='w-full p-2 bg-slate-200'>
 			<div className='m-auto sm:w-11/12 md:w-2/3 lg:w-2/3 xl:w-2/4  p-4 bg-white'>
 				<div id='sectionParent' className='flex flex-col gap-4'>
-					<V01AHead {...attrs.head} />
-					<V01AGoal {...attrs.goal} />
-					<V01AExperience {...attrs.experience} />
-					<V01AProject {...attrs.project} />
+					<V01AHead />
+					<V01AGoal />
+					<V01AExperience />
+					<V01AProject />
 					<Column02
 						{...{
-							left: <V01AEducation {...attrs.education} />,
-							right: <V01ASkill {...attrs.skill} />,
+							left: <V01AEducation />,
+							right: <V01ASkill />,
 						}}
 					/>
 					<Column03
 						{...{
-							left: <V01ABadge {...attrs.badge} />,
-							middle: <V01ACertificate {...attrs.certificate} />,
-							right: <V01AReference {...attrs.reference} />,
+							left: <V01ABadge />,
+							middle: <V01ACertificate />,
+							right: <V01AReference />,
 						}}
 					/>
 					<Column03
 						{...{
-							left: <V01AActivity {...attrs.activity} />,
-							middle: <V01AHobby {...attrs.hobby} />,
-							right: <V01AOther {...attrs.other} />,
+							left: <V01AActivity />,
+							middle: <V01AHobby />,
+							right: <V01AOther />,
 						}}
 					/>
 				</div>

@@ -1,47 +1,15 @@
 "use client";
 import HomeLayout from "@/components/layouts/app/home";
-import {
-	V01ACertificate,
-	V01AReference,
-	V01AActivity,
-	V01AHobby,
-	V01AOther,
-	V01AHead,
-	V01AGoal,
-	V01AExperience,
-	V01AProject,
-	V01AEducation,
-	V01ASkill,
-	V01ABadge,
-} from "@/components/cv/v01A/export";
-import {
-	Column02,
-	Column03,
-} from "@/components/layouts/symmetric/export";
 import { useContext, useEffect, useReducer, useState } from "react";
 import A01Template from "@/components/layouts/templates/a01Template";
 import A02Template from "@/components/layouts/templates/a02Template";
 import CvProvider, { CvContext } from "@/contexts/cvProvider";
 interface TransferType {
-	[key: string]: (props: any) => JSX.Element;
+	[key: string]: () => JSX.Element;
 }
 export const Transfer: TransferType = {
 	A01Template: A01Template,
 	A02Template: A02Template,
-	Column02: Column02,
-	Column03: Column03,
-	V01AHead: V01AHead,
-	V01AGoal: V01AGoal,
-	V01AExperience: V01AExperience,
-	V01AProject: V01AProject,
-	V01AEducation: V01AEducation,
-	V01ASkill: V01ASkill,
-	V01ABadge: V01ABadge,
-	V01ACertificate: V01ACertificate,
-	V01AReference: V01AReference,
-	V01AActivity: V01AActivity,
-	V01AHobby: V01AHobby,
-	V01AOther: V01AOther,
 };
 
 export const de = {
@@ -336,21 +304,10 @@ const de2 = {
 		},
 	},
 };
-const cvs = {
-	"1": de,
-	"2": de2,
-};
-function Wrap({ children }: { children: JSX.Element }) {
-	return <CvProvider>{children}</CvProvider>;
-}
 
 function ViewCV({ params }: { params: { id: String } }) {
 	const { state } = useContext(CvContext);
-	return (
-		<HomeLayout>
-			<Wrap>{Transfer[state.template](state.attrs)}</Wrap>
-		</HomeLayout>
-	);
+	return <HomeLayout>{Transfer[state.template]()}</HomeLayout>;
 }
 
 export default ViewCV;

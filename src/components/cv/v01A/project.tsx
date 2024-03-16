@@ -1,32 +1,28 @@
-type Product = {
-	name: String;
-	time: String;
-	where: String;
-	member: String;
-	position: String;
-	tasks: String[];
-	techs: String[];
-};
+import { CvContext } from "@/contexts/cvProvider";
+import { useContext } from "react";
 
-type ProjectProps = {
-	title: String;
-	products: Product[];
-};
-
-function Project({ title, products }: ProjectProps) {
+function Project() {
+	const { state } = useContext(CvContext);
 	return (
 		<div className='section flex flex-col gap-2'>
 			<div className='section flex flex-col gap-2'>
 				<div className='flex gap-2 items-center'>
-					<div className='font-bold text-nowrap'>{title}</div>
+					<div className='font-bold text-nowrap'>
+						{state.attrs.project.title}
+					</div>
 					<div className='h-[2px] w-full bg-black'></div>
 				</div>
 				<div className='flex flex-col text-xs'>
-					{products.map((p, i) => {
+					{state.attrs.project.products.map((p, i) => {
 						return (
-							<div key={i} className='grid grid-cols-[100px_auto] gap-10'>
+							<div
+								key={i}
+								className='grid grid-cols-[100px_auto] gap-10'
+							>
 								<div className='flex flex-col gap-1'>
-									<div className='text-nowrap font-bold'>{p.name}</div>
+									<div className='text-nowrap font-bold'>
+										{p.name}
+									</div>
 									<div className='text-nowrap'>{p.time}</div>
 									<div className='text-nowrap'>{p.where}</div>
 									<div className='text-nowrap'>{p.member}</div>

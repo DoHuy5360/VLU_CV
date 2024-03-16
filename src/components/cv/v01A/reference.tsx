@@ -1,22 +1,18 @@
-type ReferencePerson = {
-	name: String;
-	where: String;
-	phone: String;
-};
+import { CvContext } from "@/contexts/cvProvider";
+import { useContext } from "react";
 
-type ReferenceProps = {
-	title: "Reference";
-	references: ReferencePerson[];
-};
-function Reference({ title, references }: ReferenceProps) {
+function Reference() {
+	const { state } = useContext(CvContext);
 	return (
 		<div className='section flex flex-col gap-2'>
 			<div className='flex gap-2 items-center'>
-				<div className='font-bold text-nowrap'>{title}</div>
+				<div className='font-bold text-nowrap'>
+					{state.attrs.reference.title}
+				</div>
 				<div className='h-[2px] w-full bg-black'></div>
 			</div>
 			<div className='text-xs flex flex-col gap-2'>
-				{references.map((r, i) => {
+				{state.attrs.reference.references.map((r, i) => {
 					return (
 						<div key={i}>
 							<div>{r.name}</div>

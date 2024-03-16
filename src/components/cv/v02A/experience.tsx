@@ -1,23 +1,16 @@
-type ExperienceDetail = {
-	name: string;
-	time: string;
-	position: string;
-	tasks: string;
-};
+import { CvContext } from "@/contexts/cvProvider";
+import { useContext } from "react";
 
-type ExperienceProps = {
-	title: string;
-	works: ExperienceDetail[];
-};
+function Experience() {
+	const { state } = useContext(CvContext);
 
-function Experience({ title, works }: ExperienceProps) {
 	return (
 		<div className='section flex flex-col gap-2'>
 			<div className='font-bold text-nowrap text-blue-500'>
-				{title}
+				{state.attrs.experience.title}
 			</div>
 			<div className='flex flex-col gap-4 text-xs'>
-				{works.map((w, i) => {
+				{state.attrs.experience.works.map((w, i) => {
 					return (
 						<div key={i} className='flex flex-col gap-1'>
 							<div className='text-nowrap'>{w.time}</div>
