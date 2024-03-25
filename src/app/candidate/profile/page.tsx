@@ -4,12 +4,15 @@ import { de } from "../cv/[id]/page";
 import {
 	MouseEventHandler,
 	useCallback,
+	useContext,
 	useEffect,
 	useState,
 } from "react";
+import { CvContext } from "@/contexts/cvProvider";
+import UserAttrReferenceInput from "@/components/cvElements/UserAttrReferenceInput";
 
 function Page() {
-	const [currentTab, setCurrentTab] = useState("profile");
+	const [currentTab, setCurrentTab] = useState("information");
 	useEffect(() => {
 		const queryParams = new URLSearchParams(window.location.search);
 		const savedState = queryParams.get("tab");
@@ -32,10 +35,10 @@ function Page() {
 				<div className='border-r-[1px] border-slate-200 h-full'>
 					<TabButton
 						onClick={() => {
-							setFootprint("profile");
-							setCurrentTab("profile");
+							setFootprint("information");
+							setCurrentTab("information");
 						}}
-						name='Profile'
+						name='Information'
 					/>
 
 					<TabButton
@@ -68,9 +71,9 @@ function Page() {
 					/>
 				</div>
 				<div className='overflow-scroll'>
-					{currentTab === "profile" && (
+					{currentTab === "information" && (
 						<div className=''>
-							<Profile />
+							<Information />
 						</div>
 					)}
 					{currentTab === "experience" && (
@@ -100,11 +103,17 @@ function TabButton({
 	);
 }
 
-function Profile() {
+function Information() {
+	const { state } = useContext(CvContext);
+
 	return (
 		<div className='flex flex-col gap-2 p-4'>
 			<div className='w-28 h-28 rounded-full overflow-hidden'>
-				<img src={de.attrs.head.avatar} alt='avatar' />
+				<img
+					src={state.attrs.head.avatar}
+					alt='avatar'
+					draggable='false'
+				/>
 			</div>
 			<div className='text-sm flex gap-2 flex-wrap'>
 				<div className='flex flex-col gap-1'>
@@ -114,11 +123,11 @@ function Profile() {
 					>
 						Name
 					</label>
-					<input
+					<UserAttrReferenceInput
 						id='name'
-						value={de.attrs.head.name}
+						value={state.attrs.head.name}
+						type='update-user-name'
 						className='border-slate-200 border-[1px] p-1'
-						type='text'
 					/>
 				</div>
 				<div className='flex flex-col gap-1'>
@@ -128,9 +137,9 @@ function Profile() {
 					>
 						Birth
 					</label>
-					<input
+					<UserAttrReferenceInput
 						id='birth'
-						value={de.attrs.head.birth}
+						value={state.attrs.head.birth}
 						className='border-slate-200 border-[1px] p-1'
 						type='text'
 					/>
@@ -142,9 +151,9 @@ function Profile() {
 					>
 						Position
 					</label>
-					<input
+					<UserAttrReferenceInput
 						id='position'
-						value={de.attrs.head.position}
+						value={state.attrs.head.position}
 						className='border-slate-200 border-[1px] p-1'
 						type='text'
 					/>
@@ -156,9 +165,9 @@ function Profile() {
 					>
 						Phone
 					</label>
-					<input
+					<UserAttrReferenceInput
 						id='phone'
-						value={de.attrs.head.phone}
+						value={state.attrs.head.phone}
 						className='border-slate-200 border-[1px] p-1'
 						type='text'
 					/>
@@ -170,9 +179,9 @@ function Profile() {
 					>
 						Email
 					</label>
-					<input
+					<UserAttrReferenceInput
 						id='email'
-						value={de.attrs.head.email}
+						value={state.attrs.head.email}
 						className='border-slate-200 border-[1px] p-1'
 						type='text'
 					/>
@@ -184,9 +193,9 @@ function Profile() {
 					>
 						Address
 					</label>
-					<input
+					<UserAttrReferenceInput
 						id='address'
-						value={de.attrs.head.address}
+						value={state.attrs.head.address}
 						className='border-slate-200 border-[1px] p-1'
 						type='text'
 					/>
@@ -198,23 +207,9 @@ function Profile() {
 					>
 						Website
 					</label>
-					<input
+					<UserAttrReferenceInput
 						id='website'
-						value={de.attrs.head.website}
-						className='border-slate-200 border-[1px] p-1'
-						type='text'
-					/>
-				</div>
-				<div className='flex flex-col gap-1'>
-					<label
-						className='text-xs font-bold text-slate-400'
-						htmlFor='birth'
-					>
-						Birth
-					</label>
-					<input
-						id='birth'
-						value={de.attrs.head.birth}
+						value={state.attrs.head.website}
 						className='border-slate-200 border-[1px] p-1'
 						type='text'
 					/>
@@ -226,9 +221,9 @@ function Profile() {
 					>
 						Gender
 					</label>
-					<input
+					<UserAttrReferenceInput
 						id='gender'
-						value={de.attrs.head.gender}
+						value={state.attrs.head.gender}
 						className='border-slate-200 border-[1px] p-1'
 						type='text'
 					/>
@@ -246,10 +241,11 @@ function Profile() {
 	);
 }
 function Experience() {
+	const { state } = useContext(CvContext);
 	return (
 		<div className='flex flex-col gap-2 p-4'>
 			<div className='text-sm flex gap-2 flex-wrap'>
-				{de.attrs.experience.works.map((w, i) => {
+				{state.attrs.experience.works.map((w, i) => {
 					return (
 						<div
 							key={i}

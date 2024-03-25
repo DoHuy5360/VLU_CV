@@ -2,20 +2,25 @@ import { CvContext } from "@/contexts/cvProvider";
 import { useContext, useState } from "react";
 
 function UserAttrReferenceInput({
+	id,
 	className,
 	type,
 	value,
 }: {
+	id?: string;
 	type: string;
 	value: string;
 	className?: string;
 }) {
-	const { dispatch, editable, setEditable } = useContext(CvContext);
+	const { dispatch, editable } = useContext(CvContext);
 	return (
 		<input
+			id={id}
 			disabled={!editable}
 			className={
-				!editable ? `disabled:bg-transparent ${className}` : className
+				!editable
+					? `disabled:bg-transparent w-full ${className}`
+					: `w-full ${className}`
 			}
 			onChange={(e) => {
 				dispatch({

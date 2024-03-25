@@ -1,29 +1,59 @@
-import { Db, MongoClient } from "mongodb";
+import { Collection, Db, MongoClient } from "mongodb";
 import "dotenv/config";
 // Connection URL
-const url = process.env.MONGODB_DRIVER as string;
-const client = new MongoClient(url);
+// const url = process.env.MONGODB_DRIVER as string;
+// const client = new MongoClient(url);
 
-// Database Name
-const dbName = "graduate-thesis";
+// // Database Name
+// const dbName = "graduate-thesis";
 
-export class Database {
-	public connection!: Db;
-	constructor() {}
-	async connectDB(): Promise<Db> {
-		// Use connect method to connect to the server
-		await client.connect();
-		console.log("Connected successfully to server");
-		const db = client.db(dbName);
-		const collection = db.collection("documents");
-
-		// the following code examples can be pasted here...
-
-		return db;
-	}
-}
+// export class Database {
+// 	static connection: Db;
+// 	public static cv: Collection<Document>;
+// 	static isConnected: boolean = false;
+// 	constructor() {}
+// 	static async connectDB() {
+// 		if (this.isConnected) return;
+// 		await client.connect();
+// 		console.log("Connected successfully to server");
+// 		const db = client.db(dbName);
+// 		this.cv = db.collection("cv");
+// 		this.isConnected = true;
+// 	}
+// }
 
 // main()
 // 	.then(console.log)
 // 	.catch(console.error)
 // 	.finally(() => client.close());
+// This approach is taken from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
+
+if (!process.env.MONGODB_URI) {
+	throw new Error(
+		'Invalid/Missing environment variable: "MONGODB_URI"'
+	);
+}
+
+const uri: string = process.env.MONGODB_URI;
+const options: any = {};
+
+let client: MongoClient | undefined;
+let clientPromise: Promise<MongoClient>;
+
+if (process.env.NODE_ENV === "development") {
+	// In development mode, use a global variable so that the value
+	// is preserved across module reloads caused by HMR (Hot Module Replacement).
+	if (!(global as any)._mongoClientPromise) {
+		client = new MongoClient(uri, options);
+		(global as any)._mongoClientPromise = client.connect();
+	}
+	clientPromise = (global as any)._mongoClientPromise;
+} else {
+	// In production mode, it's best to not use a global variable.
+	client = new MongoClient(uri, options);
+	clientPromise = client.connect();
+}
+
+// Export a module-scoped MongoClient promise. By doing this in a
+// separate module, the client can be shared across functions.
+export default clientPromise;

@@ -1,5 +1,5 @@
 "use client";
-import { UserData, userDataSample } from "@/models/userData";
+import { UserData, userDataSample } from "@/types/userData";
 import { Dispatch, createContext, useReducer, useState } from "react";
 
 type Action = {
@@ -48,7 +48,7 @@ export const CvContext = createContext({
 
 function CvProvider({ children }: { children: JSX.Element }) {
 	const [state, dispatch] = useReducer(reducer, initCvContext);
-	const [editable, setEditable] = useState(true);
+	const [editable, setEditable] = useState(false);
 	return (
 		<CvContext.Provider
 			value={{
