@@ -1,4 +1,4 @@
-type Head = {
+export type Head = {
 	name: string;
 	avatar: string;
 	position: string;
@@ -10,21 +10,21 @@ type Head = {
 	gender: string;
 };
 
-type Goal = {
+export type Goal = {
 	title: string;
 	content: string;
 };
-type Work = {
+export type Work = {
 	name: string;
 	time: string;
 	position: string;
 	tasks: string;
 };
-type Experience = {
+export type Experience = {
 	title: string;
 	works: Work[];
 };
-type Project = {
+export type Project = {
 	title: string;
 	products: [
 		{
@@ -38,77 +38,77 @@ type Project = {
 		}
 	];
 };
-type Education = {
+export type Education = {
 	title: string;
 	time: string;
 	major: string;
 	school: string;
 	status: string;
 };
-type Ability = {
+export type Ability = {
 	name: string;
 	status: string;
 };
-type Skill = {
+export type Skill = {
 	title: "Skills";
 	skills: Ability[];
 };
 
-type Achievement = {
+export type Achievement = {
 	time: string;
 	name: string;
 	where: string;
 };
 
-type Badge = {
+export type Badge = {
 	title: string;
 	achievements: Achievement[];
 };
 
-type Merit = {
+export type Merit = {
 	time: string;
 	name: string;
 	where: string;
 };
 
-type Certificate = {
+export type Certificate = {
 	title: string;
 	certificates: Merit[];
 };
 
-type Colleague = {
+export type Colleague = {
 	name: string;
 	where: string;
 	phone: string;
 };
 
-type Reference = {
+export type Reference = {
 	title: string;
 	references: Colleague[];
 };
-type Act = {
+export type Act = {
 	time: string;
 	name: string;
 	position: string;
 	tasks: string[];
 };
-type Activity = {
+export type Activity = {
 	title: "Activity";
 	activities: Act[];
 };
-type Favorite = {
+export type Favorite = {
 	name: string;
 	status: string;
 };
-type Hobby = {
+export type Hobby = {
 	title: string;
 	hobbies: Favorite[];
 };
-type Other = {
+export type Other = {
 	title: string;
 	content: string;
 };
-type Attrs = {
+export type Attrs = {
 	head: Head;
 	goal: Goal;
 	experience: Experience;

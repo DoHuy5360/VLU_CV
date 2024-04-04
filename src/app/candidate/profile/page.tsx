@@ -1,6 +1,4 @@
 "use client";
-import HomeLayout from "@/components/layouts/app/home";
-import { de } from "../cv/[id]/page";
 import {
 	MouseEventHandler,
 	useCallback,
@@ -30,60 +28,58 @@ function Page() {
 		);
 	}, []);
 	return (
-		<HomeLayout>
-			<div className='grid grid-cols-[150px_auto] h-full'>
-				<div className='border-r-[1px] border-slate-200 h-full'>
-					<TabButton
-						onClick={() => {
-							setFootprint("information");
-							setCurrentTab("information");
-						}}
-						name='Information'
-					/>
+		<div className='grid grid-cols-[150px_auto] h-full'>
+			<div className='border-r-[1px] border-slate-200 h-full'>
+				<TabButton
+					onClick={() => {
+						setFootprint("information");
+						setCurrentTab("information");
+					}}
+					name='Information'
+				/>
 
-					<TabButton
-						name='Experience'
-						onClick={() => {
-							setFootprint("experience");
-							setCurrentTab("experience");
-						}}
-					/>
-					<TabButton
-						name='Project'
-						onClick={() => {
-							setFootprint("project");
-							setCurrentTab("project");
-						}}
-					/>
-					<TabButton
-						name='Certificate & Badge'
-						onClick={() => {
-							setFootprint("certificate & badge");
-							setCurrentTab("certificate & badge");
-						}}
-					/>
-					<TabButton
-						name='Activity'
-						onClick={() => {
-							setFootprint("activity");
-							setCurrentTab("activity");
-						}}
-					/>
-				</div>
-				<div className='overflow-scroll'>
-					{currentTab === "information" && (
-						<div className=''>
-							<Information />
-						</div>
-					)}
-					{currentTab === "experience" && (
-						<div className=''>
-							<Experience />
-						</div>
-					)}
-				</div>
+				<TabButton
+					name='Experience'
+					onClick={() => {
+						setFootprint("experience");
+						setCurrentTab("experience");
+					}}
+				/>
+				<TabButton
+					name='Project'
+					onClick={() => {
+						setFootprint("project");
+						setCurrentTab("project");
+					}}
+				/>
+				<TabButton
+					name='Certificate & Badge'
+					onClick={() => {
+						setFootprint("certificate & badge");
+						setCurrentTab("certificate & badge");
+					}}
+				/>
+				<TabButton
+					name='Activity'
+					onClick={() => {
+						setFootprint("activity");
+						setCurrentTab("activity");
+					}}
+				/>
 			</div>
-		</HomeLayout>
+			<div className='overflow-scroll'>
+				{currentTab === "information" && (
+					<div className=''>
+						<Information />
+					</div>
+				)}
+				{currentTab === "experience" && (
+					<div className=''>
+						<Experience />
+					</div>
+				)}
+			</div>
+		</div>
 	);
 }
 function TabButton({

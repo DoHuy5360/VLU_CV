@@ -1,12 +1,19 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import CvProvider from "@/contexts/cvProvider";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 
-function HomeLayout({ children }: { children: JSX.Element }) {
+async function HomeLayout({ children }: { children: JSX.Element }) {
+	const session = await getServerSession(authOptions);
 	return (
-		<div className='h-dvh flex flex-col overflow-hidden'>
+		<div className='h-dvh flex flex-col'>
 			<header className='border-b-[1px] border-slate-200 flex gap-2 items-center px-2 py-1'>
 				<div className='w-10 h-10 rounded-full bg-slate-200'>
-					<img src={""} className=' object-cover' alt='Avatar' />
+					<img
+						src={session?.user?.image || ""}
+						className=' object-cover'
+						alt='Avatar'
+					/>
 				</div>
 				<nav className='flex gap-2 text-xs'>
 					<Link className='px-2 py-1 hover:bg-slate-300' href='/home'>
@@ -32,7 +39,9 @@ function HomeLayout({ children }: { children: JSX.Element }) {
 					</Link>
 				</nav>
 			</header>
-			<main className='h-full'>{children}</main>
+			<main className='h-full'>
+				<CvProvider>{children}</CvProvider>
+			</main>
 			{/* <footer>Đặt nội dung footer ở đây</footer> */}
 		</div>
 	);

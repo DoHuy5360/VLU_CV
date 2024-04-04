@@ -1,3 +1,4 @@
+"use client";
 import { CvContext } from "@/contexts/cvProvider";
 import { useContext } from "react";
 

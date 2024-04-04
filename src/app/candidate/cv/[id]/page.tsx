@@ -4,13 +4,14 @@ import { useContext, useEffect, useReducer, useState } from "react";
 import A01Template from "@/components/layouts/templates/a01Template";
 import A02Template from "@/components/layouts/templates/a02Template";
 import CvProvider, { CvContext } from "@/contexts/cvProvider";
-interface TransferType {
-	[key: string]: () => JSX.Element;
-}
-export const Transfer: TransferType = {
-	A01Template: A01Template,
-	A02Template: A02Template,
-};
+import { Transfer } from "@/types/tranfer";
+// interface TransferType {
+// 	[key: string]: () => JSX.Element;
+// }
+// export const Transfer: TransferType = {
+// 	A01Template: A01Template,
+// 	A02Template: A02Template,
+// };
 
 export const de = {
 	template: "A01Template",
