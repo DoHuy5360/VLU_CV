@@ -71,6 +71,11 @@ export const authOptions: NextAuthOptions = {
 	},
 	callbacks: {
 		async session({ session, token }) {
+			await connectToDatabase();
+			const Account = mongoose.models.users;
+			session.user = await Account.findOne({
+				email: session.user?.email,
+			});
 			return session;
 		},
 	},

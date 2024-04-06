@@ -1,38 +1,24 @@
-"use client";
-
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import HomeLayout from "@/components/layouts/app/home";
+import { connectToDatabase } from "@/libs/mongoosedb";
+import User_CV from "@/models/user_cv";
+import { ObjectId } from "mongodb";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-type TemplateCV = {
-	id: String;
-	name: String;
-	created: String;
-};
-
-function CV() {
-	const [cvs, setCVs] = useState<TemplateCV[]>([]);
-	useEffect(() => {
-		// get all my cv
-		setCVs([
-			{
-				id: "1",
-				name: "Web developer",
-				created: "12/12/2024",
-			},
-			{
-				id: "2",
-				name: "Back-end developer",
-				created: "12/12/2024",
-			},
-		]);
-	}, []);
+async function CV() {
+	await connectToDatabase();
+	const session = await getServerSession(authOptions);
+	const cvs = await User_CV.find({
+		userId: session?.user._id,
+	}).select("_id name");
 	return (
 		<HomeLayout>
 			<div className='flex flex-col'>
 				{cvs.map((cv, index) => (
 					<div
-						key={index}
+						key={cv._id}
 						className='grid grid-cols-[20px_auto_100px] p-1 hover:bg-slate-200'
 					>
 						<div>{index + 1}</div>
