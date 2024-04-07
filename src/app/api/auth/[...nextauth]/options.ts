@@ -1,6 +1,7 @@
 import clientPromise from "@/libs/mongodb";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import CV from "@/models/cv";
+import User from "@/models/user";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import { Client } from "@microsoft/microsoft-graph-client";
 import mongoose from "mongoose";
@@ -72,8 +73,7 @@ export const authOptions: NextAuthOptions = {
 	callbacks: {
 		async session({ session, token }) {
 			await connectToDatabase();
-			const Account = mongoose.models.users;
-			session.user = await Account.findOne({
+			session.user = await User.findOne({
 				email: session.user?.email,
 			});
 			return session;

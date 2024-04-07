@@ -1,16 +1,13 @@
-import { CvContext } from "@/contexts/cvProvider";
-import { useContext } from "react";
+import { Activity } from "@/types/userData";
 
-function Activity() {
-	const { state } = useContext(CvContext);
-
+export default function Jsx(data: Activity) {
 	return (
 		<div className='section flex flex-col gap-2'>
 			<div className='font-bold text-nowrap text-blue-500'>
-				{state.attrs.activity.title}
+				{data.title}
 			</div>
 			<div className='text-xs flex flex-col gap-2'>
-				{state.attrs.activity.activities.map((a, i) => {
+				{data.activities.map((a, i) => {
 					return (
 						<div key={i} className='flex flex-col gap-1'>
 							<div>{a.time}</div>
@@ -27,5 +24,3 @@ function Activity() {
 		</div>
 	);
 }
-
-export default Activity;

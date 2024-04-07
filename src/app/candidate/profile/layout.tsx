@@ -15,31 +15,42 @@ async function HomeLayout({ children }: { children: JSX.Element }) {
 						alt='Avatar'
 					/>
 				</div>
-				<nav className='flex gap-2 text-xs'>
-					<Link className='px-2 py-1 hover:bg-slate-300' href='/home'>
-						Trang chủ
-					</Link>
+				<nav className='w-full flex gap-2 text-xs items-center justify-between'>
+					<div className='flex gap-2 items-center'>
+						<Link
+							className='px-2 py-1 hover:bg-slate-300'
+							href='/home'
+						>
+							Trang chủ
+						</Link>
+						<Link
+							className='px-2 py-1 hover:bg-slate-300'
+							href='/candidate/cv'
+						>
+							CV của tôi
+						</Link>
+						<Link
+							className='px-2 py-1 hover:bg-slate-300'
+							href='/candidate/profile'
+						>
+							Hồ sơ cá nhân
+						</Link>
+						<Link
+							className='px-2 py-1 hover:bg-slate-300'
+							href='/template/cv'
+						>
+							Mẫu CV
+						</Link>
+					</div>
 					<Link
-						className='px-2 py-1 hover:bg-slate-300'
-						href='/candidate/cv'
+						className='text-white bg-purple-500 p-2 text-xs rounded-sm'
+						href='/api/auth/signout'
 					>
-						CV của tôi
-					</Link>
-					<Link
-						className='px-2 py-1 hover:bg-slate-300'
-						href='/candidate/profile'
-					>
-						Hồ sơ cá nhân
-					</Link>
-					<Link
-						className='px-2 py-1 hover:bg-slate-300'
-						href='/template/cv'
-					>
-						Mẫu CV
+						Đăng Xuất
 					</Link>
 				</nav>
 			</header>
-			<main className='h-full'>
+			<main className='flex-grow'>
 				<CvProvider>{children}</CvProvider>
 			</main>
 			{/* <footer>Đặt nội dung footer ở đây</footer> */}

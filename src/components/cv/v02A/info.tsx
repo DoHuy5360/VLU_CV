@@ -1,5 +1,4 @@
-import { CvContext } from "@/contexts/cvProvider";
-import { useContext } from "react";
+import { Head } from "@/types/userData";
 import {
 	FaCalendar,
 	FaCompass,
@@ -9,9 +8,7 @@ import {
 } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 
-function Info() {
-	const { state } = useContext(CvContext);
-
+export default function Jsx(data: Head) {
 	return (
 		<div className='relative'>
 			<div className='translate-x-[-50%] gap-7 text-white absolute flex flex-col items-center bg-blue-400 px-2 py-4 rounded-full'>
@@ -25,31 +22,29 @@ function Info() {
 			<div className='flex flex-col p-3 pl-8 gap-2 text-xs'>
 				<div className='flex flex-col gap-1'>
 					<div className='font-bold'>Phone</div>
-					<div>{state.attrs.head.phone}</div>
+					<div>{data.phone}</div>
 				</div>
 				<div className='flex flex-col gap-1'>
 					<div className='font-bold'>Email</div>
-					<div>{state.attrs.head.email}</div>
+					<div>{data.email}</div>
 				</div>
 				<div className='flex flex-col gap-1'>
 					<div className='font-bold'>Address</div>
-					<div>{state.attrs.head.address}</div>
+					<div>{data.address}</div>
 				</div>
 				<div className='flex flex-col gap-1'>
 					<div className='font-bold'>Website</div>
-					<div>{state.attrs.head.website}</div>
+					<div>{data.website}</div>
 				</div>
 				<div className='flex flex-col gap-1'>
 					<div className='font-bold'>Birth</div>
-					<div>{state.attrs.head.birth}</div>
+					<div>{data.birth}</div>
 				</div>
 				<div className='flex flex-col gap-1'>
 					<div className='font-bold'>Gender</div>
-					<div>{state.attrs.head.gender}</div>
+					<div>{data.gender}</div>
 				</div>
 			</div>
 		</div>
 	);
 }
-
-export default Info;

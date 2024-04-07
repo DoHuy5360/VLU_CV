@@ -1,19 +1,15 @@
-import { CvContext } from "@/contexts/cvProvider";
-import { useContext } from "react";
+import { Project } from "@/types/userData";
 
-function Project() {
-	const { state } = useContext(CvContext);
+function Jsx(data: Project) {
 	return (
 		<div className='section flex flex-col gap-2'>
 			<div className='section flex flex-col gap-2'>
 				<div className='flex gap-2 items-center'>
-					<div className='font-bold text-nowrap'>
-						{state.attrs.project.title}
-					</div>
+					<div className='font-bold text-nowrap'>{data.title}</div>
 					<div className='h-[2px] w-full bg-black'></div>
 				</div>
 				<div className='flex flex-col text-xs'>
-					{state.attrs.project.products.map((p, i) => {
+					{data.products.map((p, i) => {
 						return (
 							<div
 								key={i}
@@ -49,4 +45,4 @@ function Project() {
 	);
 }
 
-export default Project;
+export default Jsx;

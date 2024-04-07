@@ -1,6 +1,6 @@
 import { Head } from "@/types/userData";
 
-function Head(data: Head) {
+function Jsx(data: Head) {
 	return (
 		<div className='section flex gap-2 justify-between'>
 			<div className='flex flex-col'>
@@ -34,4 +34,4 @@ function Head(data: Head) {
 	);
 }
 
-export default Head;
+export default Jsx;

@@ -21,29 +21,30 @@ function A01Template(data: UserData) {
 			<div className='m-auto sm:w-11/12 md:w-2/3 lg:w-2/3 xl:w-2/4  p-4 bg-white'>
 				<div id='sectionParent' className='flex flex-col gap-4'>
 					<V01AHead {...data.attrs.head} />
-					<V01AGoal />
-					{/* <V01AExperience />
-					<V01AProject />
+					<V01AGoal {...data.attrs.goal} />
+					<V01AExperience {...data.attrs.experience} />
+					<V01AProject {...data.attrs.project} />
 					<Column02
 						{...{
-							left: <V01AEducation />,
-							right: <V01ASkill />,
+							left: <V01AEducation {...data.attrs.education} />,
+							right: <V01ASkill {...data.attrs.skill} />,
 						}}
 					/>
 					<Column03
 						{...{
-							left: <V01ABadge />,
-							middle: <V01ACertificate />,
-							right: <V01AReference />,
+							left: <V01ABadge {...data.attrs.badge} />,
+							middle: <V01ACertificate {...data.attrs.certificate} />,
+							right: <V01AReference {...data.attrs.reference} />,
 						}}
 					/>
+
 					<Column03
 						{...{
-							left: <V01AActivity />,
-							middle: <V01AHobby />,
-							right: <V01AOther />,
+							left: <V01AActivity {...data.attrs.activity} />,
+							middle: <V01AHobby {...data.attrs.hobby} />,
+							right: <V01AOther {...data.attrs.other} />,
 						}}
-					/> */}
+					/>
 				</div>
 			</div>
 		</div>

@@ -94,7 +94,7 @@ function EditTemplate({ params }: { params: { id: string } }) {
 	return (
 		<div className='flex h-full'>
 			<EditUserInfo />
-			<div className='flex flex-col'>
+			<div className='flex flex-col w-full'>
 				<Suggestion />
 				<div className='overflow-y-scroll pb-16'>
 					{Transfer[params.id](state)}

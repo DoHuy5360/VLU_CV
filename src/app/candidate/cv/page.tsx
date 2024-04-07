@@ -24,7 +24,7 @@ async function CV() {
 						<div>{index + 1}</div>
 						<Link
 							className='underline hover:text-blue-500'
-							href={`/candidate/cv/${cv.id}`}
+							href={`/candidate/cv/${cv._id}`}
 						>
 							{cv.name}
 						</Link>

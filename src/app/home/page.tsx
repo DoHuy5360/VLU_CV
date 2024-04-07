@@ -1,11 +1,5 @@
-import HomeLayout from "@/components/layouts/app/home";
-
 function Home() {
-	return (
-		<HomeLayout>
-			<div>Home</div>
-		</HomeLayout>
-	);
+	return <div>Home</div>;
 }
 
 export default Home;

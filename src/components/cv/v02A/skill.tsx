@@ -1,10 +1,7 @@
-import { CvContext } from "@/contexts/cvProvider";
-import { useContext } from "react";
+import { Skill } from "@/types/userData";
 import { FaCog } from "react-icons/fa";
 
-function Skill() {
-	const { state } = useContext(CvContext);
-
+export default function Jsx(data: Skill) {
 	return (
 		<div className='relative'>
 			<div className='absolute translate-x-[-50%] bg-blue-400 p-2 rounded-full text-white'>
@@ -12,10 +9,10 @@ function Skill() {
 			</div>
 			<div className='section flex flex-col gap-2 p-3 pl-8'>
 				<div className='font-bold text-nowrap text-blue-500'>
-					{state.attrs.skill.title}
+					{data.title}
 				</div>
 				<div className='text-xs flex flex-col gap-2'>
-					{state.attrs.skill.skills.map((s, i) => {
+					{data.skills.map((s, i) => {
 						return (
 							<div key={i}>
 								<div className='font-bold'>{s.name}</div>
@@ -28,5 +25,3 @@ function Skill() {
 		</div>
 	);
 }
-
-export default Skill;

@@ -1,18 +1,14 @@
-import { CvContext } from "@/contexts/cvProvider";
-import { useContext } from "react";
+import { Experience } from "@/types/userData";
 
-function Experience() {
-	const { state } = useContext(CvContext);
+function Jsx(data: Experience) {
 	return (
 		<div className='section flex flex-col gap-2'>
 			<div className='flex gap-2 items-center'>
-				<div className='font-bold text-nowrap'>
-					{state.attrs.experience.title}
-				</div>
+				<div className='font-bold text-nowrap'>{data.title}</div>
 				<div className='h-[2px] w-full bg-black'></div>
 			</div>
 			<div className='flex flex-col text-xs'>
-				{state.attrs.experience.works.map((w, i) => {
+				{data.works.map((w, i) => {
 					return (
 						<div
 							key={i}
@@ -35,4 +31,4 @@ function Experience() {
 	);
 }
 
-export default Experience;
+export default Jsx;

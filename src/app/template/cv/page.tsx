@@ -36,9 +36,7 @@ async function allCV() {
 									loading='lazy'
 								/>
 							</div>
-							<Link href={`/template/cv/${t.name}`}>
-								Use this template
-							</Link>
+							<Link href={`/template/cv/${t.name}`}>{t.name}</Link>
 						</div>
 					);
 				})}
