@@ -6,6 +6,7 @@ import CvProvider, { CvContext } from "@/contexts/cvProvider";
 import { Transfer } from "@/types/tranfer";
 import User_CV from "@/models/user_cv";
 import { connectToDatabase } from "@/libs/mongoosedb";
+import DownloadPDF from "@/components/downloadPDF";
 
 async function ViewCV({ params }: { params: { id: string } }) {
 	await connectToDatabase();
@@ -13,7 +14,12 @@ async function ViewCV({ params }: { params: { id: string } }) {
 		_id: params.id,
 	});
 	return (
-		<div className=''>{Transfer[cv.data.template](cv.data)}</div>
+		<div className='flex'>
+			<div id='cvWrapper' className='w-fit bg-slate-200'>
+				{Transfer[cv.data.template](cv.data)}
+			</div>
+			<DownloadPDF />
+		</div>
 	);
 }
 
