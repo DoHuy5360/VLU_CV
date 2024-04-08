@@ -37,7 +37,7 @@ export default function DownloadPDF() {
 			<button
 				onClick={downloadPdf}
 				className='select-none text-xs h-fit py-0.5 px-1 rounded-sm text-white bg-orange-600'
-				type='submit'
+				type='button'
 			>
 				Download PDF
 			</button>

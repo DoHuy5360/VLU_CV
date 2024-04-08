@@ -1,12 +1,7 @@
-import HomeLayout from "@/components/layouts/app/home";
-import { useContext, useEffect, useReducer, useState } from "react";
-import A01Template from "@/components/layouts/templates/a01Template";
-import A02Template from "@/components/layouts/templates/a02Template";
-import CvProvider, { CvContext } from "@/contexts/cvProvider";
 import { Transfer } from "@/types/tranfer";
 import User_CV from "@/models/user_cv";
 import { connectToDatabase } from "@/libs/mongoosedb";
-import DownloadPDF from "@/components/downloadPDF";
+import DownloadPDF from "./_downloadPDF/page";
 
 async function ViewCV({ params }: { params: { id: string } }) {
 	await connectToDatabase();
@@ -15,7 +10,10 @@ async function ViewCV({ params }: { params: { id: string } }) {
 	});
 	return (
 		<div className='flex'>
-			<div id='cvWrapper' className='w-fit bg-slate-200'>
+			<div
+				id='cvWrapper'
+				className='m-auto sm:w-11/12 md:w-2/3 lg:w-2/3 xl:w-2/4 p-4 bg-slate-200'
+			>
 				{Transfer[cv.data.template](cv.data)}
 			</div>
 			<DownloadPDF />

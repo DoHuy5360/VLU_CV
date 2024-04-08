@@ -2,12 +2,10 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import HomeLayout from "@/components/layouts/app/home";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import User_CV from "@/models/user_cv";
-import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-async function CV() {
+export default async function CV() {
 	await connectToDatabase();
 	const session = await getServerSession(authOptions);
 	const cvs = await User_CV.find({
@@ -35,5 +33,3 @@ async function CV() {
 		</HomeLayout>
 	);
 }
-
-export default CV;
