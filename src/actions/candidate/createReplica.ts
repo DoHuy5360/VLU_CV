@@ -13,7 +13,7 @@ export async function createReplica(userData: UserData) {
 	const data = {
 		cvId: new ObjectId(),
 		userId: session?.user._id,
-		name: "Huy 1",
+		name: userData.name,
 		data: userData,
 	};
 	const newUserCV = new User_CV(data);

@@ -17,7 +17,6 @@ import { UserData } from "@/types/userData";
 
 function A01Template(data: UserData) {
 	return (
-		// <div className='sm:w-11/12 md:w-2/3 lg:w-2/3 xl:w-2/4  p-4 bg-white'>
 		<div className='p-4 bg-white'>
 			<div id='sectionParent' className='flex flex-col gap-4'>
 				<V01AHead {...data.attrs.head} />

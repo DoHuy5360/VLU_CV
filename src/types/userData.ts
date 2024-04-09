@@ -124,11 +124,13 @@ export type Attrs = {
 };
 
 export type UserData = {
+	name: string;
 	template: string;
 	attrs: Attrs;
 };
 
 export const userDataSample: UserData = {
+	name: "The name of this CV",
 	template: "A01Template",
 	attrs: {
 		head: {

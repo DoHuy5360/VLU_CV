@@ -80,9 +80,12 @@ function EditInput({
 		[]
 	);
 	return (
-		<div className='flex items-center gap-1'>
+		<div className='flex items-center gap-1 w-full'>
 			{name && (
-				<label className='text-xs cursor-pointer' htmlFor={name}>
+				<label
+					className='text-xs cursor-pointer whitespace-nowrap'
+					htmlFor={`${editType}-${index}`}
+				>
 					{name}
 				</label>
 			)}
@@ -93,12 +96,12 @@ function EditInput({
 					value={value}
 					type='text'
 					name={name}
-					id={name}
+					id={`${editType}-${index}`}
 				/>
 			) : (
 				<textarea
 					name={name}
-					id={name}
+					id={`${editType}-${index}`}
 					className='border-slate-200 border-[1px] p-2 text-xs resize-none h-36 w-full'
 					onChange={f}
 					value={value}
@@ -125,7 +128,7 @@ function EditUserInfo() {
 	const { state } = useContext(CvContext);
 	return (
 		<form
-			className='w-2/3 p-2 flex flex-col gap-2 justify-between overflow-y-scroll border-slate-300 border-r-[1px]'
+			className='w-2/3 px-2 pt-2 pb-20 flex flex-col gap-2 overflow-y-scroll border-slate-300 border-r-[1px]'
 			action={async () => {
 				await createReplica(state);
 			}}
@@ -133,17 +136,26 @@ function EditUserInfo() {
 			<div className='flex flex-col gap-2'>
 				<Group label='Basic Information'>
 					<div className='flex flex-col gap-2'>
+						<div className='flex gap-0.5 w-full'>
+							<EditInput
+								name='File name:'
+								value={state.name}
+								editType='update-file-name'
+								inputType='input'
+							/>
+							<div className='text-xs'>.pdf</div>
+						</div>
 						<EditInput
-							name='Position:'
-							inputType='input'
-							editType='update-user-position'
-							value={state.attrs.head.position}
-						/>
-						<EditInput
-							name='Name:'
+							name='Your name:'
 							inputType='input'
 							editType='update-user-name'
 							value={state.attrs.head.name}
+						/>
+						<EditInput
+							name='Apply position:'
+							inputType='input'
+							editType='update-user-position'
+							value={state.attrs.head.position}
 						/>
 						<EditInput
 							name='Phone:'
@@ -176,7 +188,10 @@ function EditUserInfo() {
 					<div className='flex flex-col gap-3'>
 						{state.attrs.experience.works.map((w, i) => {
 							return (
-								<div className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'>
+								<div
+									key={i}
+									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
+								>
 									<EditInput
 										name='Name:'
 										value={w.name}
@@ -212,7 +227,7 @@ function EditUserInfo() {
 				</Group>
 			</div>
 			<button
-				className='w-fit px-4 py-2 bg-green-300 rounded-lg text-xs'
+				className='w-fit px-4 py-2 ml-auto bg-green-300 rounded-lg text-xs'
 				type='submit'
 			>
 				Save

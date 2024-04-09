@@ -10,6 +10,11 @@ type Action = {
 const initCvContext: UserData = userDataSample;
 const reducer = (state: UserData, action: Action): UserData => {
 	switch (action.type) {
+		case "update-file-name":
+			state.name = action.value;
+			return {
+				...state,
+			};
 		case "update-user-name":
 			state.attrs.head.name = action.value;
 			return {
