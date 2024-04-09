@@ -4,6 +4,7 @@ import { Dispatch, createContext, useReducer, useState } from "react";
 
 type Action = {
 	type: any;
+	index: number;
 	value: any;
 };
 const initCvContext: UserData = userDataSample;
@@ -34,11 +35,46 @@ const reducer = (state: UserData, action: Action): UserData => {
 			return {
 				...state,
 			};
+		case "update-user-goal":
+			state.attrs.goal.content = action.value;
+			return {
+				...state,
+			};
+		case "update-user-experience-name":
+			state.attrs.experience.works[action.index].name = action.value;
+			return {
+				...state,
+			};
+		case "update-user-experience-time":
+			state.attrs.experience.works[action.index].time = action.value;
+			return {
+				...state,
+			};
+		case "update-user-experience-position":
+			state.attrs.experience.works[action.index].position =
+				action.value;
+			return {
+				...state,
+			};
+		case "update-user-experience-tasks":
+			state.attrs.experience.works[action.index].tasks = action.value;
+			return {
+				...state,
+			};
 		default:
 			return state;
 	}
 };
-
+// experience
+// project
+// education
+// skill
+// badge
+// certificate
+// reference
+// activity
+// hobby
+// other
 export const CvContext = createContext({
 	state: initCvContext,
 	dispatch: Function as Dispatch<any>,

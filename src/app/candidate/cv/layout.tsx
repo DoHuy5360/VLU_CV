@@ -1,4 +1,4 @@
-import HomeLayout from "../../profile/layout";
+import HomeLayout from "../profile/layout";
 
 function Layout({ children }: { children: JSX.Element }) {
 	return <HomeLayout>{children}</HomeLayout>;

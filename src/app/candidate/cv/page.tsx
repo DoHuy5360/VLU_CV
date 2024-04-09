@@ -12,24 +12,22 @@ export default async function CV() {
 		userId: session?.user._id,
 	}).select("_id name");
 	return (
-		<HomeLayout>
-			<div className='flex flex-col'>
-				{cvs.map((cv, index) => (
-					<div
-						key={cv._id}
-						className='grid grid-cols-[20px_auto_100px] p-1 hover:bg-slate-200'
+		<div className='flex flex-col'>
+			{cvs.map((cv, index) => (
+				<div
+					key={cv._id}
+					className='grid grid-cols-[20px_auto_100px] p-1 hover:bg-slate-200'
+				>
+					<div>{index + 1}</div>
+					<Link
+						className='underline hover:text-blue-500'
+						href={`/candidate/cv/${cv._id}`}
 					>
-						<div>{index + 1}</div>
-						<Link
-							className='underline hover:text-blue-500'
-							href={`/candidate/cv/${cv._id}`}
-						>
-							{cv.name}
-						</Link>
-						<div>{cv.created}</div>
-					</div>
-				))}
-			</div>
-		</HomeLayout>
+						{cv.name}
+					</Link>
+					<div>{cv.created}</div>
+				</div>
+			))}
+		</div>
 	);
 }
