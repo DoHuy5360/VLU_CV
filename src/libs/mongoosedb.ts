@@ -1,22 +1,40 @@
-import mongoose from "mongoose";
+import mongoose, { Mongoose } from "mongoose";
 
-let cachedConnection: typeof mongoose;
+type Cached = {
+	conn: Mongoose | null;
+	promise: Promise<Mongoose> | null;
+};
+
+declare global {
+	namespace NodeJS {
+		interface Global {
+			mongoose: Cached;
+		}
+	}
+}
+
+let cached: Cached = (global as any).mongoose || {
+	conn: null,
+	promise: null,
+};
 
 export async function connectToDatabase() {
-	if (cachedConnection) {
-		return cachedConnection;
+	if (cached.conn) {
+		return cached.conn;
 	}
 
-	try {
-		const connection = await mongoose.connect(
-			process.env.MONGODB_URI as string
-		);
+	if (!cached.promise) {
+		const opts = {
+			bufferCommands: false,
+		};
 
-		cachedConnection = connection;
-		console.log("Connect to MongoDB");
-		return connection;
-	} catch (error) {
-		console.error("Error connecting to MongoDB:", error);
-		throw error;
+		cached.promise = mongoose
+			.connect(process.env.MONGODB_URI as string, opts)
+			.then((mongoose) => {
+				return mongoose;
+			});
 	}
+	cached.conn = await cached.promise;
+	console.log("DB connected");
+	return cached.conn;
 }

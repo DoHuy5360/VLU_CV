@@ -71,16 +71,11 @@ export const authOptions: NextAuthOptions = {
 		strategy: "database",
 	},
 	callbacks: {
-		async session({ session, token }) {
-			await connectToDatabase();
-			session.user = await User.findOne({
-				email: session.user?.email,
-			});
+		async session({ session, token, user }) {
+			session.user = user;
 			return session;
 		},
 	},
-	adapter: MongoDBAdapter(clientPromise, {
-		databaseName: "graduate-thesis",
-	}) as Adapter,
+	adapter: MongoDBAdapter(clientPromise) as Adapter,
 	debug: false,
 };

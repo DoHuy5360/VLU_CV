@@ -1,39 +1,11 @@
 import { Collection, Db, MongoClient } from "mongodb";
 import "dotenv/config";
-// Connection URL
-// const url = process.env.MONGODB_DRIVER as string;
-// const client = new MongoClient(url);
-
-// // Database Name
-// const dbName = "graduate-thesis";
-
-// export class Database {
-// 	static connection: Db;
-// 	public static cv: Collection<Document>;
-// 	static isConnected: boolean = false;
-// 	constructor() {}
-// 	static async connectDB() {
-// 		if (this.isConnected) return;
-// 		await client.connect();
-// 		console.log("Connected successfully to server");
-// 		const db = client.db(dbName);
-// 		this.cv = db.collection("cv");
-// 		this.isConnected = true;
-// 	}
-// }
-
-// main()
-// 	.then(console.log)
-// 	.catch(console.error)
-// 	.finally(() => client.close());
-// This approach is taken from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
 
 if (!process.env.MONGODB_URI) {
 	throw new Error(
 		'Invalid/Missing environment variable: "MONGODB_URI"'
 	);
 }
-
 const uri: string = process.env.MONGODB_URI;
 const options: any = {};
 
