@@ -24,9 +24,9 @@ async function allCV() {
 				return (
 					<div
 						key={t._id}
-						className='flex flex-col gap-1 bg-slate-200'
+						className='flex flex-col gap-1 border-[1px] border-slate-200'
 					>
-						<div className=''>
+						<div className='bg-white'>
 							<img
 								src={t.thumbnail}
 								className='aspect-square object-cover'
@@ -35,7 +35,12 @@ async function allCV() {
 								loading='lazy'
 							/>
 						</div>
-						<Link href={`/template/cv/${t.name}`}>{t.name}</Link>
+						<Link
+							className='text-center py-2 bg-slate-200 hover:bg-slate-300'
+							href={`/template/cv/${t.name}`}
+						>
+							{t.name}
+						</Link>
 					</div>
 				);
 			})}
