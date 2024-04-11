@@ -1,13 +1,6 @@
-// "use client";
-import HomeLayout from "@/components/layouts/app/home";
-import A01Template from "@/components/layouts/templates/a01Template";
-import { CvContext } from "@/contexts/cvProvider";
-import useTemplates from "@/hooks/useTemplates";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import CV from "@/models/cv";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
-import useSWR from "swr";
 
 type Template = {
 	_id: string;

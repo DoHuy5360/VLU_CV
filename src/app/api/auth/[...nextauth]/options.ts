@@ -14,6 +14,13 @@ export const authOptions: NextAuthOptions = {
 	secret: process.env.NEXTAUTH_SECRET,
 	providers: [
 		AzureADProvider({
+			profile(profile) {
+				return {
+					...profile,
+					id: profile.sub,
+					role: profile.role ?? "user",
+				};
+			},
 			clientId: process.env.AZURE_AD_CLIENT_ID as string,
 			clientSecret: process.env.AZURE_AD_CLIENT_SECRET as string,
 			// tenantId: process.env.AZURE_AD_TENANT_ID,
@@ -26,7 +33,7 @@ export const authOptions: NextAuthOptions = {
 		CredentialsProvider({
 			name: "VLU CV account",
 			credentials: {
-				username: {
+				email: {
 					label: "Email",
 					type: "text",
 					placeholder: "Email",
@@ -39,43 +46,56 @@ export const authOptions: NextAuthOptions = {
 			},
 			async authorize(credentials, req) {
 				// Add logic here to look up the user from the credentials supplied
-				// const user = {
-				// 	id: "1",
-				// 	name: "J Smith",
-				// 	email: "jsmith@example.com",
-				// };
-				const user = await fetch("/", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						name: credentials?.username,
-						password: credentials?.password,
-					}),
-				});
+				// const user = await fetch("/", {
+				// 	method: "POST",
+				// 	headers: {
+				// 		"Content-Type": "application/json",
+				// 	},
+				// 	body: JSON.stringify({
+				// 		name: credentials?.username,
+				// 		password: credentials?.password,
+				// 	}),
+				// });
+				// This is where you need to retrieve user data
+				// to verify with credentials
+				// Docs: https://next-auth.js.org/configuration/providers/credentials
+				const user = {
+					id: "01",
+					name: "Admin",
+					email: "cocdh123@gmail.com",
+					password: "1",
+					role: "admin",
+					image:
+						"https://cdn.discordapp.com/attachments/876588087210291211/1089358306776207380/1b1bb78dfc0e94143e21ca475c2b0f65--plants-vs-zombies-removebg-preview.png?ex=662469fb&is=6611f4fb&hm=8c6d9f04de28736c9ca2f0f5d1b48988c714d0c0780f3de380485c4e7716f00e&",
+				};
 
-				if (user) {
-					// Any object returned will be saved in `user` property of the JWT
-					return user.json();
+				if (
+					credentials?.email === user.email &&
+					credentials?.password === user.password
+				) {
+					return user;
 				} else {
-					// If you return null then an error will be displayed advising the user to check their details.
 					return null;
-
-					// You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
 				}
 			},
 		}),
 	],
-	session: {
-		strategy: "database",
-	},
 	callbacks: {
+		async jwt({ token, user }) {
+			if (user) token.role = user.role;
+			console.log("option 72", token);
+			return token;
+		},
 		async session({ session, token, user }) {
-			session.user = user;
+			// session.user = user;
+			// if (user.email === "laptopcuahuy@gmail.com") {
+			// 	session.user.role = "admin";
+			// } else {
+			// 	session.user.role = "user";
+			// }
 			return session;
 		},
 	},
-	adapter: MongoDBAdapter(clientPromise) as Adapter,
+	// adapter: MongoDBAdapter(clientPromise) as Adapter,
 	debug: false,
 };
