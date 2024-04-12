@@ -9,6 +9,7 @@ import Education from "./info/education";
 import Other from "./info/other";
 import Information from "./info/information";
 import { UserData } from "@/types/userData";
+import Save from "./save";
 
 const View: { [key: string]: (data: UserData) => JSX.Element } = {
 	Information: Information,
@@ -23,5 +24,12 @@ const View: { [key: string]: (data: UserData) => JSX.Element } = {
 
 export default ({ name }: { name: keyof typeof View }) => {
 	const { state } = useContext(CvContext);
-	return <div className='overflow-scroll'>{View[name](state)}</div>;
+	return state === null ? (
+		<div>Loading...</div>
+	) : (
+		<div className='flex flex-col h-dvh'>
+			<div className='overflow-y-scroll'>{View[name](state)}</div>
+			<Save data={state} />
+		</div>
+	);
 };

@@ -60,6 +60,7 @@ export const authOptions: NextAuthOptions = {
 				// to verify with credentials
 				// Docs: https://next-auth.js.org/configuration/providers/credentials
 				const user = {
+					_id: "",
 					id: "01",
 					name: "Admin",
 					email: "cocdh123@gmail.com",
@@ -93,16 +94,23 @@ export const authOptions: NextAuthOptions = {
 					image: user.image,
 				};
 				const newUser = new User(data);
-				newUser.save();
+				const result = newUser.save();
+				console.log("result:", result);
+			} else {
+				user._id = userFound._id;
 			}
 			return true;
 		},
 		async jwt({ token, user }) {
-			if (user) token.role = user.role;
+			if (user) {
+				token._id = user._id;
+				token.role = user.role;
+			}
 			// console.log("option 72", token);
 			return token;
 		},
 		async session({ session, token, user }) {
+			session.user._id = token._id;
 			return session;
 		},
 	},

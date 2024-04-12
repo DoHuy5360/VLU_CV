@@ -24,7 +24,7 @@ export default ({
 				setFootprint(name);
 				setCurrentTab(name);
 			}}
-			className={`hover:bg-orange-200 cursor-pointer p-2 ${
+			className={`hover:bg-orange-200 cursor-pointer p-2 text-sm select-none ${
 				toggle === name && "bg-orange-400"
 			}`}
 		>

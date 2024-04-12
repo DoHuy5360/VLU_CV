@@ -1,8 +1,3 @@
-import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { getSession } from "next-auth/react";
-import HomeLayout from "../candidate/profile/layout";
-
 // function Header() {
 // 	const { data: session, status } = useSession();
 // 	const loading = status === "loading";
@@ -64,15 +59,11 @@ import HomeLayout from "../candidate/profile/layout";
 // 		</header>
 // 	);
 // }
+
+import HomeLayout from "@/components/layouts/app/home";
+
 function Layout({ children }: { children: JSX.Element }) {
-	return (
-		<div>
-			{/* <Header /> */}
-			<main>
-				<HomeLayout>{children}</HomeLayout>
-			</main>
-		</div>
-	);
+	return <HomeLayout>{children}</HomeLayout>;
 }
 
 export default Layout;

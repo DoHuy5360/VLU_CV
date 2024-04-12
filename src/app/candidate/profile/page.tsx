@@ -3,6 +3,17 @@ import { useEffect, useState } from "react";
 
 import Tab from "./_component/tab";
 import View from "./_component/view";
+import Save from "./_component/save";
+
+const tabs = [
+	"Information",
+	"Experience",
+	"Project",
+	"Certificate",
+	"Badge",
+	"Activity",
+	"Other",
+];
 
 export default () => {
 	const [currentTab, setCurrentTab] = useState<string | null>(null);
@@ -17,41 +28,14 @@ export default () => {
 	) : (
 		<div className='grid grid-cols-[150px_auto] h-full'>
 			<div className='border-r-[1px] border-slate-200 h-full'>
-				<Tab
-					name='Information'
-					setCurrentTab={setCurrentTab}
-					toggle={currentTab}
-				/>
-				<Tab
-					name='Experience'
-					setCurrentTab={setCurrentTab}
-					toggle={currentTab}
-				/>
-				<Tab
-					name='Project'
-					setCurrentTab={setCurrentTab}
-					toggle={currentTab}
-				/>
-				<Tab
-					name='Certificate'
-					setCurrentTab={setCurrentTab}
-					toggle={currentTab}
-				/>
-				<Tab
-					name='Education'
-					setCurrentTab={setCurrentTab}
-					toggle={currentTab}
-				/>
-				<Tab
-					name='Badge'
-					setCurrentTab={setCurrentTab}
-					toggle={currentTab}
-				/>
-				<Tab
-					name='Activity'
-					setCurrentTab={setCurrentTab}
-					toggle={currentTab}
-				/>
+				{tabs.map((t, i) => (
+					<Tab
+						key={i}
+						name={t}
+						setCurrentTab={setCurrentTab}
+						toggle={currentTab}
+					/>
+				))}
 			</div>
 			<View name={currentTab} />
 		</div>
