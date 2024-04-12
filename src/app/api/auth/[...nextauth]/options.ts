@@ -81,18 +81,28 @@ export const authOptions: NextAuthOptions = {
 		}),
 	],
 	callbacks: {
+		async signIn({ user }) {
+			await connectToDatabase();
+			const userFound = await User.findOne({ email: user.email });
+			// console.log("user found", userFound);
+			if (userFound === null) {
+				const data = {
+					name: user.name,
+					email: user.email,
+					role: user.role,
+					image: user.image,
+				};
+				const newUser = new User(data);
+				newUser.save();
+			}
+			return true;
+		},
 		async jwt({ token, user }) {
 			if (user) token.role = user.role;
-			console.log("option 72", token);
+			// console.log("option 72", token);
 			return token;
 		},
 		async session({ session, token, user }) {
-			// session.user = user;
-			// if (user.email === "laptopcuahuy@gmail.com") {
-			// 	session.user.role = "admin";
-			// } else {
-			// 	session.user.role = "user";
-			// }
 			return session;
 		},
 	},

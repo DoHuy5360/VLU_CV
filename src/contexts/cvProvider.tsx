@@ -25,6 +25,11 @@ const reducer = (state: UserData, action: Action): UserData => {
 			return {
 				...state,
 			};
+		case "update-user-birth":
+			state.attrs.head.birth = action.value;
+			return {
+				...state,
+			};
 		case "update-user-phone":
 			state.attrs.head.phone = action.value;
 			return {
@@ -37,6 +42,16 @@ const reducer = (state: UserData, action: Action): UserData => {
 			};
 		case "update-user-address":
 			state.attrs.head.address = action.value;
+			return {
+				...state,
+			};
+		case "update-user-website":
+			state.attrs.head.website = action.value;
+			return {
+				...state,
+			};
+		case "update-user-gender":
+			state.attrs.head.gender = action.value;
 			return {
 				...state,
 			};

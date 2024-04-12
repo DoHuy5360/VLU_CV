@@ -1,130 +1,10 @@
 "use client";
 
 import { createReplica } from "@/actions/candidate/createReplica";
-import HomeLayout from "@/components/layouts/app/home";
 import { CvContext } from "@/contexts/cvProvider";
-import { Transfer } from "@/types/tranfer";
-import {
-	ChangeEvent,
-	memo,
-	useCallback,
-	useContext,
-	useState,
-} from "react";
-import { GrFormView, GrFormViewHide } from "react-icons/gr";
+import { ChangeEvent, useCallback, useContext } from "react";
 
-const Suggestion = memo(() => {
-	const [isShowSuggest, setShowSuggest] = useState(false);
-	return (
-		<div className='flex flex-col gap-1 p-2'>
-			<div className='flex items-center gap-1'>
-				<label
-					className='text-xs whitespace-nowrap'
-					htmlFor='suggestion'
-				>
-					Gợi ý
-				</label>
-				{isShowSuggest ? (
-					<div
-						onClick={() => {
-							setShowSuggest(false);
-						}}
-						className='cursor-pointer hover:bg-slate-200 p-1'
-					>
-						<GrFormView />
-					</div>
-				) : (
-					<div
-						onClick={() => {
-							setShowSuggest(true);
-						}}
-						className='cursor-pointer hover:bg-slate-200 p-1'
-					>
-						<GrFormViewHide />
-					</div>
-				)}
-			</div>
-			{isShowSuggest && (
-				<textarea
-					className='p-2 w-full border-slate-200 border-[1px] outline-none resize-none'
-					id='suggestion'
-					rows={5}
-					name=''
-				></textarea>
-			)}
-		</div>
-	);
-});
-function EditInput({
-	inputType,
-	name,
-	editType,
-	index,
-	value,
-}: {
-	inputType: "input" | "textarea";
-	name?: string;
-	editType: string;
-	index?: number;
-	value: string;
-}) {
-	const { dispatch } = useContext(CvContext);
-	const f = useCallback(
-		(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-			dispatch({
-				type: editType,
-				value: e.target.value,
-				index,
-			});
-		},
-		[]
-	);
-	return (
-		<div className='flex items-center gap-1 w-full'>
-			{name && (
-				<label
-					className='text-xs cursor-pointer whitespace-nowrap'
-					htmlFor={`${editType}-${index}`}
-				>
-					{name}
-				</label>
-			)}
-			{inputType === "input" ? (
-				<input
-					className='border-slate-200 border-[1px] px-2 text-xs w-full'
-					onChange={f}
-					value={value}
-					type='text'
-					name={name}
-					id={`${editType}-${index}`}
-				/>
-			) : (
-				<textarea
-					name={name}
-					id={`${editType}-${index}`}
-					className='border-slate-200 border-[1px] p-2 text-xs resize-none h-36 w-full'
-					onChange={f}
-					value={value}
-				></textarea>
-			)}
-		</div>
-	);
-}
-function Group({
-	label,
-	children,
-}: {
-	label: string;
-	children: JSX.Element;
-}) {
-	return (
-		<fieldset className='border border-solid border-gray-300 p-3'>
-			<legend>{label}</legend>
-			{children}
-		</fieldset>
-	);
-}
-function EditUserInfo() {
+export default function EditCvForm() {
 	const { state } = useContext(CvContext);
 	return (
 		<form
@@ -236,19 +116,72 @@ function EditUserInfo() {
 	);
 }
 
-function EditTemplate({ params }: { params: { id: string } }) {
-	const { state } = useContext(CvContext);
+function Group({
+	label,
+	children,
+}: {
+	label: string;
+	children: JSX.Element;
+}) {
 	return (
-		<div className='flex h-full'>
-			<EditUserInfo />
-			<div className='flex flex-col w-full'>
-				<Suggestion />
-				<div className='overflow-y-scroll pb-16'>
-					{Transfer[params.id](state)}
-				</div>
-			</div>
+		<fieldset className='border border-solid border-gray-300 p-3'>
+			<legend>{label}</legend>
+			{children}
+		</fieldset>
+	);
+}
+function EditInput({
+	inputType,
+	name,
+	editType,
+	index,
+	value,
+}: {
+	inputType: "input" | "textarea";
+	name?: string;
+	editType: string;
+	index?: number;
+	value: string;
+}) {
+	const { dispatch } = useContext(CvContext);
+	const f = useCallback(
+		(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+			dispatch({
+				type: editType,
+				value: e.target.value,
+				index,
+			});
+		},
+		[]
+	);
+	return (
+		<div className='flex items-center gap-1 w-full'>
+			{name && (
+				<label
+					className='text-xs cursor-pointer whitespace-nowrap'
+					htmlFor={`${editType}-${index}`}
+				>
+					{name}
+				</label>
+			)}
+			{inputType === "input" ? (
+				<input
+					className='border-slate-200 border-[1px] px-2 text-xs w-full'
+					onChange={f}
+					value={value}
+					type='text'
+					name={name}
+					id={`${editType}-${index}`}
+				/>
+			) : (
+				<textarea
+					name={name}
+					id={`${editType}-${index}`}
+					className='border-slate-200 border-[1px] p-2 text-xs resize-none h-36 w-full'
+					onChange={f}
+					value={value}
+				></textarea>
+			)}
 		</div>
 	);
 }
-
-export default EditTemplate;

@@ -20,7 +20,7 @@ function HomeLayout({ children }: { children: JSX.Element }) {
 					</Link>
 					<Link
 						className='px-2 py-1 hover:bg-slate-300'
-						href='/candidate/profile'
+						href='/candidate/profile?tab="Information"'
 					>
 						Hồ sơ cá nhân
 					</Link>

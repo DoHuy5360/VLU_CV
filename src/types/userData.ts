@@ -24,26 +24,28 @@ export type Experience = {
 	title: string;
 	works: Work[];
 };
+export type Product = {
+	name: string;
+	time: string;
+	where: string;
+	member: string;
+	position: string;
+	tasks: string;
+	techs: string;
+};
 export type Project = {
 	title: string;
-	products: [
-		{
-			name: string;
-			time: string;
-			where: string;
-			member: string;
-			position: string;
-			tasks: string[];
-			techs: string[];
-		}
-	];
+	products: Product[];
 };
-export type Education = {
-	title: string;
+export type Class = {
 	time: string;
 	major: string;
 	school: string;
 	status: string;
+};
+export type Education = {
+	title: string;
+	classes: Class[];
 };
 export type Ability = {
 	name: string;
@@ -90,7 +92,7 @@ export type Act = {
 	time: string;
 	name: string;
 	position: string;
-	tasks: string[];
+	tasks: string;
 };
 export type Activity = {
 	title: "Activity";
@@ -130,7 +132,7 @@ export type UserData = {
 };
 
 export const userDataSample: UserData = {
-	name: "The name of this CV",
+	name: "",
 	template: "A01Template",
 	attrs: {
 		head: {
@@ -178,25 +180,40 @@ export const userDataSample: UserData = {
 					where: "ANZ TOPCV",
 					member: "8",
 					position: "LẬP TRÌNH VIÊN",
-					tasks: [
-						"Phân tích và thiết kế hệ thống",
-						"- Phát triển module",
-						"- Tối ưu code",
-						"- Sửa lỗi",
-					],
-					techs: [
-						"- Android Studio 1.4, Java, Android 4.0",
-						"- Google Cloud Message",
-					],
+					tasks:
+						"- Phân tích và thiết kế hệ thống\n - Phát triển module\n - Tối ưu code\n - Sửa lỗi",
+					techs:
+						"- Android Studio 1.4, Java, Android 4.0\n - Google Cloud Message",
+				},
+				{
+					name: "Rainway Group 2",
+					time: "03/2015 - current",
+					where: "ANZ TOPCV",
+					member: "8",
+					position: "LẬP TRÌNH VIÊN",
+					tasks:
+						"- Phân tích và thiết kế hệ thống\n - Phát triển module\n - Tối ưu code\n - Sửa lỗi",
+					techs:
+						"- Android Studio 1.4, Java, Android 4.0\n - Google Cloud Message",
 				},
 			],
 		},
 		education: {
 			title: "Education",
-			time: "10/2010 - 05/2014",
-			major: "QUẢN TRỊ DOANH NGHIỆP",
-			school: "Đại học TOPCV",
-			status: "Tốt nghiệp loại Giỏi, điểm trung bình 8.0",
+			classes: [
+				{
+					time: "10/2010 - 05/2014",
+					major: "QUẢN TRỊ DOANH NGHIỆP",
+					school: "Đại học TOPCV",
+					status: "Tốt nghiệp loại Giỏi, điểm trung bình 8.0",
+				},
+				{
+					time: "10/2010 - 05/2014",
+					major: "QUẢN TRỊ DOANH NGHIỆP 2",
+					school: "Đại học TOPCV",
+					status: "Tốt nghiệp loại Giỏi, điểm trung bình 8.0",
+				},
+			],
 		},
 		skill: {
 			title: "Skills",
@@ -249,10 +266,8 @@ export const userDataSample: UserData = {
 					time: "10/2013 - 08/2014",
 					name: "NHÓM TÌNH NGUYỆN TOPCV",
 					position: "Tình nguyện viên",
-					tasks: [
-						"Tập hợp các món quà và phân phát tới người vô gia cư.",
-						"- Chia sẻ, động viên họ vượt qua giai đoạn khó khăn, giúp họ có những suy nghĩ lạc quan.",
-					],
+					tasks:
+						"- Tập hợp các món quà và phân phát tới người vô gia cư.\n - Chia sẻ, động viên họ vượt qua giai đoạn khó khăn, giúp họ có những suy nghĩ lạc quan.",
 				},
 			],
 		},

@@ -4,7 +4,7 @@ import { authOptions } from "./api/auth/[...nextauth]/options";
 
 export default async function App() {
 	const session = await getServerSession(authOptions);
-	console.log("session:", session);
+	// console.log("session:", session);
 	return (
 		<div className='flex flex-col h-dvh'>
 			<div className='flex bg-red-500 p-2'>
