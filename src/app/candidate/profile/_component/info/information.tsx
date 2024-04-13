@@ -4,14 +4,14 @@ import { UserData } from "@/types/userData";
 export default (state: UserData) => {
 	return (
 		<div className='flex flex-col gap-2 p-4'>
+			<div className='w-28 h-28 rounded-full overflow-hidden'>
+				<img
+					src={state.attrs.head.avatar}
+					alt='avatar'
+					draggable='false'
+				/>
+			</div>
 			<div className='text-sm flex gap-2 flex-wrap'>
-				<div className='w-28 h-28 rounded-full overflow-hidden'>
-					<img
-						src={state.attrs.head.avatar}
-						alt='avatar'
-						draggable='false'
-					/>
-				</div>
 				<EditInput
 					label='Name'
 					updateType='update-user-name'

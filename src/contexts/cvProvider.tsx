@@ -96,6 +96,19 @@ const reducer = (
 				return {
 					...state,
 				};
+			case "add-experience":
+				state.attrs.experience.works.unshift(action.value);
+				return {
+					...state,
+				};
+			case "delete-experience":
+				state.attrs.experience.works =
+					state.attrs.experience.works.filter((e, i) => {
+						if (action.index !== i) return e;
+					});
+				return {
+					...state,
+				};
 			default:
 				return state;
 		}

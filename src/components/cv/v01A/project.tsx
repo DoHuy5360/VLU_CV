@@ -27,13 +27,9 @@ function Jsx(data: Project) {
 									<div className='w-2 h-2 rounded-full bg-black absolute top-0 left-0 translate-x-[-50%] translate-y-[-50%]'></div>
 									<div className='font-bold'>{p.position}</div>
 									<div>
-										{p.tasks.map((t, j) => (
-											<div key={j}>{t}</div>
-										))}
+										{p.tasks}
 										<br />
-										{p.techs.map((t, j) => (
-											<div key={j}>{t}</div>
-										))}
+										{p.techs}
 									</div>
 								</div>
 							</div>

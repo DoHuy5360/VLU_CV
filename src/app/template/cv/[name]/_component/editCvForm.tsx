@@ -6,7 +6,9 @@ import { ChangeEvent, useCallback, useContext } from "react";
 
 export default function EditCvForm() {
 	const { state } = useContext(CvContext);
-	return (
+	return state === null ? (
+		<div>Loading...</div>
+	) : (
 		<form
 			className='w-2/3 px-2 pt-2 pb-20 flex flex-col gap-2 overflow-y-scroll border-slate-300 border-r-[1px]'
 			action={async () => {
@@ -149,7 +151,7 @@ function EditInput({
 			dispatch({
 				type: editType,
 				value: e.target.value,
-				index,
+				index: index as number,
 			});
 		},
 		[]

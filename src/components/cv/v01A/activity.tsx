@@ -14,9 +14,7 @@ export default function Jsx(data: Activity) {
 							<div>{a.time}</div>
 							<div className='font-bold'>{a.name}</div>
 
-							{a.tasks.map((t, j) => (
-								<div key={j}>{t}</div>
-							))}
+							{a.tasks}
 						</div>
 					);
 				})}

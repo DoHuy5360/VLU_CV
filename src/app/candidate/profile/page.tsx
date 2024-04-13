@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 import Tab from "./_component/tab";
 import View from "./_component/view";
-import Save from "./_component/save";
 
 const tabs = [
 	"Information",
