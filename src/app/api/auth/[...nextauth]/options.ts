@@ -2,6 +2,7 @@ import clientPromise from "@/libs/mongodb";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import CV from "@/models/cv";
 import User from "@/models/user";
+import { userDataSample } from "@/types/userData";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import { Client } from "@microsoft/microsoft-graph-client";
 import mongoose from "mongoose";
@@ -92,10 +93,11 @@ export const authOptions: NextAuthOptions = {
 					email: user.email,
 					role: user.role,
 					image: user.image,
+					dataCV: userDataSample,
 				};
 				const newUser = new User(data);
-				const result = newUser.save();
-				console.log("result:", result);
+				const result = await newUser.save();
+				user._id = result._id;
 			} else {
 				user._id = userFound._id;
 			}

@@ -1,5 +1,5 @@
 import { CvActionType, CvContext } from "@/contexts/cvProvider";
-import { useContext } from "react";
+import { useAddCvForm } from "@/hooks/useAddCvForm";
 
 export default ({
 	actionType,
@@ -10,16 +10,14 @@ export default ({
 	value: object;
 	index?: number;
 }) => {
-	const { dispatch } = useContext(CvContext);
+	const { f } = useAddCvForm({
+		type: actionType,
+		value,
+		index: index || 0,
+	});
 	return (
 		<button
-			onClick={() => {
-				dispatch({
-					type: actionType,
-					value,
-					index: index || 0,
-				});
-			}}
+			onClick={f}
 			className='px-2 py-1 bg-blue-300 rounded-sm'
 			type='button'
 		>

@@ -8,11 +8,11 @@ export default function Jsx(data: Hobby) {
 				<div className='h-[2px] w-full bg-black'></div>
 			</div>
 			<div className='text-xs flex flex-col gap-2'>
-				{data.hobbies.map((h, i) => {
+				{data.hobbies.map((e, i) => {
 					return (
-						<div key={i}>
-							<div className='font-bold'>{h.name}</div>
-							<div>{h.status}</div>
+						<div key={e.id}>
+							<div className='font-bold'>{e.name}</div>
+							<div>{e.status}</div>
 						</div>
 					);
 				})}

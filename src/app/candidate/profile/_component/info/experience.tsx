@@ -12,6 +12,7 @@ export default (state: UserData, dispatch: Function) => {
 				<AddForm
 					actionType='add-experience'
 					value={{
+						id: new Date().getTime(),
 						name: "",
 						time: "",
 						position: "",
@@ -25,10 +26,10 @@ export default (state: UserData, dispatch: Function) => {
 						* Hãy sắp xếp thứ tự kinh nghiệm hợp lý
 					</div>
 				) : (
-					state.attrs.experience.works.map((w, i) => {
+					state.attrs.experience.works.map((e, i) => {
 						return (
 							<div
-								key={i}
+								key={e.id}
 								className='flex flex-col gap-2 bg-slate-100 p-2 w-full'
 							>
 								<div className='flex justify-end gap-4 '>
@@ -65,25 +66,25 @@ export default (state: UserData, dispatch: Function) => {
 								<EditInput
 									label='Name'
 									updateType='update-user-experience-name'
-									value={w.name}
+									value={e.name}
 									index={i}
 								/>
 								<EditInput
 									label='Position'
 									updateType='update-user-experience-position'
-									value={w.position}
+									value={e.position}
 									index={i}
 								/>
 								<EditInput
 									label='Time'
 									updateType='update-user-experience-time'
-									value={w.time}
+									value={e.time}
 									index={i}
 								/>
 								<EditArea
 									label='Tasks'
 									updateType='update-user-experience-tasks'
-									value={w.tasks}
+									value={e.tasks}
 									index={i}
 								/>
 							</div>

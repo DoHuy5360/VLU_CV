@@ -28,7 +28,7 @@ export default ({
 						dispatch({
 							type: updateType,
 							value: e.target.value,
-							index: 0,
+							index: index || 0,
 						});
 					}}
 					value={value}

@@ -8,13 +8,13 @@ function Jsx(data: Education) {
 				<div className='h-[2px] w-full bg-black'></div>
 			</div>
 			<div className='flex flex-col gap-2'>
-				{data.classes.map((c, i) => {
+				{data.classes.map((e, i) => {
 					return (
-						<div key={i} className='text-xs flex flex-col gap-1'>
-							<div className='font-bold'>{c.major}</div>
-							<div>{c.time}</div>
-							<div>{c.school}</div>
-							<div>{c.status}</div>
+						<div key={e.id} className='text-xs flex flex-col gap-1'>
+							<div className='font-bold'>{e.major}</div>
+							<div>{e.time}</div>
+							<div>{e.school}</div>
+							<div>{e.status}</div>
 						</div>
 					);
 				})}

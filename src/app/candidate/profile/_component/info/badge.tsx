@@ -4,28 +4,28 @@ import EditInput from "../editInput";
 export default (data: UserData) => {
 	return (
 		<div className='text-sm flex gap-2 flex-wrap'>
-			{data.attrs.badge.achievements.map((a, i) => {
+			{data.attrs.badge.achievements.map((e, i) => {
 				return (
 					<div
-						key={i}
+						key={e.id}
 						className='flex flex-col gap-2 bg-slate-100 p-2 w-full'
 					>
 						<EditInput
 							label='Name'
 							updateType='update-user-badge-name'
-							value={a.name}
+							value={e.name}
 							index={i}
 						/>
 						<EditInput
 							label='Time'
 							updateType='update-user-badge-time'
-							value={a.time}
+							value={e.time}
 							index={i}
 						/>
 						<EditInput
 							label='Where'
 							updateType='update-user-badge-where'
-							value={a.where}
+							value={e.where}
 							index={i}
 						/>
 					</div>

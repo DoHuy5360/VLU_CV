@@ -15,6 +15,7 @@ export type Goal = {
 	content: string;
 };
 export type Work = {
+	id: string;
 	name: string;
 	time: string;
 	position: string;
@@ -25,6 +26,7 @@ export type Experience = {
 	works: Work[];
 };
 export type Product = {
+	id: string;
 	name: string;
 	time: string;
 	where: string;
@@ -38,6 +40,7 @@ export type Project = {
 	products: Product[];
 };
 export type Class = {
+	id: string;
 	time: string;
 	major: string;
 	school: string;
@@ -48,15 +51,17 @@ export type Education = {
 	classes: Class[];
 };
 export type Ability = {
+	id: string;
 	name: string;
 	status: string;
 };
 export type Skill = {
-	title: "Skills";
+	title: string;
 	skills: Ability[];
 };
 
 export type Achievement = {
+	id: string;
 	time: string;
 	name: string;
 	where: string;
@@ -68,6 +73,7 @@ export type Badge = {
 };
 
 export type Merit = {
+	id: string;
 	time: string;
 	name: string;
 	where: string;
@@ -79,6 +85,7 @@ export type Certificate = {
 };
 
 export type Colleague = {
+	id: string;
 	name: string;
 	where: string;
 	phone: string;
@@ -89,6 +96,7 @@ export type Reference = {
 	references: Colleague[];
 };
 export type Act = {
+	id: string;
 	time: string;
 	name: string;
 	position: string;
@@ -99,6 +107,7 @@ export type Activity = {
 	activities: Act[];
 };
 export type Favorite = {
+	id: string;
 	name: string;
 	status: string;
 };
@@ -133,41 +142,32 @@ export type UserData = {
 
 export const userDataSample: UserData = {
 	name: "",
-	template: "A01Template",
+	template: "",
 	attrs: {
 		head: {
-			name: "Do Huy",
-			avatar:
-				"https://static.topcv.vn/user_avatars/4xcZ41tkbfgjjzvXWmjv_651574082716e_av.jpg",
-			position: "Web dev",
-			phone: "0963758993",
-			email: "dohuy.200276@gmail.com",
-			address: "Binh Chanh, TP.HCM",
-			website: "https://github.com/DoHuy5360",
-			birth: "17/08/2002",
-			gender: "Male",
+			name: "",
+			avatar: "",
+			position: "",
+			phone: "",
+			email: "",
+			address: "",
+			website: "",
+			birth: "",
+			gender: "",
 		},
 		goal: {
 			title: "Goal",
-			content:
-				"Áp dụng những kinh nghiệm về kỹ năng bán hàng và sự hiểu biết về thị trường để trở thành một nhân viên bán hàng chuyên nghiệp, mang đến nhiều giá trị cho khách hàng. Từ đó giúp Công ty tăng số lượng khách hàng và mở rộng tập khách hàng.",
+			content: "",
 		},
 		experience: {
 			title: "Experience",
 			works: [
 				{
-					name: "TopCV company",
-					time: "03/2015 - current",
-					position: "NHÂN VIÊN BÁN HÀNG",
-					tasks:
-						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...\n - Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
-				},
-				{
-					name: "TopCV company",
-					time: "03/2015 - current",
-					position: "NHÂN VIÊN BÁN HÀNG",
-					tasks:
-						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...\n- Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
+					id: "",
+					name: "",
+					time: "",
+					position: "",
+					tasks: "",
 				},
 			],
 		},
@@ -175,26 +175,14 @@ export const userDataSample: UserData = {
 			title: "Project",
 			products: [
 				{
-					name: "Rainway Group",
-					time: "03/2015 - current",
-					where: "ANZ TOPCV",
-					member: "8",
-					position: "LẬP TRÌNH VIÊN",
-					tasks:
-						"- Phân tích và thiết kế hệ thống\n - Phát triển module\n - Tối ưu code\n - Sửa lỗi",
-					techs:
-						"- Android Studio 1.4, Java, Android 4.0\n - Google Cloud Message",
-				},
-				{
-					name: "Rainway Group 2",
-					time: "03/2015 - current",
-					where: "ANZ TOPCV",
-					member: "8",
-					position: "LẬP TRÌNH VIÊN",
-					tasks:
-						"- Phân tích và thiết kế hệ thống\n - Phát triển module\n - Tối ưu code\n - Sửa lỗi",
-					techs:
-						"- Android Studio 1.4, Java, Android 4.0\n - Google Cloud Message",
+					id: "",
+					name: "",
+					time: "",
+					where: "",
+					member: "",
+					position: "",
+					tasks: "",
+					techs: "",
 				},
 			],
 		},
@@ -202,16 +190,11 @@ export const userDataSample: UserData = {
 			title: "Education",
 			classes: [
 				{
-					time: "10/2010 - 05/2014",
-					major: "QUẢN TRỊ DOANH NGHIỆP",
-					school: "Đại học TOPCV",
-					status: "Tốt nghiệp loại Giỏi, điểm trung bình 8.0",
-				},
-				{
-					time: "10/2010 - 05/2014",
-					major: "QUẢN TRỊ DOANH NGHIỆP 2",
-					school: "Đại học TOPCV",
-					status: "Tốt nghiệp loại Giỏi, điểm trung bình 8.0",
+					id: "",
+					time: "",
+					major: "",
+					school: "",
+					status: "",
 				},
 			],
 		},
@@ -219,13 +202,9 @@ export const userDataSample: UserData = {
 			title: "Skills",
 			skills: [
 				{
-					name: "Tin học văn phòng TOPCV",
-					status:
-						"- Sử dụng thành thạo các công cụ Word, Excel, Power Point",
-				},
-				{
-					name: "Tiếng Anh",
-					status: "- Khả năng giao tiếp Tiếng Anh trôi chảy",
+					id: "",
+					name: "",
+					status: "",
 				},
 			],
 		},
@@ -233,9 +212,10 @@ export const userDataSample: UserData = {
 			title: "Badge",
 			achievements: [
 				{
-					time: "2014",
-					name: "Nhân viên xuất sắc năm công ty",
-					where: "TOPCV",
+					id: "",
+					time: "",
+					name: "",
+					where: "",
 				},
 			],
 		},
@@ -243,9 +223,10 @@ export const userDataSample: UserData = {
 			title: "Certificate",
 			certificates: [
 				{
-					time: "2013",
-					name: "Giải nhất Tài năng TOPCV",
-					where: "TopCV",
+					id: "",
+					time: "",
+					name: "",
+					where: "",
 				},
 			],
 		},
@@ -253,9 +234,10 @@ export const userDataSample: UserData = {
 			title: "Reference",
 			references: [
 				{
-					name: "Anh... - Trưởng phòng Marketing",
-					where: "Công ty TOPCV",
-					phone: "023093024",
+					id: "",
+					name: "",
+					where: "",
+					phone: "",
 				},
 			],
 		},
@@ -263,11 +245,11 @@ export const userDataSample: UserData = {
 			title: "Activity",
 			activities: [
 				{
-					time: "10/2013 - 08/2014",
-					name: "NHÓM TÌNH NGUYỆN TOPCV",
-					position: "Tình nguyện viên",
-					tasks:
-						"- Tập hợp các món quà và phân phát tới người vô gia cư.\n - Chia sẻ, động viên họ vượt qua giai đoạn khó khăn, giúp họ có những suy nghĩ lạc quan.",
+					id: "",
+					time: "",
+					name: "",
+					position: "",
+					tasks: "",
 				},
 			],
 		},
@@ -275,19 +257,177 @@ export const userDataSample: UserData = {
 			title: "Hobby",
 			hobbies: [
 				{
-					name: "Đọc sách:",
-					status: "- Mỗi tháng đọc 1 quyển sách về kinh doanh.",
-				},
-				{
-					name: "Đá bóng:",
-					status:
-						"- Tham gia hoạt động đá bóng của công ty hàng tuần",
+					id: "",
+					name: "",
+					status: "",
 				},
 			],
 		},
 		other: {
 			title: "Other",
-			content: "(Nếu có)",
+			content: "",
 		},
 	},
 };
+// export const userDataSample: UserData = {
+// 	name: "",
+// 	template: "A01Template",
+// 	attrs: {
+// 		head: {
+// 			name: "Do Huy",
+// 			avatar:
+// 				"https://static.topcv.vn/user_avatars/4xcZ41tkbfgjjzvXWmjv_651574082716e_av.jpg",
+// 			position: "Web dev",
+// 			phone: "0963758993",
+// 			email: "dohuy.200276@gmail.com",
+// 			address: "Binh Chanh, TP.HCM",
+// 			website: "https://github.com/DoHuy5360",
+// 			birth: "17/08/2002",
+// 			gender: "Male",
+// 		},
+// 		goal: {
+// 			title: "Goal",
+// 			content:
+// 				"Áp dụng những kinh nghiệm về kỹ năng bán hàng và sự hiểu biết về thị trường để trở thành một nhân viên bán hàng chuyên nghiệp, mang đến nhiều giá trị cho khách hàng. Từ đó giúp Công ty tăng số lượng khách hàng và mở rộng tập khách hàng.",
+// 		},
+// 		experience: {
+// 			title: "Experience",
+// 			works: [
+// 				{
+// 					id: new ObjectId(),
+// 					name: "TopCV company",
+// 					time: "03/2015 - current",
+// 					position: "NHÂN VIÊN BÁN HÀNG",
+// 					tasks:
+// 						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...\n - Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
+// 				},
+// 				{
+// 					id: new ObjectId(),
+// 					name: "TopCV company",
+// 					time: "03/2015 - current",
+// 					position: "NHÂN VIÊN BÁN HÀNG",
+// 					tasks:
+// 						"- Hỗ trợ viết bài quảng cáo sản phẩm qua kênh facebook, các forum,...\n- Giới thiệu, tư vấn sản phẩm, giải đáp các vấn đề thắc mắc của khách hàng qua điện thoại và email.",
+// 				},
+// 			],
+// 		},
+// 		project: {
+// 			title: "Project",
+// 			products: [
+// 				{
+// 					name: "Rainway Group",
+// 					time: "03/2015 - current",
+// 					where: "ANZ TOPCV",
+// 					member: "8",
+// 					position: "LẬP TRÌNH VIÊN",
+// 					tasks:
+// 						"- Phân tích và thiết kế hệ thống\n - Phát triển module\n - Tối ưu code\n - Sửa lỗi",
+// 					techs:
+// 						"- Android Studio 1.4, Java, Android 4.0\n - Google Cloud Message",
+// 				},
+// 				{
+// 					name: "Rainway Group 2",
+// 					time: "03/2015 - current",
+// 					where: "ANZ TOPCV",
+// 					member: "8",
+// 					position: "LẬP TRÌNH VIÊN",
+// 					tasks:
+// 						"- Phân tích và thiết kế hệ thống\n - Phát triển module\n - Tối ưu code\n - Sửa lỗi",
+// 					techs:
+// 						"- Android Studio 1.4, Java, Android 4.0\n - Google Cloud Message",
+// 				},
+// 			],
+// 		},
+// 		education: {
+// 			title: "Education",
+// 			classes: [
+// 				{
+// 					time: "10/2010 - 05/2014",
+// 					major: "QUẢN TRỊ DOANH NGHIỆP",
+// 					school: "Đại học TOPCV",
+// 					status: "Tốt nghiệp loại Giỏi, điểm trung bình 8.0",
+// 				},
+// 				{
+// 					time: "10/2010 - 05/2014",
+// 					major: "QUẢN TRỊ DOANH NGHIỆP 2",
+// 					school: "Đại học TOPCV",
+// 					status: "Tốt nghiệp loại Giỏi, điểm trung bình 8.0",
+// 				},
+// 			],
+// 		},
+// 		skill: {
+// 			title: "Skills",
+// 			skills: [
+// 				{
+// 					name: "Tin học văn phòng TOPCV",
+// 					status:
+// 						"- Sử dụng thành thạo các công cụ Word, Excel, Power Point",
+// 				},
+// 				{
+// 					name: "Tiếng Anh",
+// 					status: "- Khả năng giao tiếp Tiếng Anh trôi chảy",
+// 				},
+// 			],
+// 		},
+// 		badge: {
+// 			title: "Badge",
+// 			achievements: [
+// 				{
+// 					time: "2014",
+// 					name: "Nhân viên xuất sắc năm công ty",
+// 					where: "TOPCV",
+// 				},
+// 			],
+// 		},
+// 		certificate: {
+// 			title: "Certificate",
+// 			certificates: [
+// 				{
+// 					time: "2013",
+// 					name: "Giải nhất Tài năng TOPCV",
+// 					where: "TopCV",
+// 				},
+// 			],
+// 		},
+// 		reference: {
+// 			title: "Reference",
+// 			references: [
+// 				{
+// 					name: "Anh... - Trưởng phòng Marketing",
+// 					where: "Công ty TOPCV",
+// 					phone: "023093024",
+// 				},
+// 			],
+// 		},
+// 		activity: {
+// 			title: "Activity",
+// 			activities: [
+// 				{
+// 					time: "10/2013 - 08/2014",
+// 					name: "NHÓM TÌNH NGUYỆN TOPCV",
+// 					position: "Tình nguyện viên",
+// 					tasks:
+// 						"- Tập hợp các món quà và phân phát tới người vô gia cư.\n - Chia sẻ, động viên họ vượt qua giai đoạn khó khăn, giúp họ có những suy nghĩ lạc quan.",
+// 				},
+// 			],
+// 		},
+// 		hobby: {
+// 			title: "Hobby",
+// 			hobbies: [
+// 				{
+// 					name: "Đọc sách:",
+// 					status: "- Mỗi tháng đọc 1 quyển sách về kinh doanh.",
+// 				},
+// 				{
+// 					name: "Đá bóng:",
+// 					status:
+// 						"- Tham gia hoạt động đá bóng của công ty hàng tuần",
+// 				},
+// 			],
+// 		},
+// 		other: {
+// 			title: "Other",
+// 			content: "(Nếu có)",
+// 		},
+// 	},
+// };

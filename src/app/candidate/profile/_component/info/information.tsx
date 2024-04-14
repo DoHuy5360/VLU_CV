@@ -4,9 +4,9 @@ import { UserData } from "@/types/userData";
 export default (state: UserData) => {
 	return (
 		<div className='flex flex-col gap-2 p-4'>
-			<div className='w-28 h-28 rounded-full overflow-hidden'>
+			<div className='w-28 h-28 rounded-full border-[1px] overflow-hidden'>
 				<img
-					src={state.attrs.head.avatar}
+					src={state.attrs.head.avatar || "/image/user.jpg"}
 					alt='avatar'
 					draggable='false'
 				/>

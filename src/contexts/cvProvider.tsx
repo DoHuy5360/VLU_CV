@@ -58,7 +58,7 @@ export type CvActionType =
 	| "add-experience"
 	| "delete-experience";
 
-type Action = {
+export type CvAction = {
 	type: CvActionType;
 	index: number;
 	value: any;
@@ -66,7 +66,7 @@ type Action = {
 const initCvContext: UserData | null = null;
 const reducer = (
 	state: UserData | null,
-	action: Action
+	action: CvAction
 ): UserData | null => {
 	if (state !== null)
 		switch (action.type) {
@@ -278,7 +278,7 @@ const reducer = (
 };
 export const CvContext = createContext<{
 	state: UserData | null;
-	dispatch: Dispatch<Action>;
+	dispatch: Dispatch<CvAction>;
 	editable: boolean;
 	setEditable: Function;
 }>({

@@ -1,4 +1,3 @@
-import { CvContext } from "@/contexts/cvProvider";
 import { Skill } from "@/types/userData";
 
 function Jsx(data: Skill) {
@@ -9,11 +8,11 @@ function Jsx(data: Skill) {
 				<div className='h-[2px] w-full bg-black'></div>
 			</div>
 			<div className='text-xs flex flex-col gap-2'>
-				{data.skills.map((s, i) => {
+				{data.skills.map((e, i) => {
 					return (
-						<div key={i}>
-							<div className='font-bold'>{s.name}</div>
-							<div>{s.status}</div>
+						<div key={e.id}>
+							<div className='font-bold'>{e.name}</div>
+							<div>{e.status}</div>
 						</div>
 					);
 				})}

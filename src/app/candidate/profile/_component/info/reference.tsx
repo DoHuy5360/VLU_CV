@@ -7,7 +7,7 @@ export default (data: UserData) => {
 			{data.attrs.reference.references.map((e, i) => {
 				return (
 					<div
-						key={i}
+						key={e.id}
 						className='flex flex-col gap-2 bg-slate-100 p-2 w-full'
 					>
 						<EditInput

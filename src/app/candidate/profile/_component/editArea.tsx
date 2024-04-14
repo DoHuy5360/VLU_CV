@@ -1,5 +1,5 @@
 "use client";
-import { CvContext } from "@/contexts/cvProvider";
+import { CvActionType, CvContext } from "@/contexts/cvProvider";
 import { useContext } from "react";
 
 export default ({
@@ -11,7 +11,7 @@ export default ({
 }: {
 	label: string;
 	value: string;
-	updateType: string;
+	updateType: CvActionType;
 	index?: number;
 	allowNull?: boolean;
 }) => {
@@ -30,7 +30,7 @@ export default ({
 						dispatch({
 							type: updateType,
 							value: e.target.value,
-							index: 0,
+							index: index || 0,
 						});
 					}}
 					value={value}

@@ -5,46 +5,46 @@ import EditArea from "../editArea";
 export default (data: UserData) => {
 	return (
 		<div className='text-sm flex gap-2 flex-wrap'>
-			{data.attrs.project.products.map((p, i) => {
+			{data.attrs.project.products.map((e, i) => {
 				return (
 					<div
-						key={i}
+						key={e.id}
 						className='flex flex-col gap-2 bg-slate-100 p-2 w-full'
 					>
 						<EditInput
 							label='Name'
 							updateType='update-user-project-name'
-							value={p.name}
+							value={e.name}
 							index={i}
 						/>
 						<EditInput
 							label='Time'
 							updateType='update-user-project-time'
-							value={p.time}
+							value={e.time}
 							index={i}
 						/>
 						<EditInput
 							label='Where'
 							updateType='update-user-project-where'
-							value={p.where}
+							value={e.where}
 							index={i}
 						/>
 						<EditInput
 							label='Member'
 							updateType='update-user-project-member'
-							value={p.member}
+							value={e.member}
 							index={i}
 						/>
 						<EditInput
 							label='Position'
 							updateType='update-user-project-position'
-							value={p.position}
+							value={e.position}
 							index={i}
 						/>
 						<EditArea
 							label='Tasks'
 							updateType='update-user-project-tasks'
-							value={p.tasks}
+							value={e.tasks}
 							index={i}
 						/>
 					</div>

@@ -8,12 +8,12 @@ export default function Jsw(data: Reference) {
 				<div className='h-[2px] w-full bg-black'></div>
 			</div>
 			<div className='text-xs flex flex-col gap-2'>
-				{data.references.map((r, i) => {
+				{data.references.map((e, i) => {
 					return (
-						<div key={i}>
-							<div>{r.name}</div>
-							<div>{r.where}</div>
-							<div>{r.phone}</div>
+						<div key={e.id}>
+							<div>{e.name}</div>
+							<div>{e.where}</div>
+							<div>{e.phone}</div>
 						</div>
 					);
 				})}

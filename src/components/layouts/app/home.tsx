@@ -8,27 +8,37 @@ function HomeLayout({ children }: { children: JSX.Element }) {
 				<div className='w-10 h-10 rounded-full bg-slate-200'>
 					<img src={""} className=' object-cover' alt='Avatar' />
 				</div>
-				<nav className='flex gap-2 text-xs'>
-					<Link className='px-2 py-1 hover:bg-slate-300' href='/home'>
+				<nav className='flex w-full gap-2 text-xs items-center'>
+					<Link
+						className='whitespace-nowrap px-2 py-1 hover:bg-slate-300'
+						href='/home'
+					>
 						Trang chủ
 					</Link>
 					<Link
-						className='px-2 py-1 hover:bg-slate-300'
+						className='whitespace-nowrap px-2 py-1 hover:bg-slate-300'
 						href='/candidate/cv'
 					>
 						CV của tôi
 					</Link>
 					<Link
-						className='px-2 py-1 hover:bg-slate-300'
+						className='whitespace-nowrap px-2 py-1 hover:bg-slate-300'
 						href='/candidate/profile?tab="Information"'
 					>
 						Hồ sơ cá nhân
 					</Link>
 					<Link
-						className='px-2 py-1 hover:bg-slate-300'
+						className='whitespace-nowrap px-2 py-1 hover:bg-slate-300'
 						href='/template/cv'
 					>
 						Mẫu CV
+					</Link>
+					<div className='w-full'></div>
+					<Link
+						className='whitespace-nowrap text-white bg-purple-500 p-2 text-xs rounded-sm'
+						href='/api/auth/signout'
+					>
+						Đăng Xuất
 					</Link>
 				</nav>
 			</header>

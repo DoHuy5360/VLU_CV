@@ -8,13 +8,13 @@ export default function Jsx(data: Activity) {
 				<div className='h-[2px] w-full bg-black'></div>
 			</div>
 			<div className='text-xs flex flex-col gap-2'>
-				{data.activities.map((a, i) => {
+				{data.activities.map((e, i) => {
 					return (
-						<div key={i}>
-							<div>{a.time}</div>
-							<div className='font-bold'>{a.name}</div>
+						<div key={e.id}>
+							<div>{e.time}</div>
+							<div className='font-bold'>{e.name}</div>
 
-							{a.tasks}
+							{e.tasks}
 						</div>
 					);
 				})}

@@ -8,12 +8,12 @@ export default function Jsx(data: Certificate) {
 				<div className='h-[2px] w-full bg-black'></div>
 			</div>
 			<div className='text-xs flex flex-col gap-2'>
-				{data.certificates.map((c, i) => {
+				{data.certificates.map((e, i) => {
 					return (
-						<div key={i}>
-							<div>{c.time}</div>
-							<div className='font-bold'>{c.name}</div>
-							<div>{c.where}</div>
+						<div key={e.id}>
+							<div>{e.time}</div>
+							<div className='font-bold'>{e.name}</div>
+							<div>{e.where}</div>
 						</div>
 					);
 				})}
