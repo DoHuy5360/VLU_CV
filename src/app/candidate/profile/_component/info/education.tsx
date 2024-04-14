@@ -12,25 +12,25 @@ export default (data: UserData) => {
 					>
 						<EditInput
 							label='Time'
-							updateType='update-user-experience-time'
+							updateType='update-user-education-time'
 							value={c.time}
 							index={i}
 						/>
 						<EditInput
 							label='Major'
-							updateType='update-user-experience-major'
+							updateType='update-user-education-major'
 							value={c.major}
 							index={i}
 						/>
 						<EditInput
 							label='School'
-							updateType='update-user-experience-school'
+							updateType='update-user-education-school'
 							value={c.school}
 							index={i}
 						/>
 						<EditInput
 							label='Status'
-							updateType='update-user-experience-status'
+							updateType='update-user-education-status'
 							value={c.status}
 							index={i}
 						/>

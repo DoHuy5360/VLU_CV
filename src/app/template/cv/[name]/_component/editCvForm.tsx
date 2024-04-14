@@ -1,7 +1,7 @@
 "use client";
 
 import { createReplica } from "@/actions/candidate/createReplica";
-import { CvContext } from "@/contexts/cvProvider";
+import { CvActionType, CvContext } from "@/contexts/cvProvider";
 import { ChangeEvent, useCallback, useContext } from "react";
 
 export default function EditCvForm() {
@@ -450,7 +450,7 @@ function EditInput({
 }: {
 	inputType: "input" | "textarea";
 	name?: string;
-	editType: string;
+	editType: CvActionType;
 	index?: number;
 	value: string;
 }) {

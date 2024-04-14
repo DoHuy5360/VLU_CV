@@ -13,37 +13,37 @@ export default (data: UserData) => {
 					>
 						<EditInput
 							label='Name'
-							updateType='update-user-experience-name'
+							updateType='update-user-project-name'
 							value={p.name}
 							index={i}
 						/>
 						<EditInput
 							label='Time'
-							updateType='update-user-experience-time'
+							updateType='update-user-project-time'
 							value={p.time}
 							index={i}
 						/>
 						<EditInput
 							label='Where'
-							updateType='update-user-experience-where'
+							updateType='update-user-project-where'
 							value={p.where}
 							index={i}
 						/>
 						<EditInput
 							label='Member'
-							updateType='update-user-experience-member'
+							updateType='update-user-project-member'
 							value={p.member}
 							index={i}
 						/>
 						<EditInput
 							label='Position'
-							updateType='update-user-experience-position'
+							updateType='update-user-project-position'
 							value={p.position}
 							index={i}
 						/>
 						<EditArea
 							label='Tasks'
-							updateType='update-user-experience-tasks'
+							updateType='update-user-project-tasks'
 							value={p.tasks}
 							index={i}
 						/>

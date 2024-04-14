@@ -6,6 +6,8 @@ import Certificate from "./info/certificate";
 import Badge from "./info/badge";
 import Activity from "./info/activity";
 import Education from "./info/education";
+import Hobby from "./info/hobby";
+import Reference from "./info/reference";
 import Other from "./info/other";
 import Information from "./info/information";
 import { UserData } from "@/types/userData";
@@ -21,6 +23,8 @@ const View: {
 	Education: Education,
 	Badge: Badge,
 	Activity: Activity,
+	Hobby: Hobby,
+	Reference: Reference,
 	Other: Other,
 };
 

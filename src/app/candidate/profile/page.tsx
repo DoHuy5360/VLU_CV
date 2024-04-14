@@ -11,6 +11,8 @@ const tabs = [
 	"Certificate",
 	"Badge",
 	"Activity",
+	"Reference",
+	"Hobby",
 	"Other",
 ];
 

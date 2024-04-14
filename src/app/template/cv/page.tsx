@@ -19,14 +19,15 @@ async function allCV() {
 						key={t._id}
 						className='flex flex-col gap-1 border-[1px] border-slate-200'
 					>
-						<div className='bg-white'>
-							<img
+						<div className='bg-white p-2 grid place-items-center'>
+							<div className='w-20 h-32 bg-slate-300'></div>
+							{/* <img
 								src={t.thumbnail}
 								className='aspect-square object-cover'
 								alt='thumbnail'
 								draggable='false'
 								loading='lazy'
-							/>
+							/> */}
 						</div>
 						<Link
 							className='text-center py-2 bg-slate-200 hover:bg-slate-300'

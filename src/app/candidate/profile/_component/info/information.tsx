@@ -11,7 +11,7 @@ export default (state: UserData) => {
 					draggable='false'
 				/>
 			</div>
-			<div className='text-sm flex gap-2 flex-wrap'>
+			<div className='text-sm grid grid-cols-2 gap-2'>
 				<EditInput
 					label='Name'
 					updateType='update-user-name'

@@ -4,7 +4,7 @@ import EditInput from "../editInput";
 export default (data: UserData) => {
 	return (
 		<div className='text-sm flex gap-2 flex-wrap'>
-			{data.attrs.badge.achievements.map((a, i) => {
+			{data.attrs.reference.references.map((e, i) => {
 				return (
 					<div
 						key={i}
@@ -12,20 +12,20 @@ export default (data: UserData) => {
 					>
 						<EditInput
 							label='Name'
-							updateType='update-user-badge-name'
-							value={a.name}
-							index={i}
-						/>
-						<EditInput
-							label='Time'
-							updateType='update-user-badge-time'
-							value={a.time}
+							updateType='update-user-reference-name'
+							value={e.name}
 							index={i}
 						/>
 						<EditInput
 							label='Where'
-							updateType='update-user-badge-where'
-							value={a.where}
+							updateType='update-user-reference-where'
+							value={e.where}
+							index={i}
+						/>
+						<EditInput
+							label='Phone'
+							updateType='update-user-reference-phone'
+							value={e.phone}
 							index={i}
 						/>
 					</div>

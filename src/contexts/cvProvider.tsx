@@ -10,8 +10,56 @@ import {
 	useState,
 } from "react";
 
+export type CvActionType =
+	| "init"
+	| "update-file-name"
+	| "update-user-name"
+	| "update-user-position"
+	| "update-user-birth"
+	| "update-user-phone"
+	| "update-user-email"
+	| "update-user-address"
+	| "update-user-website"
+	| "update-user-gender"
+	| "update-user-goal"
+	| "update-user-experience-name"
+	| "update-user-experience-time"
+	| "update-user-experience-position"
+	| "update-user-experience-tasks"
+	| "update-user-project-name"
+	| "update-user-project-time"
+	| "update-user-project-where"
+	| "update-user-project-member"
+	| "update-user-project-position"
+	| "update-user-project-tasks"
+	| "update-user-project-techs"
+	| "update-user-education-time"
+	| "update-user-education-major"
+	| "update-user-education-school"
+	| "update-user-education-status"
+	| "update-user-skill-name"
+	| "update-user-skill-status"
+	| "update-user-badge-name"
+	| "update-user-badge-time"
+	| "update-user-badge-where"
+	| "update-user-certificate-name"
+	| "update-user-certificate-time"
+	| "update-user-certificate-where"
+	| "update-user-reference-name"
+	| "update-user-reference-where"
+	| "update-user-reference-phone"
+	| "update-user-activity-time"
+	| "update-user-activity-name"
+	| "update-user-activity-position"
+	| "update-user-activity-tasks"
+	| "update-user-hobby-name"
+	| "update-user-hobby-status"
+	| "update-user-other-content"
+	| "add-experience"
+	| "delete-experience";
+
 type Action = {
-	type: any;
+	type: CvActionType;
 	index: number;
 	value: any;
 };

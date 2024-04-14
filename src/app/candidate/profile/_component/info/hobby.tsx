@@ -1,10 +1,11 @@
 import { UserData } from "@/types/userData";
 import EditInput from "../editInput";
+import EditArea from "../editArea";
 
 export default (data: UserData) => {
 	return (
 		<div className='text-sm flex gap-2 flex-wrap'>
-			{data.attrs.badge.achievements.map((a, i) => {
+			{data.attrs.hobby.hobbies.map((a, i) => {
 				return (
 					<div
 						key={i}
@@ -12,20 +13,14 @@ export default (data: UserData) => {
 					>
 						<EditInput
 							label='Name'
-							updateType='update-user-badge-name'
+							updateType='update-user-hobby-name'
 							value={a.name}
 							index={i}
 						/>
-						<EditInput
-							label='Time'
-							updateType='update-user-badge-time'
-							value={a.time}
-							index={i}
-						/>
-						<EditInput
-							label='Where'
-							updateType='update-user-badge-where'
-							value={a.where}
+						<EditArea
+							label='Status'
+							updateType='update-user-hobby-status'
+							value={a.status}
 							index={i}
 						/>
 					</div>

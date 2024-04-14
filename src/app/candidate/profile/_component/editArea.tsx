@@ -7,11 +7,13 @@ export default ({
 	value,
 	updateType,
 	index,
+	allowNull,
 }: {
 	label: string;
 	value: string;
 	updateType: string;
 	index?: number;
+	allowNull?: boolean;
 }) => {
 	const { dispatch } = useContext(CvContext);
 	return (
@@ -36,9 +38,11 @@ export default ({
 					id={updateType + "-" + index?.toString()}
 				/>
 			</div>
-			<div className='text-xs text-red-500'>
-				{value.trim() === "" && "*This field can not empty"}
-			</div>
+			{!allowNull && (
+				<div className='text-xs text-red-500'>
+					{value.trim() === "" && "*This field can not empty"}
+				</div>
+			)}
 		</div>
 	);
 };
