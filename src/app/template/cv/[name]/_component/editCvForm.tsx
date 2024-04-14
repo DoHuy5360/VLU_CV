@@ -107,6 +107,315 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
+				<Group label='Project'>
+					<div className='flex flex-col gap-3'>
+						{state.attrs.project.products.map((p, i) => {
+							return (
+								<div
+									key={i}
+									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
+								>
+									<EditInput
+										name='Name:'
+										value={p.name}
+										editType='update-user-project-name'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Time:'
+										value={p.time}
+										editType='update-user-project-time'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Where:'
+										value={p.where}
+										editType='update-user-project-where'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Member:'
+										value={p.member}
+										editType='update-user-project-member'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Position:'
+										value={p.position}
+										editType='update-user-project-position'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Tasks:'
+										value={p.tasks}
+										editType='update-user-project-tasks'
+										index={i}
+										inputType='textarea'
+									/>
+									<EditInput
+										name='Techs:'
+										value={p.techs}
+										editType='update-user-project-techs'
+										index={i}
+										inputType='input'
+									/>
+								</div>
+							);
+						})}
+					</div>
+				</Group>
+				<Group label='Education'>
+					<div className='flex flex-col gap-3'>
+						{state.attrs.education.classes.map((c, i) => {
+							return (
+								<div
+									key={i}
+									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
+								>
+									<EditInput
+										name='Time:'
+										value={c.time}
+										editType='update-user-education-time'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Major:'
+										value={c.major}
+										editType='update-user-education-major'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='School:'
+										value={c.school}
+										editType='update-user-education-school'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Status:'
+										value={c.status}
+										editType='update-user-education-status'
+										index={i}
+										inputType='input'
+									/>
+								</div>
+							);
+						})}
+					</div>
+				</Group>
+				<Group label='Skill'>
+					<div className='flex flex-col gap-3'>
+						{state.attrs.skill.skills.map((s, i) => {
+							return (
+								<div
+									key={i}
+									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
+								>
+									<EditInput
+										name='Name:'
+										value={s.name}
+										editType='update-user-skill-name'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Status:'
+										value={s.status}
+										editType='update-user-skill-status'
+										index={i}
+										inputType='textarea'
+									/>
+								</div>
+							);
+						})}
+					</div>
+				</Group>
+				<Group label='Badge'>
+					<div className='flex flex-col gap-3'>
+						{state.attrs.badge.achievements.map((e, i) => {
+							return (
+								<div
+									key={i}
+									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
+								>
+									<EditInput
+										name='Name:'
+										value={e.name}
+										editType='update-user-badge-name'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Time:'
+										value={e.time}
+										editType='update-user-badge-time'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Where:'
+										value={e.where}
+										editType='update-user-badge-where'
+										index={i}
+										inputType='input'
+									/>
+								</div>
+							);
+						})}
+					</div>
+				</Group>
+				<Group label='Certification'>
+					<div className='flex flex-col gap-3'>
+						{state.attrs.certificate.certificates.map((e, i) => {
+							return (
+								<div
+									key={i}
+									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
+								>
+									<EditInput
+										name='Name:'
+										value={e.name}
+										editType='update-user-certificate-name'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Time:'
+										value={e.time}
+										editType='update-user-certificate-time'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Where:'
+										value={e.where}
+										editType='update-user-certificate-where'
+										index={i}
+										inputType='input'
+									/>
+								</div>
+							);
+						})}
+					</div>
+				</Group>
+				<Group label='Reference'>
+					<div className='flex flex-col gap-3'>
+						{state.attrs.reference.references.map((e, i) => {
+							return (
+								<div
+									key={i}
+									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
+								>
+									<EditInput
+										name='Name:'
+										value={e.name}
+										editType='update-user-reference-name'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Where:'
+										value={e.where}
+										editType='update-user-reference-where'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Phone:'
+										value={e.phone}
+										editType='update-user-reference-phone'
+										index={i}
+										inputType='input'
+									/>
+								</div>
+							);
+						})}
+					</div>
+				</Group>
+				<Group label='Activity'>
+					<div className='flex flex-col gap-3'>
+						{state.attrs.activity.activities.map((e, i) => {
+							return (
+								<div
+									key={i}
+									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
+								>
+									<EditInput
+										name='Time:'
+										value={e.time}
+										editType='update-user-activity-time'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Name:'
+										value={e.name}
+										editType='update-user-activity-name'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Position:'
+										value={e.position}
+										editType='update-user-activity-position'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Tasks:'
+										value={e.tasks}
+										editType='update-user-activity-tasks'
+										index={i}
+										inputType='textarea'
+									/>
+								</div>
+							);
+						})}
+					</div>
+				</Group>
+				<Group label='Hobby'>
+					<div className='flex flex-col gap-3'>
+						{state.attrs.hobby.hobbies.map((e, i) => {
+							return (
+								<div
+									key={i}
+									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
+								>
+									<EditInput
+										name='Name:'
+										value={e.name}
+										editType='update-user-hobby-name'
+										index={i}
+										inputType='input'
+									/>
+									<EditInput
+										name='Status:'
+										value={e.status}
+										editType='update-user-hobby-status'
+										index={i}
+										inputType='input'
+									/>
+								</div>
+							);
+						})}
+					</div>
+				</Group>
+				<Group label='Other'>
+					<div className='flex flex-col gap-3'>
+						<EditInput
+							value={state.attrs.other.content}
+							editType='update-user-other-content'
+							inputType='textarea'
+						/>
+					</div>
+				</Group>
 			</div>
 			<button
 				className='w-fit px-4 py-2 ml-auto bg-green-300 rounded-lg text-xs'

@@ -96,6 +96,117 @@ const reducer = (
 				return {
 					...state,
 				};
+			case "update-user-project-name":
+				state.attrs.project.products[action.index].name =
+					action.value;
+				return { ...state };
+			case "update-user-project-time":
+				state.attrs.project.products[action.index].time =
+					action.value;
+				return { ...state };
+			case "update-user-project-where":
+				state.attrs.project.products[action.index].where =
+					action.value;
+				return { ...state };
+			case "update-user-project-member":
+				state.attrs.project.products[action.index].member =
+					action.value;
+				return { ...state };
+			case "update-user-project-position":
+				state.attrs.project.products[action.index].position =
+					action.value;
+				return { ...state };
+			case "update-user-project-tasks":
+				state.attrs.project.products[action.index].tasks =
+					action.value;
+				return { ...state };
+			case "update-user-project-techs":
+				state.attrs.project.products[action.index].techs =
+					action.value;
+				return { ...state };
+			case "update-user-education-time":
+				state.attrs.education.classes[action.index].time =
+					action.value;
+				return { ...state };
+			case "update-user-education-major":
+				state.attrs.education.classes[action.index].major =
+					action.value;
+				return { ...state };
+			case "update-user-education-school":
+				state.attrs.education.classes[action.index].school =
+					action.value;
+				return { ...state };
+			case "update-user-education-status":
+				state.attrs.education.classes[action.index].status =
+					action.value;
+				return { ...state };
+			case "update-user-skill-name":
+				state.attrs.skill.skills[action.index].name = action.value;
+				return { ...state };
+			case "update-user-skill-status":
+				state.attrs.skill.skills[action.index].status = action.value;
+				return { ...state };
+			case "update-user-badge-name":
+				state.attrs.badge.achievements[action.index].name =
+					action.value;
+				return { ...state };
+			case "update-user-badge-time":
+				state.attrs.badge.achievements[action.index].time =
+					action.value;
+				return { ...state };
+			case "update-user-badge-where":
+				state.attrs.badge.achievements[action.index].where =
+					action.value;
+				return { ...state };
+			case "update-user-certificate-name":
+				state.attrs.certificate.certificates[action.index].name =
+					action.value;
+				return { ...state };
+			case "update-user-certificate-time":
+				state.attrs.certificate.certificates[action.index].time =
+					action.value;
+				return { ...state };
+			case "update-user-certificate-where":
+				state.attrs.certificate.certificates[action.index].where =
+					action.value;
+				return { ...state };
+			case "update-user-reference-name":
+				state.attrs.reference.references[action.index].name =
+					action.value;
+				return { ...state };
+			case "update-user-reference-where":
+				state.attrs.reference.references[action.index].where =
+					action.value;
+				return { ...state };
+			case "update-user-reference-phone":
+				state.attrs.reference.references[action.index].phone =
+					action.value;
+				return { ...state };
+			case "update-user-activity-time":
+				state.attrs.activity.activities[action.index].time =
+					action.value;
+				return { ...state };
+			case "update-user-activity-name":
+				state.attrs.activity.activities[action.index].name =
+					action.value;
+				return { ...state };
+			case "update-user-activity-position":
+				state.attrs.activity.activities[action.index].position =
+					action.value;
+				return { ...state };
+			case "update-user-activity-tasks":
+				state.attrs.activity.activities[action.index].tasks =
+					action.value;
+				return { ...state };
+			case "update-user-hobby-name":
+				state.attrs.hobby.hobbies[action.index].name = action.value;
+				return { ...state };
+			case "update-user-hobby-status":
+				state.attrs.hobby.hobbies[action.index].status = action.value;
+				return { ...state };
+			case "update-user-other-content":
+				state.attrs.other.content = action.value;
+				return { ...state };
 			case "add-experience":
 				state.attrs.experience.works.unshift(action.value);
 				return {
@@ -117,16 +228,6 @@ const reducer = (
 		return state;
 	}
 };
-// experience
-// project
-// education
-// skill
-// badge
-// certificate
-// reference
-// activity
-// hobby
-// other
 export const CvContext = createContext<{
 	state: UserData | null;
 	dispatch: Dispatch<Action>;
