@@ -1,15 +1,15 @@
 import { CvAction } from "@/contexts/cvProvider";
 import { useAddCvForm } from "@/hooks/useAddCvForm";
+import { BiPlus } from "react-icons/bi";
 
 export default ({ data }: { data: CvAction }) => {
 	const { f } = useAddCvForm(data);
 	return (
-		<button
+		<div
 			onClick={f}
-			className='px-2 py-1 bg-blue-300 rounded-sm'
-			type='button'
+			className='p-1 rounded-sm border-[1px] border-slate-300 cursor-pointer hover:bg-slate-200'
 		>
-			Add
-		</button>
+			<BiPlus />
+		</div>
 	);
 };

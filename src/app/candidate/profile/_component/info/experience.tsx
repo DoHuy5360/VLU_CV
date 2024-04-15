@@ -4,21 +4,13 @@ import { UserData } from "@/types/userData";
 import { BiTrash } from "react-icons/bi";
 import { BsArrowDown, BsArrowUp } from "react-icons/bs";
 import AddForm from "../addForm";
+import { experience } from "@/entities/formCV";
 
 export default (state: UserData, dispatch: Function) => {
 	return (
 		<div className='flex flex-col'>
 			<div className='flex gap-2 text-sm py-2 justify-end'>
-				<AddForm
-					actionType='add-experience'
-					value={{
-						id: new Date().getTime(),
-						name: "",
-						time: "",
-						position: "",
-						tasks: "",
-					}}
-				/>
+				<AddForm data={experience()} />
 			</div>
 			<div className='text-sm flex flex-col gap-2 flex-wrap'>
 				{state.attrs.experience.works.length === 0 ? (

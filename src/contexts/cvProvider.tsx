@@ -1,6 +1,6 @@
 "use client";
 import { connectToDatabase } from "@/libs/mongoosedb";
-import { UserData, userDataSample } from "@/types/userData";
+import { UserData, Work, userDataSample } from "@/types/userData";
 import { useSession } from "next-auth/react";
 import {
 	Dispatch,
@@ -55,14 +55,28 @@ export type CvActionType =
 	| "update-user-hobby-name"
 	| "update-user-hobby-status"
 	| "update-user-other-content"
-	| "add-experience"
-	| "delete-experience";
+	| "delete-experience"
+	| "add-project"
+	| "add-education"
+	| "add-skill"
+	| "add-badge"
+	| "add-certification"
+	| "add-reference"
+	| "add-activity"
+	| "add-hobby";
 
-export type CvAction = {
-	type: CvActionType;
-	index: number;
-	value: any;
-};
+export type CvAction =
+	| {
+			type: CvActionType;
+			value: any;
+			index: number;
+	  }
+	| {
+			type: "add-experience";
+			value: Work;
+			index: number;
+	  };
+
 const initCvContext: UserData | null = null;
 const reducer = (
 	state: UserData | null,
@@ -257,6 +271,46 @@ const reducer = (
 				return { ...state };
 			case "add-experience":
 				state.attrs.experience.works.unshift(action.value);
+				return {
+					...state,
+				};
+			case "add-project":
+				state.attrs.project.products.unshift(action.value);
+				return {
+					...state,
+				};
+			case "add-education":
+				state.attrs.education.classes.unshift(action.value);
+				return {
+					...state,
+				};
+			case "add-skill":
+				state.attrs.skill.skills.unshift(action.value);
+				return {
+					...state,
+				};
+			case "add-badge":
+				state.attrs.badge.achievements.unshift(action.value);
+				return {
+					...state,
+				};
+			case "add-certification":
+				state.attrs.certificate.certificates.unshift(action.value);
+				return {
+					...state,
+				};
+			case "add-reference":
+				state.attrs.reference.references.unshift(action.value);
+				return {
+					...state,
+				};
+			case "add-activity":
+				state.attrs.activity.activities.unshift(action.value);
+				return {
+					...state,
+				};
+			case "add-hobby":
+				state.attrs.hobby.hobbies.unshift(action.value);
 				return {
 					...state,
 				};

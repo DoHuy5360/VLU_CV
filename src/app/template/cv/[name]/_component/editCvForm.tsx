@@ -1,8 +1,15 @@
 "use client";
 
 import { createReplica } from "@/actions/candidate/createReplica";
-import { CvActionType, CvContext } from "@/contexts/cvProvider";
+import {
+	CvAction,
+	CvActionType,
+	CvContext,
+} from "@/contexts/cvProvider";
 import { ChangeEvent, useCallback, useContext } from "react";
+import { BiPlus } from "react-icons/bi";
+import AddButton from "./addButton";
+import { experience } from "@/entities/formCV";
 
 export default function EditCvForm() {
 	const { state } = useContext(CvContext);
@@ -66,7 +73,7 @@ export default function EditCvForm() {
 						value={state.attrs.goal.content}
 					/>
 				</Group>
-				<Group label='Experience'>
+				<Group label='Experience' form={experience()}>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.experience.works.map((w, i) => {
 							return (
@@ -107,7 +114,14 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
-				<Group label='Project'>
+				<Group
+					label='Project'
+					form={{
+						type: "add-project",
+						value: "",
+						index: 0,
+					}}
+				>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.project.products.map((p, i) => {
 							return (
@@ -169,7 +183,14 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
-				<Group label='Education'>
+				<Group
+					label='Education'
+					form={{
+						type: "add-education",
+						value: "",
+						index: 0,
+					}}
+				>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.education.classes.map((c, i) => {
 							return (
@@ -210,7 +231,14 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
-				<Group label='Skill'>
+				<Group
+					label='Skill'
+					form={{
+						type: "add-skill",
+						value: "",
+						index: 0,
+					}}
+				>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.skill.skills.map((s, i) => {
 							return (
@@ -237,7 +265,14 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
-				<Group label='Badge'>
+				<Group
+					label='Badge'
+					form={{
+						type: "add-badge",
+						value: "",
+						index: 0,
+					}}
+				>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.badge.achievements.map((e, i) => {
 							return (
@@ -271,7 +306,14 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
-				<Group label='Certification'>
+				<Group
+					label='Certification'
+					form={{
+						type: "add-certification",
+						value: "",
+						index: 0,
+					}}
+				>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.certificate.certificates.map((e, i) => {
 							return (
@@ -305,7 +347,14 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
-				<Group label='Reference'>
+				<Group
+					label='Reference'
+					form={{
+						type: "add-reference",
+						value: "",
+						index: 0,
+					}}
+				>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.reference.references.map((e, i) => {
 							return (
@@ -339,7 +388,14 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
-				<Group label='Activity'>
+				<Group
+					label='Activity'
+					form={{
+						type: "add-activity",
+						value: "",
+						index: 0,
+					}}
+				>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.activity.activities.map((e, i) => {
 							return (
@@ -380,12 +436,19 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
-				<Group label='Hobby'>
+				<Group
+					label='Hobby'
+					form={{
+						type: "add-hobby",
+						value: "",
+						index: 0,
+					}}
+				>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.hobby.hobbies.map((e, i) => {
 							return (
 								<div
-									key={i}
+									key={e.id}
 									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
 								>
 									<EditInput
@@ -430,13 +493,21 @@ export default function EditCvForm() {
 function Group({
 	label,
 	children,
+	form,
 }: {
 	label: string;
 	children: JSX.Element;
+	form?: CvAction;
 }) {
 	return (
-		<fieldset className='border border-solid border-gray-300 p-3'>
-			<legend>{label}</legend>
+		<fieldset className='border border-solid border-slate-300 p-3'>
+			<legend className='flex justify-between items-center w-full'>
+				<div className='whitespace-nowrap'>{label}</div>
+				<div className='h-[0.5px] w-full bg-slate-300'></div>
+				<div className='flex gap-2 items-center'>
+					{form && <AddButton data={form} />}
+				</div>
+			</legend>
 			{children}
 		</fieldset>
 	);
