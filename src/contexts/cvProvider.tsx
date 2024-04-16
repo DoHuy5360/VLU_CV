@@ -1,7 +1,19 @@
 "use client";
 import { connectToDatabase } from "@/libs/mongoosedb";
-import { UserData, Work, userDataSample } from "@/types/userData";
-import { useSession } from "next-auth/react";
+import {
+	Ability,
+	Achievement,
+	Act,
+	Class,
+	Colleague,
+	Favorite,
+	Merit,
+	Product,
+	Skill,
+	UserData,
+	Work,
+	userDataSample,
+} from "@/types/userData";
 import {
 	Dispatch,
 	createContext,
@@ -54,28 +66,29 @@ export type CvActionType =
 	| "update-user-activity-tasks"
 	| "update-user-hobby-name"
 	| "update-user-hobby-status"
-	| "update-user-other-content"
-	| "delete-experience"
-	| "add-project"
-	| "add-education"
-	| "add-skill"
-	| "add-badge"
-	| "add-certification"
-	| "add-reference"
-	| "add-activity"
-	| "add-hobby";
+	| "update-user-other-content";
 
 export type CvAction =
-	| {
-			type: CvActionType;
-			value: any;
-			index: number;
-	  }
-	| {
-			type: "add-experience";
-			value: Work;
-			index: number;
-	  };
+	| { type: CvActionType; value: any; index: number }
+	| { type: "init"; value: UserData }
+	| { type: "add-experience"; value: Work; index: number }
+	| { type: "add-project"; value: Product; index: number }
+	| { type: "add-education"; value: Class; index: number }
+	| { type: "add-skill"; value: Ability; index: number }
+	| { type: "add-badge"; value: Achievement; index: number }
+	| { type: "add-certification"; value: Merit; index: number }
+	| { type: "add-reference"; value: Colleague; index: number }
+	| { type: "add-activity"; value: Act; index: number }
+	| { type: "add-hobby"; value: Favorite; index: number }
+	| { type: "delete-experience"; index: number }
+	| { type: "delete-project"; index: number }
+	| { type: "delete-education"; index: number }
+	| { type: "delete-skill"; index: number }
+	| { type: "delete-badge"; index: number }
+	| { type: "delete-certificate"; index: number }
+	| { type: "delete-reference"; index: number }
+	| { type: "delete-activity"; index: number }
+	| { type: "delete-hobby"; index: number };
 
 const initCvContext: UserData | null = null;
 const reducer = (
@@ -315,10 +328,82 @@ const reducer = (
 					...state,
 				};
 			case "delete-experience":
-				state.attrs.experience.works =
-					state.attrs.experience.works.filter((e, i) => {
-						if (action.index !== i) return e;
-					});
+				state.attrs.experience.works = removeElementByIndex(
+					state.attrs.experience.works,
+					action.index
+				);
+				return {
+					...state,
+				};
+			case "delete-project":
+				state.attrs.project.products = removeElementByIndex(
+					state.attrs.project.products,
+					action.index
+				);
+				return {
+					...state,
+				};
+			case "delete-education":
+				state.attrs.education.classes = removeElementByIndex(
+					state.attrs.education.classes,
+					action.index
+				);
+				return {
+					...state,
+				};
+			case "delete-skill":
+				state.attrs.skill.skills = removeElementByIndex(
+					state.attrs.skill.skills,
+					action.index
+				);
+				return {
+					...state,
+				};
+			case "delete-badge":
+				state.attrs.badge.achievements = removeElementByIndex(
+					state.attrs.badge.achievements,
+					action.index
+				);
+				return {
+					...state,
+				};
+			case "delete-certificate":
+				state.attrs.certificate.certificates = removeElementByIndex(
+					state.attrs.certificate.certificates,
+					action.index
+				);
+				return {
+					...state,
+				};
+			case "delete-reference":
+				state.attrs.reference.references = removeElementByIndex(
+					state.attrs.reference.references,
+					action.index
+				);
+				return {
+					...state,
+				};
+			case "delete-activity":
+				state.attrs.activity.activities = removeElementByIndex(
+					state.attrs.activity.activities,
+					action.index
+				);
+				return {
+					...state,
+				};
+			case "delete-hobby":
+				state.attrs.hobby.hobbies = removeElementByIndex(
+					state.attrs.hobby.hobbies,
+					action.index
+				);
+				return {
+					...state,
+				};
+			case "delete-experience":
+				state.attrs.experience.works = removeElementByIndex(
+					state.attrs.experience.works,
+					action.index
+				);
 				return {
 					...state,
 				};
@@ -326,10 +411,18 @@ const reducer = (
 				return state;
 		}
 	else {
-		state = action.value;
-		return state;
+		switch (action.type) {
+			case "init":
+				state = action.value;
+				return state;
+			default:
+				return null;
+		}
 	}
 };
+const removeElementByIndex = (array: any[], index: number) =>
+	array.filter((e, i) => index !== i && e);
+
 export const CvContext = createContext<{
 	state: UserData | null;
 	dispatch: Dispatch<CvAction>;

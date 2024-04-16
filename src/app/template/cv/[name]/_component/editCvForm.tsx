@@ -7,9 +7,31 @@ import {
 	CvContext,
 } from "@/contexts/cvProvider";
 import { ChangeEvent, useCallback, useContext } from "react";
-import { BiPlus } from "react-icons/bi";
+import { BiPlus, BiTrash } from "react-icons/bi";
 import AddButton from "./addButton";
-import { experience } from "@/entities/formCV";
+import {
+	addExperienceAction,
+	addProjectAction,
+	addEducationAction,
+	addSkillAction,
+	addBadgeAction,
+	addCertificationAction,
+	addReferenceAction,
+	addActivityAction,
+	addHobbyAction,
+} from "@/entities/addFormCV";
+import FormAction from "./formAction";
+import {
+	deleteActivityAction,
+	deleteBadgeAction,
+	deleteCertificationAction,
+	deleteEducationAction,
+	deleteExperienceAction,
+	deleteHobbyAction,
+	deleteProjectAction,
+	deleteReferenceAction,
+	deleteSkillAction,
+} from "@/entities/deleteFormCV";
 
 export default function EditCvForm() {
 	const { state } = useContext(CvContext);
@@ -73,55 +95,53 @@ export default function EditCvForm() {
 						value={state.attrs.goal.content}
 					/>
 				</Group>
-				<Group label='Experience' form={experience()}>
+				<Group label='Experience' form={addExperienceAction()}>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.experience.works.map((w, i) => {
 							return (
-								<div
-									key={i}
-									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
-								>
-									<EditInput
-										name='Name:'
-										value={w.name}
-										editType='update-user-experience-name'
-										index={i}
-										inputType='input'
+								<div className='flex flex-col gap-2 border-[1px] border-slate-200 p-1'>
+									<FormAction
+										deleteAction={deleteExperienceAction(i)}
 									/>
-									<EditInput
-										name='Time:'
-										value={w.time}
-										editType='update-user-experience-time'
-										index={i}
-										inputType='input'
-									/>
-									<EditInput
-										name='Position:'
-										value={w.position}
-										editType='update-user-experience-position'
-										index={i}
-										inputType='input'
-									/>
-									<EditInput
-										name='Tasks:'
-										value={w.tasks}
-										editType='update-user-experience-tasks'
-										index={i}
-										inputType='textarea'
-									/>
+									<div
+										key={i}
+										className='text-xs flex flex-col gap-2'
+									>
+										<EditInput
+											name='Name:'
+											value={w.name}
+											editType='update-user-experience-name'
+											index={i}
+											inputType='input'
+										/>
+										<EditInput
+											name='Time:'
+											value={w.time}
+											editType='update-user-experience-time'
+											index={i}
+											inputType='input'
+										/>
+										<EditInput
+											name='Position:'
+											value={w.position}
+											editType='update-user-experience-position'
+											index={i}
+											inputType='input'
+										/>
+										<EditInput
+											name='Tasks:'
+											value={w.tasks}
+											editType='update-user-experience-tasks'
+											index={i}
+											inputType='textarea'
+										/>
+									</div>
 								</div>
 							);
 						})}
 					</div>
 				</Group>
-				<Group
-					label='Project'
-					form={{
-						type: "add-project",
-						value: "",
-						index: 0,
-					}}
-				>
+				<Group label='Project' form={addProjectAction()}>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.project.products.map((p, i) => {
 							return (
@@ -129,6 +149,7 @@ export default function EditCvForm() {
 									key={i}
 									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
 								>
+									<FormAction deleteAction={deleteProjectAction(i)} />
 									<EditInput
 										name='Name:'
 										value={p.name}
@@ -183,14 +204,7 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
-				<Group
-					label='Education'
-					form={{
-						type: "add-education",
-						value: "",
-						index: 0,
-					}}
-				>
+				<Group label='Education' form={addEducationAction()}>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.education.classes.map((c, i) => {
 							return (
@@ -198,6 +212,9 @@ export default function EditCvForm() {
 									key={i}
 									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
 								>
+									<FormAction
+										deleteAction={deleteEducationAction(i)}
+									/>
 									<EditInput
 										name='Time:'
 										value={c.time}
@@ -231,14 +248,7 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
-				<Group
-					label='Skill'
-					form={{
-						type: "add-skill",
-						value: "",
-						index: 0,
-					}}
-				>
+				<Group label='Skill' form={addSkillAction()}>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.skill.skills.map((s, i) => {
 							return (
@@ -246,6 +256,7 @@ export default function EditCvForm() {
 									key={i}
 									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
 								>
+									<FormAction deleteAction={deleteSkillAction(i)} />
 									<EditInput
 										name='Name:'
 										value={s.name}
@@ -265,14 +276,7 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
-				<Group
-					label='Badge'
-					form={{
-						type: "add-badge",
-						value: "",
-						index: 0,
-					}}
-				>
+				<Group label='Badge' form={addBadgeAction()}>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.badge.achievements.map((e, i) => {
 							return (
@@ -280,6 +284,7 @@ export default function EditCvForm() {
 									key={i}
 									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
 								>
+									<FormAction deleteAction={deleteBadgeAction(i)} />
 									<EditInput
 										name='Name:'
 										value={e.name}
@@ -306,14 +311,7 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
-				<Group
-					label='Certification'
-					form={{
-						type: "add-certification",
-						value: "",
-						index: 0,
-					}}
-				>
+				<Group label='Certification' form={addCertificationAction()}>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.certificate.certificates.map((e, i) => {
 							return (
@@ -321,6 +319,9 @@ export default function EditCvForm() {
 									key={i}
 									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
 								>
+									<FormAction
+										deleteAction={deleteCertificationAction(i)}
+									/>
 									<EditInput
 										name='Name:'
 										value={e.name}
@@ -347,14 +348,7 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
-				<Group
-					label='Reference'
-					form={{
-						type: "add-reference",
-						value: "",
-						index: 0,
-					}}
-				>
+				<Group label='Reference' form={addReferenceAction()}>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.reference.references.map((e, i) => {
 							return (
@@ -362,6 +356,9 @@ export default function EditCvForm() {
 									key={i}
 									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
 								>
+									<FormAction
+										deleteAction={deleteReferenceAction(i)}
+									/>
 									<EditInput
 										name='Name:'
 										value={e.name}
@@ -388,14 +385,7 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
-				<Group
-					label='Activity'
-					form={{
-						type: "add-activity",
-						value: "",
-						index: 0,
-					}}
-				>
+				<Group label='Activity' form={addActivityAction()}>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.activity.activities.map((e, i) => {
 							return (
@@ -403,6 +393,9 @@ export default function EditCvForm() {
 									key={i}
 									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
 								>
+									<FormAction
+										deleteAction={deleteActivityAction(i)}
+									/>
 									<EditInput
 										name='Time:'
 										value={e.time}
@@ -436,14 +429,7 @@ export default function EditCvForm() {
 						})}
 					</div>
 				</Group>
-				<Group
-					label='Hobby'
-					form={{
-						type: "add-hobby",
-						value: "",
-						index: 0,
-					}}
-				>
+				<Group label='Hobby' form={addHobbyAction()}>
 					<div className='flex flex-col gap-3'>
 						{state.attrs.hobby.hobbies.map((e, i) => {
 							return (
@@ -451,6 +437,7 @@ export default function EditCvForm() {
 									key={e.id}
 									className='text-xs flex flex-col gap-2 border-[1px] border-slate-200 p-1'
 								>
+									<FormAction deleteAction={deleteHobbyAction(i)} />
 									<EditInput
 										name='Name:'
 										value={e.name}
