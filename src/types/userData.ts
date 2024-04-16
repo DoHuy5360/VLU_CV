@@ -103,7 +103,7 @@ export type Act = {
 	tasks: string;
 };
 export type Activity = {
-	title: "Activity";
+	title: string;
 	activities: Act[];
 };
 export type Favorite = {
@@ -140,135 +140,6 @@ export type UserData = {
 	attrs: Attrs;
 };
 
-export const userDataSample: UserData = {
-	name: "",
-	template: "",
-	attrs: {
-		head: {
-			name: "",
-			avatar: "",
-			position: "",
-			phone: "",
-			email: "",
-			address: "",
-			website: "",
-			birth: "",
-			gender: "",
-		},
-		goal: {
-			title: "Goal",
-			content: "",
-		},
-		experience: {
-			title: "Experience",
-			works: [
-				{
-					id: "",
-					name: "",
-					time: "",
-					position: "",
-					tasks: "",
-				},
-			],
-		},
-		project: {
-			title: "Project",
-			products: [
-				{
-					id: "",
-					name: "",
-					time: "",
-					where: "",
-					member: "",
-					position: "",
-					tasks: "",
-					techs: "",
-				},
-			],
-		},
-		education: {
-			title: "Education",
-			classes: [
-				{
-					id: "",
-					time: "",
-					major: "",
-					school: "",
-					status: "",
-				},
-			],
-		},
-		skill: {
-			title: "Skills",
-			skills: [
-				{
-					id: "",
-					name: "",
-					status: "",
-				},
-			],
-		},
-		badge: {
-			title: "Badge",
-			achievements: [
-				{
-					id: "",
-					time: "",
-					name: "",
-					where: "",
-				},
-			],
-		},
-		certificate: {
-			title: "Certificate",
-			certificates: [
-				{
-					id: "",
-					time: "",
-					name: "",
-					where: "",
-				},
-			],
-		},
-		reference: {
-			title: "Reference",
-			references: [
-				{
-					id: "",
-					name: "",
-					where: "",
-					phone: "",
-				},
-			],
-		},
-		activity: {
-			title: "Activity",
-			activities: [
-				{
-					id: "",
-					time: "",
-					name: "",
-					position: "",
-					tasks: "",
-				},
-			],
-		},
-		hobby: {
-			title: "Hobby",
-			hobbies: [
-				{
-					id: "",
-					name: "",
-					status: "",
-				},
-			],
-		},
-		other: {
-			title: "Other",
-			content: "",
-		},
-	},
-};
 // export const userDataSample: UserData = {
 // 	name: "",
 // 	template: "A01Template",

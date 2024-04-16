@@ -27,19 +27,19 @@ export default (state: UserData) => {
 								/>
 								<EditInput
 									label='Name'
-									updateType='update-user-experience-name'
+									updateType='update-user-certificate-name'
 									value={e.name}
 									index={i}
 								/>
 								<EditInput
 									label='Time'
-									updateType='update-user-experience-name'
+									updateType='update-user-certificate-time'
 									value={e.time}
 									index={i}
 								/>
 								<EditInput
 									label='Where'
-									updateType='update-user-experience-name'
+									updateType='update-user-certificate-where'
 									value={e.where}
 									index={i}
 								/>

@@ -10,6 +10,8 @@ import Hobby from "./info/hobby";
 import Reference from "./info/reference";
 import Other from "./info/other";
 import Information from "./info/information";
+import Goal from "./info/goal";
+import Skill from "./info/skill";
 import { UserData } from "@/types/userData";
 import Save from "./save";
 
@@ -17,8 +19,10 @@ const View: {
 	[key: string]: (data: UserData, dispatch: Function) => JSX.Element;
 } = {
 	Information: Information,
+	Goal: Goal,
 	Experience: Experience,
 	Project: Project,
+	Skill: Skill,
 	Certificate: Certificate,
 	Education: Education,
 	Badge: Badge,

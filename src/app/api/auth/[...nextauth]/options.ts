@@ -1,8 +1,9 @@
+import { getUserDataCV } from "@/entities/userDataCV";
 import clientPromise from "@/libs/mongodb";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import CV from "@/models/cv";
 import User from "@/models/user";
-import { userDataSample } from "@/types/userData";
+
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import { Client } from "@microsoft/microsoft-graph-client";
 import mongoose from "mongoose";
@@ -84,6 +85,8 @@ export const authOptions: NextAuthOptions = {
 	],
 	callbacks: {
 		async signIn({ user }) {
+			if (user.email === null || user.email === undefined)
+				return false;
 			await connectToDatabase();
 			const userFound = await User.findOne({ email: user.email });
 			// console.log("user found", userFound);
@@ -93,7 +96,14 @@ export const authOptions: NextAuthOptions = {
 					email: user.email,
 					role: user.role,
 					image: user.image,
-					dataCV: userDataSample,
+					dataCV: getUserDataCV({
+						name: "This is file's name",
+						template: "Root",
+						head: {
+							name: user.name || "",
+							email: user.email,
+						},
+					}),
 				};
 				const newUser = new User(data);
 				const result = await newUser.save();

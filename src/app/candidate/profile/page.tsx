@@ -6,6 +6,9 @@ import View from "./_component/view";
 
 const tabs = [
 	"Information",
+	"Goal",
+	"Education",
+	"Skill",
 	"Experience",
 	"Project",
 	"Certificate",

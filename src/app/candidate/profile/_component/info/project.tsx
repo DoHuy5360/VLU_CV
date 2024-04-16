@@ -54,6 +54,12 @@ export default (state: UserData) => {
 									value={e.position}
 									index={i}
 								/>
+								<EditInput
+									label='Tech'
+									updateType='update-user-project-techs'
+									value={e.techs}
+									index={i}
+								/>
 								<EditArea
 									label='Tasks'
 									updateType='update-user-project-tasks'
