@@ -7,7 +7,7 @@ import CvSuggestion from "./_component/cvSuggestion";
 function EditTemplate({ params }: { params: { name: string } }) {
 	return (
 		<div className='flex h-full'>
-			<EditCvForm />
+			<EditCvForm cvName={params.name} />
 			<div className='flex flex-col w-full'>
 				<CvSuggestion />
 				<div className='overflow-y-scroll pb-16'>

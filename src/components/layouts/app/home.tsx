@@ -1,12 +1,20 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import CvProvider from "@/contexts/cvProvider";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 
-function HomeLayout({ children }: { children: JSX.Element }) {
+async function HomeLayout({ children }: { children: JSX.Element }) {
+	const session = await getServerSession(authOptions);
 	return (
 		<div className='h-dvh flex flex-col overflow-hidden'>
 			<header className='border-b-[1px] border-slate-200 flex gap-2 items-center px-2 py-1'>
-				<div className='w-10 h-10 rounded-full bg-slate-200'>
-					<img src={""} className=' object-cover' alt='Avatar' />
+				<div className='max-w-10 max-h-10 rounded-full bg-slate-200 border-slate-200 border-[1px] overflow-hidden'>
+					<img
+						src={session?.user.image || "/image/user.jpg"}
+						className='object-cover'
+						alt='Avatar'
+						draggable={false}
+					/>
 				</div>
 				<nav className='flex w-full gap-2 text-xs items-center'>
 					<Link

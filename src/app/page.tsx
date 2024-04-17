@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { authOptions } from "./api/auth/[...nextauth]/options";
+import { randomInRange } from "@/utils/random";
 
 export default async function App() {
 	const session = await getServerSession(authOptions);
@@ -37,7 +38,27 @@ export default async function App() {
 					</Link>
 				)}
 			</div>
-			<div className='bg-orange-300 h-full w-full'></div>
+			<div className='bg-black h-full w-full'>
+				<div className='relative select-none'>
+					<div className='landscape_overlay grid place-items-center'>
+						<div className='xl:text-7xl md:text-4xl text-white font-bold'>
+							Van Lang Jobs
+						</div>
+					</div>
+					<div className='text-white absolute bottom-0 right-0 p-10 text-xs'>
+						<div>Chắp cánh tương lai!</div>
+						<div>Dẫn lối ước mơ!</div>
+					</div>
+					<img
+						className='w-full'
+						src={`/image/vanlang_landscape/cs3_0${randomInRange(
+							1,
+							4
+						)}.jpg`}
+						alt='van lang landscape'
+					/>
+				</div>
+			</div>
 		</div>
 	);
 }

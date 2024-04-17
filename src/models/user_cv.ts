@@ -5,10 +5,6 @@ const Schema = mongoose.Schema;
 
 const userCvSchema = new Schema(
 	{
-		cvId: {
-			type: ObjectId,
-			require: true,
-		},
 		userId: {
 			type: ObjectId,
 			require: true,
@@ -17,6 +13,10 @@ const userCvSchema = new Schema(
 			type: String,
 			require: true,
 			unique: true,
+		},
+		template: {
+			type: String,
+			require: true,
 		},
 		data: {
 			type: Object,

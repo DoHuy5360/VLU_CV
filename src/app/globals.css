@@ -31,3 +31,18 @@
 		text-wrap: balance;
 	}
 }
+
+.landscape_overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+			180deg,
+			rgba(27, 5, 5, 0) 69.21%,
+			rgba(9, 2, 2, 0.61) 84.74%,
+			rgba(0, 0, 0, 0.98)
+		),
+		linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}

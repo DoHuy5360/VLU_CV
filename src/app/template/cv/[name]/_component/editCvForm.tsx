@@ -32,8 +32,9 @@ import {
 	deleteReferenceAction,
 	deleteSkillAction,
 } from "@/entities/deleteFormCV";
+import { TransferType } from "@/types/tranfer";
 
-export default function EditCvForm() {
+export default function EditCvForm({ cvName }: { cvName: string }) {
 	const { state } = useContext(CvContext);
 	return state === null ? (
 		<div>Loading...</div>
@@ -41,7 +42,7 @@ export default function EditCvForm() {
 		<form
 			className='w-2/3 px-2 pt-2 pb-20 flex flex-col gap-2 overflow-y-scroll border-slate-300 border-r-[1px]'
 			action={async () => {
-				await createReplica(state);
+				await createReplica(cvName, state);
 			}}
 		>
 			<div className='flex flex-col gap-2'>
