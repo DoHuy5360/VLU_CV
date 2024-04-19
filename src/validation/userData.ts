@@ -16,6 +16,7 @@ export const goalSchema = z.object({
 	content: z.string().min(1),
 });
 export const workSchema = z.object({
+	id: z.string(),
 	name: z.string().min(1),
 	time: z.string().min(1),
 	position: z.string().min(1),

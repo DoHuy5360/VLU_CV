@@ -12,7 +12,6 @@ import {
 	Skill,
 	UserData,
 	Work,
-	userDataSample,
 } from "@/types/userData";
 import {
 	Dispatch,

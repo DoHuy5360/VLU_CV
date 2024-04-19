@@ -1,98 +1,62 @@
 import { CvAction } from "@/contexts/cvProvider";
 import { getTimeId } from "@/utils/getTimeId";
 
-export const addExperienceAction = (): CvAction => ({
-	type: "add-experience",
-	value: {
-		id: getTimeId(),
-		name: "",
-		time: "",
-		position: "",
-		tasks: "",
-	},
-	index: 0,
+export const experienceFormSample = () => ({
+	id: getTimeId(),
+	name: "",
+	time: "",
+	position: "",
+	tasks: "",
 });
-export const addProjectAction = (): CvAction => ({
-	type: "add-project",
-	value: {
-		id: getTimeId(),
-		member: "",
-		name: "",
-		position: "",
-		techs: "",
-		tasks: "",
-		time: "",
-		where: "",
-	},
-	index: 0,
+export const projectFormSample = () => ({
+	id: getTimeId(),
+	member: "",
+	name: "",
+	position: "",
+	techs: "",
+	tasks: "",
+	time: "",
+	where: "",
 });
-export const addEducationAction = (): CvAction => ({
-	type: "add-education",
-	value: {
-		id: getTimeId(),
-		major: "",
-		school: "",
-		status: "",
-		time: "",
-	},
-	index: 0,
+export const educationFormSample = () => ({
+	id: getTimeId(),
+	major: "",
+	school: "",
+	status: "",
+	time: "",
 });
-export const addSkillAction = (): CvAction => ({
-	type: "add-skill",
-	value: {
-		id: getTimeId(),
-		name: "",
-		status: "",
-	},
-	index: 0,
+export const skillFormSample = () => ({
+	id: getTimeId(),
+	name: "",
+	status: "",
 });
-export const addBadgeAction = (): CvAction => ({
-	type: "add-badge",
-	value: {
-		id: getTimeId(),
-		name: "",
-		time: "",
-		where: "",
-	},
-	index: 0,
+export const badgeFormSample = () => ({
+	id: getTimeId(),
+	name: "",
+	time: "",
+	where: "",
 });
-export const addCertificationAction = (): CvAction => ({
-	type: "add-certification",
-	value: {
-		id: getTimeId(),
-		name: "",
-		time: "",
-		where: "",
-	},
-	index: 0,
+export const certificationFormSample = () => ({
+	id: getTimeId(),
+	name: "",
+	time: "",
+	where: "",
 });
-export const addReferenceAction = (): CvAction => ({
-	type: "add-reference",
-	value: {
-		id: getTimeId(),
-		name: "",
-		phone: "",
-		where: "",
-	},
-	index: 0,
+export const referenceFormSample = () => ({
+	id: getTimeId(),
+	name: "",
+	phone: "",
+	where: "",
 });
-export const addActivityAction = (): CvAction => ({
-	type: "add-activity",
-	value: {
-		id: getTimeId(),
-		name: "",
-		position: "",
-		tasks: "",
-		time: "",
-	},
-	index: 0,
+export const activityFormSample = () => ({
+	id: getTimeId(),
+	name: "",
+	position: "",
+	tasks: "",
+	time: "",
 });
-export const addHobbyAction = (): CvAction => ({
-	type: "add-hobby",
-	value: {
-		id: getTimeId(),
-		name: "",
-		status: "",
-	},
-	index: 0,
+export const hobbyFormSample = () => ({
+	id: getTimeId(),
+	name: "",
+	status: "",
 });

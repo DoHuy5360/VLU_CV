@@ -1,14 +1,18 @@
-import { CvAction, CvContext } from "@/contexts/cvProvider";
-import { useContext } from "react";
+import { UseFieldArrayRemove } from "react-hook-form";
 import { BiTrash } from "react-icons/bi";
 
-export default ({ deleteAction }: { deleteAction: CvAction }) => {
-	const { dispatch } = useContext(CvContext);
+export default ({
+	deleteAction,
+	index,
+}: {
+	deleteAction: UseFieldArrayRemove;
+	index: number;
+}) => {
 	return (
 		<div className='flex gap-2 text-xs'>
 			<div
 				onClick={() => {
-					dispatch(deleteAction);
+					deleteAction(index);
 				}}
 				className='border-[1px] border-slate-200 cursor-pointer p-1 hover:bg-slate-200 text-red-600'
 			>

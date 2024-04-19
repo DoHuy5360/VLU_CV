@@ -23,4 +23,6 @@ export async function createReplica(
 	};
 	const newUserCV = new User_CV(data);
 	newUserCV.save();
+
+	return newUserCV === null ? false : true;
 }

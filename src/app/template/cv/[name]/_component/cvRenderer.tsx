@@ -1,12 +1,8 @@
 "use client";
-import { CvContext } from "@/contexts/cvProvider";
 import { Transfer, TransferType } from "@/types/tranfer";
 import { useContext } from "react";
+import { FormValuesContext } from "../page";
 export default function CvRenderer({ cvName }: { cvName: string }) {
-	const { state } = useContext(CvContext);
-	return state === null ? (
-		<div>Loading...</div>
-	) : (
-		Transfer[cvName](state)
-	);
+	const formValues = useContext(FormValuesContext);
+	return Transfer[cvName](formValues);
 }

@@ -7,7 +7,7 @@ export const getUserDataCV = ({
 }: {
 	name?: string;
 	template?: string;
-	head: {
+	head?: {
 		name?: string;
 		avatar?: string;
 		position?: string;
@@ -23,15 +23,15 @@ export const getUserDataCV = ({
 	template: template || "",
 	attrs: {
 		head: {
-			name: head.name || "",
-			avatar: head.avatar || "",
-			position: head.position || "",
-			phone: head.phone || "",
-			email: head.email || "",
-			address: head.address || "",
-			website: head.website || "",
-			birth: head.birth || "",
-			gender: head.gender || "",
+			name: head?.name || "",
+			avatar: head?.avatar || "",
+			position: head?.position || "",
+			phone: head?.phone || "",
+			email: head?.email || "",
+			address: head?.address || "",
+			website: head?.website || "",
+			birth: head?.birth || "",
+			gender: head?.gender || "",
 		},
 		goal: {
 			title: "Goal",
