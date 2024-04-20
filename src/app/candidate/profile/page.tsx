@@ -4,20 +4,7 @@ import { useEffect, useState } from "react";
 import Tab from "./_component/tab";
 import View from "./_component/view";
 
-const tabs = [
-	"Information",
-	"Goal",
-	"Education",
-	"Skill",
-	"Experience",
-	"Project",
-	"Certificate",
-	"Badge",
-	"Activity",
-	"Reference",
-	"Hobby",
-	"Other",
-];
+const tabs = ["Personal", "Goal", "Education", "Skill", "Experience", "Project", "Certificate", "Badge", "Activity", "Reference", "Hobby", "Other"];
 
 export default () => {
 	const [currentTab, setCurrentTab] = useState<string | null>(null);
@@ -27,18 +14,13 @@ export default () => {
 		setCurrentTab(JSON.parse(savedState as string));
 	}, []);
 
-	return currentTab === null ? (
-		<div>Loading...</div>
-	) : (
+	if (currentTab === null) return <div>Loading...</div>;
+
+	return (
 		<div className='grid grid-cols-[150px_auto] h-full'>
 			<div className='border-r-[1px] border-slate-200 h-full'>
 				{tabs.map((t, i) => (
-					<Tab
-						key={i}
-						name={t}
-						setCurrentTab={setCurrentTab}
-						toggle={currentTab}
-					/>
+					<Tab key={i} name={t} setCurrentTab={setCurrentTab} toggle={currentTab} />
 				))}
 			</div>
 			<View name={currentTab} />

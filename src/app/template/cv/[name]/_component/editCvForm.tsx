@@ -8,21 +8,24 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userDataSchema } from "@/validation/userData";
 import { z } from "zod";
-import Information from "./partial/information";
 import Group from "./group";
-import Experience from "./partial/experience";
+import Experience from "../../../../../components/cvEditFields/editFields/experience";
 import { createContext } from "vm";
-import Goal from "./partial/goal";
-import Project from "./partial/project";
-import Education from "./partial/education";
-import Skill from "./partial/skill";
-import Badge from "./partial/badge";
-import Certificate from "./partial/certificate";
-import Reference from "./partial/reference";
-import Activity from "./partial/activity";
-import Hobby from "./partial/hobby";
-import Other from "./partial/other";
+import Goal from "../../../../../components/cvEditFields/editFields/goal";
+import Project from "../../../../../components/cvEditFields/editFields/project";
+import Education from "../../../../../components/cvEditFields/editFields/education";
+import Skill from "../../../../../components/cvEditFields/editFields/skill";
+import Badge from "../../../../../components/cvEditFields/editFields/badge";
+import Certificate from "../../../../../components/cvEditFields/editFields/certificate";
+import Reference from "../../../../../components/cvEditFields/editFields/reference";
+import Hobby from "../../../../../components/cvEditFields/editFields/hobby";
+import Other from "../../../../../components/cvEditFields/editFields/other";
 import { createReplica } from "@/actions/candidate/createReplica";
+import Activity from "@/components/cvEditFields/editFields/activity";
+import { Wrapper } from "./wrapper";
+import editInput from "./editInput";
+import editArea from "./editArea";
+import Personal from "@/components/cvEditFields/editFields/personal";
 
 export type deType = z.infer<typeof userDataSchema>;
 
@@ -55,18 +58,30 @@ export default function EditCvForm({
 			}}
 		>
 			<div className='flex flex-col gap-2'>
-				<Information />
-				<Goal />
-				<Experience />
-				<Project />
-				<Education />
-				<Skill />
-				<Badge />
-				<Certificate />
-				<Reference />
-				<Activity />
-				<Hobby />
-				<Other />
+				<Personal Wrapper={Wrapper} Input={editInput} />
+				<Goal Wrapper={Wrapper} Area={editArea} />
+				<Experience
+					Wrapper={Wrapper}
+					Input={editInput}
+					Area={editArea}
+				/>
+				<Project
+					Wrapper={Wrapper}
+					Input={editInput}
+					Area={editArea}
+				/>
+				<Education Wrapper={Wrapper} Input={editInput} />
+				<Skill Wrapper={Wrapper} Input={editInput} Area={editArea} />
+				<Badge Wrapper={Wrapper} Input={editInput} />
+				<Certificate Wrapper={Wrapper} Input={editInput} />
+				<Reference Wrapper={Wrapper} Input={editInput} />
+				<Activity
+					Wrapper={Wrapper}
+					Input={editInput}
+					Area={editArea}
+				/>
+				<Hobby Wrapper={Wrapper} Input={editInput} />
+				<Other Wrapper={Wrapper} Area={editArea} />
 			</div>
 			<button
 				className='w-fit px-4 py-2 ml-auto bg-green-300 rounded-lg text-xs'

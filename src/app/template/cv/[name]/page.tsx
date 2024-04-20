@@ -10,40 +10,41 @@ import { userDataSchema } from "@/validation/userData";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { getUserDataCV } from "@/entities/userDataCV";
 
-export const FormValuesContext = createContext<UserDataForm>(
-	getUserDataCV({})
-);
+export const init = getUserDataCV({});
+
+export const FormValuesContext = createContext<UserDataForm>(init);
 
 function EditTemplate({ params }: { params: { name: string } }) {
+	const { state } = useContext(CvContext);
 	const formTools = useForm<UserDataForm>({
 		resolver: zodResolver(userDataSchema),
-		defaultValues: getUserDataCV({}),
+		defaultValues: init,
 	});
 	useEffect(() => {
-		async function getDataCV() {
-			const data = await fetch(`http://localhost:3000/api/cv`);
-			formTools.reset(await data.json());
+		if (state !== null) {
+			formTools.reset(state);
 		}
-		getDataCV();
-	}, []);
+	}, [state]);
+
+	if (state === null) return <div>Loading...</div>;
 
 	return (
-		<FormValuesContext.Provider value={formTools.watch()}>
-			<div className='flex h-full'>
-				<FormProvider {...formTools}>
-					<EditCvForm
-						cvName={params.name}
-						handleSubmit={formTools.handleSubmit}
-					/>
-				</FormProvider>
-				<div className='flex flex-col w-full'>
-					<CvSuggestion />
-					<div className='overflow-y-scroll pb-16'>
+		<div className='flex h-full'>
+			<FormProvider {...formTools}>
+				<EditCvForm
+					cvName={params.name}
+					handleSubmit={formTools.handleSubmit}
+				/>
+			</FormProvider>
+			<div className='flex flex-col w-full'>
+				<CvSuggestion />
+				<div className='overflow-y-scroll pb-16'>
+					<FormValuesContext.Provider value={formTools.watch()}>
 						<CvRenderer cvName={params.name} />
-					</div>
+					</FormValuesContext.Provider>
 				</div>
 			</div>
-		</FormValuesContext.Provider>
+		</div>
 	);
 }
 

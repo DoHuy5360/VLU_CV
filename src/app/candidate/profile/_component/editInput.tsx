@@ -1,45 +1,28 @@
-"use client";
-import { CvActionType, CvContext } from "@/contexts/cvProvider";
-import { useContext } from "react";
+import { InputUIParams } from "@/components/cvEditFields/editFields/activity";
 
 export default ({
 	label,
-	value,
-	updateType,
+	register,
+	errors,
 	index,
-}: {
-	label: string;
-	value: string;
-	updateType: CvActionType;
-	index?: number;
-}) => {
-	const { dispatch } = useContext(CvContext);
+}: InputUIParams) => {
 	return (
 		<div className='flex flex-col gap-1'>
 			<div className='flex flex-col gap-1'>
 				<label
 					className='text-xs font-bold text-slate-400'
-					htmlFor={updateType + "-" + index?.toString()}
+					htmlFor={register.name}
 				>
 					{label}
 				</label>
 				<input
-					onChange={(e) => {
-						dispatch({
-							type: updateType,
-							value: e.target.value,
-							index: index || 0,
-						});
-					}}
-					value={value}
+					{...register}
 					className='border-slate-200 border-[1px] p-1'
 					type='text'
-					id={updateType + "-" + index?.toString()}
+					id={register.name}
 				/>
 			</div>
-			<div className='text-xs text-red-500'>
-				{value.trim() === "" && "*This field can not empty"}
-			</div>
+			<div className='text-xs text-red-500'>{errors}</div>
 		</div>
 	);
 };
