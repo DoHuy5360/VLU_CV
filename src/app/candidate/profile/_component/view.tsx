@@ -72,7 +72,7 @@ export default ({ name }: { name: string }) => {
 				</FormProvider>
 			</div>
 			<div className='flex justify-end pb-14 pt-2 pr-2 border-t-[1px] border-slate-200'>
-				<button className='bg-green-300 px-4 py-2 rounded-full text-sm ' type='submit'>
+				<button className='bg-green-300 px-4 py-2 rounded-full text-sm' type='submit'>
 					Save
 				</button>
 			</div>

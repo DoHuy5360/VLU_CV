@@ -9,54 +9,45 @@ export default async function App() {
 	return (
 		<div className='flex flex-col h-dvh'>
 			<div className='flex bg-red-500 p-2'>
-				<img
-					className='h-6'
-					src='https://ejob.vlu.edu.vn/images/Group.png'
-					alt='Van Lang Logo'
-				/>
+				<img className='h-6' src='/image/logo/van-lang-logo-and-name.png' alt='Van Lang Logo' />
 			</div>
 			<div className='bg-white p-2 flex justify-end items-center gap-2'>
 				{session ? (
-					<>
-						<Link href='/home' className='text-xs underline'>
-							Trang Chủ
+					<div className='flex justify-between items-center w-full'>
+						<Link className='text-xs underline' href='/recruiter'>
+							Tuyển dụng
 						</Link>
-						<div className='text-xs'>{session.user?.name}</div>
-						<Link
-							className='text-white bg-purple-500 p-2 text-xs rounded-sm'
-							href='/api/auth/signout'
-						>
-							Đăng Xuất
-						</Link>
-					</>
+						<div className='flex gap-2 items-center'>
+							<Link href='/home' className='text-xs underline'>
+								Trang Chủ
+							</Link>
+							<div className='text-xs'>{session.user?.name}</div>
+							<Link className='text-white bg-purple-500 p-2 text-xs rounded-sm' href='/api/auth/signout'>
+								Đăng Xuất
+							</Link>
+						</div>
+					</div>
 				) : (
-					<Link
-						className='text-white bg-blue-500 p-2 text-xs rounded-sm'
-						href='/api/auth/signin'
-					>
-						Đăng Nhập
-					</Link>
+					<div className='flex justify-between'>
+						<Link className='text-xs underline' href='/recruiter'>
+							Tuyển dụng
+						</Link>
+						<Link className='text-white bg-blue-500 p-2 text-xs rounded-sm' href='/api/auth/signin'>
+							Đăng Nhập
+						</Link>
+					</div>
 				)}
 			</div>
 			<div className='bg-black h-full w-full'>
 				<div className='relative select-none'>
 					<div className='landscape_overlay grid place-items-center'>
-						<div className='xl:text-7xl md:text-4xl text-white font-bold'>
-							Van Lang Jobs
-						</div>
+						<div className='xl:text-7xl md:text-4xl text-white font-bold'>Van Lang Jobs</div>
 					</div>
 					<div className='text-white absolute bottom-0 right-0 p-10 text-xs'>
 						<div>Chắp cánh tương lai!</div>
 						<div>Dẫn lối ước mơ!</div>
 					</div>
-					<img
-						className='w-full'
-						src={`/image/vanlang_landscape/cs3_0${randomInRange(
-							1,
-							4
-						)}.jpg`}
-						alt='van lang landscape'
-					/>
+					<img className='w-full' src={`/image/vanlang_landscape/cs3_0${randomInRange(1, 4)}.jpg`} alt='van lang landscape' />
 				</div>
 			</div>
 		</div>
