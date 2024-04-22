@@ -28,11 +28,14 @@ export default async function App() {
 						</div>
 					</div>
 				) : (
-					<div className='flex justify-between'>
+					<div className='flex justify-between w-full items-center'>
 						<Link className='text-xs underline' href='/recruiter'>
 							Tuyển dụng
 						</Link>
 						<Link className='text-white bg-blue-500 p-2 text-xs rounded-sm' href='/api/auth/signin'>
+							Đăng Nhập
+						</Link>
+						<Link className='text-white bg-orange-500 p-2 text-xs rounded-sm' href='/auth'>
 							Đăng Nhập
 						</Link>
 					</div>

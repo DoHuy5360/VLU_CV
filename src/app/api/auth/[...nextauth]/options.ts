@@ -72,10 +72,7 @@ export const authOptions: NextAuthOptions = {
 						"https://cdn.discordapp.com/attachments/876588087210291211/1089358306776207380/1b1bb78dfc0e94143e21ca475c2b0f65--plants-vs-zombies-removebg-preview.png?ex=662469fb&is=6611f4fb&hm=8c6d9f04de28736c9ca2f0f5d1b48988c714d0c0780f3de380485c4e7716f00e&",
 				};
 
-				if (
-					credentials?.email === user.email &&
-					credentials?.password === user.password
-				) {
+				if (credentials?.email === user.email && credentials?.password === user.password) {
 					return user;
 				} else {
 					return null;
@@ -85,8 +82,7 @@ export const authOptions: NextAuthOptions = {
 	],
 	callbacks: {
 		async signIn({ user }) {
-			if (user.email === null || user.email === undefined)
-				return false;
+			if (user.email === null || user.email === undefined) return false;
 			await connectToDatabase();
 			const userFound = await User.findOne({ email: user.email });
 			// console.log("user found", userFound);
@@ -128,4 +124,7 @@ export const authOptions: NextAuthOptions = {
 	},
 	// adapter: MongoDBAdapter(clientPromise) as Adapter,
 	debug: false,
+	pages: {
+		signIn: "/auth",
+	},
 };
