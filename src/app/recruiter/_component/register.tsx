@@ -3,28 +3,38 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import Company from "./company";
 import { positions } from "./constant/position";
+import Link from "next/link";
+import { BsArrowRight } from "react-icons/bs";
+import { usePathname } from "next/navigation";
+import { createRecruiterAccount } from "@/actions/recruiter/createRecruiterAccount";
+import { signIn } from "next-auth/react";
 
-const recruiterSchema = z.object({
-	gender: z
-		.enum(["male", "female"])
-		.nullable()
-		.refine((value) => (value === null ? false : ["male", "female"].includes(value)), { message: "Hãy chọn giới tính." }),
-	name: z.string().min(1, "Hãy nhập họ và tên."),
-	phone: z.string().min(1, "Hãy nhập số điện thoại."),
-	company: z.string().min(1, "Hãy nhập tên công ty."),
-	province: z
-		.string()
-		.nullable()
-		.refine((value) => value !== null, { message: "Hãy chọn tỉnh thành." }),
-	district: z
-		.string()
-		.nullable()
-		.refine((value) => value !== null, { message: "Hãy chọn quận huyện." }),
-	position: z
-		.string()
-		.nullable()
-		.refine((value) => (value === null ? false : positions.includes(value)), { message: "Hãy chọn chức vụ." }),
-});
+const recruiterSchema = z
+	.object({
+		gender: z
+			.enum(["male", "female"])
+			.nullable()
+			.refine((value) => (value === null ? false : ["male", "female"].includes(value)), { message: "Hãy chọn giới tính." }),
+		name: z.string().min(1, "Hãy nhập họ và tên."),
+		phone: z.string().min(1, "Hãy nhập số điện thoại."),
+		company: z.string().min(1, "Hãy nhập tên công ty."),
+		email: z.string().min(1, "Hãy nhập email."),
+		password: z.string().min(1, "Hãy nhập mật khẩu."),
+		rePassword: z.string().min(1, "Hãy nhập lại mật khẩu trên."),
+		province: z
+			.string()
+			.nullable()
+			.refine((value) => value !== null, { message: "Hãy chọn tỉnh thành." }),
+		district: z
+			.string()
+			.nullable()
+			.refine((value) => value !== null, { message: "Hãy chọn quận huyện." }),
+		position: z
+			.string()
+			.nullable()
+			.refine((value) => (value === null ? false : positions.includes(value)), { message: "Hãy chọn chức vụ." }),
+	})
+	.refine((schema) => schema.password === schema.rePassword, { message: "Mật khẩu phải khớp.", path: ["rePassword"] });
 
 export type RecruiterDataForm = z.infer<typeof recruiterSchema>;
 export default function Register() {
@@ -35,19 +45,33 @@ export default function Register() {
 			name: "",
 			phone: "",
 			company: "",
+			email: "",
+			password: "",
+			rePassword: "",
 			province: null,
 			district: null,
 			position: null,
 		},
 	});
+	const pathName = usePathname();
 	return (
 		<FormProvider {...formTools}>
-			<div className='flex flex-col gap-2 border-l-[1px] border-slate-200'>
+			<div className='flex flex-col gap-2 border-[1px] border-slate-200 select-none'>
 				<div className='text-4xl p-2 border-b-[1px] border-slate-200'>Tạo tài khoản tuyển dụng</div>
 				<form
 					action={() => {
-						formTools.handleSubmit((data) => {
-							console.log(data);
+						formTools.handleSubmit(async (data: RecruiterDataForm) => {
+							const isCreateAccountSuccess = await createRecruiterAccount(data);
+							if (isCreateAccountSuccess) {
+								signIn("credentials", {
+									email: data.email,
+									password: data.password,
+									redirect: true,
+									callbackUrl: "/",
+								});
+							} else {
+								alert("Tạo tài khoản thất bại");
+							}
 						})();
 					}}
 					className='text-sm p-3 flex flex-col gap-4'
@@ -65,14 +89,29 @@ export default function Register() {
 									<input {...formTools.register("phone")} className='border-[1px] px-1 border-slate-200' type='text' />
 									<div className='text-red-500 text-xs'>{formTools.formState.errors.phone?.message}</div>
 								</div>
+								<div className='flex flex-col w-fit gap-1'>
+									<label htmlFor=''>Email</label>
+									<input {...formTools.register("email")} className='border-[1px] px-1 border-slate-200' type='text' />
+									<div className='text-red-500 text-xs'>{formTools.formState.errors.email?.message}</div>
+								</div>
+								<div className='flex flex-col w-fit gap-1'>
+									<label htmlFor=''>Mật khẩu</label>
+									<input {...formTools.register("password")} className='border-[1px] px-1 border-slate-200' type='password' />
+									<div className='text-red-500 text-xs'>{formTools.formState.errors.password?.message}</div>
+								</div>
+								<div className='flex flex-col w-fit gap-1'>
+									<label htmlFor=''>Nhập lại mật khẩu</label>
+									<input {...formTools.register("rePassword")} className='border-[1px] px-1 border-slate-200' type='password' />
+									<div className='text-red-500 text-xs'>{formTools.formState.errors.rePassword?.message}</div>
+								</div>
 							</div>
 							<div className='flex flex-col gap-1'>
-								<div className='flex gap-2 w-fit'>
-									<div className='flex flex-col gap-1 items-center'>
+								<div className='flex gap-3 w-fit'>
+									<div className='flex gap-1 items-center'>
 										<label>Nam</label>
 										<input {...formTools.register("gender")} className='cursor-pointer' type='radio' value='male' />
 									</div>
-									<div className='flex flex-col gap-1 items-center'>
+									<div className='flex gap-1 items-center'>
 										<label>Nữ</label>
 										<input {...formTools.register("gender")} className='cursor-pointer' type='radio' value='female' />
 									</div>
@@ -89,9 +128,18 @@ export default function Register() {
 							<Company />
 						</div>
 					</div>
-					<button className='bg-green-300 px-4 py-2 rounded-full text-sm w-fit' type='submit'>
-						Xác nhận
-					</button>
+					<div className='flex justify-between'>
+						<button className='bg-green-300 px-4 py-2 rounded-full text-sm w-fit' type='submit'>
+							Xác nhận
+						</button>
+						<div className='flex items-center gap-1'>
+							<div>Đã có tài khoản? </div>
+							<BsArrowRight />
+							<Link href={`/auth?pre=${pathName}`} className='text-blue-400 underline'>
+								Đăng nhập
+							</Link>
+						</div>
+					</div>
 				</form>
 			</div>
 		</FormProvider>

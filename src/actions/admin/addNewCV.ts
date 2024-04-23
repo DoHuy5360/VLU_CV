@@ -20,7 +20,7 @@ export const addNewCV = async (formData: FormData) => {
 	const validate = cvSchema.safeParse(data);
 	if (validate.success) {
 		const newCV = new CV(data);
-		newCV.save();
+		await newCV.save();
 		// return null;
 	} else {
 		// return JSON.stringify(validate.error);

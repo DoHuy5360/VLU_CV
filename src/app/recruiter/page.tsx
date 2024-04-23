@@ -4,8 +4,7 @@ import Register from "./_component/register";
 
 export default () => {
 	return (
-		<div className='grid xl:grid-cols-2 md:grid-cols-1 h-dvh'>
-			<Login />
+		<div className='grid place-items-center h-dvh'>
 			<Register />
 		</div>
 	);

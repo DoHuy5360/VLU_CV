@@ -8,10 +8,7 @@ import { UserData } from "@/types/userData";
 import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
 
-export async function createReplica(
-	cvName: string,
-	userData: UserData
-) {
+export async function createReplica(cvName: string, userData: UserData) {
 	await connectToDatabase();
 	const session = await getServerSession(authOptions);
 	userData.template = cvName;
@@ -22,7 +19,7 @@ export async function createReplica(
 		data: userData,
 	};
 	const newUserCV = new User_CV(data);
-	newUserCV.save();
+	await newUserCV.save();
 
 	return newUserCV === null ? false : true;
 }

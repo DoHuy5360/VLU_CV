@@ -32,9 +32,6 @@ export default async function App() {
 						<Link className='text-xs underline' href='/recruiter'>
 							Tuyển dụng
 						</Link>
-						<Link className='text-white bg-blue-500 p-2 text-xs rounded-sm' href='/api/auth/signin'>
-							Đăng Nhập
-						</Link>
 						<Link className='text-white bg-orange-500 p-2 text-xs rounded-sm' href='/auth'>
 							Đăng Nhập
 						</Link>
