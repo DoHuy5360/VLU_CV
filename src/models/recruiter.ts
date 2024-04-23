@@ -3,6 +3,15 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
+export type RecruiterModelType = {
+	_id: ObjectId;
+	accountId: ObjectId;
+	name: string;
+	phone: string;
+	gender: string;
+	position: string;
+};
+
 const recruiterSchema = new Schema(
 	{
 		accountId: {

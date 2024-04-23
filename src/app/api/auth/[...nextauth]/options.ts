@@ -48,19 +48,7 @@ export const authOptions: NextAuthOptions = {
 			},
 			async authorize(credentials, req) {
 				// Add logic here to look up the user from the credentials supplied
-				// const user = await fetch("/", {
-				// 	method: "POST",
-				// 	headers: {
-				// 		"Content-Type": "application/json",
-				// 	},
-				// 	body: JSON.stringify({
-				// 		name: credentials?.username,
-				// 		password: credentials?.password,
-				// 	}),
-				// });
-				// This is where you need to retrieve user data
-				// to verify with credentials
-				// Docs: https://next-auth.js.org/configuration/providers/credentials
+
 				const user = {
 					_id: "",
 					id: "01",
@@ -75,7 +63,23 @@ export const authOptions: NextAuthOptions = {
 				if (credentials?.email === user.email && credentials?.password === user.password) {
 					return user;
 				} else {
-					return null;
+					const res = await fetch("http://localhost:3000/api/account/auth", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({
+							email: credentials?.email,
+							password: credentials?.password,
+						}),
+					});
+					const jsonData = await res.json();
+					if (jsonData.error) {
+						console.log(jsonData.message);
+						return null;
+					} else {
+						return jsonData;
+					}
 				}
 			},
 		}),

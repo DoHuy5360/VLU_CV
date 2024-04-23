@@ -1,6 +1,15 @@
+import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
+
+export type AccountModelType = {
+	_id: ObjectId;
+	email: string;
+	password: string;
+	role: string;
+	image: string;
+};
 
 const accountSchema = new Schema(
 	{
