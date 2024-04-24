@@ -5,21 +5,18 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/options";
-import User from "@/models/user";
+import Candidate from "@/models/candidate";
 
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
 	const session = await getServerSession(authOptions);
 	await connectToDatabase();
-	const userFound = await User.findOne({
+	const userFound = await Candidate.findOne({
 		_id: new ObjectId(session?.user._id as string),
 	}).select("dataCV");
 	return NextResponse.json(userFound.dataCV, { status: 200 });
 }
 
-export async function POST(
-	req: NextApiRequest,
-	res: NextApiResponse
-) {
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
 	await connectToDatabase();
 	try {
 		const { name, thumbnail } = req.body;

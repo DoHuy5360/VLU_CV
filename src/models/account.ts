@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 export type AccountModelType = {
-	_id: ObjectId;
+	_id?: ObjectId;
 	email: string;
 	password: string;
 	role: string;

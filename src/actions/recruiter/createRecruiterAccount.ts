@@ -20,7 +20,9 @@ export async function createRecruiterAccount(data: RecruiterDataForm) {
 		position: data.position,
 	});
 	const newRecruiterDoc = await newRecruiter.save();
-	if (newRecruiter === null) {
-		return true;
+	if (newRecruiterDoc === null) {
+		return false;
+	} else {
+		return newRecruiterDoc;
 	}
 }

@@ -3,8 +3,6 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import Company from "../company";
 import { positions } from "../constant/position";
-import Link from "next/link";
-import { BsArrowRight } from "react-icons/bs";
 import { usePathname } from "next/navigation";
 import { createRecruiterAccount } from "@/actions/recruiter/createRecruiterAccount";
 import { signIn } from "next-auth/react";
@@ -67,7 +65,7 @@ export default function RecruiterRegisterAccountForm() {
 									email: data.email,
 									password: data.password,
 									redirect: true,
-									callbackUrl: "/recruiter",
+									callbackUrl: "/home",
 								});
 							} else {
 								alert("Tạo tài khoản thất bại");

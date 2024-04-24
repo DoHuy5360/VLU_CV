@@ -1,14 +1,10 @@
-import { getUserDataCV } from "@/entities/userDataCV";
-import clientPromise from "@/libs/mongodb";
+import { createCandidateAccount } from "@/actions/candidate/createCandidateAccount";
+import { createGuestAccount } from "@/actions/general/createGuestAccount";
+import { CandidateDataForm } from "@/app/auth/_component/register/candidate";
 import { connectToDatabase } from "@/libs/mongoosedb";
-import CV from "@/models/cv";
-import User from "@/models/user";
-
-import { MongoDBAdapter } from "@auth/mongodb-adapter";
-import { Client } from "@microsoft/microsoft-graph-client";
-import mongoose from "mongoose";
-import NextAuth, { NextAuthOptions } from "next-auth";
-import { Adapter } from "next-auth/adapters";
+import Account, { AccountModelType } from "@/models/account";
+import Candidate, { CandidateModelType } from "@/models/candidate";
+import { NextAuthOptions } from "next-auth";
 import AzureADProvider from "next-auth/providers/azure-ad";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -20,7 +16,7 @@ export const authOptions: NextAuthOptions = {
 				return {
 					...profile,
 					id: profile.sub,
-					role: profile.role ?? "user",
+					role: profile.role ?? "guest",
 				};
 			},
 			clientId: process.env.AZURE_AD_CLIENT_ID as string,
@@ -88,28 +84,25 @@ export const authOptions: NextAuthOptions = {
 		async signIn({ user }) {
 			if (user.email === null || user.email === undefined) return false;
 			await connectToDatabase();
-			const userFound = await User.findOne({ email: user.email });
-			// console.log("user found", userFound);
-			if (userFound === null) {
-				const data = {
-					name: user.name,
-					email: user.email,
-					role: user.role,
-					image: user.image,
-					dataCV: getUserDataCV({
-						name: "This is file's name",
-						template: "Root",
-						head: {
-							name: user.name || "",
-							email: user.email,
-						},
-					}),
+			const accountFound = await Account.findOne({ email: user.email });
+			// console.log("user found", accountFound);
+			if (accountFound === null) {
+				const data: CandidateDataForm = {
+					name: user.name as string,
+					email: user.email as string,
+					phone: "",
+					gender: null,
+					password: "",
+					rePassword: "",
 				};
-				const newUser = new User(data);
-				const result = await newUser.save();
-				user._id = result._id;
+				const accountCreated: AccountModelType | null = await createGuestAccount(data);
+				if (accountCreated === null) {
+					return false;
+				} else {
+					user._id = accountCreated._id!.toString();
+				}
 			} else {
-				user._id = userFound._id;
+				user._id = accountFound._id.toString();
 			}
 			return true;
 		},
@@ -125,6 +118,9 @@ export const authOptions: NextAuthOptions = {
 			session.user._id = token._id;
 			session.user.role = token.role;
 			return session;
+		},
+		async redirect({ url, baseUrl }) {
+			return baseUrl;
 		},
 	},
 	// adapter: MongoDBAdapter(clientPromise) as Adapter,

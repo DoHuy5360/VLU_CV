@@ -14,6 +14,9 @@ export default withAuth(
 		if (request.nextUrl.pathname.startsWith("/recruiter") && request.nextauth.token?.role !== "recruiter") {
 			return NextResponse.redirect(new URL("/", request.url));
 		}
+		if (request.nextUrl.pathname.startsWith("/home") && request.nextauth.token?.role === "guest") {
+			return NextResponse.redirect(new URL("/identify", request.url));
+		}
 
 		// if (
 		// 	(request.nextUrl.pathname.startsWith("/") &&
@@ -33,5 +36,5 @@ export default withAuth(
 // Applies next-auth only to matching routes - can be regex
 // Ref: https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
 export const config = {
-	matcher: ["/admin/:path*", "/recruiter/:path*"],
+	matcher: ["/home/:path*", "/admin/:path*", "/recruiter/:path*"],
 };

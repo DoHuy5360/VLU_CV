@@ -22,7 +22,7 @@ export default async function Layout({ children }: { children: JSX.Element }) {
 						)}
 						{session?.user.role === "candidate" && (
 							<Link href='/candidate' className='text-xs underline'>
-								Trang tuyển dụng
+								Trang
 							</Link>
 						)}
 						<div className='flex gap-2 items-center'>

@@ -1,17 +1,15 @@
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
-const Schema = mongoose.Schema;
-
-export type RecruiterModelType = {
+export type CandidateModelType = {
+	_id: ObjectId;
 	accountId: ObjectId;
 	name: string;
 	phone: string;
 	gender: string;
-	position: string;
 };
 
-const recruiterSchema = new Schema(
+const candidateSchema = new mongoose.Schema(
 	{
 		accountId: {
 			type: ObjectId,
@@ -29,9 +27,9 @@ const recruiterSchema = new Schema(
 			type: String,
 			require: true,
 		},
-		position: {
-			type: String,
-			require: true,
+		dataCV: {
+			type: Object,
+			require: false,
 		},
 	},
 	{
@@ -39,5 +37,5 @@ const recruiterSchema = new Schema(
 	}
 );
 
-const Recruiter = mongoose.models.recruiters || mongoose.model("recruiters", recruiterSchema);
-export default Recruiter;
+const Candidate = mongoose.models.candidates || mongoose.model("candidates", candidateSchema);
+export default Candidate;
