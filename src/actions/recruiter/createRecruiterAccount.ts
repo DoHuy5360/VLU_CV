@@ -1,5 +1,5 @@
 "use server";
-import { RecruiterDataForm } from "@/app/recruiter/_component/register";
+import { RecruiterDataForm } from "@/app/auth/_component/register/recruiter";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import { createAccount } from "../general/createAccount";
 import Recruiter from "@/models/recruiter";

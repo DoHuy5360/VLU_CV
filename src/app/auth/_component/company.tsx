@@ -3,7 +3,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { provinces } from "./constant/province";
 import { address } from "./constant/address";
 import { useForm, useFormContext } from "react-hook-form";
-import { RecruiterDataForm } from "./register";
+import { RecruiterDataForm } from "./register/recruiter";
 import { positions } from "./constant/position";
 
 type District = {

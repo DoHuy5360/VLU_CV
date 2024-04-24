@@ -1,8 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
-import Company from "./company";
-import { positions } from "./constant/position";
+import Company from "../company";
+import { positions } from "../constant/position";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import { usePathname } from "next/navigation";
@@ -37,7 +37,7 @@ const recruiterSchema = z
 	.refine((schema) => schema.password === schema.rePassword, { message: "Mật khẩu phải khớp.", path: ["rePassword"] });
 
 export type RecruiterDataForm = z.infer<typeof recruiterSchema>;
-export default function Register() {
+export default function RecruiterRegisterAccountForm() {
 	const formTools = useForm<RecruiterDataForm>({
 		resolver: zodResolver(recruiterSchema),
 		defaultValues: {
@@ -67,7 +67,7 @@ export default function Register() {
 									email: data.email,
 									password: data.password,
 									redirect: true,
-									callbackUrl: "/",
+									callbackUrl: "/recruiter",
 								});
 							} else {
 								alert("Tạo tài khoản thất bại");
@@ -128,18 +128,9 @@ export default function Register() {
 							<Company />
 						</div>
 					</div>
-					<div className='flex justify-between'>
-						<button className='bg-green-300 px-4 py-2 rounded-full text-sm w-fit' type='submit'>
-							Xác nhận
-						</button>
-						<div className='flex items-center gap-1'>
-							<div>Đã có tài khoản? </div>
-							<BsArrowRight />
-							<Link href={`/auth?pre=${pathName}`} className='text-blue-400 underline'>
-								Đăng nhập
-							</Link>
-						</div>
-					</div>
+					<button className='ml-auto bg-green-300 px-4 py-2 rounded-full text-sm w-fit' type='submit'>
+						Xác nhận
+					</button>
 				</form>
 			</div>
 		</FormProvider>
