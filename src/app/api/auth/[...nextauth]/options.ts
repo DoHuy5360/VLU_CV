@@ -4,6 +4,7 @@ import { CandidateDataForm } from "@/app/auth/_component/register/candidate";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import Account, { AccountModelType } from "@/models/account";
 import Candidate, { CandidateModelType } from "@/models/candidate";
+import { ObjectId } from "mongodb";
 import { NextAuthOptions } from "next-auth";
 import AzureADProvider from "next-auth/providers/azure-ad";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -16,7 +17,7 @@ export const authOptions: NextAuthOptions = {
 				return {
 					...profile,
 					id: profile.sub,
-					role: profile.role ?? "guest",
+					role: profile.role,
 				};
 			},
 			clientId: process.env.AZURE_AD_CLIENT_ID as string,
@@ -84,7 +85,7 @@ export const authOptions: NextAuthOptions = {
 		async signIn({ user }) {
 			if (user.email === null || user.email === undefined) return false;
 			await connectToDatabase();
-			const accountFound = await Account.findOne({ email: user.email });
+			const accountFound: AccountModelType | null = await Account.findOne({ email: user.email });
 			// console.log("user found", accountFound);
 			if (accountFound === null) {
 				const data: CandidateDataForm = {
@@ -95,14 +96,16 @@ export const authOptions: NextAuthOptions = {
 					password: "",
 					rePassword: "",
 				};
-				const accountCreated: AccountModelType | null = await createGuestAccount(data);
+				const accountCreated: AccountModelType | null = await createCandidateAccount(data);
 				if (accountCreated === null) {
 					return false;
 				} else {
 					user._id = accountCreated._id!.toString();
+					user.role = "candidate"; // default role, apply for sign in only
 				}
 			} else {
-				user._id = accountFound._id.toString();
+				user._id = accountFound._id!.toString();
+				user.role = accountFound.role;
 			}
 			return true;
 		},
@@ -111,7 +114,6 @@ export const authOptions: NextAuthOptions = {
 				token._id = user._id;
 				token.role = user.role;
 			}
-			// console.log("option 72", token);
 			return token;
 		},
 		async session({ session, token, user }) {
@@ -120,7 +122,7 @@ export const authOptions: NextAuthOptions = {
 			return session;
 		},
 		async redirect({ url, baseUrl }) {
-			return baseUrl;
+			return baseUrl + "/home";
 		},
 	},
 	// adapter: MongoDBAdapter(clientPromise) as Adapter,

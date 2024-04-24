@@ -1,5 +1,5 @@
 "use client";
-import { ClientSafeProvider, getProviders, signIn } from "next-auth/react";
+import { ClientSafeProvider, getProviders, signIn, useSession } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../api/auth/[...nextauth]/options";
 import { useEffect, useState } from "react";
@@ -13,16 +13,22 @@ import { useSearchParams } from "next/navigation";
 import { BsArrowRight } from "react-icons/bs";
 import RecruiterRegisterAccountForm from "./_component/register/recruiter";
 import CandidateRegisterAccountForm from "./_component/register/candidate";
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
-	// const session = await getServerSession(authOptions);
+	const { data: session, status, update } = useSession();
+	const loading = status === "loading";
 
 	// If the user is already logged in, redirect.
 	// Note: Make sure not to redirect to the same page
 	// To avoid an infinite loop!
-	// if (session) {
-	// 	return { redirect: { destination: "/home" } };
-	// }
+	const router = useRouter();
+	useEffect(() => {
+		if (status === "authenticated") {
+			router.push("/home");
+		}
+	}, [status, router]);
+
 	const searchParams = useSearchParams();
 
 	const prePage = searchParams.get("pre");
@@ -37,6 +43,8 @@ export default function SignIn() {
 			setProviders((await getProviders()) ?? null);
 		})();
 	}, []);
+
+	if (loading) return <div>Loading...</div>;
 	return (
 		providers !== null && (
 			<div className='flex flex-col h-dvh'>

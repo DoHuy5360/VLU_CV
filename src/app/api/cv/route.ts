@@ -11,8 +11,9 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
 	const session = await getServerSession(authOptions);
 	await connectToDatabase();
 	const userFound = await Candidate.findOne({
-		_id: new ObjectId(session?.user._id as string),
+		accountId: new ObjectId(session?.user._id as string),
 	}).select("dataCV");
+	if (userFound === null) return NextResponse.json({ error: true }, { status: 200 });
 	return NextResponse.json(userFound.dataCV, { status: 200 });
 }
 

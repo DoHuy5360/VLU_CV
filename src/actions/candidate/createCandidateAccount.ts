@@ -4,10 +4,11 @@ import { createAccount } from "../general/createAccount";
 import Candidate, { CandidateModelType } from "@/models/candidate";
 import { getUserDataCV } from "@/entities/userDataCV";
 import { CandidateDataForm } from "@/app/auth/_component/register/candidate";
+import { AccountModelType } from "@/models/account";
 
 export async function createCandidateAccount(data: CandidateDataForm) {
 	await connectToDatabase();
-	const newAccountDoc = await createAccount({
+	const newAccountDoc: AccountModelType = await createAccount({
 		email: data.email,
 		password: data.password,
 		role: "candidate",
@@ -31,6 +32,6 @@ export async function createCandidateAccount(data: CandidateDataForm) {
 	if (newCandidateDoc === null) {
 		return null;
 	} else {
-		return newCandidateDoc;
+		return newAccountDoc;
 	}
 }

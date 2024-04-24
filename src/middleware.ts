@@ -7,15 +7,12 @@ export default withAuth(
 	function middleware(request: NextRequestWithAuth) {
 		// console.log(request.nextUrl.pathname)
 		// console.log("middleware 9:", request.nextauth.token);
-
+		// console.log("mid:", request.nextauth.token?.role);
 		if (request.nextUrl.pathname.startsWith("/admin") && request.nextauth.token?.role !== "admin") {
 			return NextResponse.redirect(new URL("/", request.url));
 		}
 		if (request.nextUrl.pathname.startsWith("/recruiter") && request.nextauth.token?.role !== "recruiter") {
 			return NextResponse.redirect(new URL("/", request.url));
-		}
-		if (request.nextUrl.pathname.startsWith("/home") && request.nextauth.token?.role === "guest") {
-			return NextResponse.redirect(new URL("/identify", request.url));
 		}
 
 		// if (

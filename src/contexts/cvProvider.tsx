@@ -1,25 +1,7 @@
 "use client";
 import { connectToDatabase } from "@/libs/mongoosedb";
-import {
-	Ability,
-	Achievement,
-	Act,
-	Class,
-	Colleague,
-	Favorite,
-	Merit,
-	Product,
-	Skill,
-	UserData,
-	Work,
-} from "@/types/userData";
-import {
-	Dispatch,
-	createContext,
-	useEffect,
-	useReducer,
-	useState,
-} from "react";
+import { Ability, Achievement, Act, Class, Colleague, Favorite, Merit, Product, Skill, UserData, Work } from "@/types/userData";
+import { Dispatch, createContext, useEffect, useReducer, useState } from "react";
 
 export type CvActionType =
 	| "init"
@@ -90,10 +72,7 @@ export type CvAction =
 	| { type: "delete-hobby"; index: number };
 
 const initCvContext: UserData | null = null;
-const reducer = (
-	state: UserData | null,
-	action: CvAction
-): UserData | null => {
+const reducer = (state: UserData | null, action: CvAction): UserData | null => {
 	if (state !== null)
 		switch (action.type) {
 			case "update-file-name":
@@ -147,72 +126,57 @@ const reducer = (
 					...state,
 				};
 			case "update-user-experience-name":
-				state.attrs.experience.works[action.index].name =
-					action.value;
+				state.attrs.experience.works[action.index].name = action.value;
 				return {
 					...state,
 				};
 			case "update-user-experience-time":
-				state.attrs.experience.works[action.index].time =
-					action.value;
+				state.attrs.experience.works[action.index].time = action.value;
 				return {
 					...state,
 				};
 			case "update-user-experience-position":
-				state.attrs.experience.works[action.index].position =
-					action.value;
+				state.attrs.experience.works[action.index].position = action.value;
 				return {
 					...state,
 				};
 			case "update-user-experience-tasks":
-				state.attrs.experience.works[action.index].tasks =
-					action.value;
+				state.attrs.experience.works[action.index].tasks = action.value;
 				return {
 					...state,
 				};
 			case "update-user-project-name":
-				state.attrs.project.products[action.index].name =
-					action.value;
+				state.attrs.project.products[action.index].name = action.value;
 				return { ...state };
 			case "update-user-project-time":
-				state.attrs.project.products[action.index].time =
-					action.value;
+				state.attrs.project.products[action.index].time = action.value;
 				return { ...state };
 			case "update-user-project-where":
-				state.attrs.project.products[action.index].where =
-					action.value;
+				state.attrs.project.products[action.index].where = action.value;
 				return { ...state };
 			case "update-user-project-member":
-				state.attrs.project.products[action.index].member =
-					action.value;
+				state.attrs.project.products[action.index].member = action.value;
 				return { ...state };
 			case "update-user-project-position":
-				state.attrs.project.products[action.index].position =
-					action.value;
+				state.attrs.project.products[action.index].position = action.value;
 				return { ...state };
 			case "update-user-project-tasks":
-				state.attrs.project.products[action.index].tasks =
-					action.value;
+				state.attrs.project.products[action.index].tasks = action.value;
 				return { ...state };
 			case "update-user-project-techs":
-				state.attrs.project.products[action.index].techs =
-					action.value;
+				state.attrs.project.products[action.index].techs = action.value;
 				return { ...state };
 			case "update-user-education-time":
-				state.attrs.education.classes[action.index].time =
-					action.value;
+				state.attrs.education.classes[action.index].time = action.value;
 				return { ...state };
 			case "update-user-education-major":
-				state.attrs.education.classes[action.index].major =
-					action.value;
+				state.attrs.education.classes[action.index].major = action.value;
 				return { ...state };
 			case "update-user-education-school":
-				state.attrs.education.classes[action.index].school =
-					action.value;
+				state.attrs.education.classes[action.index].school = action.value;
 				return { ...state };
 			case "update-user-education-status":
-				state.attrs.education.classes[action.index].status =
-					action.value;
+				state.attrs.education.classes[action.index].status = action.value;
 				return { ...state };
 			case "update-user-skill-name":
 				state.attrs.skill.skills[action.index].name = action.value;
@@ -221,56 +185,43 @@ const reducer = (
 				state.attrs.skill.skills[action.index].status = action.value;
 				return { ...state };
 			case "update-user-badge-name":
-				state.attrs.badge.achievements[action.index].name =
-					action.value;
+				state.attrs.badge.achievements[action.index].name = action.value;
 				return { ...state };
 			case "update-user-badge-time":
-				state.attrs.badge.achievements[action.index].time =
-					action.value;
+				state.attrs.badge.achievements[action.index].time = action.value;
 				return { ...state };
 			case "update-user-badge-where":
-				state.attrs.badge.achievements[action.index].where =
-					action.value;
+				state.attrs.badge.achievements[action.index].where = action.value;
 				return { ...state };
 			case "update-user-certificate-name":
-				state.attrs.certificate.certificates[action.index].name =
-					action.value;
+				state.attrs.certificate.certificates[action.index].name = action.value;
 				return { ...state };
 			case "update-user-certificate-time":
-				state.attrs.certificate.certificates[action.index].time =
-					action.value;
+				state.attrs.certificate.certificates[action.index].time = action.value;
 				return { ...state };
 			case "update-user-certificate-where":
-				state.attrs.certificate.certificates[action.index].where =
-					action.value;
+				state.attrs.certificate.certificates[action.index].where = action.value;
 				return { ...state };
 			case "update-user-reference-name":
-				state.attrs.reference.references[action.index].name =
-					action.value;
+				state.attrs.reference.references[action.index].name = action.value;
 				return { ...state };
 			case "update-user-reference-where":
-				state.attrs.reference.references[action.index].where =
-					action.value;
+				state.attrs.reference.references[action.index].where = action.value;
 				return { ...state };
 			case "update-user-reference-phone":
-				state.attrs.reference.references[action.index].phone =
-					action.value;
+				state.attrs.reference.references[action.index].phone = action.value;
 				return { ...state };
 			case "update-user-activity-time":
-				state.attrs.activity.activities[action.index].time =
-					action.value;
+				state.attrs.activity.activities[action.index].time = action.value;
 				return { ...state };
 			case "update-user-activity-name":
-				state.attrs.activity.activities[action.index].name =
-					action.value;
+				state.attrs.activity.activities[action.index].name = action.value;
 				return { ...state };
 			case "update-user-activity-position":
-				state.attrs.activity.activities[action.index].position =
-					action.value;
+				state.attrs.activity.activities[action.index].position = action.value;
 				return { ...state };
 			case "update-user-activity-tasks":
-				state.attrs.activity.activities[action.index].tasks =
-					action.value;
+				state.attrs.activity.activities[action.index].tasks = action.value;
 				return { ...state };
 			case "update-user-hobby-name":
 				state.attrs.hobby.hobbies[action.index].name = action.value;
@@ -327,82 +278,52 @@ const reducer = (
 					...state,
 				};
 			case "delete-experience":
-				state.attrs.experience.works = removeElementByIndex(
-					state.attrs.experience.works,
-					action.index
-				);
+				state.attrs.experience.works = removeElementByIndex(state.attrs.experience.works, action.index);
 				return {
 					...state,
 				};
 			case "delete-project":
-				state.attrs.project.products = removeElementByIndex(
-					state.attrs.project.products,
-					action.index
-				);
+				state.attrs.project.products = removeElementByIndex(state.attrs.project.products, action.index);
 				return {
 					...state,
 				};
 			case "delete-education":
-				state.attrs.education.classes = removeElementByIndex(
-					state.attrs.education.classes,
-					action.index
-				);
+				state.attrs.education.classes = removeElementByIndex(state.attrs.education.classes, action.index);
 				return {
 					...state,
 				};
 			case "delete-skill":
-				state.attrs.skill.skills = removeElementByIndex(
-					state.attrs.skill.skills,
-					action.index
-				);
+				state.attrs.skill.skills = removeElementByIndex(state.attrs.skill.skills, action.index);
 				return {
 					...state,
 				};
 			case "delete-badge":
-				state.attrs.badge.achievements = removeElementByIndex(
-					state.attrs.badge.achievements,
-					action.index
-				);
+				state.attrs.badge.achievements = removeElementByIndex(state.attrs.badge.achievements, action.index);
 				return {
 					...state,
 				};
 			case "delete-certificate":
-				state.attrs.certificate.certificates = removeElementByIndex(
-					state.attrs.certificate.certificates,
-					action.index
-				);
+				state.attrs.certificate.certificates = removeElementByIndex(state.attrs.certificate.certificates, action.index);
 				return {
 					...state,
 				};
 			case "delete-reference":
-				state.attrs.reference.references = removeElementByIndex(
-					state.attrs.reference.references,
-					action.index
-				);
+				state.attrs.reference.references = removeElementByIndex(state.attrs.reference.references, action.index);
 				return {
 					...state,
 				};
 			case "delete-activity":
-				state.attrs.activity.activities = removeElementByIndex(
-					state.attrs.activity.activities,
-					action.index
-				);
+				state.attrs.activity.activities = removeElementByIndex(state.attrs.activity.activities, action.index);
 				return {
 					...state,
 				};
 			case "delete-hobby":
-				state.attrs.hobby.hobbies = removeElementByIndex(
-					state.attrs.hobby.hobbies,
-					action.index
-				);
+				state.attrs.hobby.hobbies = removeElementByIndex(state.attrs.hobby.hobbies, action.index);
 				return {
 					...state,
 				};
 			case "delete-experience":
-				state.attrs.experience.works = removeElementByIndex(
-					state.attrs.experience.works,
-					action.index
-				);
+				state.attrs.experience.works = removeElementByIndex(state.attrs.experience.works, action.index);
 				return {
 					...state,
 				};
@@ -419,8 +340,7 @@ const reducer = (
 		}
 	}
 };
-const removeElementByIndex = (array: any[], index: number) =>
-	array.filter((e, i) => index !== i && e);
+const removeElementByIndex = (array: any[], index: number) => array.filter((e, i) => index !== i && e);
 
 export const CvContext = createContext<{
 	state: UserData | null;
@@ -440,11 +360,15 @@ function CvProvider({ children }: { children: JSX.Element }) {
 	useEffect(() => {
 		async function getDataCV() {
 			const data = await fetch(`http://localhost:3000/api/cv`);
-			dispatch({
-				type: "init",
-				value: await data.json(),
-				index: 0,
-			});
+			const res = await data.json();
+			if (res.error) {
+			} else {
+				dispatch({
+					type: "init",
+					value: res,
+					index: 0,
+				});
+			}
 		}
 		getDataCV();
 	}, []);
