@@ -1,22 +1,13 @@
-import { MouseEventHandler, useCallback } from "react";
+import { MouseEventHandler, useCallback, useContext } from "react";
+import { ProfileTabContext } from "../page";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 
-export default ({
-	name,
-	setCurrentTab,
-	toggle,
-}: {
-	name: string;
-	setCurrentTab: Function;
-	toggle: string;
-}) => {
+export default ({ name, isError }: { name: string; isError: any }) => {
+	const { setCurrentTab, toggle } = useContext(ProfileTabContext);
 	const setFootprint = useCallback((tab: string) => {
 		const queryParams = new URLSearchParams(window.location.search);
 		queryParams.set("tab", JSON.stringify(tab));
-		window.history.replaceState(
-			null,
-			"",
-			`?${queryParams.toString()}`
-		);
+		window.history.replaceState(null, "", `?${queryParams.toString()}`);
 	}, []);
 	return (
 		<div
@@ -24,11 +15,16 @@ export default ({
 				setFootprint(name);
 				setCurrentTab(name);
 			}}
-			className={`hover:bg-orange-200 cursor-pointer p-2 text-sm select-none ${
+			className={`flex items-center gap-2 justify-between hover:bg-orange-200 cursor-pointer p-2 text-sm select-none ${
 				toggle === name && "bg-orange-400"
 			}`}
 		>
-			{name}
+			<div>{name}</div>
+			{isError && (
+				<div className='text-red-500 mix-blend-difference'>
+					<AiOutlineExclamationCircle />
+				</div>
+			)}
 		</div>
 	);
 };

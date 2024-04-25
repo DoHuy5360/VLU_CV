@@ -19,7 +19,7 @@ export async function createReplica(cvName: string, userData: UserData) {
 		data: userData,
 	};
 	const newUserCV = new User_CV(data);
-	await newUserCV.save();
+	const userCvObject = await newUserCV.save();
 
-	return newUserCV === null ? false : true;
+	return userCvObject === null ? false : true;
 }

@@ -19,6 +19,9 @@ export default function Personal({ Wrapper, Input }: { Wrapper: WrapperUI; Input
 			<Input label='Phone:' register={register("attrs.head.phone")} errors={errors.attrs?.head?.phone?.message} />
 			<Input label='Address:' register={register("attrs.head.address")} errors={errors.attrs?.head?.address?.message} />
 			<Input label='Email:' register={register("attrs.head.email")} errors={errors.attrs?.head?.email?.message} />
+			<Input label='Day of Birth:' register={register("attrs.head.birth")} errors={errors.attrs?.head?.email?.message} />
+			<Input label='Gender:' register={register("attrs.head.gender")} errors={errors.attrs?.head?.email?.message} />
+			<Input label='Website:' register={register("attrs.head.website")} errors={errors.attrs?.head?.email?.message} />
 		</Wrapper.T01>
 	);
 }

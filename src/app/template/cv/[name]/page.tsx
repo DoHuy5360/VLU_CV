@@ -27,14 +27,10 @@ function EditTemplate({ params }: { params: { name: string } }) {
 	}, [state]);
 
 	if (state === null) return <div>Loading...</div>;
-
 	return (
 		<div className='flex h-full'>
 			<FormProvider {...formTools}>
-				<EditCvForm
-					cvName={params.name}
-					handleSubmit={formTools.handleSubmit}
-				/>
+				<EditCvForm cvName={params.name} handleSubmit={formTools.handleSubmit} />
 			</FormProvider>
 			<div className='flex flex-col w-full'>
 				<CvSuggestion />

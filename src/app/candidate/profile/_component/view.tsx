@@ -1,6 +1,6 @@
 import { CvContext } from "@/contexts/cvProvider";
 import { useContext, useEffect } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, UseFormReturn, useForm } from "react-hook-form";
 import { UserDataForm } from "@/app/template/cv/[name]/_component/editCvForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userDataSchema } from "@/validation/userData";
@@ -22,28 +22,11 @@ import Reference from "@/components/cvEditFields/editFields/reference";
 import Hobby from "@/components/cvEditFields/editFields/hobby";
 import Other from "@/components/cvEditFields/editFields/other";
 
-export default ({ name }: { name: string }) => {
-	const { state } = useContext(CvContext);
-
-	const formTools = useForm<UserDataForm>({
-		resolver: zodResolver(userDataSchema),
-		defaultValues: init,
-	});
-	useEffect(() => {
-		if (state !== null) {
-			formTools.reset(state);
-		}
-	}, [state]);
-
-	if (state === null) return <div>Loading...</div>;
-	const UpdateProfilePreValidation = (data: UserDataForm) => {
-		console.log(data);
-	};
+export default ({ name, formTools }: { name: string; formTools: UseFormReturn<UserDataForm> }) => {
 	return (
 		<form
 			action={async () => {
 				formTools.handleSubmit(async (data: UserDataForm) => {
-					UpdateProfilePreValidation(data);
 					try {
 						userDataSchema.parse(data);
 						const result = await updateProfile(JSON.stringify(data));

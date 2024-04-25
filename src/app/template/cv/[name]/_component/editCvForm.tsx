@@ -1,10 +1,6 @@
 "use client";
 
-import {
-	FormProvider,
-	UseFormHandleSubmit,
-	useForm,
-} from "react-hook-form";
+import { FormProvider, UseFormHandleSubmit, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userDataSchema } from "@/validation/userData";
 import { z } from "zod";
@@ -31,28 +27,17 @@ export type deType = z.infer<typeof userDataSchema>;
 
 export type UserDataForm = z.infer<typeof userDataSchema>;
 
-export default function EditCvForm({
-	cvName,
-	handleSubmit,
-}: {
-	cvName: string;
-	handleSubmit: UseFormHandleSubmit<UserDataForm>;
-}) {
-	const CvReplicaPreValidation = (data: UserDataForm) => {
-		console.log(data);
-		return true;
-	};
-	{
-	}
+export default function EditCvForm({ cvName, handleSubmit }: { cvName: string; handleSubmit: UseFormHandleSubmit<UserDataForm> }) {
 	return (
 		<form
 			className='w-2/3 px-2 pt-2 pb-20 flex flex-col gap-2 overflow-y-scroll border-slate-300 border-r-[1px]'
 			action={async () => {
 				handleSubmit(async (data) => {
-					const isValid = CvReplicaPreValidation(data);
-					if (isValid) {
-						const isSuccess = await createReplica(cvName, data);
-						if (isSuccess) alert("Success");
+					const isSuccess = await createReplica(cvName, data);
+					if (isSuccess) {
+						alert("Tạo CV thành công");
+					} else {
+						alert("Tạo CV thất bại");
 					}
 				})();
 			}}
@@ -60,33 +45,18 @@ export default function EditCvForm({
 			<div className='flex flex-col gap-2'>
 				<Personal Wrapper={Wrapper} Input={editInput} />
 				<Goal Wrapper={Wrapper} Area={editArea} />
-				<Experience
-					Wrapper={Wrapper}
-					Input={editInput}
-					Area={editArea}
-				/>
-				<Project
-					Wrapper={Wrapper}
-					Input={editInput}
-					Area={editArea}
-				/>
+				<Experience Wrapper={Wrapper} Input={editInput} Area={editArea} />
+				<Project Wrapper={Wrapper} Input={editInput} Area={editArea} />
 				<Education Wrapper={Wrapper} Input={editInput} />
 				<Skill Wrapper={Wrapper} Input={editInput} Area={editArea} />
 				<Badge Wrapper={Wrapper} Input={editInput} />
 				<Certificate Wrapper={Wrapper} Input={editInput} />
 				<Reference Wrapper={Wrapper} Input={editInput} />
-				<Activity
-					Wrapper={Wrapper}
-					Input={editInput}
-					Area={editArea}
-				/>
+				<Activity Wrapper={Wrapper} Input={editInput} Area={editArea} />
 				<Hobby Wrapper={Wrapper} Input={editInput} />
 				<Other Wrapper={Wrapper} Area={editArea} />
 			</div>
-			<button
-				className='w-fit px-4 py-2 ml-auto bg-green-300 rounded-lg text-xs'
-				type='submit'
-			>
+			<button className='w-fit px-4 py-2 ml-auto bg-green-300 rounded-lg text-xs' type='submit'>
 				Save
 			</button>
 		</form>
