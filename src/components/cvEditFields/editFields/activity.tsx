@@ -1,18 +1,10 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
-import { UserDataForm } from "@/app/template/cv/[name]/_component/editCvForm";
+import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
 import FormAction from "../formAction";
 import { activityFormSample } from "@/entities/addFormCV";
 import { InputUI, WrapperUI } from "./type";
 
-export default function Activity({
-	Wrapper,
-	Input,
-	Area,
-}: {
-	Wrapper: WrapperUI;
-	Input: InputUI;
-	Area: InputUI;
-}) {
+export default function Activity({ Wrapper, Input, Area }: { Wrapper: WrapperUI; Input: InputUI; Area: InputUI }) {
 	const {
 		register,
 		control,
@@ -38,44 +30,26 @@ export default function Activity({
 						<Input
 							label='Time'
 							index={i}
-							register={register(
-								`attrs.activity.activities.${i}.time`
-							)}
-							errors={
-								errors.attrs?.activity?.activities?.[i]?.time?.message
-							}
+							register={register(`attrs.activity.activities.${i}.time`)}
+							errors={errors.attrs?.activity?.activities?.[i]?.time?.message}
 						/>
 						<Input
 							label='Name:'
 							index={i}
-							register={register(
-								`attrs.activity.activities.${i}.name`
-							)}
-							errors={
-								errors.attrs?.activity?.activities?.[i]?.name?.message
-							}
+							register={register(`attrs.activity.activities.${i}.name`)}
+							errors={errors.attrs?.activity?.activities?.[i]?.name?.message}
 						/>
 						<Input
 							label='Position:'
 							index={i}
-							register={register(
-								`attrs.activity.activities.${i}.position`
-							)}
-							errors={
-								errors.attrs?.activity?.activities?.[i]?.position
-									?.message
-							}
+							register={register(`attrs.activity.activities.${i}.position`)}
+							errors={errors.attrs?.activity?.activities?.[i]?.position?.message}
 						/>
 						<Area
 							label='Tasks:'
 							index={i}
-							register={register(
-								`attrs.activity.activities.${i}.tasks`
-							)}
-							errors={
-								errors.attrs?.activity?.activities?.[i]?.tasks
-									?.message
-							}
+							register={register(`attrs.activity.activities.${i}.tasks`)}
+							errors={errors.attrs?.activity?.activities?.[i]?.tasks?.message}
 						/>
 					</Wrapper.T03>
 				);

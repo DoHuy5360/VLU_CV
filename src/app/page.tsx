@@ -41,7 +41,7 @@ export default async function App() {
 			<div className='bg-black h-full w-full'>
 				<div className='relative select-none'>
 					<div className='landscape_overlay grid place-items-center'>
-						<div className='xl:text-7xl md:text-4xl text-white font-bold'>Van Lang Jobs</div>
+						<div className='xl:text-7xl sm:text-4xl text-white font-bold'>Van Lang Jobs</div>
 					</div>
 					<div className='text-white absolute bottom-0 right-0 p-10 text-xs'>
 						<div>Chắp cánh tương lai!</div>

@@ -1,16 +1,10 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
-import { UserDataForm } from "../../../app/template/cv/[name]/_component/editCvForm";
+import { UserDataForm } from "../../view/editCV/_component/editCvForm";
 import { certificationFormSample } from "@/entities/addFormCV";
 import FormAction from "../formAction";
 import { InputUI, WrapperUI } from "./type";
 
-export default function Certificate({
-	Wrapper,
-	Input,
-}: {
-	Wrapper: WrapperUI;
-	Input: InputUI;
-}) {
+export default function Certificate({ Wrapper, Input }: { Wrapper: WrapperUI; Input: InputUI }) {
 	const {
 		register,
 		control,
@@ -35,35 +29,20 @@ export default function Certificate({
 						<FormAction deleteAction={actions.remove} index={i} />
 						<Input
 							label='Name:'
-							register={register(
-								`attrs.certificate.certificates.${i}.name`
-							)}
-							errors={
-								errors.attrs?.certificate?.certificates?.[i]?.name
-									?.message
-							}
+							register={register(`attrs.certificate.certificates.${i}.name`)}
+							errors={errors.attrs?.certificate?.certificates?.[i]?.name?.message}
 							index={i}
 						/>
 						<Input
 							label='Time:'
-							register={register(
-								`attrs.certificate.certificates.${i}.time`
-							)}
-							errors={
-								errors.attrs?.certificate?.certificates?.[i]?.time
-									?.message
-							}
+							register={register(`attrs.certificate.certificates.${i}.time`)}
+							errors={errors.attrs?.certificate?.certificates?.[i]?.time?.message}
 							index={i}
 						/>
 						<Input
 							label='Where:'
-							register={register(
-								`attrs.certificate.certificates.${i}.where`
-							)}
-							errors={
-								errors.attrs?.certificate?.certificates?.[i]?.where
-									?.message
-							}
+							register={register(`attrs.certificate.certificates.${i}.where`)}
+							errors={errors.attrs?.certificate?.certificates?.[i]?.where?.message}
 							index={i}
 						/>
 					</Wrapper.T03>

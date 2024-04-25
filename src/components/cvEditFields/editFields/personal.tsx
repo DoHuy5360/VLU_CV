@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { UserDataForm } from "@/app/template/cv/[name]/_component/editCvForm";
+import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
 import { InputUI, WrapperUI } from "./type";
 
 export default function Personal({ Wrapper, Input }: { Wrapper: WrapperUI; Input: InputUI }) {

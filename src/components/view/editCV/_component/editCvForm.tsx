@@ -1,21 +1,21 @@
 "use client";
 
-import { FormProvider, UseFormHandleSubmit, useForm } from "react-hook-form";
+import { FormProvider, SubmitHandler, UseFormHandleSubmit, useForm, useFormContext } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userDataSchema } from "@/validation/userData";
 import { z } from "zod";
 import Group from "./group";
-import Experience from "../../../../../components/cvEditFields/editFields/experience";
+import Experience from "../../../cvEditFields/editFields/experience";
 import { createContext } from "vm";
-import Goal from "../../../../../components/cvEditFields/editFields/goal";
-import Project from "../../../../../components/cvEditFields/editFields/project";
-import Education from "../../../../../components/cvEditFields/editFields/education";
-import Skill from "../../../../../components/cvEditFields/editFields/skill";
-import Badge from "../../../../../components/cvEditFields/editFields/badge";
-import Certificate from "../../../../../components/cvEditFields/editFields/certificate";
-import Reference from "../../../../../components/cvEditFields/editFields/reference";
-import Hobby from "../../../../../components/cvEditFields/editFields/hobby";
-import Other from "../../../../../components/cvEditFields/editFields/other";
+import Goal from "../../../cvEditFields/editFields/goal";
+import Project from "../../../cvEditFields/editFields/project";
+import Education from "../../../cvEditFields/editFields/education";
+import Skill from "../../../cvEditFields/editFields/skill";
+import Badge from "../../../cvEditFields/editFields/badge";
+import Certificate from "../../../cvEditFields/editFields/certificate";
+import Reference from "../../../cvEditFields/editFields/reference";
+import Hobby from "../../../cvEditFields/editFields/hobby";
+import Other from "../../../cvEditFields/editFields/other";
 import { createReplica } from "@/actions/candidate/createReplica";
 import Activity from "@/components/cvEditFields/editFields/activity";
 import { Wrapper } from "./wrapper";
@@ -27,19 +27,13 @@ export type deType = z.infer<typeof userDataSchema>;
 
 export type UserDataForm = z.infer<typeof userDataSchema>;
 
-export default function EditCvForm({ cvName, handleSubmit }: { cvName: string; handleSubmit: UseFormHandleSubmit<UserDataForm> }) {
+export default function EditCvForm({ onSubmit }: { onSubmit: SubmitHandler<UserDataForm> }) {
+	const { handleSubmit } = useFormContext<UserDataForm>();
 	return (
 		<form
 			className='w-2/3 px-2 pt-2 pb-20 flex flex-col gap-2 overflow-y-scroll border-slate-300 border-r-[1px]'
 			action={async () => {
-				handleSubmit(async (data) => {
-					const isSuccess = await createReplica(cvName, data);
-					if (isSuccess) {
-						alert("Tạo CV thành công");
-					} else {
-						alert("Tạo CV thất bại");
-					}
-				})();
+				handleSubmit(onSubmit)();
 			}}
 		>
 			<div className='flex flex-col gap-2'>

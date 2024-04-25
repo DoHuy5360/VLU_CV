@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import { FiFile } from "react-icons/fi";
 const apiUrl = "https://api.tailwindstream.io";
 export default function DownloadPDF() {
 	const [isFetch, setFetch] = useState(false);
@@ -40,9 +41,7 @@ export default function DownloadPDF() {
 	async function downloadWithRetry(requestId: string) {
 		let retried = 0;
 		const intervalId = setInterval(async () => {
-			const response = await fetch(
-				`${apiUrl}/request/${requestId}/download`
-			);
+			const response = await fetch(`${apiUrl}/request/${requestId}/download`);
 			if (response.ok) {
 				const blob = await response.blob();
 				clearInterval(intervalId);
@@ -67,15 +66,14 @@ export default function DownloadPDF() {
 		// setFetch(false);
 	}, []);
 	return (
-		<div className='py-0.5 px-1 border-l-[1px] border-slate-200'>
-			<button
-				disabled={isFetch}
-				onClick={downloadPdf}
-				className='w-fit select-none text-xs h-fit py-0.5 px-1 rounded-sm text-white bg-orange-600'
-				type='button'
-			>
-				Download PDF
-			</button>
-		</div>
+		<button
+			disabled={isFetch}
+			onClick={downloadPdf}
+			className='flex gap-2 items-center p-2 border-l-[1px] border-slate-200 bg-orange-600 rounded-sm text-white'
+			type='button'
+		>
+			<FiFile />
+			<div>Tải PDF</div>
+		</button>
 	);
 }

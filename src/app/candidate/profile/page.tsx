@@ -5,11 +5,11 @@ import Tab from "./_component/tab";
 import View from "./_component/view";
 import { CvContext } from "@/contexts/cvProvider";
 import { useForm } from "react-hook-form";
-import { UserDataForm } from "@/app/template/cv/[name]/_component/editCvForm";
+import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userDataSchema } from "@/validation/userData";
-import { init } from "@/app/template/cv/[name]/page";
 import { createContext } from "react";
+import { init } from "@/components/view/editCV/editCV";
 
 export const ProfileTabContext = createContext<{ setCurrentTab: Dispatch<SetStateAction<string | null>>; toggle: string }>({
 	setCurrentTab: () => {},

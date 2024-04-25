@@ -1,7 +1,7 @@
 import { CvContext } from "@/contexts/cvProvider";
 import { useContext, useEffect } from "react";
 import { FormProvider, UseFormReturn, useForm } from "react-hook-form";
-import { UserDataForm } from "@/app/template/cv/[name]/_component/editCvForm";
+import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userDataSchema } from "@/validation/userData";
 import { init } from "@/app/template/cv/[name]/page";

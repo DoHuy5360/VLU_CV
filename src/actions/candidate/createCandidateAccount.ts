@@ -20,7 +20,7 @@ export async function createCandidateAccount(data: CandidateDataForm) {
 		phone: data.phone,
 		gender: data.gender,
 		dataCV: getUserDataCV({
-			name: "This is file's name",
+			name: "",
 			template: "Root",
 			head: {
 				name: data.name,

@@ -1,14 +1,8 @@
 import { useFormContext } from "react-hook-form";
-import { UserDataForm } from "@/app/template/cv/[name]/_component/editCvForm";
+import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
 import { InputUI, WrapperUI } from "./type";
 
-export default function Other({
-	Wrapper,
-	Area,
-}: {
-	Wrapper: WrapperUI;
-	Area: InputUI;
-}) {
+export default function Other({ Wrapper, Area }: { Wrapper: WrapperUI; Area: InputUI }) {
 	const {
 		register,
 		formState: { errors },
@@ -19,10 +13,7 @@ export default function Other({
 				label: "Other",
 			}}
 		>
-			<Area
-				register={register("attrs.other.content")}
-				errors={errors.attrs?.other?.content?.message}
-			/>
+			<Area register={register("attrs.other.content")} errors={errors.attrs?.other?.content?.message} />
 		</Wrapper.T04>
 	);
 }

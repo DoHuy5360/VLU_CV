@@ -1,18 +1,10 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
-import { UserDataForm } from "../../../app/template/cv/[name]/_component/editCvForm";
+import { UserDataForm } from "../../view/editCV/_component/editCvForm";
 import { skillFormSample } from "@/entities/addFormCV";
 import FormAction from "../formAction";
 import { InputUI, WrapperUI } from "./type";
 
-export default function Skill({
-	Wrapper,
-	Input,
-	Area,
-}: {
-	Wrapper: WrapperUI;
-	Input: InputUI;
-	Area: InputUI;
-}) {
+export default function Skill({ Wrapper, Input, Area }: { Wrapper: WrapperUI; Input: InputUI; Area: InputUI }) {
 	const {
 		register,
 		control,
@@ -45,9 +37,7 @@ export default function Skill({
 							label='Status:'
 							index={i}
 							register={register(`attrs.skill.skills.${i}.status`)}
-							errors={
-								errors.attrs?.skill?.skills?.[i]?.status?.message
-							}
+							errors={errors.attrs?.skill?.skills?.[i]?.status?.message}
 						/>
 					</Wrapper.T03>
 				);
