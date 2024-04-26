@@ -39,7 +39,7 @@ export default function EditCvView({
 			</FormProvider>
 			<div className='flex flex-col w-full'>
 				<CvSuggestion />
-				<div className='overflow-y-scroll pb-16'>
+				<div className='overflow-y-scroll h-dvh pb-16'>
 					<FormValuesContext.Provider value={formTools.watch()}>
 						<CvRenderer cvName={cvTemplateName} />
 					</FormValuesContext.Provider>

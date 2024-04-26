@@ -31,7 +31,7 @@ export default function EditCvForm({ onSubmit }: { onSubmit: SubmitHandler<UserD
 	const { handleSubmit } = useFormContext<UserDataForm>();
 	return (
 		<form
-			className='w-2/3 px-2 pt-2 pb-20 flex flex-col gap-2 overflow-y-scroll border-slate-300 border-r-[1px]'
+			className='h-dvh w-2/3 px-2 pt-2 pb-20 flex flex-col gap-2 overflow-y-scroll border-slate-300 border-r-[1px]'
 			action={async () => {
 				handleSubmit(onSubmit)();
 			}}

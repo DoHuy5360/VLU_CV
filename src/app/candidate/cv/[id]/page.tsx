@@ -18,7 +18,7 @@ async function ViewCV({ params }: { params: { id: string } }) {
 				</div>
 			</div>
 			<div className='flex flex-col gap-2 p-2 text-sm select-none whitespace-nowrap'>
-				<CvEditButton cvObjectData={cv.data} />
+				<CvEditButton id={params.id} />
 				<DownloadPDF />
 			</div>
 		</div>

@@ -1,18 +1,13 @@
 "use client";
-import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
-import { CvEditContext } from "@/contexts/cvEditProvider";
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
 import { BiEdit } from "react-icons/bi";
 
-export default function CvEditButton({ cvObjectData }: { cvObjectData: UserDataForm }) {
-	const { setCvObjectData } = useContext(CvEditContext);
+export default function CvEditButton({ id }: { id: string }) {
 	const router = useRouter();
 	return (
 		<button
 			onClick={() => {
-				setCvObjectData(cvObjectData);
-				router.push("/candidate/cv/edit");
+				router.push(`/candidate/cv/edit/${id}`);
 			}}
 			className='flex gap-1 justify-between items-center p-2 rounded-sm bg-yellow-400'
 			type='button'
