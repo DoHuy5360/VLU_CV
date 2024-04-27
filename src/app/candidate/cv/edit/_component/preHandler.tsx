@@ -1,5 +1,5 @@
 "use client";
-import { updateCV } from "@/actions/candidate/updateCv";
+import { updateCV } from "@/actions/candidate/updateCV";
 import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
 import EditCvView from "@/components/view/editCV/editCV";
 
