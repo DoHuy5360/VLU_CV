@@ -22,6 +22,7 @@ import { Wrapper } from "./wrapper";
 import editInput from "./editInput";
 import editArea from "./editArea";
 import Personal from "@/components/cvEditFields/editFields/personal";
+import editAvatar from "./editAvatar";
 
 export type UserDataForm = z.infer<typeof userDataSchema>;
 
@@ -35,7 +36,7 @@ export default function EditCvForm({ onSubmit }: { onSubmit: SubmitHandler<UserD
 			}}
 		>
 			<div className='flex flex-col gap-2'>
-				<Personal Wrapper={Wrapper} Input={editInput} />
+				<Personal Wrapper={Wrapper} Input={editInput} Avatar={editAvatar} />
 				<Goal Wrapper={Wrapper} Area={editArea} />
 				<Experience Wrapper={Wrapper} Input={editInput} Area={editArea} />
 				<Project Wrapper={Wrapper} Input={editInput} Area={editArea} />

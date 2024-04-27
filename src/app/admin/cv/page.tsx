@@ -1,28 +1,16 @@
 "use client";
 import { addNewCV } from "@/actions/admin/addNewCV";
 import Submit from "@/components/button/submit";
+import { imageFileToBase64 } from "@/utils/generateB64Image";
 import { useEffect, useRef, useState } from "react";
 
-function imageFileToBase64(file: File): Promise<string> {
-	return new Promise((resolve, reject) => {
-		const reader = new FileReader();
-		reader.onload = () => {
-			const base64String = reader.result as string;
-			resolve(base64String);
-		};
-		reader.onerror = reject;
-		reader.readAsDataURL(file);
-	});
-}
 function addCV() {
 	const formRef = useRef<HTMLFormElement>(null);
 	const thumbnailRef = useRef<HTMLInputElement>(null);
 	return (
 		<div className='h-dvh grid place-items-center'>
 			<div className='bg-slate-200 w-fit p-3 rounded-sm'>
-				<div className='font-bold text-lg mb-3'>
-					upload new template
-				</div>
+				<div className='font-bold text-lg mb-3'>upload new template</div>
 				<form
 					ref={formRef}
 					action={async (data) => {
@@ -41,13 +29,9 @@ function addCV() {
 							if (e.target.files !== null) {
 								const file = e.target.files[0];
 								try {
-									thumbnailRef.current!.value =
-										await imageFileToBase64(file);
+									thumbnailRef.current!.value = await imageFileToBase64(file);
 								} catch (error) {
-									console.error(
-										"Error converting image to Base64:",
-										error
-									);
+									console.error("Error converting image to Base64:", error);
 								}
 							}
 						}}

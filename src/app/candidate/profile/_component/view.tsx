@@ -1,9 +1,5 @@
-import { CvContext } from "@/contexts/cvProvider";
-import { useContext, useEffect } from "react";
-import { FormProvider, UseFormReturn, useForm } from "react-hook-form";
+import { FormProvider, UseFormReturn } from "react-hook-form";
 import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { userDataSchema } from "@/validation/userData";
 import Activity from "@/components/cvEditFields/editFields/activity";
 import { Wrapper } from "./wrapper";
 import Personal from "@/components/cvEditFields/editFields/personal";
@@ -20,6 +16,7 @@ import Certificate from "@/components/cvEditFields/editFields/certificate";
 import Reference from "@/components/cvEditFields/editFields/reference";
 import Hobby from "@/components/cvEditFields/editFields/hobby";
 import Other from "@/components/cvEditFields/editFields/other";
+import editAvatar from "./editAvatar";
 
 export default ({ name, formTools }: { name: string; formTools: UseFormReturn<UserDataForm> }) => {
 	return (
@@ -38,7 +35,7 @@ export default ({ name, formTools }: { name: string; formTools: UseFormReturn<Us
 		>
 			<div className='overflow-y-scroll p-2'>
 				<FormProvider {...formTools}>
-					{name === "Personal" && <Personal Wrapper={Wrapper} Input={editInput} hideField={{ fileName: true }} />}
+					{name === "Personal" && <Personal Wrapper={Wrapper} Input={editInput} Avatar={editAvatar} hideField={{ fileName: true }} />}
 					{name === "Goal" && <Goal Wrapper={Wrapper} Area={editArea} />}
 					{name === "Experience" && <Experience Wrapper={Wrapper} Input={editInput} Area={editArea} />}
 					{name === "Project" && <Project Wrapper={Wrapper} Input={editInput} Area={editArea} />}
@@ -57,7 +54,6 @@ export default ({ name, formTools }: { name: string; formTools: UseFormReturn<Us
 					Save
 				</button>
 			</div>
-			{/* <Save data={state} /> */}
 		</form>
 	);
 };

@@ -1,14 +1,8 @@
 import { Head } from "@/types/userData";
-import {
-	FaCalendar,
-	FaCompass,
-	FaHome,
-	FaInfoCircle,
-	FaPhoneAlt,
-} from "react-icons/fa";
+import { FaCalendar, FaCompass, FaHome, FaInfoCircle, FaPhoneAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 
-export default function Jsx(data: Head) {
+export default (data: Head) => {
 	return (
 		<div className='relative'>
 			<div className='translate-x-[-50%] gap-7 text-white absolute flex flex-col items-center bg-blue-400 px-2 py-4 rounded-full'>
@@ -47,4 +41,4 @@ export default function Jsx(data: Head) {
 			</div>
 		</div>
 	);
-}
+};
