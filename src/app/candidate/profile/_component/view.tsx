@@ -4,7 +4,6 @@ import { FormProvider, UseFormReturn, useForm } from "react-hook-form";
 import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userDataSchema } from "@/validation/userData";
-import { init } from "@/app/template/cv/[name]/page";
 import Activity from "@/components/cvEditFields/editFields/activity";
 import { Wrapper } from "./wrapper";
 import Personal from "@/components/cvEditFields/editFields/personal";
@@ -28,9 +27,8 @@ export default ({ name, formTools }: { name: string; formTools: UseFormReturn<Us
 			action={async () => {
 				formTools.handleSubmit(async (data: UserDataForm) => {
 					try {
-						userDataSchema.parse(data);
 						const result = await updateProfile(JSON.stringify(data));
-						result ? alert("Done") : console.log("Update fail");
+						result ? alert("Cập nhật hồ sơ thành công") : console.log("Cập nhật hồ sơ thất bại");
 					} catch (error) {
 						console.log(error);
 					}
@@ -40,7 +38,7 @@ export default ({ name, formTools }: { name: string; formTools: UseFormReturn<Us
 		>
 			<div className='overflow-y-scroll p-2'>
 				<FormProvider {...formTools}>
-					{name === "Personal" && <Personal Wrapper={Wrapper} Input={editInput} />}
+					{name === "Personal" && <Personal Wrapper={Wrapper} Input={editInput} hideField={{ fileName: true }} />}
 					{name === "Goal" && <Goal Wrapper={Wrapper} Area={editArea} />}
 					{name === "Experience" && <Experience Wrapper={Wrapper} Input={editInput} Area={editArea} />}
 					{name === "Project" && <Project Wrapper={Wrapper} Input={editInput} Area={editArea} />}

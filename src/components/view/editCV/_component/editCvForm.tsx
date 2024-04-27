@@ -23,8 +23,6 @@ import editInput from "./editInput";
 import editArea from "./editArea";
 import Personal from "@/components/cvEditFields/editFields/personal";
 
-export type deType = z.infer<typeof userDataSchema>;
-
 export type UserDataForm = z.infer<typeof userDataSchema>;
 
 export default function EditCvForm({ onSubmit }: { onSubmit: SubmitHandler<UserDataForm> }) {

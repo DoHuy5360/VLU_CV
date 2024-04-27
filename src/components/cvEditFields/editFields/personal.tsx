@@ -2,7 +2,7 @@ import { useFormContext } from "react-hook-form";
 import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
 import { InputUI, WrapperUI } from "./type";
 
-export default function Personal({ Wrapper, Input }: { Wrapper: WrapperUI; Input: InputUI }) {
+export default function Personal({ Wrapper, Input, hideField }: { Wrapper: WrapperUI; Input: InputUI; hideField?: { fileName?: boolean } }) {
 	const {
 		register,
 		formState: { errors },
@@ -13,7 +13,7 @@ export default function Personal({ Wrapper, Input }: { Wrapper: WrapperUI; Input
 				label: "Personal",
 			}}
 		>
-			<Input label='File name:' register={register("name")} errors={errors.name?.message} />
+			{hideField?.fileName ? <></> : <Input label='File name:' register={register("name")} errors={errors.name?.message} />}
 			<Input label='Your name:' register={register("attrs.head.name")} errors={errors.attrs?.head?.name?.message} />
 			<Input label='Apply position:' register={register("attrs.head.position")} errors={errors.attrs?.head?.position?.message} />
 			<Input label='Phone:' register={register("attrs.head.phone")} errors={errors.attrs?.head?.phone?.message} />

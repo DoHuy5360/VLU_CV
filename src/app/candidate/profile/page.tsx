@@ -7,7 +7,7 @@ import { CvContext } from "@/contexts/cvProvider";
 import { useForm } from "react-hook-form";
 import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { userDataSchema } from "@/validation/userData";
+import { attrsSchema, userDataSchema, userProfileDataSchema } from "@/validation/userData";
 import { createContext } from "react";
 import { init } from "@/components/view/editCV/editCV";
 
@@ -26,7 +26,7 @@ export default () => {
 	const { state } = useContext(CvContext);
 
 	const formTools = useForm<UserDataForm>({
-		resolver: zodResolver(userDataSchema),
+		resolver: zodResolver(userProfileDataSchema),
 		defaultValues: init,
 	});
 	useEffect(() => {

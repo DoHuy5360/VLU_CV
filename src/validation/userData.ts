@@ -144,3 +144,8 @@ export const userDataSchema = z.object({
 	template: z.string().min(1, messages.required),
 	attrs: attrsSchema,
 });
+export const userProfileDataSchema = z.object({
+	name: z.string(),
+	template: z.string(),
+	attrs: attrsSchema,
+});
