@@ -2,6 +2,7 @@
 import { connectToDatabase } from "@/libs/mongoosedb";
 import User_CV from "@/models/user_cv";
 import { ObjectId } from "mongodb";
+import { revalidateTag } from "next/cache";
 
 export async function deleteCV(id: string) {
 	await connectToDatabase();
@@ -9,10 +10,6 @@ export async function deleteCV(id: string) {
 		_id: new ObjectId(id),
 	});
 	if (acknowledged) {
-		console.log(id, "deleted");
-		return true;
-	} else {
-		console.log("Delete", id, "failure");
-		return false;
+		revalidateTag("/candidate/cv");
 	}
 }

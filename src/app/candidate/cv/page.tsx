@@ -27,28 +27,19 @@ export default async function CV() {
 			</div>
 			{cvs.length > 0 ? (
 				cvs.map((cv, index) => (
-					<div
-						key={cv._id}
-						id={cv._id.toString()}
-						className='grid grid-cols-[50px_1fr_150px_100px] items-center hover:bg-slate-100'
-					>
+					<div key={cv._id} id={cv._id.toString()} className='grid grid-cols-[50px_1fr_150px_100px] items-center hover:bg-slate-100'>
 						<>
 							<div className='p-2 text-center'>{index + 1}</div>
-							<Link
-								className='p-2 underline hover:text-blue-500 whitespace-nowrap'
-								href={`/candidate/cv/${cv._id}`}
-							>
+							<Link className='p-2 underline hover:text-blue-500 whitespace-nowrap' href={`/candidate/cv/${cv._id}`}>
 								{cv.name}
 							</Link>
-							<div className='p-2 whitespace-nowrap'>
-								{moment(cv.createdAt).format("DD-MM-YYYY / HH:mm")}
-							</div>
+							<div className='p-2 whitespace-nowrap'>{moment(cv.createdAt).format("DD-MM-YYYY / HH:mm")}</div>
 							<div className='flex gap-2 align-bottom'>
 								<div className='p-2 cursor-pointer hover:bg-slate-300'>
 									<RxEyeClosed />
 									{/* <RxEyeOpen /> */}
 								</div>
-								<DeleteCV id={cv._id.toString()} />
+								<DeleteCV id={cv._id.toString()} name={cv.name} />
 							</div>
 						</>
 					</div>
@@ -56,10 +47,7 @@ export default async function CV() {
 			) : (
 				<div className='grid place-items-center h-full'>
 					<div>Bạn chưa có CV</div>
-					<Link
-						className='px-2 py-1 rounded-sm bg-green-200 text-xs'
-						href='/template/cv'
-					>
+					<Link className='px-2 py-1 rounded-sm bg-green-200 text-xs' href='/template/cv'>
 						Tạo ngay
 					</Link>
 				</div>
