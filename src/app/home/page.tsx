@@ -35,7 +35,7 @@ export default function Home() {
 							<div key={i} className='flex flex-col rounded-sm border-[1px] overflow-hidden select-none'>
 								<img src={e.thumbnail} className='aspect-video' draggable={false} />
 								<div className='flex flex-col flex-grow justify-between p-1 gap-3'>
-									<div className='text-lg'>{e.title}</div>
+									<div className='text-sm'>{e.title}</div>
 									<div className='text-xs text-right'>{e.createAt}</div>
 								</div>
 							</div>
