@@ -6,8 +6,8 @@ import { authOptions } from "../api/auth/[...nextauth]/options";
 export default async function Layout({ children }: { children: JSX.Element }) {
 	const session = await getServerSession(authOptions);
 	return (
-		<div className='flex flex-col'>
-			<div>
+		<div className='flex flex-col h-dvh'>
+			<div className='border-b-[1px] border-slate-200 p-2'>
 				{session ? (
 					<div className='flex justify-between items-center w-full'>
 						{session?.user.role === "admin" && (
@@ -43,7 +43,7 @@ export default async function Layout({ children }: { children: JSX.Element }) {
 					</div>
 				)}
 			</div>
-			<div>{children}</div>
+			{children}
 		</div>
 	);
 }
