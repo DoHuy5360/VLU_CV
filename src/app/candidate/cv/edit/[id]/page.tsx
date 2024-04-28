@@ -1,11 +1,11 @@
 import PreHandler from "../_component/preHandler";
 import { connectToDatabase } from "@/libs/mongoosedb";
-import User_CV from "@/models/user_cv";
+import Candidate_CV from "@/models/Candidate_CV";
 import { ObjectId } from "mongodb";
 
 export default async ({ params }: { params: { id: string } }) => {
 	await connectToDatabase();
-	const cvFound = await User_CV.findOne({
+	const cvFound = await Candidate_CV.findOne({
 		_id: new ObjectId(params.id),
 	}).select("data");
 

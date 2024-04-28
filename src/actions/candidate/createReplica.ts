@@ -2,7 +2,7 @@
 
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { connectToDatabase } from "@/libs/mongoosedb";
-import User_CV from "@/models/user_cv";
+import Candidate_CV from "@/models/Candidate_CV";
 import { UserData } from "@/types/userData";
 import { getServerSession } from "next-auth";
 
@@ -17,7 +17,7 @@ export async function createReplica(cvName: string, userData: UserData) {
 		data: userData,
 	};
 	try {
-		const newUserCV = new User_CV(data);
+		const newUserCV = new Candidate_CV(data);
 		const userCvObject = await newUserCV.save();
 		return userCvObject === null ? false : true;
 	} catch (error) {

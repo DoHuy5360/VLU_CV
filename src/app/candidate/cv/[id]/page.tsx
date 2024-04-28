@@ -1,5 +1,5 @@
 import { Transfer } from "@/types/tranfer";
-import User_CV from "@/models/user_cv";
+import Candidate_CV from "@/models/Candidate_CV";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import DownloadPDF from "./_downloadPDF/page";
 import CvEditButton from "./_component/cvEditButton";
@@ -7,7 +7,7 @@ import CvEditProvider from "@/contexts/cvEditProvider";
 
 async function ViewCV({ params }: { params: { id: string } }) {
 	await connectToDatabase();
-	const cv = await User_CV.findOne({
+	const cv = await Candidate_CV.findOne({
 		_id: params.id,
 	});
 	return (

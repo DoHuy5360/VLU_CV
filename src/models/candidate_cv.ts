@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const userCvSchema = new Schema(
+const candidateCvSchema = new Schema(
 	{
 		userId: {
 			type: ObjectId,
@@ -29,6 +29,5 @@ const userCvSchema = new Schema(
 	}
 );
 
-const User_CV =
-	mongoose.models.user_cv || mongoose.model("user_cv", userCvSchema);
-export default User_CV;
+const Candidate_CV = mongoose.models.candidate_cvs || mongoose.model("candidate_cvs", candidateCvSchema);
+export default Candidate_CV;
