@@ -12,7 +12,7 @@ export default (data: Experience) => {
 								<div className='text-nowrap'>{w.time}</div>
 								<div className='font-bold'>{w.position}</div>
 								<div className='font-bold'>{w.name}</div>
-								<div>{w.tasks}</div>
+								<div className='whitespace-pre-line'>{w.tasks}</div>
 							</div>
 						);
 					})}

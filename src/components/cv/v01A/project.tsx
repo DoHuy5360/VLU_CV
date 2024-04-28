@@ -23,7 +23,7 @@ export default (data: Project) => {
 										<div className='w-2 h-2 rounded-full bg-black absolute top-0 left-0 translate-x-[-50%] translate-y-[-50%]'></div>
 										<div className='font-bold'>{e.position}</div>
 										<div>
-											{e.tasks}
+											<div className='whitespace-pre-line'>{e.tasks}</div>
 											<br />
 											{e.techs}
 										</div>

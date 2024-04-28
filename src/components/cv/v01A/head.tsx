@@ -22,13 +22,15 @@ export default (data: Head) => {
 						{data.email}
 					</div>
 				</div>
-				<div className='flex gap-2 items-center'>
-					<i className='fa-solid fa-location-dot'></i>
-					<div className='flex gap-1'>
-						<div>Address:</div>
-						{data.address}
+				{data.address.length > 0 && (
+					<div className='flex gap-2 items-center'>
+						<i className='fa-solid fa-location-dot'></i>
+						<div className='flex gap-1'>
+							<div>Address:</div>
+							{data.address}
+						</div>
 					</div>
-				</div>
+				)}
 			</div>
 		</div>
 	);

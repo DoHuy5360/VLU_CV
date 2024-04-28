@@ -15,7 +15,7 @@ export default (data: Activity) => {
 								<div>{e.time}</div>
 								<div className='font-bold'>{e.name}</div>
 
-								{e.tasks}
+								<div className='whitespace-pre-line'>{e.tasks}</div>
 							</div>
 						);
 					})}
