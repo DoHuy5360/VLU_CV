@@ -10,7 +10,7 @@ export default function Other({ Wrapper, Area }: { Wrapper: WrapperUI; Area: Inp
 	return (
 		<Wrapper.T04
 			data={{
-				label: "Other",
+				label: "Thông tin khác",
 			}}
 		>
 			<Area register={register("attrs.other.content")} errors={errors.attrs?.other?.content?.message} />

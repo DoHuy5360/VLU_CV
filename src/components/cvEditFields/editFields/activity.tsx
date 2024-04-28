@@ -17,7 +17,7 @@ export default function Activity({ Wrapper, Input, Area }: { Wrapper: WrapperUI;
 	return (
 		<Wrapper.T02
 			data={{
-				label: "Activity",
+				label: "Hoạt động",
 				prepend: () => {
 					actions.prepend(activityFormSample());
 				},
@@ -28,25 +28,25 @@ export default function Activity({ Wrapper, Input, Area }: { Wrapper: WrapperUI;
 					<Wrapper.T03 key={e.id}>
 						<FormAction deleteAction={actions.remove} index={i} />
 						<Input
-							label='Time'
+							label='Thời gian:'
 							index={i}
 							register={register(`attrs.activity.activities.${i}.time`)}
 							errors={errors.attrs?.activity?.activities?.[i]?.time?.message}
 						/>
 						<Input
-							label='Name:'
+							label='Tên:'
 							index={i}
 							register={register(`attrs.activity.activities.${i}.name`)}
 							errors={errors.attrs?.activity?.activities?.[i]?.name?.message}
 						/>
 						<Input
-							label='Position:'
+							label='Vai trò:'
 							index={i}
 							register={register(`attrs.activity.activities.${i}.position`)}
 							errors={errors.attrs?.activity?.activities?.[i]?.position?.message}
 						/>
 						<Area
-							label='Tasks:'
+							label='Đầu việc:'
 							index={i}
 							register={register(`attrs.activity.activities.${i}.tasks`)}
 							errors={errors.attrs?.activity?.activities?.[i]?.tasks?.message}

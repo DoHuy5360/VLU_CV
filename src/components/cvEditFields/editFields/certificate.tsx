@@ -17,7 +17,7 @@ export default function Certificate({ Wrapper, Input }: { Wrapper: WrapperUI; In
 	return (
 		<Wrapper.T02
 			data={{
-				label: "Certificate",
+				label: "Chứng chỉ",
 				prepend: () => {
 					actions.prepend(certificationFormSample());
 				},
@@ -28,19 +28,19 @@ export default function Certificate({ Wrapper, Input }: { Wrapper: WrapperUI; In
 					<Wrapper.T03 key={e.id}>
 						<FormAction deleteAction={actions.remove} index={i} />
 						<Input
-							label='Name:'
+							label='Tên:'
 							register={register(`attrs.certificate.certificates.${i}.name`)}
 							errors={errors.attrs?.certificate?.certificates?.[i]?.name?.message}
 							index={i}
 						/>
 						<Input
-							label='Time:'
+							label='Thời điểm:'
 							register={register(`attrs.certificate.certificates.${i}.time`)}
 							errors={errors.attrs?.certificate?.certificates?.[i]?.time?.message}
 							index={i}
 						/>
 						<Input
-							label='Where:'
+							label='Đơn vị cấp:'
 							register={register(`attrs.certificate.certificates.${i}.where`)}
 							errors={errors.attrs?.certificate?.certificates?.[i]?.where?.message}
 							index={i}

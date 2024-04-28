@@ -17,7 +17,7 @@ export default function Badge({ Wrapper, Input }: { Wrapper: WrapperUI; Input: I
 	return (
 		<Wrapper.T02
 			data={{
-				label: "Badge",
+				label: "Danh hiệu - Giải thưởng",
 				prepend: () => {
 					actions.prepend(badgeFormSample());
 				},
@@ -28,19 +28,19 @@ export default function Badge({ Wrapper, Input }: { Wrapper: WrapperUI; Input: I
 					<Wrapper.T03 key={e.id}>
 						<FormAction deleteAction={actions.remove} index={i} />
 						<Input
-							label='Name:'
+							label='Tên:'
 							register={register(`attrs.badge.achievements.${i}.name`)}
 							errors={errors.attrs?.badge?.achievements?.[i]?.name?.message}
 							index={i}
 						/>
 						<Input
-							label='Time:'
+							label='Thời gian:'
 							register={register(`attrs.badge.achievements.${i}.time`)}
 							errors={errors.attrs?.badge?.achievements?.[i]?.time?.message}
 							index={i}
 						/>
 						<Input
-							label='Where:'
+							label='Tại:'
 							register={register(`attrs.badge.achievements.${i}.where`)}
 							errors={errors.attrs?.badge?.achievements?.[i]?.where?.message}
 							index={i}

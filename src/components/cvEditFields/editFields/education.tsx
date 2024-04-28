@@ -17,7 +17,7 @@ export default function Education({ Wrapper, Input }: { Wrapper: WrapperUI; Inpu
 	return (
 		<Wrapper.T02
 			data={{
-				label: "Education",
+				label: "Học vấn",
 				prepend: () => {
 					actions.prepend(educationFormSample());
 				},
@@ -28,25 +28,25 @@ export default function Education({ Wrapper, Input }: { Wrapper: WrapperUI; Inpu
 					<Wrapper.T03 key={e.id}>
 						<FormAction deleteAction={actions.remove} index={i} />
 						<Input
-							label='Time:'
+							label='Thời gian:'
 							register={register(`attrs.education.classes.${i}.time`)}
 							errors={errors.attrs?.education?.classes?.[i]?.time?.message}
 							index={i}
 						/>
 						<Input
-							label='Major:'
+							label='Chuyên ngành:'
 							register={register(`attrs.education.classes.${i}.major`)}
 							errors={errors.attrs?.education?.classes?.[i]?.major?.message}
 							index={i}
 						/>
 						<Input
-							label='School:'
+							label='Trường:'
 							register={register(`attrs.education.classes.${i}.school`)}
 							errors={errors.attrs?.education?.classes?.[i]?.school?.message}
 							index={i}
 						/>
 						<Input
-							label='Status:'
+							label='Trạng thái:'
 							register={register(`attrs.education.classes.${i}.status`)}
 							errors={errors.attrs?.education?.classes?.[i]?.status?.message}
 							index={i}

@@ -23,7 +23,7 @@ export default function Personal({
 	return (
 		<Wrapper.T01
 			data={{
-				label: "Personal",
+				label: "Thông tin cơ bản",
 			}}
 		>
 			{hideField?.fileName ? <></> : <Input label='File name:' register={register("name")} errors={errors.name?.message} />}

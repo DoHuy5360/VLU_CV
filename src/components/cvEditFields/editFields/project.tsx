@@ -17,7 +17,7 @@ export default function Project({ Wrapper, Input, Area }: { Wrapper: WrapperUI; 
 	return (
 		<Wrapper.T02
 			data={{
-				label: "Project",
+				label: "Dự án",
 				prepend: () => {
 					actions.prepend(projectFormSample());
 				},
@@ -28,37 +28,37 @@ export default function Project({ Wrapper, Input, Area }: { Wrapper: WrapperUI; 
 					<Wrapper.T03 key={e.id}>
 						<FormAction deleteAction={actions.remove} index={i} />
 						<Input
-							label='Name:'
+							label='Tên:'
 							index={i}
 							register={register(`attrs.project.products.${i}.name`)}
 							errors={errors?.attrs?.project?.products?.[i]?.name?.message}
 						/>
 						<Input
-							label='Time:'
+							label='Thời gian:'
 							index={i}
 							register={register(`attrs.project.products.${i}.time`)}
 							errors={errors?.attrs?.project?.products?.[i]?.time?.message}
 						/>
 						<Input
-							label='Where:'
+							label='Tại:'
 							index={i}
 							register={register(`attrs.project.products.${i}.where`)}
 							errors={errors?.attrs?.project?.products?.[i]?.where?.message}
 						/>
 						<Input
-							label='Member:'
+							label='Thành viên:'
 							index={i}
 							register={register(`attrs.project.products.${i}.member`)}
 							errors={errors?.attrs?.project?.products?.[i]?.member?.message}
 						/>
 						<Input
-							label='Position:'
+							label='Vai trò:'
 							index={i}
 							register={register(`attrs.project.products.${i}.position`)}
 							errors={errors?.attrs?.project?.products?.[i]?.position?.message}
 						/>
 						<Area
-							label='Tasks:'
+							label='Đầu việc:'
 							index={i}
 							register={register(`attrs.project.products.${i}.tasks`)}
 							errors={errors?.attrs?.project?.products?.[i]?.tasks?.message}

@@ -10,7 +10,7 @@ export default function Goal({ Wrapper, Area }: { Wrapper: WrapperUI; Area: Inpu
 	return (
 		<Wrapper.T04
 			data={{
-				label: "Goal",
+				label: "Mục tiêu",
 			}}
 		>
 			<Area register={register("attrs.goal.content")} errors={errors.attrs?.goal?.content?.message} />

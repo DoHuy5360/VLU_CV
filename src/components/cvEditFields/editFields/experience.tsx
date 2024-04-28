@@ -17,7 +17,7 @@ export default function Experience({ Wrapper, Input, Area }: { Wrapper: WrapperU
 	return (
 		<Wrapper.T02
 			data={{
-				label: "Experience",
+				label: "Kinh nghiệm",
 				prepend: () => {
 					actions.prepend(experienceFormSample());
 				},
@@ -28,26 +28,26 @@ export default function Experience({ Wrapper, Input, Area }: { Wrapper: WrapperU
 					<Wrapper.T03 key={e.id}>
 						<FormAction deleteAction={actions.remove} index={i} />
 						<Input
-							label='Name:'
+							label='Tên:'
 							errors={errors.attrs?.experience?.works?.[i]?.name?.message}
 							register={register(`attrs.experience.works.${i}.name`)}
 							index={i}
 						/>
 
 						<Input
-							label='Time:'
+							label='Thời gian:'
 							register={register(`attrs.experience.works.${i}.time`)}
 							errors={errors.attrs?.experience?.works?.[i]?.time?.message}
 							index={i}
 						/>
 						<Input
-							label='Position:'
+							label='Vị trí:'
 							register={register(`attrs.experience.works.${i}.position`)}
 							errors={errors.attrs?.experience?.works?.[i]?.position?.message}
 							index={i}
 						/>
 						<Area
-							label='Tasks:'
+							label='Đầu việc:'
 							register={register(`attrs.experience.works.${i}.tasks`)}
 							errors={errors.attrs?.experience?.works?.[i]?.tasks?.message}
 							index={i}

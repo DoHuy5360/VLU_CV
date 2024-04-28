@@ -17,7 +17,7 @@ export default function Skill({ Wrapper, Input, Area }: { Wrapper: WrapperUI; In
 	return (
 		<Wrapper.T02
 			data={{
-				label: "Skill",
+				label: "Kỹ năng",
 				prepend: () => {
 					actions.prepend(skillFormSample());
 				},
@@ -28,13 +28,13 @@ export default function Skill({ Wrapper, Input, Area }: { Wrapper: WrapperUI; In
 					<Wrapper.T03 key={e.id}>
 						<FormAction deleteAction={actions.remove} index={i} />
 						<Input
-							label='Name:'
+							label='Tên:'
 							index={i}
 							register={register(`attrs.skill.skills.${i}.name`)}
 							errors={errors.attrs?.skill?.skills?.[i]?.name?.message}
 						/>
 						<Area
-							label='Status:'
+							label='Mô tả:'
 							index={i}
 							register={register(`attrs.skill.skills.${i}.status`)}
 							errors={errors.attrs?.skill?.skills?.[i]?.status?.message}

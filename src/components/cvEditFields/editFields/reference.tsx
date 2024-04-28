@@ -17,7 +17,7 @@ export default function Reference({ Wrapper, Input }: { Wrapper: WrapperUI; Inpu
 	return (
 		<Wrapper.T02
 			data={{
-				label: "Reference",
+				label: "Tham chiếu",
 				prepend: () => {
 					actions.prepend(referenceFormSample());
 				},
@@ -28,19 +28,19 @@ export default function Reference({ Wrapper, Input }: { Wrapper: WrapperUI; Inpu
 					<Wrapper.T03 key={e.id}>
 						<FormAction deleteAction={actions.remove} index={i} />
 						<Input
-							label='Name:'
+							label='Tên:'
 							register={register(`attrs.reference.references.${i}.name`)}
 							errors={errors.attrs?.reference?.references?.[i]?.name?.message}
 							index={i}
 						/>
 						<Input
-							label='Where:'
+							label='Tại:'
 							register={register(`attrs.reference.references.${i}.where`)}
 							errors={errors.attrs?.reference?.references?.[i]?.where?.message}
 							index={i}
 						/>
 						<Input
-							label='Phone:'
+							label='Liên lạc:'
 							register={register(`attrs.reference.references.${i}.phone`)}
 							errors={errors.attrs?.reference?.references?.[i]?.phone?.message}
 							index={i}

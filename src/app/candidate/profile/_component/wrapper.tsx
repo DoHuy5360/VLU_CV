@@ -1,5 +1,4 @@
 import { WrapperP, WrapperUI } from "@/components/cvEditFields/editFields/type";
-import FormAction from "./formAction";
 
 export const Wrapper: WrapperUI = {
 	T01: ({ children, data }: WrapperP<JSX.Element[]>) => {
@@ -17,13 +16,7 @@ export const Wrapper: WrapperUI = {
 	},
 
 	T03: ({ children, data }: WrapperP<JSX.Element[]>) => {
-		return (
-			<div className='flex flex-col gap-1'>
-				<div className='flex flex-col gap-1'>
-					<div className='border-[1px] border-slate-200 p-2 rounded-sm'>{children}</div>
-				</div>
-			</div>
-		);
+		return <div className='flex flex-col gap-1 border-[1px] border-slate-200 p-2 rounded-sm'>{children}</div>;
 	},
 	T04: ({ children, data }: WrapperP<JSX.Element>) => {
 		return <div>{children}</div>;

@@ -17,7 +17,7 @@ export default function Hobby({ Wrapper, Input }: { Wrapper: WrapperUI; Input: I
 	return (
 		<Wrapper.T02
 			data={{
-				label: "Hobby",
+				label: "Sở thích",
 				prepend: () => {
 					actions.prepend(hobbyFormSample());
 				},
@@ -28,13 +28,13 @@ export default function Hobby({ Wrapper, Input }: { Wrapper: WrapperUI; Input: I
 					<Wrapper.T03 key={e.id}>
 						<FormAction deleteAction={actions.remove} index={i} />
 						<Input
-							label='Name:'
+							label='Tên:'
 							register={register(`attrs.hobby.hobbies.${i}.name`)}
 							errors={errors.attrs?.hobby?.hobbies?.[i]?.name?.message}
 							index={i}
 						/>
 						<Input
-							label='Status:'
+							label='Mô tả:'
 							register={register(`attrs.hobby.hobbies.${i}.status`)}
 							errors={errors.attrs?.hobby?.hobbies?.[i]?.status?.message}
 							index={i}
