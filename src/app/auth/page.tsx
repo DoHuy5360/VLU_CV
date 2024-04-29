@@ -58,7 +58,12 @@ export default function SignIn() {
 					<div className='flex-grow p-16 grid place-items-center bg-white'>
 						<div className='flex flex-col gap-4 p-20 border-[1px] border-slate-200 w-fit items-center'>
 							{providers["azure-ad"].id && (
-								<SignInButton name='Microsoft' handleClick={() => signIn("azure-ad")} logoSrc='/image/logo/microsoft_logo.webp' />
+								<SignInButton
+									name='Microsoft'
+									handleClick={() => signIn("azure-ad")}
+									logoSrc='/image/logo/microsoft_logo.webp'
+									helper='Chỉ hỗ trợ đối với tài khoản ứng viên'
+								/>
 							)}
 							<div>- Hoặc -</div>
 							{providers.credentials.id && <SignInWithVLJ />}
