@@ -6,7 +6,7 @@ import EditCvView from "@/components/view/editCV/editCV";
 import { createReplica } from "@/actions/candidate/createReplica";
 import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
 
-function EditTemplate({ params }: { params: { name: string } }) {
+export default ({ params }: { params: { name: string } }) => {
 	const { state } = useContext(CvContext);
 
 	if (state === null) return <div>Loading...</div>;
@@ -17,6 +17,4 @@ function EditTemplate({ params }: { params: { name: string } }) {
 	};
 
 	return <EditCvView cvObjectData={state} cvTemplateName={params.name} onSubmit={handleSubmit} />;
-}
-
-export default EditTemplate;
+};

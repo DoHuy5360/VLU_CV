@@ -8,7 +8,7 @@ type Template = {
 	thumbnail: string;
 };
 
-async function allCV() {
+export default async () => {
 	await connectToDatabase();
 	const data = await CV.find({});
 	return (
@@ -27,6 +27,4 @@ async function allCV() {
 			})}
 		</div>
 	);
-}
-
-export default allCV;
+};
