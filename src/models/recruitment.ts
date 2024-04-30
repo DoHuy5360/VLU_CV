@@ -1,73 +1,101 @@
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
-const Schema = mongoose.Schema;
+export type RecruimentSchemaType = {
+	_id?: ObjectId;
+	recruiterId: ObjectId;
+	title: string;
+	position: string;
+	description: string;
+	responsibility: string;
+	requirement: string;
+	benefit: string;
+	address: string;
+	experience: Object;
+	salary: string;
+	isHide: boolean;
+	isClose: boolean;
+	startAt: string;
+	closeAt: string;
+};
 
-const recruitmentSchema = new Schema({
-	recruiterId: {
-		type: ObjectId,
-		ref: "recruiterSchema",
-		require: true,
+const experienceSchema = new mongoose.Schema(
+	{
+		title: { type: String, required: true },
+		year: { type: Number, required: true },
 	},
-	vector: {
-		type: Array<Number>,
-		require: true,
+	{ _id: false }
+);
+const recruitmentSchema = new mongoose.Schema(
+	{
+		recruiterId: {
+			type: ObjectId,
+			ref: "recruiterSchema",
+			require: true,
+		},
+		title: {
+			type: String,
+			require: true,
+		},
+		position: {
+			type: String,
+			require: true,
+		},
+		description: {
+			type: String,
+			require: true,
+		},
+		responsibility: {
+			type: String,
+			require: true,
+		},
+		requirement: {
+			type: String,
+			require: true,
+		},
+		benefit: {
+			type: String,
+			require: true,
+		},
+		address: {
+			type: Object,
+			require: true,
+		},
+		experience: {
+			type: experienceSchema,
+			require: true,
+		},
+		schedule: {
+			type: String,
+			require: true,
+		},
+		salary: {
+			type: String,
+			require: true,
+		},
+		isHide: {
+			type: Boolean,
+			require: true,
+			default: false,
+		},
+		isClose: {
+			type: Boolean,
+			require: true,
+			default: false,
+		},
+		startAt: {
+			type: Date,
+			require: true,
+		},
+		closeAt: {
+			type: Date,
+			require: true,
+		},
 	},
-	title: {
-		type: String,
-		require: true,
-	},
-	position: {
-		type: String,
-		require: true,
-	},
-	description: {
-		type: String,
-		require: true,
-	},
-	responsibilities: {
-		type: String,
-		require: true,
-	},
-	requires: {
-		type: String,
-		require: true,
-	},
-	benefit: {
-		type: String,
-		require: true,
-	},
-	address: {
-		type: Object,
-		require: true,
-	},
-	yearExp: {
-		type: String,
-		require: true,
-	},
-	salary: {
-		type: String,
-		require: true,
-	},
-	isHide: {
-		type: Boolean,
-		require: true,
-		default: false,
-	},
-	startAt: {
-		type: Date,
-		require: true,
-	},
-	closeAt: {
-		type: Date,
-		require: true,
-	},
-	isClose: {
-		type: Boolean,
-		require: true,
-		default: false,
-	},
-});
+	{
+		timestamps: true,
+	}
+);
 
 const Recruitment = mongoose.models.recruitments || mongoose.model("recruitments", recruitmentSchema);
 export default Recruitment;

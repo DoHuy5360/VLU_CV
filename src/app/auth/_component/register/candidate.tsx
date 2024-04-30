@@ -20,6 +20,7 @@ const candidateSchema = z
 	.refine((schema) => schema.password === schema.rePassword, { message: "Mật khẩu phải khớp.", path: ["rePassword"] });
 
 export type CandidateDataForm = z.infer<typeof candidateSchema>;
+
 export default function CandidateRegisterAccountForm() {
 	const formTools = useForm<CandidateDataForm>({
 		resolver: zodResolver(candidateSchema),

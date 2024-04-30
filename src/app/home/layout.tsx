@@ -16,9 +16,14 @@ export default async function Layout({ children }: { children: JSX.Element }) {
 							</Link>
 						)}
 						{session?.user.role === "recruiter" && (
-							<Link href='/recruiter' className='text-xs underline'>
-								Trang tuyển dụng
-							</Link>
+							<div className='flex gap-2'>
+								<Link href='/recruiter' className='text-xs underline'>
+									Đăng tuyển
+								</Link>
+								<Link href='/recruiter/recruitment' className='text-xs underline'>
+									Đơn tuyển dụng của tôi
+								</Link>
+							</div>
 						)}
 						{session?.user.role === "candidate" && (
 							<Link href='/candidate' className='text-xs underline'>
