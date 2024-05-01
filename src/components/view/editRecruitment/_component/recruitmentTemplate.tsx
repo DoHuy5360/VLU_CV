@@ -2,7 +2,7 @@ import { RecruitmentDataForm } from "../editRecruitment";
 
 export default function RecruitmentTemplate({ data }: { data: RecruitmentDataForm }) {
 	return (
-		<div className='flex-grow h-full overflow-y-scroll'>
+		<div className='h-[inherit] overflow-y-scroll w-full pb-20'>
 			<div className='grid grid-cols-[150px_1fr] gap-2 border-b-[1px] p-2'>
 				<div className='justify-self-end text-right font-bold'>Tiêu đề:</div>
 				<div className='whitespace-pre-line'>{data.title}</div>

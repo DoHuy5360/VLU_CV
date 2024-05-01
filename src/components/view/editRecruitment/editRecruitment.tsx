@@ -80,7 +80,17 @@ const yearExps = [
 ];
 
 export const RecruitmentFormContext = createContext<RecruitmentDataForm | null>(null);
-export default ({ recruitmentObjectData, handleSubmit }: { recruitmentObjectData: RecruitmentDataForm; handleSubmit: SubmitHandler<RecruitmentDataForm> }) => {
+export default ({
+	recruitmentObjectData,
+	handleSubmit,
+	hiddenField,
+}: {
+	recruitmentObjectData: RecruitmentDataForm;
+	handleSubmit: SubmitHandler<RecruitmentDataForm>;
+	hiddenField?: {
+		startAt: boolean;
+	};
+}) => {
 	const formTools = useForm<RecruitmentDataForm>({
 		resolver: zodResolver(recruitmentSchema),
 		defaultValues: recruitmentObjectData,
@@ -93,88 +103,88 @@ export default ({ recruitmentObjectData, handleSubmit }: { recruitmentObjectData
 	const [yearExpRequired, setYearExpRequired] = useState("Không yêu cầu kinh nghiệm");
 	const isHide = formTools.getValues("isHide");
 	return (
-		<div className='flex h-dvh'>
+		<div className='flex flex-grow h-[inherit] overflow-hidden'>
 			<form
 				action={() => {
 					formTools.handleSubmit(handleSubmit)();
 				}}
-				className='w-1/2 flex flex-col gap-2 p-2 rounded-sm border-[1px] border-slate-200'
+				className='w-2/3 h-[inherit] overflow-y-scroll flex flex-col gap-2 px-2 pt-2 pb-20 rounded-sm border-r-[1px] border-slate-200'
 			>
 				<div className='flex flex-col gap-2'>
-					<div className='flex gap-2 align-top text-sm w-full'>
-						<label className='whitespace-nowrap' htmlFor='title'>
+					<div className='flex flex-col align-top text-sm w-full'>
+						<label className='font-bold whitespace-nowrap' htmlFor='title'>
 							Tiêu đề
 						</label>
 						<div className='flex flex-col gap-1 w-full'>
-							<textarea {...formTools.register("title")} className='h-28 border-[1px] resize-none w-full' id='description' />
+							<input {...formTools.register("title")} className='p-1 border-[1px] w-full' type='text' id='title' />
 							<div className='text-xs text-red-500'>{formTools.formState.errors.title?.message}</div>
 						</div>
 					</div>
-					<div className='flex gap-2 align-top text-sm w-full'>
-						<label className='whitespace-nowrap' htmlFor='position'>
+					<div className='flex flex-col align-top text-sm w-full'>
+						<label className='font-bold whitespace-nowrap' htmlFor='position'>
 							Vị trí tuyển
 						</label>
 						<div className='flex flex-col gap-1 w-full'>
-							<input {...formTools.register("position")} className='border-[1px] w-full' type='text' id='position' />
+							<input {...formTools.register("position")} className='p-1 border-[1px] w-full' type='text' id='position' />
 							<div className='text-xs text-red-500'>{formTools.formState.errors.position?.message}</div>
 						</div>
 					</div>
-					<div className='flex gap-2 align-top text-sm w-full'>
-						<label className='whitespace-nowrap' htmlFor='description'>
+					<div className='flex flex-col align-top text-sm w-full'>
+						<label className='font-bold whitespace-nowrap' htmlFor='description'>
 							Mô tả công việc
 						</label>
 						<div className='flex flex-col gap-1 w-full'>
-							<textarea {...formTools.register("description")} className='h-28 border-[1px] resize-none w-full' id='description' />
+							<textarea {...formTools.register("description")} className='h-36 p-1 border-[1px] resize-none w-full' id='description' />
 							<div className='text-xs text-red-500'>{formTools.formState.errors.description?.message}</div>
 						</div>
 					</div>
-					<div className='flex gap-2 align-top text-sm w-full'>
-						<label className='whitespace-nowrap' htmlFor='responsibility'>
+					<div className='flex flex-col align-top text-sm w-full'>
+						<label className='font-bold whitespace-nowrap' htmlFor='responsibility'>
 							Trách nhiệm
 						</label>
 						<div className='flex flex-col gap-1 w-full'>
-							<textarea {...formTools.register("responsibility")} className='h-28 border-[1px] resize-none w-full' id='responsibility' />
+							<textarea {...formTools.register("responsibility")} className='h-36 p-1 border-[1px] resize-none w-full' id='responsibility' />
 							<div className='text-xs text-red-500'>{formTools.formState.errors.responsibility?.message}</div>
 						</div>
 					</div>
-					<div className='flex gap-2 align-top text-sm w-full'>
-						<label className='whitespace-nowrap' htmlFor='requirement'>
+					<div className='flex flex-col align-top text-sm w-full'>
+						<label className='font-bold whitespace-nowrap' htmlFor='requirement'>
 							Yêu cầu
 						</label>
 						<div className='flex flex-col gap-1 w-full'>
-							<textarea {...formTools.register("requirement")} className='h-28 border-[1px] resize-none w-full' id='requirement' />
+							<textarea {...formTools.register("requirement")} className='h-36 p-1 border-[1px] resize-none w-full' id='requirement' />
 							<div className='text-xs text-red-500'>{formTools.formState.errors.requirement?.message}</div>
 						</div>
 					</div>
-					<div className='flex gap-2 align-top text-sm w-full'>
-						<label className='whitespace-nowrap' htmlFor='benefit'>
+					<div className='flex flex-col align-top text-sm w-full'>
+						<label className='font-bold whitespace-nowrap' htmlFor='benefit'>
 							Phúc lợi
 						</label>
 						<div className='flex flex-col gap-1 w-full'>
-							<textarea {...formTools.register("benefit")} className='h-28 border-[1px] resize-none w-full' id='benefit' />
+							<textarea {...formTools.register("benefit")} className='h-36 p-1 border-[1px] resize-none w-full' id='benefit' />
 							<div className='text-xs text-red-500'>{formTools.formState.errors.benefit?.message}</div>
 						</div>
 					</div>
-					<div className='flex gap-2 align-top text-sm w-full'>
-						<label className='whitespace-nowrap' htmlFor='schedule'>
+					<div className='flex flex-col align-top text-sm w-full'>
+						<label className='font-bold whitespace-nowrap' htmlFor='schedule'>
 							Lịch làm việc
 						</label>
 						<div className='flex flex-col gap-1 w-full'>
-							<input {...formTools.register("schedule")} className='border-[1px] w-full' type='text' id='schedule' />
+							<input {...formTools.register("schedule")} className='p-1 border-[1px] w-full' type='text' id='schedule' />
 							<div className='text-xs text-red-500'>{formTools.formState.errors.schedule?.message}</div>
 						</div>
 					</div>
-					<div className='flex gap-2 align-top text-sm w-full'>
-						<label className='whitespace-nowrap' htmlFor='address'>
+					<div className='flex flex-col align-top text-sm w-full'>
+						<label className='font-bold whitespace-nowrap' htmlFor='address'>
 							Địa chỉ
 						</label>
 						<div className='flex flex-col gap-1 w-full'>
-							<textarea {...formTools.register("address")} className='h-28 border-[1px] resize-none w-full' id='address' />
+							<textarea {...formTools.register("address")} className='h-36 p-1 border-[1px] resize-none w-full' id='address' />
 							<div className='text-xs text-red-500'>{formTools.formState.errors.address?.message}</div>
 						</div>
 					</div>
-					<div className='flex gap-2 align-top text-sm w-full'>
-						<label className='whitespace-nowrap py-1' htmlFor='experience'>
+					<div className='flex flex-col align-top text-sm w-full'>
+						<label className='font-bold whitespace-nowrap' htmlFor='experience'>
 							Kinh nghiệm
 						</label>
 						<div className='flex flex-col'>
@@ -210,39 +220,41 @@ export default ({ recruitmentObjectData, handleSubmit }: { recruitmentObjectData
 							<div className='text-xs text-red-500'>{formTools.formState.errors.experience?.message}</div>
 						</div>
 					</div>
-					<div className='flex gap-2 align-top text-sm w-full'>
-						<label className='whitespace-nowrap' htmlFor='salary'>
+					<div className='flex flex-col align-top text-sm w-full'>
+						<label className='font-bold whitespace-nowrap' htmlFor='salary'>
 							Mức lương
 						</label>
 						<div className='flex flex-col gap-1 w-full'>
-							<input {...formTools.register("salary")} className='border-[1px] w-full' type='text' id='salary' />
+							<input {...formTools.register("salary")} className='border-[1px] p-1 w-full' type='text' id='salary' />
 							<div className='text-xs text-red-500'>{formTools.formState.errors.salary?.message}</div>
 						</div>
 					</div>
-					<div className='flex gap-2 align-top text-sm w-full'>
-						<label className='whitespace-nowrap' htmlFor='startAt'>
-							Đăng tuyển lúc
-						</label>
-						<div className='flex flex-col gap-1 w-full'>
-							<input
-								{...formTools.register("startAt")}
-								className='border-[1px]'
-								type='date'
-								id='startAt'
-								min={getCurrentDate()}
-								onChange={(e) => {
-									setCloseDateRange({
-										minCloseDate: addDate(e.target.value, 3),
-										maxCloseDate: addDate(e.target.value, 28 - 3),
-									});
-									formTools.setValue("closeAt", "");
-								}}
-							/>
-							<div className='text-xs text-red-500'>{formTools.formState.errors.startAt?.message}</div>
+					{!hiddenField?.startAt && (
+						<div className='flex flex-col align-top text-sm w-full'>
+							<label className='font-bold whitespace-nowrap' htmlFor='startAt'>
+								Đăng tuyển lúc
+							</label>
+							<div className='flex flex-col gap-1 w-full'>
+								<input
+									{...formTools.register("startAt")}
+									className='border-[1px]'
+									type='date'
+									id='startAt'
+									min={formTools.getValues("startAt")}
+									onChange={(e) => {
+										setCloseDateRange({
+											minCloseDate: addDate(e.target.value, 3),
+											maxCloseDate: addDate(e.target.value, 28 - 3),
+										});
+										formTools.setValue("closeAt", "");
+									}}
+								/>
+								<div className='text-xs text-red-500'>{formTools.formState.errors.startAt?.message}</div>
+							</div>
 						</div>
-					</div>
-					<div className='flex gap-2 align-top text-sm w-full'>
-						<label className='whitespace-nowrap' htmlFor='closeAt'>
+					)}
+					<div className='flex flex-col align-top text-sm w-full'>
+						<label className='font-bold whitespace-nowrap' htmlFor='closeAt'>
 							Hết hạn lúc
 						</label>
 						<div className='flex flex-col gap-1 w-full'>

@@ -1,10 +1,11 @@
 "use server";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
-import { RecruitmentDataForm } from "@/app/recruiter/page";
+import { RecruitmentDataForm } from "@/components/view/editRecruitment/editRecruitment";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import Recruitment, { RecruimentSchemaType } from "@/models/recruitment";
 import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
+import { revalidateTag } from "next/cache";
 
 export const createRecruitment = async (data: RecruitmentDataForm) => {
 	const session = await getServerSession(authOptions);
@@ -15,6 +16,7 @@ export const createRecruitment = async (data: RecruitmentDataForm) => {
 	if (objectRecruitment === null) {
 		return false;
 	} else {
+		revalidateTag("/recruiter/recruitment");
 		return true;
 	}
 };
