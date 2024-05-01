@@ -3,6 +3,7 @@ import { RecruitmentDataForm } from "@/components/view/editRecruitment/editRecru
 import { connectToDatabase } from "@/libs/mongoosedb";
 import Recruitment from "@/models/recruitment";
 import { ObjectId } from "mongodb";
+import { revalidateTag } from "next/cache";
 
 export const updateRecruitment = async (id: string, data: RecruitmentDataForm) => {
 	await connectToDatabase();
@@ -27,5 +28,6 @@ export const updateRecruitment = async (id: string, data: RecruitmentDataForm) =
 			},
 		}
 	);
+	if (acknowledged) revalidateTag(`/recruiter/recruitment/${id}`);
 	return acknowledged;
 };
