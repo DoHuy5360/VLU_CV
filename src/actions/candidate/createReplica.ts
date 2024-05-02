@@ -2,9 +2,10 @@
 
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { connectToDatabase } from "@/libs/mongoosedb";
-import Candidate_CV from "@/models/Candidate_CV";
+import Candidate_CV from "@/models/candidate_cv";
 import { UserData } from "@/types/userData";
 import { getServerSession } from "next-auth";
+import { revalidateTag } from "next/cache";
 
 export async function createReplica(cvName: string, userData: UserData) {
 	await connectToDatabase();
@@ -19,7 +20,12 @@ export async function createReplica(cvName: string, userData: UserData) {
 	try {
 		const newUserCV = new Candidate_CV(data);
 		const userCvObject = await newUserCV.save();
-		return userCvObject === null ? false : true;
+		if (userCvObject === null) {
+			return false;
+		} else {
+			revalidateTag("/candidate/cv");
+			return true;
+		}
 	} catch (error) {
 		console.log(error);
 		return false;

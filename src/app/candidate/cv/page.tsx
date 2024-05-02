@@ -2,7 +2,7 @@ import moment from "moment";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import HomeLayout from "@/components/layouts/app/home";
 import { connectToDatabase } from "@/libs/mongoosedb";
-import Candidate_CV from "@/models/Candidate_CV";
+import Candidate_CV from "@/models/candidate_cv";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { BiTrash } from "react-icons/bi";
