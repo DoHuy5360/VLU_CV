@@ -1,8 +1,6 @@
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
-const Schema = mongoose.Schema;
-
 export type RecruiterModelType = {
 	accountId: ObjectId;
 	name: string;
@@ -11,7 +9,7 @@ export type RecruiterModelType = {
 	position: string;
 };
 
-const recruiterSchema = new Schema(
+const recruiterSchema = new mongoose.Schema(
 	{
 		accountId: {
 			type: ObjectId,

@@ -30,7 +30,12 @@ const recruitmentSchema = new mongoose.Schema(
 	{
 		recruiterId: {
 			type: ObjectId,
-			ref: "recruiterSchema",
+			ref: "recruiters",
+			require: true,
+		},
+		companyId: {
+			type: ObjectId,
+			ref: "companies",
 			require: true,
 		},
 		title: {
