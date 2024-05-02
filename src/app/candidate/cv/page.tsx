@@ -16,7 +16,9 @@ export default async function CV() {
 
 	const cvs = await Candidate_CV.find({
 		userId: session?.user._id,
-	}).select("_id name createdAt");
+	})
+		.sort({ updatedAt: -1 })
+		.select("_id name createdAt");
 	return (
 		<div className='text-sm flex flex-col h-full'>
 			<div className='grid grid-cols-[50px_1fr_150px_100px] bg-orange-400 text-white'>

@@ -13,7 +13,9 @@ export default async () => {
 	await connectToDatabase();
 	const arrRecruitment = await Recruitment.find({
 		recruiterId: new ObjectId(session?.user._id as string),
-	}).select("_id title createAt");
+	})
+		.sort({ updatedAt: -1 })
+		.select("_id title createAt");
 	return (
 		<div className='flex flex-col'>
 			<div className='grid grid-cols-[30px_1fr_1fr_1fr] bg-orange-300 px-2 items-center whitespace-nowrap'>
