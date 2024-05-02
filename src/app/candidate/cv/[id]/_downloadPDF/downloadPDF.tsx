@@ -3,11 +3,11 @@
 import { useCallback, useRef, useState } from "react";
 import { FiFile } from "react-icons/fi";
 const apiUrl = "https://api.tailwindstream.io";
-export default function DownloadPDF() {
+export default function DownloadPDF({ fileName }: { fileName: string }) {
 	const [isFetch, setFetch] = useState(false);
 	const downloadPdf = useCallback(async () => {
 		console.log("fetch");
-		// setFetch(true);
+		setFetch(true);
 		const response = await fetch(`${apiUrl}/request`, {
 			method: "POST",
 			body: JSON.stringify({
@@ -59,21 +59,16 @@ export default function DownloadPDF() {
 		const url = window.URL.createObjectURL(blob);
 		const a = document.createElement("a");
 		a.href = url;
-		a.download = "generated.pdf";
+		a.download = `${fileName}.pdf`;
 		document.body.appendChild(a);
 		a.click();
 		a.remove();
-		// setFetch(false);
+		setFetch(false);
 	}, []);
 	return (
-		<button
-			disabled={isFetch}
-			onClick={downloadPdf}
-			className='flex gap-2 items-center p-2 border-l-[1px] border-slate-200 bg-orange-600 rounded-sm text-white'
-			type='button'
-		>
+		<button disabled={isFetch} onClick={downloadPdf} className='flex gap-2 items-center p-2 border-l-[1px] border-slate-200 bg-orange-600 rounded-sm text-white' type='button'>
 			<FiFile />
-			<div>Tải PDF</div>
+			<div>{isFetch ? "Đang xử lý..." : "Tải PDF"}</div>
 		</button>
 	);
 }

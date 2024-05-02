@@ -1,9 +1,8 @@
 import { Transfer } from "@/types/tranfer";
-import Candidate_CV from "@/models/Candidate_CV";
+import Candidate_CV from "@/models/candidate_cv";
 import { connectToDatabase } from "@/libs/mongoosedb";
-import DownloadPDF from "./_downloadPDF/page";
+import DownloadPDF from "./_downloadPDF/downloadPDF";
 import CvEditButton from "./_component/cvEditButton";
-import CvEditProvider from "@/contexts/cvEditProvider";
 
 async function ViewCV({ params }: { params: { id: string } }) {
 	await connectToDatabase();
@@ -19,7 +18,7 @@ async function ViewCV({ params }: { params: { id: string } }) {
 			</div>
 			<div className='flex flex-col gap-2 p-2 text-sm select-none whitespace-nowrap'>
 				<CvEditButton id={params.id} />
-				<DownloadPDF />
+				<DownloadPDF fileName={cv.name} />
 			</div>
 		</div>
 	);
