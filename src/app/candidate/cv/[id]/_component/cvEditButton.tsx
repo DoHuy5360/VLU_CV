@@ -1,19 +1,20 @@
 "use client";
-import { useRouter } from "next/navigation";
+import useLoading from "@/hooks/useLoading";
+import Link from "next/link";
 import { BiEdit } from "react-icons/bi";
 
 export default function CvEditButton({ id }: { id: string }) {
-	const router = useRouter();
+	const { isLoading, setLoading, LoadingElement } = useLoading();
 	return (
-		<button
+		<Link
+			href={`/candidate/cv/edit/${id}`}
 			onClick={() => {
-				router.push(`/candidate/cv/edit/${id}`);
+				setLoading(true);
 			}}
 			className='flex gap-1 justify-between items-center p-2 rounded-sm bg-yellow-400'
-			type='button'
 		>
 			<BiEdit />
-			<div>Chỉnh sửa</div>
-		</button>
+			{isLoading ? <LoadingElement /> : <div>Chỉnh sửa</div>}
+		</Link>
 	);
 }
