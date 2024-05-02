@@ -50,7 +50,7 @@ export default function EditCvForm({ onSubmit }: { onSubmit: SubmitHandler<UserD
 				<Other Wrapper={Wrapper} Area={editArea} />
 			</div>
 			<button className='w-fit px-4 py-2 ml-auto bg-green-300 rounded-lg text-xs' type='submit'>
-				Save
+				Lưu
 			</button>
 		</form>
 	);
