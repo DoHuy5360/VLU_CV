@@ -7,7 +7,6 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { createContext } from "react";
 import CvSuggestion from "./_component/cvSuggestion";
 import CvRenderer from "./_component/cvRenderer";
-import { useEffect } from "react";
 
 export const init = getUserDataCV({});
 
@@ -16,13 +15,8 @@ export const FormValuesContext = createContext<UserDataForm>(init);
 export default function EditCvView({ cvObjectData, cvTemplateName, onSubmit }: { cvObjectData: UserDataForm; cvTemplateName: string; onSubmit: SubmitHandler<UserDataForm> }) {
 	const formTools = useForm<UserDataForm>({
 		resolver: zodResolver(userDataSchema),
-		defaultValues: init,
+		defaultValues: cvObjectData,
 	});
-	useEffect(() => {
-		if (cvObjectData !== null) {
-			formTools.reset(cvObjectData);
-		}
-	}, [cvObjectData]);
 
 	return (
 		<div className='flex h-full'>

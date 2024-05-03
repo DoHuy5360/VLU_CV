@@ -1,5 +1,5 @@
 function Loading() {
-	return <div>Loading...</div>;
+	return <div>Loading 1...</div>;
 }
 
 export default Loading;

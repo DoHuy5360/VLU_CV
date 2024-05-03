@@ -1,6 +1,6 @@
 import PreHandler from "../_component/preHandler";
 import { connectToDatabase } from "@/libs/mongoosedb";
-import Candidate_CV from "@/models/Candidate_CV";
+import Candidate_CV from "@/models/candidate_cv";
 import { ObjectId } from "mongodb";
 
 export default async ({ params }: { params: { id: string } }) => {

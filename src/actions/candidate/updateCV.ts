@@ -1,7 +1,7 @@
 "use server";
 import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
 import { connectToDatabase } from "@/libs/mongoosedb";
-import Candidate_CV from "@/models/Candidate_CV";
+import Candidate_CV from "@/models/candidate_cv";
 import { ObjectId } from "mongodb";
 import { revalidateTag } from "next/cache";
 

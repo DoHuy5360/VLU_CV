@@ -1,20 +1,21 @@
-"use client";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
+import { connectToDatabase } from "@/libs/mongoosedb";
+import { ObjectId } from "mongodb";
+import Candidate from "@/models/candidate";
+import PreHandler from "./_component/preHandler";
 
-import { useContext } from "react";
-import { CvContext } from "@/contexts/cvProvider";
-import EditCvView from "@/components/view/editCV/editCV";
-import { createReplica } from "@/actions/candidate/createReplica";
-import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
-
-export default ({ params }: { params: { name: string } }) => {
-	const { state } = useContext(CvContext);
-
-	if (state === null) return <div>Loading...</div>;
-
-	const handleSubmit = async (data: UserDataForm) => {
-		const isSuccess = await createReplica(params.name, data);
-		isSuccess ? alert("Tạo CV thành công") : alert("Tạo CV thất bại - Vui lòng kiểm tra lại tên CV");
-	};
-
-	return <EditCvView cvObjectData={state} cvTemplateName={params.name} onSubmit={handleSubmit} />;
+export default async ({ params }: { params: { name: string } }) => {
+	const session = await getServerSession(authOptions);
+	await connectToDatabase();
+	const userFound = await Candidate.findOne({
+		accountId: new ObjectId(session?.user._id as string),
+	}).select("dataCV");
+	console.log("render");
+	if (userFound === null) return <div>Không tìm thấy dữ liệu người dùng.</div>;
+	return (
+		<div className='flex-grow overflow-hidden'>
+			<PreHandler cvTemplateName={params.name} cvObjectData={userFound.dataCV} />
+		</div>
+	);
 };

@@ -1,67 +1,19 @@
-"use client";
-import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
+import { connectToDatabase } from "@/libs/mongoosedb";
+import Candidate from "@/models/candidate";
+import { ObjectId } from "mongodb";
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
+import { getServerSession } from "next-auth";
+import ClientRenderer from "./_component/clientRenderer";
+import { UserData } from "@/types/userData";
 
-import Tab from "./_component/tab";
-import View from "./_component/view";
-import { CvContext } from "@/contexts/cvProvider";
-import { useForm } from "react-hook-form";
-import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { attrsSchema, userDataSchema, userProfileDataSchema } from "@/validation/userData";
-import { createContext } from "react";
-import { init } from "@/components/view/editCV/editCV";
+export default async () => {
+	const session = await getServerSession(authOptions);
+	await connectToDatabase();
+	const userFound = await Candidate.findOne({
+		accountId: new ObjectId(session?.user._id as string),
+	}).select("dataCV");
 
-export const ProfileTabContext = createContext<{ setCurrentTab: Dispatch<SetStateAction<string | null>>; toggle: string }>({
-	setCurrentTab: () => {},
-	toggle: "",
-});
+	if (userFound === null) return <div>Loading...</div>;
 
-export default () => {
-	const [currentTab, setCurrentTab] = useState<string | null>(null);
-	useEffect(() => {
-		const queryParams = new URLSearchParams(window.location.search);
-		const savedState = queryParams.get("tab");
-		setCurrentTab(JSON.parse(savedState as string));
-	}, []);
-	const { state } = useContext(CvContext);
-
-	const formTools = useForm<UserDataForm>({
-		resolver: zodResolver(userProfileDataSchema),
-		defaultValues: init,
-	});
-	useEffect(() => {
-		if (state !== null) {
-			formTools.reset(state);
-		}
-	}, [state]);
-
-	if (state === null) return <div>Loading...</div>;
-	if (currentTab === null) return <div>Loading...</div>;
-
-	return (
-		<div className='grid grid-cols-[150px_auto] h-full'>
-			<div className='border-r-[1px] border-slate-200 h-full'>
-				<ProfileTabContext.Provider
-					value={{
-						setCurrentTab,
-						toggle: currentTab,
-					}}
-				>
-					<Tab name='Personal' isError={formTools.formState.errors.attrs?.head} />
-					<Tab name='Goal' isError={formTools.formState.errors.attrs?.goal} />
-					<Tab name='Education' isError={formTools.formState.errors.attrs?.education} />
-					<Tab name='Skill' isError={formTools.formState.errors.attrs?.skill} />
-					<Tab name='Experience' isError={formTools.formState.errors.attrs?.experience} />
-					<Tab name='Project' isError={formTools.formState.errors.attrs?.project} />
-					<Tab name='Certificate' isError={formTools.formState.errors.attrs?.certificate} />
-					<Tab name='Badge' isError={formTools.formState.errors.attrs?.badge} />
-					<Tab name='Activity' isError={formTools.formState.errors.attrs?.activity} />
-					<Tab name='Reference' isError={formTools.formState.errors.attrs?.reference} />
-					<Tab name='Hobby' isError={formTools.formState.errors.attrs?.hobby} />
-					<Tab name='Other' isError={formTools.formState.errors.attrs?.other} />
-				</ProfileTabContext.Provider>
-			</div>
-			<View name={currentTab} formTools={formTools} />
-		</div>
-	);
+	return <ClientRenderer data={userFound.dataCV} />;
 };

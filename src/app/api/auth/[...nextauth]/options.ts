@@ -4,8 +4,9 @@ import { CandidateDataForm } from "@/app/auth/_component/register/candidate";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import Account, { AccountModelType } from "@/models/account";
 import Candidate, { CandidateModelType } from "@/models/candidate";
+import Recruiter, { RecruiterModelType } from "@/models/recruiter";
 import { ObjectId } from "mongodb";
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, User } from "next-auth";
 import AzureADProvider from "next-auth/providers/azure-ad";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -45,39 +46,33 @@ export const authOptions: NextAuthOptions = {
 				},
 			},
 			async authorize(credentials, req) {
-				// Add logic here to look up the user from the credentials supplied
-
-				const user = {
-					_id: "",
-					id: "01",
-					name: "Admin",
-					email: "cocdh123@gmail.com",
-					password: "1",
-					role: "admin",
-					image:
-						"https://cdn.discordapp.com/attachments/876588087210291211/1089358306776207380/1b1bb78dfc0e94143e21ca475c2b0f65--plants-vs-zombies-removebg-preview.png?ex=662469fb&is=6611f4fb&hm=8c6d9f04de28736c9ca2f0f5d1b48988c714d0c0780f3de380485c4e7716f00e&",
-				};
-
-				if (credentials?.email === user.email && credentials?.password === user.password) {
-					return user;
-				} else {
-					const res = await fetch("http://localhost:3000/api/account/auth", {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify({
-							email: credentials?.email,
-							password: credentials?.password,
-						}),
-					});
-					const jsonData = await res.json();
-					if (jsonData.error) {
-						console.log(jsonData.message);
-						return null;
+				await connectToDatabase();
+				try {
+					const email = credentials?.email;
+					const password = credentials?.password;
+					const accountFound: AccountModelType | null = await Account.findOne({ email });
+					if (accountFound !== null && accountFound?.password === password) {
+						switch (accountFound.role) {
+							case "recruiter":
+								const recruiterFound: RecruiterModelType | null = await Recruiter.findOne({ accountId: accountFound._id });
+								if (recruiterFound !== null) {
+									return {
+										_id: recruiterFound._id?.toString(),
+										id: recruiterFound._id?.toString(),
+										name: recruiterFound.name,
+										email: accountFound.email,
+										role: accountFound.role,
+										image: accountFound.image,
+									} as User;
+								}
+							default:
+								return null;
+						}
 					} else {
-						return jsonData;
+						return null;
 					}
+				} catch (error) {
+					return null;
 				}
 			},
 		}),

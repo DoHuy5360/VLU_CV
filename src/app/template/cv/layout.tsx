@@ -1,7 +1,5 @@
-import HomeLayout from "@/components/layouts/app/home";
+import CandidateLayout from "@/components/layouts/candidateLayout";
 
-function Layout({ children }: { children: JSX.Element }) {
-	return <HomeLayout>{children}</HomeLayout>;
-}
-
-export default Layout;
+export default ({ children }: { children: JSX.Element }) => {
+	return <CandidateLayout>{children}</CandidateLayout>;
+};

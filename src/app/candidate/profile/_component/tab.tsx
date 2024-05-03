@@ -1,7 +1,7 @@
-import { MouseEventHandler, useCallback, useContext } from "react";
-import { ProfileTabContext } from "../page";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { useCallback, useContext } from "react";
 
+import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { ProfileTabContext } from "./clientRenderer";
 export default ({ name, isError }: { name: string; isError: any }) => {
 	const { setCurrentTab, toggle } = useContext(ProfileTabContext);
 	const setFootprint = useCallback((tab: string) => {
@@ -15,9 +15,7 @@ export default ({ name, isError }: { name: string; isError: any }) => {
 				setFootprint(name);
 				setCurrentTab(name);
 			}}
-			className={`flex items-center gap-2 justify-between hover:bg-orange-200 cursor-pointer p-2 text-sm select-none ${
-				toggle === name && "bg-orange-400"
-			}`}
+			className={`flex items-center gap-2 justify-between hover:bg-orange-200 cursor-pointer p-2 text-sm select-none ${toggle === name && "bg-orange-400"}`}
 		>
 			<div>{name}</div>
 			{isError && (

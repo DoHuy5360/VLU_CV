@@ -2,6 +2,7 @@ import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 export type RecruiterModelType = {
+	_id?: ObjectId;
 	accountId: ObjectId;
 	name: string;
 	phone: string;

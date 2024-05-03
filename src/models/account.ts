@@ -7,7 +7,7 @@ export type AccountModelType = {
 	_id?: ObjectId;
 	email: string;
 	password: string;
-	role: string;
+	role: "admin" | "candidate" | "recruiter";
 	image: string;
 };
 
