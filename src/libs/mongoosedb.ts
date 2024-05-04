@@ -1,3 +1,4 @@
+import Company from "@/models/company";
 import mongoose, { Mongoose } from "mongoose";
 
 type Cached = {
@@ -28,13 +29,12 @@ export async function connectToDatabase() {
 			bufferCommands: false,
 		};
 
-		cached.promise = mongoose
-			.connect(process.env.MONGODB_URI as string, opts)
-			.then((mongoose) => {
-				return mongoose;
-			});
+		cached.promise = mongoose.connect(process.env.MONGODB_URI as string, opts).then((mongoose) => {
+			return mongoose;
+		});
 	}
 	cached.conn = await cached.promise;
 	console.log("DB connected");
+	Company;
 	return cached.conn;
 }
