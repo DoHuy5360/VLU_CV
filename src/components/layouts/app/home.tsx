@@ -1,5 +1,4 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
-import CvProvider from "@/contexts/cvProvider";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 
