@@ -6,51 +6,48 @@ import Image from "next/image";
 
 export default async function App() {
 	const session = await getServerSession(authOptions);
-	// console.log("session:", session);
 	return (
 		<div className='flex flex-col h-dvh'>
-			<div className='flex bg-red-500 p-2'>
-				<Image width={100} height={24} src='/image/logo/van-lang-logo-and-name.png' alt='Van Lang Logo' draggable={false} />
-			</div>
-			<div className='bg-white p-2 flex justify-end items-center gap-2'>
+			<div className='flex justify-between bg-black border-b-[2px] border-red-300 p-2'>
+				<Image width={100} height={24} className='w-auto h-auto' src='/image/logo/van-lang-logo-and-name.png' alt='Van Lang Logo' draggable={false} />
 				{session ? (
 					<div className='flex justify-between items-center w-full'>
-						<Link className='text-xs underline' href='/recruiter'>
-							Tuyển dụng
+						<Link href='/home' className='text-xs underline'>
+							Trang Chủ
 						</Link>
-						<div className='flex gap-2 items-center'>
-							<Link href='/home' className='text-xs underline'>
-								Trang Chủ
-							</Link>
-							<div className='text-xs'>{session.user?.name}</div>
-							<Link className='text-white bg-purple-500 p-2 text-xs rounded-sm' href='/api/auth/signout'>
-								Đăng Xuất
-							</Link>
-						</div>
+						<div className='text-xs'>{session.user?.name}</div>
+						<Link className='text-white bg-purple-500 p-2 text-xs rounded-sm' href='/api/auth/signout'>
+							Đăng Xuất
+						</Link>
 					</div>
 				) : (
-					<div className='flex justify-between w-full items-center'>
-						<Link className='text-xs underline' href='/recruiter'>
-							Tuyển dụng
-						</Link>
-						<Link className='text-white bg-orange-500 p-2 text-xs rounded-sm' href='/auth'>
-							Đăng Nhập
-						</Link>
-					</div>
+					<Link className='text-white p-2 text-xs outline outline-0 hover:outline-1 outline-slate-200' href='/auth'>
+						Đăng Nhập
+					</Link>
 				)}
 			</div>
-			<div className='bg-black h-full w-full'>
-				<div className='relative select-none'>
-					<div className='landscape_overlay grid place-items-center'>
-						<div className='xl:text-7xl sm:text-4xl text-white font-bold'>Van Lang Jobs</div>
+			<div className='flex-grow h-full w-full overflow-hidden'>
+				<div className='relative h-full overflow-y-scroll select-none'>
+					<div className='absolute z-10 top-8 left-8 h-fit w-fit'>
+						<div className='text-slate-200 xl:text-8xl sm:text-5xl ext-4xl font-bold'>Van Lang Jobs</div>
 					</div>
-					<div className='text-white absolute bottom-0 right-0 p-10 text-xs'>
-						<div>Chắp cánh tương lai!</div>
-						<div>Dẫn lối ước mơ!</div>
+					<div className='text-white absolute z-10 bottom-8 right-8 p-3 text-xs w-80 border-l-[5px] border-red-400'>
+						Mang lại tác động truyền cảm hứng cho xã hội chính là sứ mệnh của Văn Lang. Kết nối nhiều lĩnh vực khác nhau, hòa trộn những bản sắc độc đáo, Văn Lang đã xây dựng nên một cộng đồng học
+						thuật phong phú, lớn mạnh, khát khao tìm kiếm tri thức để tạo nên sự đổi mới, đột phá sáng tạo và một thế giới tốt đẹp hơn.
 					</div>
-					<Image width={1920} height={1080} className='w-full' src={`/image/vanlang_landscape/cs3_0${randomInRange(1, 4)}.jpg`} alt='van lang landscape' />
+					<div className='relative w-full h-full'>
+						<div className='landscape_overlay w-full h-full absolute'></div>
+						<Image width={1920} height={1080} className='w-full h-full object-cover' src={landscapes[randomInRange(0, 4)]} alt='van lang landscape' />
+					</div>
 				</div>
 			</div>
 		</div>
 	);
 }
+const landscapes = [
+	"/image/vanlang_landscape/cs3_01.jpg",
+	"/image/vanlang_landscape/cs3_02.jpg",
+	"/image/vanlang_landscape/cs3_03.jpg",
+	"/image/vanlang_landscape/cs3_04.jpg",
+	"/image/vanlang_landscape/cs3_05.jpg",
+];

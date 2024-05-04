@@ -16,16 +16,6 @@
 	}
 }
 
-/* body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-} */
-
 @layer utilities {
 	.text-balance {
 		text-wrap: balance;
@@ -33,16 +23,5 @@
 }
 
 .landscape_overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: linear-gradient(
-			180deg,
-			rgba(27, 5, 5, 0) 69.21%,
-			rgba(9, 2, 2, 0.61) 84.74%,
-			rgba(0, 0, 0, 0.98)
-		),
-		linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%);
 }
