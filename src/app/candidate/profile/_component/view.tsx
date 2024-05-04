@@ -18,7 +18,7 @@ import Hobby from "@/components/cvEditFields/editFields/hobby";
 import Other from "@/components/cvEditFields/editFields/other";
 import editAvatar from "./editAvatar";
 
-export default ({ name, formTools }: { name: string; formTools: UseFormReturn<UserDataForm> }) => {
+export default function View({ name, formTools }: { name: string; formTools: UseFormReturn<UserDataForm> }) {
 	return (
 		<form
 			action={async () => {
@@ -49,11 +49,11 @@ export default ({ name, formTools }: { name: string; formTools: UseFormReturn<Us
 					{name === "Other" && <Other Wrapper={Wrapper} Area={editArea} />}
 				</FormProvider>
 			</div>
-			<div className='flex justify-end pb-14 pt-2 pr-2 border-t-[1px] border-slate-200'>
+			<div className='flex justify-end pb-16 pt-2 pr-2 border-t-[1px] border-slate-200'>
 				<button className='bg-green-300 px-4 py-2 rounded-full text-sm' type='submit'>
 					Save
 				</button>
 			</div>
 		</form>
 	);
-};
+}

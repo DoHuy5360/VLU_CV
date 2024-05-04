@@ -5,10 +5,9 @@ import moment from "moment";
 import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
-import { BiTrash } from "react-icons/bi";
 import DeleteRecruitment from "../_component/deleteRecruitment";
 
-export default async () => {
+export default async function F() {
 	const session = await getServerSession(authOptions);
 	await connectToDatabase();
 	const arrRecruitment = await Recruitment.find({
@@ -40,4 +39,4 @@ export default async () => {
 			})}
 		</div>
 	);
-};
+}

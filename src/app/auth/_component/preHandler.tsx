@@ -1,7 +1,7 @@
 "use client";
 import { ClientSafeProvider, getProviders, signIn, useSession } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { LiteralUnion } from "react-hook-form";
 import { BuiltInProviderType } from "next-auth/providers/index";
 import Link from "next/link";
@@ -60,7 +60,11 @@ export default function PreHandler() {
 								<SignInButton name='Microsoft' handleClick={() => signIn("azure-ad")} logoSrc='/image/logo/microsoft_logo.webp' helper='Chỉ hỗ trợ đối với tài khoản ứng viên' />
 							)}
 							<div>- Hoặc -</div>
-							{providers.credentials.id && <SignInWithVLJ />}
+							{providers.credentials.id && (
+								<Suspense fallback={<div>Loading...</div>}>
+									<SignInWithVLJ />
+								</Suspense>
+							)}
 							<div className='flex items-start text-xs'>
 								<div className='flex px-2 py-1 gap-1 items-center'>
 									<div>Chưa có tài khoản?</div>

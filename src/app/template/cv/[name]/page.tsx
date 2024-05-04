@@ -5,7 +5,7 @@ import { ObjectId } from "mongodb";
 import Candidate from "@/models/candidate";
 import PreHandler from "./_component/preHandler";
 
-export default async ({ params }: { params: { name: string } }) => {
+export default async function F({ params }: { params: { name: string } }) {
 	const session = await getServerSession(authOptions);
 	await connectToDatabase();
 	const userFound = await Candidate.findOne({
@@ -18,4 +18,4 @@ export default async ({ params }: { params: { name: string } }) => {
 			<PreHandler cvTemplateName={params.name} cvObjectData={userFound.dataCV} />
 		</div>
 	);
-};
+}

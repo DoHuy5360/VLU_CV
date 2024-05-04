@@ -1,5 +1,6 @@
 import { connectToDatabase } from "@/libs/mongoosedb";
 import CV from "@/models/cv";
+import Image from "next/image";
 import Link from "next/link";
 
 type Template = {
@@ -8,7 +9,7 @@ type Template = {
 	thumbnail: string;
 };
 
-export default async () => {
+export default async function F() {
 	await connectToDatabase();
 	const data = await CV.find({});
 	return (
@@ -17,7 +18,7 @@ export default async () => {
 				return (
 					<div key={t._id} className='flex flex-col gap-1 border-[1px] border-slate-200'>
 						<div className='bg-white p-2 grid place-items-center'>
-							<img src={t.thumbnail} className='aspect-square object-cover' alt='thumbnail' draggable='false' loading='lazy' />
+							<Image src={t.thumbnail} width={200} height={200} className='aspect-square object-cover' alt='thumbnail' draggable='false' loading='lazy' />
 						</div>
 						<Link className='text-center py-2 bg-slate-200 hover:bg-slate-300' href={`/template/cv/${t.name}`}>
 							{t.name}
@@ -27,4 +28,4 @@ export default async () => {
 			})}
 		</div>
 	);
-};
+}

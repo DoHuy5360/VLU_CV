@@ -1,6 +1,6 @@
 import { Activity } from "@/types/userData";
 
-export default (data: Activity) => {
+export default function F(data: Activity) {
 	return (
 		data.activities.length > 0 && (
 			<div className='section flex flex-col gap-2'>
@@ -20,4 +20,4 @@ export default (data: Activity) => {
 			</div>
 		)
 	);
-};
+}

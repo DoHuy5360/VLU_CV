@@ -6,6 +6,7 @@ import CvEditButton from "./_component/cvEditButton";
 import Recruitment from "@/models/recruitment";
 import Recruiter from "@/models/recruiter";
 import Company from "@/models/company";
+import Image from "next/image";
 
 async function ViewCV({ params }: { params: { id: string } }) {
 	await connectToDatabase();
@@ -20,7 +21,7 @@ async function ViewCV({ params }: { params: { id: string } }) {
 				{recruitment.map((e, i) => {
 					return (
 						<div key={i} className='flex border-b-[1px] hover:bg-slate-200 select-none cursor-pointer p-2 gap-2'>
-							<img src='/image/user.jpg' className='w-10 h-10 ' alt='' />
+							<Image src='/image/user.jpg' width={40} height={40} alt='user avatar' />
 							<div className='flex flex-col'>
 								<div className='text-xs whitespace-nowrap'>{e.companyId.name}</div>
 								<div className='text-sm whitespace-nowrap'>{e.title}</div>

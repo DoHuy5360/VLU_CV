@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Home() {
 	const events = [
 		{
@@ -33,7 +35,7 @@ export default function Home() {
 					<div className='grid grid-cols-4 gap-2'>
 						{events.map((e, i) => (
 							<div key={i} className='flex flex-col rounded-sm border-[1px] overflow-hidden select-none'>
-								<img src={e.thumbnail} className='aspect-video' draggable={false} />
+								<Image src={e.thumbnail} width={233} height={0} className='w-full aspect-video' alt='news' draggable={false} />
 								<div className='flex flex-col flex-grow justify-between p-1 gap-3'>
 									<div className='text-sm'>{e.title}</div>
 									<div className='text-xs text-right'>{e.createAt}</div>

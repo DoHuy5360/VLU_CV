@@ -3,7 +3,7 @@ import { updateAccountRole } from "@/actions/general/updateAccountRole";
 import { redirect } from "next/navigation";
 import { BsArrowRight } from "react-icons/bs";
 
-export default () => {
+export default function F() {
 	return (
 		<div className='grid place-items-center h-dvh'>
 			<div className='flex flex-col gap-3 p-3 border-[1px] border-slate-200'>
@@ -59,4 +59,4 @@ export default () => {
 			</div>
 		</div>
 	);
-};
+}

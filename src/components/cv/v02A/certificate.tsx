@@ -1,7 +1,7 @@
 import { Certificate } from "@/types/userData";
 import { PiCertificateFill } from "react-icons/pi";
 
-export default (data: Certificate) => {
+export default function F(data: Certificate) {
 	return (
 		data.certificates.length > 0 && (
 			<div className='relative'>
@@ -25,4 +25,4 @@ export default (data: Certificate) => {
 			</div>
 		)
 	);
-};
+}

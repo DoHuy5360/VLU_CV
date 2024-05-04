@@ -2,7 +2,7 @@ import { useCallback, useContext } from "react";
 
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ProfileTabContext } from "./clientRenderer";
-export default ({ name, isError }: { name: string; isError: any }) => {
+export default function Tab({ name, isError }: { name: string; isError: any }) {
 	const { setCurrentTab, toggle } = useContext(ProfileTabContext);
 	const setFootprint = useCallback((tab: string) => {
 		const queryParams = new URLSearchParams(window.location.search);
@@ -25,4 +25,4 @@ export default ({ name, isError }: { name: string; isError: any }) => {
 			)}
 		</div>
 	);
-};
+}

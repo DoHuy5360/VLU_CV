@@ -1,6 +1,6 @@
 import { InputUIParams } from "@/components/cvEditFields/editFields/type";
 
-export default ({ label, register, errors, index }: InputUIParams) => {
+export default function EditInput({ label, register, errors, index }: InputUIParams) {
 	return (
 		<div className='flex flex-col gap-1'>
 			<div className='flex flex-col gap-1'>
@@ -12,4 +12,4 @@ export default ({ label, register, errors, index }: InputUIParams) => {
 			<div className='text-xs text-red-500'>{errors}</div>
 		</div>
 	);
-};
+}

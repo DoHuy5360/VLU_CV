@@ -1,7 +1,7 @@
 import { Skill } from "@/types/userData";
 import { FaCog } from "react-icons/fa";
 
-export default (data: Skill) => {
+export default function F(data: Skill) {
 	return (
 		data.skills.length > 0 && (
 			<div className='relative'>
@@ -24,4 +24,4 @@ export default (data: Skill) => {
 			</div>
 		)
 	);
-};
+}

@@ -2,9 +2,9 @@
 import { addNewCV } from "@/actions/admin/addNewCV";
 import Submit from "@/components/button/submit";
 import { imageFileToBase64 } from "@/utils/generateB64Image";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
-function addCV() {
+export default function AddCV() {
 	const formRef = useRef<HTMLFormElement>(null);
 	const thumbnailRef = useRef<HTMLInputElement>(null);
 	return (
@@ -46,5 +46,3 @@ function addCV() {
 		</div>
 	);
 }
-
-export default addCV;

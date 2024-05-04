@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { authOptions } from "./api/auth/[...nextauth]/options";
 import { randomInRange } from "@/utils/random";
+import Image from "next/image";
 
 export default async function App() {
 	const session = await getServerSession(authOptions);
@@ -9,7 +10,7 @@ export default async function App() {
 	return (
 		<div className='flex flex-col h-dvh'>
 			<div className='flex bg-red-500 p-2'>
-				<img className='h-6' src='/image/logo/van-lang-logo-and-name.png' alt='Van Lang Logo' />
+				<Image width={100} height={24} src='/image/logo/van-lang-logo-and-name.png' alt='Van Lang Logo' draggable={false} />
 			</div>
 			<div className='bg-white p-2 flex justify-end items-center gap-2'>
 				{session ? (
@@ -47,7 +48,7 @@ export default async function App() {
 						<div>Chắp cánh tương lai!</div>
 						<div>Dẫn lối ước mơ!</div>
 					</div>
-					<img className='w-full' src={`/image/vanlang_landscape/cs3_0${randomInRange(1, 4)}.jpg`} alt='van lang landscape' />
+					<Image width={1920} height={1080} className='w-full' src={`/image/vanlang_landscape/cs3_0${randomInRange(1, 4)}.jpg`} alt='van lang landscape' />
 				</div>
 			</div>
 		</div>

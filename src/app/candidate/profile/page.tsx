@@ -4,9 +4,8 @@ import { ObjectId } from "mongodb";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 import ClientRenderer from "./_component/clientRenderer";
-import { UserData } from "@/types/userData";
 
-export default async () => {
+export default async function F() {
 	const session = await getServerSession(authOptions);
 	await connectToDatabase();
 	const userFound = await Candidate.findOne({
@@ -15,5 +14,9 @@ export default async () => {
 
 	if (userFound === null) return <div>Loading...</div>;
 
-	return <ClientRenderer data={userFound.dataCV} />;
-};
+	return (
+		<div className='flex-grow overflow-hidden'>
+			<ClientRenderer data={userFound.dataCV} />
+		</div>
+	);
+}

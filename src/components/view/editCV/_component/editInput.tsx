@@ -1,6 +1,6 @@
 import { UseFormRegisterReturn } from "react-hook-form";
 
-export default ({ label, register, errors, index }: { label?: string; index?: number; register: UseFormRegisterReturn; errors: string | undefined }) => {
+export default function EditInput({ label, register, errors, index }: { label?: string; index?: number; register: UseFormRegisterReturn; errors: string | undefined }) {
 	return (
 		<div className='flex items-start gap-1 w-full'>
 			{label && (
@@ -14,4 +14,4 @@ export default ({ label, register, errors, index }: { label?: string; index?: nu
 			</div>
 		</div>
 	);
-};
+}

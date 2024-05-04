@@ -1,6 +1,5 @@
 "use client";
 
-import { createRecruitment } from "@/actions/recruiter/createRecruitment";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -8,7 +7,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { createContext } from "react";
 import { z } from "zod";
 import RecruitmentRenderer from "./_component/recruitmentRenderer";
-import { addDate, dateParser, getCurrentDate } from "@/utils/dateHandler";
+import { addDate, dateParser } from "@/utils/dateHandler";
 
 const recruitmentSchema = z
 	.object({
@@ -80,7 +79,7 @@ const yearExps = [
 ];
 
 export const RecruitmentFormContext = createContext<RecruitmentDataForm | null>(null);
-export default ({
+export default function EditRecruitment({
 	recruitmentObjectData,
 	handleSubmit,
 	hiddenField,
@@ -90,7 +89,7 @@ export default ({
 	hiddenField?: {
 		startAt: boolean;
 	};
-}) => {
+}) {
 	const formTools = useForm<RecruitmentDataForm>({
 		resolver: zodResolver(recruitmentSchema),
 		defaultValues: recruitmentObjectData,
@@ -301,4 +300,4 @@ export default ({
 			</RecruitmentFormContext.Provider>
 		</div>
 	);
-};
+}

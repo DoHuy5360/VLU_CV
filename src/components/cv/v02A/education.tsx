@@ -1,7 +1,7 @@
 import { Education } from "@/types/userData";
 import { FaGraduationCap } from "react-icons/fa";
 
-export default (data: Education) => {
+export default function F(data: Education) {
 	return (
 		data.classes.length > 0 && (
 			<div className='relative'>
@@ -29,4 +29,4 @@ export default (data: Education) => {
 			</div>
 		)
 	);
-};
+}

@@ -1,6 +1,6 @@
 import { Reference } from "@/types/userData";
 
-export default (data: Reference) => {
+export default function F(data: Reference) {
 	return (
 		data.references.length > 0 && (
 			<div className='section flex flex-col gap-2'>
@@ -22,4 +22,4 @@ export default (data: Reference) => {
 			</div>
 		)
 	);
-};
+}

@@ -8,7 +8,7 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { BiEdit } from "react-icons/bi";
 
-export default async ({ params }: { params: { id: string } }) => {
+export default async function F({ params }: { params: { id: string } }) {
 	const session = await getServerSession(authOptions);
 	await connectToDatabase();
 	const recruitmentFound = await Recruitment.findOne({
@@ -27,4 +27,4 @@ export default async ({ params }: { params: { id: string } }) => {
 			</div>
 		</div>
 	);
-};
+}

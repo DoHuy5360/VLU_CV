@@ -1,6 +1,6 @@
 import { Certificate } from "@/types/userData";
 
-export default (data: Certificate) => {
+export default function F(data: Certificate) {
 	return (
 		data.certificates.length > 0 && (
 			<div className='section flex flex-col gap-2'>
@@ -22,4 +22,4 @@ export default (data: Certificate) => {
 			</div>
 		)
 	);
-};
+}

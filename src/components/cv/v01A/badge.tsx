@@ -1,6 +1,6 @@
 import { Badge } from "@/types/userData";
 
-export default (data: Badge) => {
+export default function F(data: Badge) {
 	return (
 		data.achievements.length > 0 && (
 			<div className='section flex flex-col gap-2'>
@@ -22,4 +22,4 @@ export default (data: Badge) => {
 			</div>
 		)
 	);
-};
+}

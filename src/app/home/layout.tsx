@@ -1,4 +1,3 @@
-import HomeLayout from "@/components/layouts/app/home";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/options";

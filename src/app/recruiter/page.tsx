@@ -24,7 +24,7 @@ const initRecruitment: RecruitmentDataForm = {
 	closeAt: "",
 };
 
-export default () => {
+export default function F() {
 	const handleSubmit = async (data: RecruitmentDataForm) => {
 		console.log(data);
 		const isSuccess = await createRecruitment(data);
@@ -32,4 +32,4 @@ export default () => {
 	};
 
 	return <EditRecruitment recruitmentObjectData={initRecruitment} handleSubmit={handleSubmit} />;
-};
+}

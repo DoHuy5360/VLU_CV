@@ -1,11 +1,12 @@
 import { Head } from "@/types/userData";
+import Image from "next/image";
 
-export default (data: Head) => {
+export default function F(data: Head) {
 	return (
 		<div className='section flex gap-2 justify-between'>
 			<div className='flex flex-col gap-3'>
 				<div className='w-36 h-3w-36 rounded-full overflow-hidden'>
-					<img src={data.avatar} alt='avatar' draggable='false' />
+					<Image src={data.avatar} width={200} height={0} alt='avatar' draggable='false' />
 				</div>
 				<div className='flex flex-col gap-1'>
 					<div className='text-2xl font-bold' id='userName'>
@@ -16,4 +17,4 @@ export default (data: Head) => {
 			</div>
 		</div>
 	);
-};
+}

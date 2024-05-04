@@ -1,6 +1,6 @@
 import { Head } from "@/types/userData";
 
-export default (data: Head) => {
+export default function F(data: Head) {
 	return (
 		<div className='section flex gap-2 justify-between'>
 			<div className='flex flex-col'>
@@ -34,4 +34,4 @@ export default (data: Head) => {
 			</div>
 		</div>
 	);
-};
+}

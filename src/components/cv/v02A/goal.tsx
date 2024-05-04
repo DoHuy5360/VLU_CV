@@ -1,7 +1,7 @@
 import { Goal } from "@/types/userData";
 import { FaQuoteLeft } from "react-icons/fa";
 
-export default (data: Goal) => {
+export default function F(data: Goal) {
 	return (
 		data.content.length > 0 && (
 			<div className='section flex flex-col gap-2'>
@@ -12,4 +12,4 @@ export default (data: Goal) => {
 			</div>
 		)
 	);
-};
+}

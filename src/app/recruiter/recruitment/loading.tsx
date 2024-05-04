@@ -1,1 +1,3 @@
-export default () => <div>Loading...</div>;
+export default function F() {
+	return <div>Loading...</div>;
+}

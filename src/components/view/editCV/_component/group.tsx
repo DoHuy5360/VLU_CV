@@ -1,7 +1,7 @@
 import { UseFieldArrayPrepend } from "react-hook-form";
 import { BiPlus } from "react-icons/bi";
 
-export default ({ label, children, prepend }: { label: string; children: JSX.Element; prepend?: UseFieldArrayPrepend<any> }) => {
+export default function Group({ label, children, prepend }: { label: string; children: JSX.Element; prepend?: UseFieldArrayPrepend<any> }) {
 	return (
 		<fieldset className='border border-solid border-slate-300 p-3'>
 			<legend className='flex justify-between items-center w-full'>
@@ -18,4 +18,4 @@ export default ({ label, children, prepend }: { label: string; children: JSX.Ele
 			{children}
 		</fieldset>
 	);
-};
+}
