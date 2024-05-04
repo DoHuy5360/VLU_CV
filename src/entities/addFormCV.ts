@@ -1,4 +1,3 @@
-import { CvAction } from "@/contexts/cvProvider";
 import { getTimeId } from "@/utils/getTimeId";
 
 export const experienceFormSample = () => ({

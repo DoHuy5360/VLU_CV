@@ -1,11 +1,8 @@
 import { createCandidateAccount } from "@/actions/candidate/createCandidateAccount";
-import { createGuestAccount } from "@/actions/general/createGuestAccount";
 import { CandidateDataForm } from "@/app/auth/_component/register/candidate";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import Account, { AccountModelType } from "@/models/account";
-import Candidate, { CandidateModelType } from "@/models/candidate";
 import Recruiter, { RecruiterModelType } from "@/models/recruiter";
-import { ObjectId } from "mongodb";
 import { NextAuthOptions, User } from "next-auth";
 import AzureADProvider from "next-auth/providers/azure-ad";
 import CredentialsProvider from "next-auth/providers/credentials";
