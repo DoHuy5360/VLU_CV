@@ -11,7 +11,6 @@ export default async function F({ params }: { params: { name: string } }) {
 	const userFound = await Candidate.findOne({
 		accountId: new ObjectId(session?.user._id as string),
 	}).select("dataCV");
-	console.log("render");
 	if (userFound === null) return <div>Không tìm thấy dữ liệu người dùng.</div>;
 	return (
 		<div className='flex-grow overflow-hidden'>
