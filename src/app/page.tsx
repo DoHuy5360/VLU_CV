@@ -8,15 +8,15 @@ export default async function App() {
 	const session = await getServerSession(authOptions);
 	return (
 		<div className='flex flex-col h-dvh'>
-			<div className='flex justify-between bg-black border-b-[2px] border-red-300 p-2'>
+			<div className='flex justify-between bg-black border-b-[2px] border-red-300 p-2 w-full'>
 				<Image width={100} height={24} className='w-auto h-auto' src='/image/logo/van-lang-logo-and-name.png' alt='Van Lang Logo' draggable={false} />
 				{session ? (
-					<div className='flex justify-between items-center w-full'>
-						<Link href='/home' className='text-xs underline'>
+					<div className='flex gap-2 items-center w-fit'>
+						<Link href='/home' className='text-white p-2 text-xs outline outline-0 hover:outline-1 outline-slate-200'>
 							Trang Chủ
 						</Link>
-						<div className='text-xs'>{session.user?.name}</div>
-						<Link className='text-white bg-purple-500 p-2 text-xs rounded-sm' href='/api/auth/signout'>
+						<div className='text-xs text-white'>{session.user?.name}</div>
+						<Link className='text-white p-2 text-xs outline outline-0 hover:outline-1 outline-slate-200' href='/api/auth/signout'>
 							Đăng Xuất
 						</Link>
 					</div>
