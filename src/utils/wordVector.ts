@@ -54,59 +54,72 @@ const lettersMapIndex: LetterMapIndexType = {
 	Z: 52,
 };
 
-
-export class CosineSimilarity {
-	private str01;
-	str02: string;
-	private str01Cleaned;
-	str02Cleaned: string;
-	private arrStr01;
-	arrStr02;
-	arrStrMerged;
-	arrayWords: string[];
-	private dictionary: Set<string>;
-	private vector1;
-	vector2: number[];
-	private v1Magnitude;
-	v2Magnitude;
-	dotProduct;
-	similarity: number;
-	constructor(str01: string, str02: string) {
-		this.str01 = str01;
-		this.str02 = str02;
-		this.str01Cleaned = this.str01.toLowerCase().replace(/\.|,|-/g, " ");
-		this.str02Cleaned = this.str02.toLowerCase().replace(/\.|,|-/g, " ");
-		this.arrStr01 = this.str01Cleaned.trim().split(" ");
-		this.arrStr02 = this.str02Cleaned.trim().split(" ");
-		this.arrStrMerged = this.arrStr01.concat(this.arrStr02);
-		this.dictionary = new Set(this.arrStrMerged);
-		this.arrayWords = [...this.dictionary.values()];
-		// Tạo vector
-		this.vector1 = this.arrayWords.map((word) => (this.arrStr01.includes(word) ? 1 : 0));
-		this.vector2 = this.arrayWords.map((word) => (this.arrStr02.includes(word) ? 1 : 0));
-
-		// Tính độ dài của v1, v2
-		this.v1Magnitude = Math.sqrt(
-			this.vector1.reduce((sum: number, value) => {
-				return sum + Math.pow(value, 2);
-			}, 0)
-		);
-
-		this.v2Magnitude = Math.sqrt(
-			this.vector2.reduce((sum: number, value) => {
-				return sum + Math.pow(value, 2);
-			}, 0)
-		);
-
-		// Tính tích vô hướng của v1 và v2
-		this.dotProduct = this.vector1.reduce((sum: number, value, index) => {
-			return sum + value * this.vector2[index];
-		}, 0);
-
-		// Tính cosine similarity
-		this.similarity = this.dotProduct / (this.v1Magnitude * this.v2Magnitude);
+export class TextVector {
+	public text: string;
+	public cleanedText: string;
+	private arrayWords: string[];
+	private vector?: number[];
+	constructor(text: string) {
+		this.text = text;
+		this.cleanedText = this.text.toLowerCase().replace(/\.|,|-/g, " ");
+		this.arrayWords = this.cleanedText.trim().split(" ");
 	}
-	getSimilarity(fixed: number = 2){
-		return this.similarity.toFixed(fixed)
+	getArrayWords() {
+		return this.arrayWords;
+	}
+	setVector(arrBagOfWords: string[]) {
+		this.vector = arrBagOfWords.map((word) => (this.getArrayWords().includes(word) ? 1 : 0));
+	}
+	getVector() {
+		return this.vector;
+	}
+	getVectorLength() {
+		// Tính chiều dài vector
+		if (this.vector === undefined) {
+			console.log("Missing vector");
+			return;
+		}
+		return Math.sqrt(
+			this.vector.reduce((sum, value) => {
+				return sum + Math.pow(value, 2);
+			}, 0)
+		);
 	}
 }
+export class CosineSimilarity {
+	private first: TextVector;
+	private second: TextVector;
+	private mergedWords: string[];
+	private setBagOfWords: Set<string>;
+	private arrBagOfWords: string[];
+	private similarity?: number;
+	private dotProduct?: number;
+	constructor(first: TextVector, second: TextVector) {
+		this.first = first;
+		this.second = second;
+		this.mergedWords = this.first.getArrayWords().concat(this.second.getArrayWords());
+		this.setBagOfWords = new Set(this.mergedWords);
+		this.arrBagOfWords = [...this.setBagOfWords.values()];
+		this.first.setVector(this.arrBagOfWords);
+		this.second.setVector(this.arrBagOfWords);
+	}
+	getSimilarity(fixed: number = 2) {
+		// Tính tích vô hướng của v1 và v2
+		this.dotProduct = this.first.getVector()?.reduce((sum, value, index) => {
+			return sum + value * this.second.getVector()![index];
+		}, 0) as number;
+
+		// Tính cosine similarity
+		const firstVectorLength = this.first.getVectorLength() as number;
+		const secondVectorLength = this.second.getVectorLength() as number;
+		this.similarity = this.dotProduct / (firstVectorLength * secondVectorLength);
+
+		return parseFloat(this.similarity?.toFixed(fixed));
+	}
+}
+
+// const f1 = new TextVector("Hell 2");
+// const f2 = new TextVector("Hell 2");
+// const c = new CosineSimilarity(f1, f2);
+
+// console.log(c.getSimilarity(2));
