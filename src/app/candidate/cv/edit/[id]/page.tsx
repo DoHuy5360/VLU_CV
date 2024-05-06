@@ -11,5 +11,9 @@ export default async function F({ params }: { params: { id: string } }) {
 
 	if (cvFound === null) return <div>Không tìm thấy CV</div>;
 
-	return <PreHandler id={params.id} cvObjectData={cvFound.data} cvTemplateName={cvFound.data.template} />;
+	return (
+		<div className='flex-grow overflow-hidden'>
+			<PreHandler id={params.id} cvObjectData={cvFound.data} cvTemplateName={cvFound.data.template} />
+		</div>
+	);
 }
