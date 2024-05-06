@@ -10,5 +10,5 @@ export default function PreHandler({ cvTemplateName, cvObjectData }: { cvTemplat
 		const isSuccess = await createReplica(cvTemplateName, data);
 		isSuccess ? alert("Tạo CV thành công") : alert("Tạo CV thất bại - Vui lòng kiểm tra lại tên CV");
 	};
-	return <EditCvView cvObjectData={cvObjectData} cvTemplateName={cvTemplateName} onSubmit={handleSubmit} />;
+	return <EditCvView cvObjectData={cvObjectData} onSubmit={handleSubmit} />;
 }

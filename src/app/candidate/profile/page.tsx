@@ -4,7 +4,7 @@ import { ObjectId } from "mongodb";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 import PreHandler from "./_component/preHandler";
-import NoData from "@/components/alternate/noData";
+import NoData from "@/components/placeholder/noData";
 
 export default async function F() {
 	const session = await getServerSession(authOptions);

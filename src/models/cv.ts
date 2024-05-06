@@ -1,8 +1,13 @@
+import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
-const Schema = mongoose.Schema;
+export type CvSchemaType = {
+	_id?: ObjectId;
+	name: string;
+	thumbnail: string;
+};
 
-const cvSchema = new Schema({
+const cvSchema = new mongoose.Schema({
 	name: {
 		type: String,
 		require: true,

@@ -5,7 +5,7 @@ import { GrFormView, GrFormViewHide } from "react-icons/gr";
 export default function CvSuggestion() {
 	const [isShowSuggest, setShowSuggest] = useState(false);
 	return (
-		<div className='flex flex-col gap-1 p-2 border-b-[1px]'>
+		<div className='flex flex-grow flex-col gap-1 p-2'>
 			<div className='flex items-center gap-1'>
 				<label className='text-xs whitespace-nowrap' htmlFor='suggestion'>
 					Gợi ý

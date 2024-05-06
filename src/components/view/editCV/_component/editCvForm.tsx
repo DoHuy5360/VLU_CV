@@ -35,7 +35,7 @@ export type UserDataForm = z.infer<typeof userDataSchema>;
 export default function EditCvForm({ onSubmit }: { onSubmit: SubmitHandler<UserDataForm> }) {
 	const { handleSubmit } = useFormContext<UserDataForm>();
 	return (
-		<div className='flex h-full'>
+		<div className='flex basis-1/3 flex-grow-1 h-full'>
 			<div className='flex flex-col text-sm items-center'>
 				<ReferenceEdit href='#Personal' icon={<MdInfoOutline />} />
 				<ReferenceEdit href='#Goal' icon={<GoGoal />} />
@@ -54,7 +54,7 @@ export default function EditCvForm({ onSubmit }: { onSubmit: SubmitHandler<UserD
 				style={{
 					scrollBehavior: "smooth",
 				}}
-				className='pt-2 pl-1 mb-32 h-full pb-2 flex flex-col gap-2 overflow-y-scroll border-slate-300 border-x-[1px]'
+				className='w-full pt-2 pl-1 mb-32 h-full pb-2 flex flex-col gap-2 overflow-y-scroll border-slate-300 border-x-[1px]'
 				action={async () => {
 					handleSubmit(onSubmit)();
 				}}

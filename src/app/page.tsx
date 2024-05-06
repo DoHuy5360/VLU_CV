@@ -8,7 +8,7 @@ export default async function App() {
 	const session = await getServerSession(authOptions);
 	return (
 		<div className='flex flex-col h-dvh'>
-			<div className='flex justify-between bg-black border-b-[2px] border-red-300 p-2 w-full'>
+			<div className='flex justify-between items-center bg-black border-b-[2px] border-red-300 p-2 w-full'>
 				<Image width={100} height={24} className='w-auto h-auto' src='/image/logo/van-lang-logo-and-name.png' alt='Van Lang Logo' draggable={false} />
 				{session ? (
 					<div className='flex gap-2 items-center w-fit'>

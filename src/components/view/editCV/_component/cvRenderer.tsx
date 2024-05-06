@@ -1,8 +1,8 @@
 "use client";
-import { Transfer, TransferType } from "@/types/tranfer";
-import { useContext } from "react";
+import { Transfer } from "@/types/tranfer";
+import { memo, useContext } from "react";
 import { FormValuesContext } from "../editCV";
-export default function CvRenderer({ cvName }: { cvName: string }) {
+export default memo(function CvRenderer() {
 	const formValues = useContext(FormValuesContext);
-	return Transfer[cvName](formValues);
-}
+	return Transfer[formValues.template](formValues);
+});
