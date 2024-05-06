@@ -21,7 +21,7 @@ async function ViewCV({ params }: { params: { id: string } }) {
 	console.log(recruitment[0].requirement);
 	return (
 		<div className='flex-grow overflow-y-hidden h-[inherit]'>
-			<div className='h-[inherit] overflow-y-scroll grid lg:grid-cols-[1fr_1fr] sm:grid-cols-1 gap-2'>
+			<div className='h-[inherit] overflow-y-scroll grid lg:grid-cols-[2fr_1fr] sm:grid-cols-1 gap-2'>
 				<div className='flex h-[inherit]'>
 					<div className='flex flex-col gap-2 p-2 text-sm select-none whitespace-nowrap w-fit'>
 						<CvEditButton id={params.id} />
