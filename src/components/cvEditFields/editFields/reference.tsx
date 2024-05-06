@@ -26,25 +26,10 @@ export default function Reference({ Wrapper, Input }: { Wrapper: WrapperUI; Inpu
 			{actions.fields.map((e, i) => {
 				return (
 					<Wrapper.T03 key={e.id}>
-						<FormAction deleteAction={actions.remove} index={i} />
-						<Input
-							label='Tên:'
-							register={register(`attrs.reference.references.${i}.name`)}
-							errors={errors.attrs?.reference?.references?.[i]?.name?.message}
-							index={i}
-						/>
-						<Input
-							label='Tại:'
-							register={register(`attrs.reference.references.${i}.where`)}
-							errors={errors.attrs?.reference?.references?.[i]?.where?.message}
-							index={i}
-						/>
-						<Input
-							label='Liên lạc:'
-							register={register(`attrs.reference.references.${i}.phone`)}
-							errors={errors.attrs?.reference?.references?.[i]?.phone?.message}
-							index={i}
-						/>
+						<FormAction actions={actions} length={actions.fields.length} index={i} />
+						<Input label='Tên:' register={register(`attrs.reference.references.${i}.name`)} errors={errors.attrs?.reference?.references?.[i]?.name?.message} index={i} />
+						<Input label='Tại:' register={register(`attrs.reference.references.${i}.where`)} errors={errors.attrs?.reference?.references?.[i]?.where?.message} index={i} />
+						<Input label='Liên lạc:' register={register(`attrs.reference.references.${i}.phone`)} errors={errors.attrs?.reference?.references?.[i]?.phone?.message} index={i} />
 					</Wrapper.T03>
 				);
 			})}

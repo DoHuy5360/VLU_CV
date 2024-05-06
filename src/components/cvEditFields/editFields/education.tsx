@@ -26,31 +26,11 @@ export default function Education({ Wrapper, Input }: { Wrapper: WrapperUI; Inpu
 			{actions.fields.map((e, i) => {
 				return (
 					<Wrapper.T03 key={e.id}>
-						<FormAction deleteAction={actions.remove} index={i} />
-						<Input
-							label='Thời gian:'
-							register={register(`attrs.education.classes.${i}.time`)}
-							errors={errors.attrs?.education?.classes?.[i]?.time?.message}
-							index={i}
-						/>
-						<Input
-							label='Chuyên ngành:'
-							register={register(`attrs.education.classes.${i}.major`)}
-							errors={errors.attrs?.education?.classes?.[i]?.major?.message}
-							index={i}
-						/>
-						<Input
-							label='Trường:'
-							register={register(`attrs.education.classes.${i}.school`)}
-							errors={errors.attrs?.education?.classes?.[i]?.school?.message}
-							index={i}
-						/>
-						<Input
-							label='Trạng thái:'
-							register={register(`attrs.education.classes.${i}.status`)}
-							errors={errors.attrs?.education?.classes?.[i]?.status?.message}
-							index={i}
-						/>
+						<FormAction actions={actions} index={i} length={actions.fields.length} />
+						<Input label='Thời gian:' register={register(`attrs.education.classes.${i}.time`)} errors={errors.attrs?.education?.classes?.[i]?.time?.message} index={i} />
+						<Input label='Chuyên ngành:' register={register(`attrs.education.classes.${i}.major`)} errors={errors.attrs?.education?.classes?.[i]?.major?.message} index={i} />
+						<Input label='Trường:' register={register(`attrs.education.classes.${i}.school`)} errors={errors.attrs?.education?.classes?.[i]?.school?.message} index={i} />
+						<Input label='Trạng thái:' register={register(`attrs.education.classes.${i}.status`)} errors={errors.attrs?.education?.classes?.[i]?.status?.message} index={i} />
 					</Wrapper.T03>
 				);
 			})}

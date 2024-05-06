@@ -26,19 +26,9 @@ export default function Hobby({ Wrapper, Input }: { Wrapper: WrapperUI; Input: I
 			{actions.fields.map((e, i) => {
 				return (
 					<Wrapper.T03 key={e.id}>
-						<FormAction deleteAction={actions.remove} index={i} />
-						<Input
-							label='Tên:'
-							register={register(`attrs.hobby.hobbies.${i}.name`)}
-							errors={errors.attrs?.hobby?.hobbies?.[i]?.name?.message}
-							index={i}
-						/>
-						<Input
-							label='Mô tả:'
-							register={register(`attrs.hobby.hobbies.${i}.status`)}
-							errors={errors.attrs?.hobby?.hobbies?.[i]?.status?.message}
-							index={i}
-						/>
+						<FormAction actions={actions} length={actions.fields.length} index={i} />
+						<Input label='Tên:' register={register(`attrs.hobby.hobbies.${i}.name`)} errors={errors.attrs?.hobby?.hobbies?.[i]?.name?.message} index={i} />
+						<Input label='Mô tả:' register={register(`attrs.hobby.hobbies.${i}.status`)} errors={errors.attrs?.hobby?.hobbies?.[i]?.status?.message} index={i} />
 					</Wrapper.T03>
 				);
 			})}

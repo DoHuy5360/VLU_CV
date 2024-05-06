@@ -26,31 +26,11 @@ export default function Activity({ Wrapper, Input, Area }: { Wrapper: WrapperUI;
 			{actions.fields.map((e, i) => {
 				return (
 					<Wrapper.T03 key={e.id}>
-						<FormAction deleteAction={actions.remove} index={i} />
-						<Input
-							label='Thời gian:'
-							index={i}
-							register={register(`attrs.activity.activities.${i}.time`)}
-							errors={errors.attrs?.activity?.activities?.[i]?.time?.message}
-						/>
-						<Input
-							label='Tên:'
-							index={i}
-							register={register(`attrs.activity.activities.${i}.name`)}
-							errors={errors.attrs?.activity?.activities?.[i]?.name?.message}
-						/>
-						<Input
-							label='Vai trò:'
-							index={i}
-							register={register(`attrs.activity.activities.${i}.position`)}
-							errors={errors.attrs?.activity?.activities?.[i]?.position?.message}
-						/>
-						<Area
-							label='Đầu việc:'
-							index={i}
-							register={register(`attrs.activity.activities.${i}.tasks`)}
-							errors={errors.attrs?.activity?.activities?.[i]?.tasks?.message}
-						/>
+						<FormAction actions={actions} length={actions.fields.length} index={i} />
+						<Input label='Thời gian:' index={i} register={register(`attrs.activity.activities.${i}.time`)} errors={errors.attrs?.activity?.activities?.[i]?.time?.message} />
+						<Input label='Tên:' index={i} register={register(`attrs.activity.activities.${i}.name`)} errors={errors.attrs?.activity?.activities?.[i]?.name?.message} />
+						<Input label='Vai trò:' index={i} register={register(`attrs.activity.activities.${i}.position`)} errors={errors.attrs?.activity?.activities?.[i]?.position?.message} />
+						<Area label='Đầu việc:' index={i} register={register(`attrs.activity.activities.${i}.tasks`)} errors={errors.attrs?.activity?.activities?.[i]?.tasks?.message} />
 					</Wrapper.T03>
 				);
 			})}

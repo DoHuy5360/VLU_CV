@@ -15,7 +15,7 @@ export const ProfileTabContext = createContext<{ setCurrentTab: Dispatch<SetStat
 	toggle: "",
 });
 
-export default function ClientRenderer({ data }: { data: UserData }) {
+export default function PreHandler({ data }: { data: UserData }) {
 	const [currentTab, setCurrentTab] = useState<string | null>(null);
 	useEffect(() => {
 		const queryParams = new URLSearchParams(window.location.search);

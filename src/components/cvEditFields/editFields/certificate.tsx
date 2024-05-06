@@ -26,25 +26,10 @@ export default function Certificate({ Wrapper, Input }: { Wrapper: WrapperUI; In
 			{actions.fields.map((e, i) => {
 				return (
 					<Wrapper.T03 key={e.id}>
-						<FormAction deleteAction={actions.remove} index={i} />
-						<Input
-							label='Tên:'
-							register={register(`attrs.certificate.certificates.${i}.name`)}
-							errors={errors.attrs?.certificate?.certificates?.[i]?.name?.message}
-							index={i}
-						/>
-						<Input
-							label='Thời điểm:'
-							register={register(`attrs.certificate.certificates.${i}.time`)}
-							errors={errors.attrs?.certificate?.certificates?.[i]?.time?.message}
-							index={i}
-						/>
-						<Input
-							label='Đơn vị cấp:'
-							register={register(`attrs.certificate.certificates.${i}.where`)}
-							errors={errors.attrs?.certificate?.certificates?.[i]?.where?.message}
-							index={i}
-						/>
+						<FormAction actions={actions} length={actions.fields.length} index={i} />
+						<Input label='Tên:' register={register(`attrs.certificate.certificates.${i}.name`)} errors={errors.attrs?.certificate?.certificates?.[i]?.name?.message} index={i} />
+						<Input label='Thời điểm:' register={register(`attrs.certificate.certificates.${i}.time`)} errors={errors.attrs?.certificate?.certificates?.[i]?.time?.message} index={i} />
+						<Input label='Đơn vị cấp:' register={register(`attrs.certificate.certificates.${i}.where`)} errors={errors.attrs?.certificate?.certificates?.[i]?.where?.message} index={i} />
 					</Wrapper.T03>
 				);
 			})}
