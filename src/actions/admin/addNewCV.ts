@@ -1,5 +1,6 @@
 "use server";
 
+import { CvDataForm } from "@/app/admin/cv/_component/view";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import CV from "@/models/cv";
 import { ZodError, z } from "zod";
@@ -11,11 +12,11 @@ const cvSchema = z.object({
 
 export type Tcv = z.infer<typeof cvSchema>;
 
-export const addNewCV = async (formData: FormData) => {
+export const addNewCV = async (formData: CvDataForm) => {
 	await connectToDatabase();
 	const data = {
-		name: formData.get("name"),
-		thumbnail: formData.get("thumbnail"),
+		name: formData.name,
+		thumbnail: formData.thumbnail,
 	};
 	const validate = cvSchema.safeParse(data);
 	if (validate.success) {

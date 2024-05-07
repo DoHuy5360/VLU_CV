@@ -17,6 +17,7 @@ import Reference from "@/components/cvEditFields/editFields/reference";
 import Hobby from "@/components/cvEditFields/editFields/hobby";
 import Other from "@/components/cvEditFields/editFields/other";
 import editAvatar from "./editAvatar";
+import GreenSubmit from "@/components/button/greenSubmit";
 
 export default function View({ name, formTools }: { name: string; formTools: UseFormReturn<UserDataForm> }) {
 	return (
@@ -50,9 +51,7 @@ export default function View({ name, formTools }: { name: string; formTools: Use
 				</FormProvider>
 			</div>
 			<div className='flex justify-end pb-16 pt-2 pr-2 border-t-[1px] border-slate-200'>
-				<button className='bg-green-300 px-4 py-2 rounded-full text-sm' type='submit'>
-					Save
-				</button>
+				<GreenSubmit />
 			</div>
 		</form>
 	);

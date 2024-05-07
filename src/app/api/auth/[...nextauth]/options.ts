@@ -48,14 +48,23 @@ export const authOptions: NextAuthOptions = {
 					const email = credentials?.email;
 					const password = credentials?.password;
 					const accountFound: AccountModelType | null = await Account.findOne({ email });
-					if (accountFound !== null && accountFound?.password === password) {
+					if (accountFound !== null && accountFound.password === password) {
 						switch (accountFound.role) {
+							case "admin":
+								return {
+									_id: accountFound._id?.toString(),
+									id: accountFound._id?.toString(),
+									name: "Admin",
+									email: accountFound.email,
+									role: accountFound.role,
+									image: accountFound.image,
+								} as User;
 							case "recruiter":
 								const recruiterFound: RecruiterModelType | null = await Recruiter.findOne({ accountId: accountFound._id });
 								if (recruiterFound !== null) {
 									return {
-										_id: recruiterFound._id?.toString(),
-										id: recruiterFound._id?.toString(),
+										_id: accountFound._id?.toString(),
+										id: accountFound._id?.toString(),
 										name: recruiterFound.name,
 										email: accountFound.email,
 										role: accountFound.role,

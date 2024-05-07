@@ -1,48 +1,43 @@
-"use client";
-import { addNewCV } from "@/actions/admin/addNewCV";
-import Submit from "@/components/button/submit";
-import { imageFileToBase64 } from "@/utils/generateB64Image";
-import { useRef } from "react";
+import { connectToDatabase } from "@/libs/mongoosedb";
+import View from "./_component/view";
+import CV from "@/models/cv";
+import NoData from "@/components/placeholder/noData";
 
-export default function AddCV() {
-	const formRef = useRef<HTMLFormElement>(null);
-	const thumbnailRef = useRef<HTMLInputElement>(null);
-	return (
-		<div className='h-dvh grid place-items-center'>
-			<div className='bg-slate-200 w-fit p-3 rounded-sm'>
-				<div className='font-bold text-lg mb-3'>upload new template</div>
-				<form
-					ref={formRef}
-					action={async (data) => {
-						await addNewCV(data);
-						formRef.current?.reset();
-					}}
-					className='flex flex-col gap-1'
-				>
-					<label htmlFor=''>Name</label>
-					<input className='p-2' name='name' type='text' />
+import fs from "fs";
+import path from "path";
 
-					<label htmlFor=''>Thumbnail</label>
-					<input
-						type='file'
-						onChange={async (e) => {
-							if (e.target.files !== null) {
-								const file = e.target.files[0];
-								try {
-									thumbnailRef.current!.value = await imageFileToBase64(file);
-								} catch (error) {
-									console.error("Error converting image to Base64:", error);
-								}
-							}
-						}}
-					/>
-					<input ref={thumbnailRef} name='thumbnail' type='hidden' />
-					<Submit />
-				</form>
-				{/* {cvs.map((cv) => {
-					return <div key={cv._id}>{cv.name}</div>;
-				})} */}
-			</div>
-		</div>
-	);
+// Đường dẫn tương đối của thư mục hiện tại
+const currentDirectory = process.cwd();
+
+// Tên thư mục cần truy cập (đường dẫn tương đối)
+const folderName = "/src/components/layouts/templates";
+
+// Tạo đường dẫn đến thư mục sử dụng đường dẫn tương đối
+const directoryPath = path.join(currentDirectory, folderName);
+
+function getCvTemplates(): Promise<string[]> {
+	return new Promise((resolve, reject) => {
+		fs.readdir(directoryPath, (err, files) => {
+			if (err) {
+				console.log("Lỗi khi đọc thư mục:", err);
+				reject(err);
+				return;
+			}
+
+			const templates = files.map((file) => {
+				return file.split(".")[0].toUpperCase();
+			});
+
+			resolve(templates);
+		});
+	});
+}
+export default async function AddCV() {
+	await connectToDatabase();
+	const listCvTemplates = await CV.find({}).select("name");
+	if (listCvTemplates === null) return <NoData />;
+	const nameOnly = listCvTemplates.map((e) => e.name.toUpperCase());
+	const cvTemplateFiltered = (await getCvTemplates()).filter((e) => !nameOnly.includes(e));
+
+	return <View fileTemplates={cvTemplateFiltered} />;
 }
