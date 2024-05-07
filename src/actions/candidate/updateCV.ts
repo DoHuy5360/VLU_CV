@@ -13,6 +13,8 @@ export const updateCV = async ({ id, data }: { id: string; data: UserDataForm })
 		},
 		{
 			$set: {
+				name: data.name,
+				template: data.template,
 				data: data,
 			},
 		}
