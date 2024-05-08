@@ -15,7 +15,7 @@ export const init = getUserDataCV({});
 
 export const FormValuesContext = createContext<UserDataForm>(init);
 
-export default function EditCvView({ cvObjectData, onSubmit }: { cvObjectData: UserDataForm; onSubmit: SubmitHandler<UserDataForm> }) {
+export default function EditCvView({ cvObjectData, cvTemplateName, onSubmit }: { cvObjectData: UserDataForm; cvTemplateName: string; onSubmit: SubmitHandler<UserDataForm> }) {
 	const formTools = useForm<UserDataForm>({
 		resolver: zodResolver(userDataSchema),
 		defaultValues: cvObjectData,
@@ -59,7 +59,7 @@ export default function EditCvView({ cvObjectData, onSubmit }: { cvObjectData: U
 				<div className='flex overflow-y-hidden'>
 					<div className='flex-grow overflow-y-scroll pb-24'>
 						<FormValuesContext.Provider value={formTools.watch()}>
-							<CvRenderer />
+							<CvRenderer cvTemplateName={cvTemplateName} />
 						</FormValuesContext.Provider>
 					</div>
 					{substituteTemplates.length > 0 && (

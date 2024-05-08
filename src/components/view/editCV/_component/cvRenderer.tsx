@@ -2,7 +2,7 @@
 import { Transfer } from "@/types/tranfer";
 import { memo, useContext } from "react";
 import { FormValuesContext } from "../editCV";
-export default memo(function CvRenderer() {
+export default memo(function CvRenderer({ cvTemplateName }: { cvTemplateName: string }) {
 	const formValues = useContext(FormValuesContext);
-	return Transfer[formValues.template](formValues);
+	return Transfer[cvTemplateName](formValues);
 });

@@ -1,4 +1,5 @@
 import { InputUIParams } from "@/components/cvEditFields/editFields/type";
+import FormErrors from "@/components/notification/formErrors";
 
 export default function EditInput({ label, register, errors, index }: InputUIParams) {
 	return (
@@ -9,7 +10,7 @@ export default function EditInput({ label, register, errors, index }: InputUIPar
 				</label>
 				<input {...register} className='border-slate-200 border-[1px] p-1' type='text' id={register.name} />
 			</div>
-			<div className='text-xs text-red-500'>{errors}</div>
+			<FormErrors message={errors} />
 		</div>
 	);
 }

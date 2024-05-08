@@ -3,6 +3,7 @@
 import { CvDataForm } from "@/app/admin/cv/_component/view";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import CV from "@/models/cv";
+import { revalidateTag } from "next/cache";
 import { ZodError, z } from "zod";
 
 const cvSchema = z.object({
@@ -21,9 +22,10 @@ export const addNewCV = async (formData: CvDataForm) => {
 	const validate = cvSchema.safeParse(data);
 	if (validate.success) {
 		const newCV = new CV(data);
-		await newCV.save();
-		// return null;
+		const newCvCreated = await newCV.save();
+		revalidateTag("/admin/cv");
+		return newCvCreated === null ? false : true;
 	} else {
-		// return JSON.stringify(validate.error);
+		return false;
 	}
 };
