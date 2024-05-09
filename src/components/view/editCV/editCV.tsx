@@ -4,18 +4,30 @@ import { getUserDataCV } from "@/entities/userDataCV";
 import { userDataSchema } from "@/validation/userData";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import CvSuggestion from "./_component/cvSuggestion";
 import CvRenderer from "./_component/cvRenderer";
 import { BiCog } from "react-icons/bi";
 import Image from "next/image";
 import { CvSchemaType } from "@/models/cv";
+import { CandidateProfileProps } from "@/app/template/cv/[name]/_component/preHandler";
+import DialogProfileSelection from "./dialogProfileSelection";
 
 export const init = getUserDataCV({});
 
 export const FormValuesContext = createContext<UserDataForm>(init);
 
-export default function EditCvView({ cvObjectData, cvTemplateName, onSubmit }: { cvObjectData: UserDataForm; cvTemplateName: string; onSubmit: SubmitHandler<UserDataForm> }) {
+export default function EditCvView({
+	cvObjectData,
+	cvTemplateName,
+	listProfiles,
+	onSubmit,
+}: {
+	cvObjectData: UserDataForm;
+	listProfiles: CandidateProfileProps[];
+	cvTemplateName: string;
+	onSubmit: SubmitHandler<UserDataForm>;
+}) {
 	const formTools = useForm<UserDataForm>({
 		resolver: zodResolver(userDataSchema),
 		defaultValues: cvObjectData,
@@ -31,9 +43,23 @@ export default function EditCvView({ cvObjectData, cvTemplateName, onSubmit }: {
 			setSubstituteTemplates(await res.json());
 		}
 	};
+	const [currentProfileIndex, setCurrentProfileIndex] = useState<number | null>(null);
 
+	useEffect(() => {
+		if (currentProfileIndex !== null && listProfiles !== undefined) {
+			formTools.reset(listProfiles[currentProfileIndex].data);
+		}
+	}, [currentProfileIndex, listProfiles]);
+
+	const [isShowChangeProfileDialog, setShowChangeProfileDialog] = useState(false);
 	return (
 		<div className='flex h-full'>
+			<DialogProfileSelection
+				listProfiles={listProfiles}
+				setCurrentProfileIndex={setCurrentProfileIndex}
+				isShowChangeProfileDialog={isShowChangeProfileDialog}
+				setShowChangeProfileDialog={setShowChangeProfileDialog}
+			/>
 			<FormProvider {...formTools}>
 				<EditCvForm onSubmit={onSubmit} />
 			</FormProvider>
@@ -49,9 +75,18 @@ export default function EditCvView({ cvObjectData, cvTemplateName, onSubmit }: {
 						>
 							<BiCog />
 						</div>
-						<div className='absolute translate-x-[-100%] translate-y-[-100%] bg-white border-[1px] flex flex-col text-sm'>
+						<div className='absolute translate-x-[-100%] translate-y-[-50%] bg-white border-[1px] flex flex-col text-sm'>
 							<div onClick={handleGetTemplate} className={`${!isShowSetting && "hidden"} hover:bg-slate-200 px-3 py-1 whitespace-nowrap cursor-pointer`}>
-								Đổi mẫu
+								Đổi mẫu CV
+							</div>
+							<div
+								onClick={() => {
+									setShowChangeProfileDialog(true);
+									setShowSetting(false);
+								}}
+								className={`${!isShowSetting && "hidden"} hover:bg-slate-200 px-3 py-1 whitespace-nowrap cursor-pointer`}
+							>
+								Đổi hồ sơ
 							</div>
 						</div>
 					</div>

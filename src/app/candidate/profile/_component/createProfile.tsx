@@ -1,7 +1,7 @@
 "use client";
 
 import createCandidateProfile from "@/actions/candidate/createCandidateProfile";
-import { BiPlus } from "react-icons/bi";
+import BlueCreate from "@/components/button/blueCreate";
 
 export default function CreateProfile() {
 	return (
@@ -14,10 +14,7 @@ export default function CreateProfile() {
 				}
 			}}
 		>
-			<button className='flex gap-1 items-center bg-blue-200 hover:bg-blue-300 active:bg-blue-200 p-2 rounded-sm' type='submit'>
-				<div>Tạo mới</div>
-				<BiPlus />
-			</button>
+			<BlueCreate />
 		</form>
 	);
 }

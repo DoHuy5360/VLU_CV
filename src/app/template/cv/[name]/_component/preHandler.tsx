@@ -1,14 +1,42 @@
 "use client";
 
-import { createReplica } from "@/actions/candidate/createReplica";
-import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
+import DialogProfileSelection from "@/components/view/editCV/dialogProfileSelection";
 import EditCvView from "@/components/view/editCV/editCV";
+import { useCreateCV } from "@/hooks/useCreateCV";
 import { UserData } from "@/types/userData";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useRef, useState } from "react";
 
-export default function PreHandler({ cvTemplateName, cvObjectData }: { cvTemplateName: string; cvObjectData: UserData }) {
-	const handleSubmit = async (data: UserDataForm) => {
-		const isSuccess = await createReplica(cvTemplateName, data);
-		isSuccess ? alert("Tạo CV thành công") : alert("Tạo CV thất bại - Vui lòng kiểm tra lại tên CV");
-	};
-	return <EditCvView cvObjectData={cvObjectData} onSubmit={handleSubmit} cvTemplateName={cvTemplateName} />;
+export type CandidateProfileProps = {
+	_id: string;
+	accountId: string;
+	name: string;
+	data: UserData;
+	default: string;
+};
+
+export default function PreHandler({ cvTemplateName, profiles }: { cvTemplateName: string; profiles: string }) {
+	const handleSubmit = useCreateCV({ cvTemplateName });
+	const listProfiles = useRef<CandidateProfileProps[]>(JSON.parse(profiles));
+	const searchParams = useSearchParams();
+
+	const profileIndex = searchParams.get("profile");
+	console.log(profileIndex);
+	const [currentProfileIndex, setCurrentProfileIndex] = useState<number | null>(profileIndex === null ? null : parseInt(profileIndex));
+	const [isShowChangeProfileDialog, setShowChangeProfileDialog] = useState(profileIndex === null ? true : false);
+	if (listProfiles.current.length === 1) return <EditCvView cvObjectData={listProfiles.current[0].data} listProfiles={listProfiles.current} onSubmit={handleSubmit} cvTemplateName={cvTemplateName} />;
+
+	return (
+		<>
+			<DialogProfileSelection
+				listProfiles={listProfiles.current}
+				setCurrentProfileIndex={setCurrentProfileIndex}
+				isShowChangeProfileDialog={isShowChangeProfileDialog}
+				setShowChangeProfileDialog={setShowChangeProfileDialog}
+			/>
+			{currentProfileIndex !== null && (
+				<EditCvView cvObjectData={listProfiles.current[currentProfileIndex].data} listProfiles={listProfiles.current} onSubmit={handleSubmit} cvTemplateName={cvTemplateName} />
+			)}
+		</>
+	);
 }

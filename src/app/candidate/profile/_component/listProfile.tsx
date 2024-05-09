@@ -5,7 +5,7 @@ import moment from "moment";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineClear } from "react-icons/ai";
 import DeleteProfile from "./deleteProfile";
-import CreateProfile from "./cerateProfile";
+import CreateProfile from "./createProfile";
 
 export type ProfileProps = {
 	_id: string;
@@ -91,7 +91,7 @@ export default function ListProfiles({ profiles }: { profiles: string }) {
 				</div>
 				<div className='p-2'>Thao tác</div>
 			</div>
-			{JSON.parse(profiles).map((cv: ProfileProps, index: number) => (
+			{cvs.map((cv: ProfileProps, index: number) => (
 				<div key={cv._id} id={cv._id.toString()} className='grid grid-cols-[50px_1fr_250px_100px] items-center hover:bg-slate-100'>
 					<div className='p-2 text-center'>{index + 1}</div>
 					<Link className='p-2 underline hover:text-blue-500 whitespace-nowrap' href={`/candidate/profile/${cv._id}`}>
