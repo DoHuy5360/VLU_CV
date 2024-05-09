@@ -18,7 +18,7 @@ export default async function CandidateLayout({ children }: { children: JSX.Elem
 					<Link className='whitespace-nowrap px-2 py-1 hover:bg-slate-300' href='/candidate/cv'>
 						CV của tôi
 					</Link>
-					<Link className='whitespace-nowrap px-2 py-1 hover:bg-slate-300' href='/candidate/profile?tab="Personal"'>
+					<Link className='whitespace-nowrap px-2 py-1 hover:bg-slate-300' href='/candidate/profile'>
 						Hồ sơ cá nhân
 					</Link>
 					<Link className='whitespace-nowrap px-2 py-1 hover:bg-slate-300' href='/template/cv'>

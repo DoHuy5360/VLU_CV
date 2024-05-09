@@ -1,28 +1,30 @@
 "use client";
 import Link from "next/link";
 import { RxEyeClosed } from "react-icons/rx";
-import DeleteCV from "./deleteCV";
 import moment from "moment";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineClear } from "react-icons/ai";
+import DeleteProfile from "./deleteProfile";
+import CreateProfile from "./cerateProfile";
 
-type ListCvProps = {
+export type ProfileProps = {
 	_id: string;
 	name: string;
+	default: boolean;
 	createdAt: string;
 };
 
-export default function ListCV({ listCV }: { listCV: string }) {
-	const arrCVs = useRef<ListCvProps[]>(JSON.parse(listCV));
-	const [cvs, setCVs] = useState<ListCvProps[]>(arrCVs.current);
+export default function ListProfiles({ profiles }: { profiles: string }) {
+	const arrProfiles = useRef<ProfileProps[]>(JSON.parse(profiles));
+	const [cvs, setCVs] = useState<ProfileProps[]>(arrProfiles.current);
 	const [dateCreated, setDateCreated] = useState<string>("");
 	const [findingCvName, setFindingCvName] = useState("");
 	useEffect(() => {
 		if (findingCvName === "") {
-			setCVs(arrCVs.current);
+			setCVs(arrProfiles.current);
 		} else {
 			const regex = new RegExp([...findingCvName].join(".*"), "i");
-			const cvsFiltered = arrCVs.current.filter((cv) => {
+			const cvsFiltered = arrProfiles.current.filter((cv) => {
 				return regex.test(cv.name) && cv;
 			});
 			setCVs(cvsFiltered);
@@ -30,16 +32,19 @@ export default function ListCV({ listCV }: { listCV: string }) {
 	}, [findingCvName]);
 	useEffect(() => {
 		if (dateCreated === "") {
-			setCVs(arrCVs.current);
+			setCVs(arrProfiles.current);
 		} else {
-			const cvsFiltered = arrCVs.current.filter((cv) => {
+			const cvsFiltered = arrProfiles.current.filter((cv) => {
 				return dateCreated === cv.createdAt.split("T")[0] && cv;
 			});
 			setCVs(cvsFiltered);
 		}
 	}, [dateCreated]);
 	return (
-		<div className='text-sm flex flex-col h-full'>
+		<div className='flex-grow text-sm flex flex-col h-full'>
+			<div className='flex justify-end m-1'>
+				<CreateProfile />
+			</div>
 			<div className='grid grid-cols-[50px_1fr_250px_100px] items-center bg-orange-400 text-white'>
 				<div className='p-2 text-center'>#</div>
 				<div className='p-2 flex items-center gap-1'>
@@ -86,10 +91,10 @@ export default function ListCV({ listCV }: { listCV: string }) {
 				</div>
 				<div className='p-2'>Thao tác</div>
 			</div>
-			{cvs.map((cv, index) => (
+			{JSON.parse(profiles).map((cv: ProfileProps, index: number) => (
 				<div key={cv._id} id={cv._id.toString()} className='grid grid-cols-[50px_1fr_250px_100px] items-center hover:bg-slate-100'>
 					<div className='p-2 text-center'>{index + 1}</div>
-					<Link className='p-2 underline hover:text-blue-500 whitespace-nowrap' href={`/candidate/cv/${cv._id}`}>
+					<Link className='p-2 underline hover:text-blue-500 whitespace-nowrap' href={`/candidate/profile/${cv._id}`}>
 						<div
 							dangerouslySetInnerHTML={{
 								__html: cv.name,
@@ -97,13 +102,15 @@ export default function ListCV({ listCV }: { listCV: string }) {
 						></div>
 					</Link>
 					<div className='p-2 whitespace-nowrap text-center'>{moment(cv.createdAt).format("DD-MM-YYYY / HH:mm")}</div>
-					<div className='flex gap-2 align-bottom'>
-						<div className='p-2 cursor-pointer hover:bg-slate-300'>
-							<RxEyeClosed />
-							{/* <RxEyeOpen /> */}
+					{cv.default === false && (
+						<div className='flex gap-2 align-bottom'>
+							<div className='p-2 cursor-pointer hover:bg-slate-300'>
+								<RxEyeClosed />
+								{/* <RxEyeOpen /> */}
+							</div>
+							<DeleteProfile _id={cv._id} name={cv.name} />
 						</div>
-						<DeleteCV id={cv._id.toString()} name={cv.name} />
-					</div>
+					)}
 				</div>
 			))}
 		</div>

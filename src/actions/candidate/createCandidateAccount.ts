@@ -4,22 +4,27 @@ import { createAccount } from "../general/createAccount";
 import Candidate, { CandidateModelType } from "@/models/candidate";
 import { getUserDataCV } from "@/entities/userDataCV";
 import { CandidateDataForm } from "@/app/auth/_component/register/candidate";
-import { AccountModelType } from "@/models/account";
+import Candidate_Profile, { CandidateProfileModelType } from "@/models/candidate_profiles";
 
 export async function createCandidateAccount(data: CandidateDataForm) {
 	await connectToDatabase();
-	const newAccountDoc: AccountModelType = await createAccount({
+	const newAccountDoc = await createAccount({
 		email: data.email,
 		password: data.password,
 		role: "candidate",
 		image: "",
 	});
-	const newCandidate = new Candidate({
+	if (newAccountDoc === null) return null;
+	const newCandidate = new Candidate<CandidateModelType>({
 		accountId: newAccountDoc._id,
 		name: data.name,
 		phone: data.phone,
 		gender: data.gender,
-		dataCV: getUserDataCV({
+	});
+	const newCandidateProfile = new Candidate_Profile<CandidateProfileModelType>({
+		name: "Hồ sơ mặc định",
+		accountId: newAccountDoc._id,
+		data: getUserDataCV({
 			name: "",
 			template: "Root",
 			head: {
@@ -27,9 +32,11 @@ export async function createCandidateAccount(data: CandidateDataForm) {
 				email: data.email,
 			},
 		}),
+		default: true,
 	});
-	const newCandidateDoc: CandidateModelType = await newCandidate.save();
-	if (newCandidateDoc === null) {
+	const candidateObject = await newCandidate.save();
+	const candidateProfileObject = await newCandidateProfile.save();
+	if (candidateObject === null || candidateProfileObject === null) {
 		return null;
 	} else {
 		return newAccountDoc;

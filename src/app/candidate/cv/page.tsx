@@ -14,8 +14,7 @@ export default async function CV() {
 		userId: session?.user._id,
 	})
 		.sort({ updatedAt: -1 })
-		.select("_id name createdAt")
-		.lean();
+		.select("_id name createdAt");
 	if (cvs.length === 0)
 		return (
 			<div className='grid place-items-center h-full'>

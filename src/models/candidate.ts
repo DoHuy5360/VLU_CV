@@ -1,12 +1,13 @@
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
+import { nullable } from "zod";
 
 export type CandidateModelType = {
-	_id: ObjectId;
+	_id?: ObjectId;
 	accountId: ObjectId;
 	name: string;
 	phone: string;
-	gender: string;
+	gender: string | null;
 };
 
 const candidateSchema = new mongoose.Schema(
@@ -26,10 +27,7 @@ const candidateSchema = new mongoose.Schema(
 		gender: {
 			type: String,
 			require: true,
-		},
-		dataCV: {
-			type: Object,
-			require: false,
+			nullable: true,
 		},
 	},
 	{

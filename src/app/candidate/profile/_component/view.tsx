@@ -19,13 +19,13 @@ import Other from "@/components/cvEditFields/editFields/other";
 import editAvatar from "./editAvatar";
 import GreenSubmit from "@/components/button/greenSubmit";
 
-export default function View({ name, formTools }: { name: string; formTools: UseFormReturn<UserDataForm> }) {
+export default function View({ _id, name, formTools }: { _id: string; name: string; formTools: UseFormReturn<UserDataForm> }) {
 	return (
 		<form
 			action={async () => {
 				formTools.handleSubmit(async (data: UserDataForm) => {
 					try {
-						const result = await updateProfile(JSON.stringify(data));
+						const result = await updateProfile(_id, JSON.stringify(data));
 						result ? alert("Cập nhật hồ sơ thành công") : console.log("Cập nhật hồ sơ thất bại");
 					} catch (error) {
 						console.log(error);
