@@ -15,7 +15,7 @@ export default async function F({ params }: { params: { name: string } }) {
 	if (candidateProfiles === null) return <NoData />;
 	return (
 		<div className='flex-grow overflow-hidden relative'>
-			<PreHandler cvTemplateName={params.name} profiles={JSON.stringify(candidateProfiles)} />;
+			<PreHandler cvTemplateName={params.name} profiles={JSON.stringify(candidateProfiles)} />
 		</div>
 	);
 }

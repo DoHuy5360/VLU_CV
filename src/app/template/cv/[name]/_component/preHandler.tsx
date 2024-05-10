@@ -5,7 +5,7 @@ import EditCvView from "@/components/view/editCV/editCV";
 import { useCreateCV } from "@/hooks/useCreateCV";
 import { UserData } from "@/types/userData";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 export type CandidateProfileProps = {
 	_id: string;
