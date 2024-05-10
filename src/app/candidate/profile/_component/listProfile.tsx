@@ -15,16 +15,19 @@ export type ProfileProps = {
 };
 
 export default function ListProfiles({ profiles }: { profiles: string }) {
-	const arrProfiles = useRef<ProfileProps[]>(JSON.parse(profiles));
-	const [cvs, setCVs] = useState<ProfileProps[]>(arrProfiles.current);
+	const arrProfiles: ProfileProps[] = JSON.parse(profiles);
+	const [cvs, setCVs] = useState<ProfileProps[]>(arrProfiles);
 	const [dateCreated, setDateCreated] = useState<string>("");
 	const [findingCvName, setFindingCvName] = useState("");
 	useEffect(() => {
+		setCVs(arrProfiles);
+	}, [profiles]);
+	useEffect(() => {
 		if (findingCvName === "") {
-			setCVs(arrProfiles.current);
+			setCVs(arrProfiles);
 		} else {
 			const regex = new RegExp([...findingCvName].join(".*"), "i");
-			const cvsFiltered = arrProfiles.current.filter((cv) => {
+			const cvsFiltered = arrProfiles.filter((cv) => {
 				return regex.test(cv.name) && cv;
 			});
 			setCVs(cvsFiltered);
@@ -32,9 +35,9 @@ export default function ListProfiles({ profiles }: { profiles: string }) {
 	}, [findingCvName]);
 	useEffect(() => {
 		if (dateCreated === "") {
-			setCVs(arrProfiles.current);
+			setCVs(arrProfiles);
 		} else {
-			const cvsFiltered = arrProfiles.current.filter((cv) => {
+			const cvsFiltered = arrProfiles.filter((cv) => {
 				return dateCreated === cv.createdAt.split("T")[0] && cv;
 			});
 			setCVs(cvsFiltered);
@@ -92,7 +95,7 @@ export default function ListProfiles({ profiles }: { profiles: string }) {
 				<div className='p-2'>Thao tác</div>
 			</div>
 			{cvs.map((cv: ProfileProps, index: number) => (
-				<div key={cv._id} id={cv._id.toString()} className='grid grid-cols-[50px_1fr_250px_100px] items-center hover:bg-slate-100'>
+				<div key={cv._id} className='grid grid-cols-[50px_1fr_250px_100px] items-center hover:bg-slate-100'>
 					<div className='p-2 text-center'>{index + 1}</div>
 					<Link className='p-2 underline hover:text-blue-500 whitespace-nowrap' href={`/candidate/profile/${cv._id}`}>
 						<div

@@ -7,10 +7,10 @@ import CandidateProfile from "@/models/candidate_profiles";
 import ListProfiles from "./_component/listProfile";
 
 export default async function Profile() {
-	const session = await getServerSession(authOptions);
 	await connectToDatabase();
+	const session = await getServerSession(authOptions);
 	const candidateProfiles = await CandidateProfile.find({
-		accountId: new ObjectId(session?.user._id as string),
+		accountId: session?.user._id,
 	})
 		.sort({ updatedAt: 1 })
 		.select("name default createdAt");

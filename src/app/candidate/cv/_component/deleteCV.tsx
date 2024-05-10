@@ -2,7 +2,7 @@
 import { deleteCV } from "@/actions/candidate/deleteCV";
 import { BiTrash } from "react-icons/bi";
 
-function DeleteCV({ id, name }: { id: string; name: string }) {
+export default function DeleteCV({ id, name }: { id: string; name: string }) {
 	return (
 		<form
 			action={async (e) => {
@@ -16,5 +16,3 @@ function DeleteCV({ id, name }: { id: string; name: string }) {
 		</form>
 	);
 }
-
-export default DeleteCV;

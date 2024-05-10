@@ -13,16 +13,19 @@ type ListCvProps = {
 };
 
 export default function ListCV({ listCV }: { listCV: string }) {
-	const arrCVs = useRef<ListCvProps[]>(JSON.parse(listCV));
-	const [cvs, setCVs] = useState<ListCvProps[]>(arrCVs.current);
+	let arrCVs: ListCvProps[] = JSON.parse(listCV);
+	const [cvs, setCVs] = useState<ListCvProps[]>(arrCVs);
 	const [dateCreated, setDateCreated] = useState<string>("");
 	const [findingCvName, setFindingCvName] = useState("");
 	useEffect(() => {
+		setCVs(arrCVs);
+	}, [listCV]);
+	useEffect(() => {
 		if (findingCvName === "") {
-			setCVs(arrCVs.current);
+			setCVs(arrCVs);
 		} else {
 			const regex = new RegExp([...findingCvName].join(".*"), "i");
-			const cvsFiltered = arrCVs.current.filter((cv) => {
+			const cvsFiltered = arrCVs.filter((cv) => {
 				return regex.test(cv.name) && cv;
 			});
 			setCVs(cvsFiltered);
@@ -30,9 +33,9 @@ export default function ListCV({ listCV }: { listCV: string }) {
 	}, [findingCvName]);
 	useEffect(() => {
 		if (dateCreated === "") {
-			setCVs(arrCVs.current);
+			setCVs(arrCVs);
 		} else {
-			const cvsFiltered = arrCVs.current.filter((cv) => {
+			const cvsFiltered = arrCVs.filter((cv) => {
 				return dateCreated === cv.createdAt.split("T")[0] && cv;
 			});
 			setCVs(cvsFiltered);
@@ -59,7 +62,7 @@ export default function ListCV({ listCV }: { listCV: string }) {
 							}}
 							className='text-orange-400 hover:text-orange-600 cursor-pointer px-1'
 						>
-							<AiOutlineClear />
+							{/* <AiOutlineClear /> */}
 						</div>
 					</div>
 				</div>
@@ -86,8 +89,8 @@ export default function ListCV({ listCV }: { listCV: string }) {
 				</div>
 				<div className='p-2'>Thao tác</div>
 			</div>
-			{cvs.map((cv, index) => (
-				<div key={cv._id} id={cv._id.toString()} className='grid grid-cols-[50px_1fr_250px_100px] items-center hover:bg-slate-100'>
+			{cvs.map((cv: ListCvProps, index: number) => (
+				<div key={cv._id} className='grid grid-cols-[50px_1fr_250px_100px] items-center hover:bg-slate-100'>
 					<div className='p-2 text-center'>{index + 1}</div>
 					<Link className='p-2 underline hover:text-blue-500 whitespace-nowrap' href={`/candidate/cv/${cv._id}`}>
 						<div
@@ -102,7 +105,7 @@ export default function ListCV({ listCV }: { listCV: string }) {
 							<RxEyeClosed />
 							{/* <RxEyeOpen /> */}
 						</div>
-						<DeleteCV id={cv._id.toString()} name={cv.name} />
+						<DeleteCV id={cv._id} name={cv.name} />
 					</div>
 				</div>
 			))}
