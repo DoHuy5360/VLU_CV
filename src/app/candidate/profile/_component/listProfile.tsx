@@ -11,17 +11,18 @@ export type ProfileProps = {
 	_id: string;
 	name: string;
 	default: boolean;
+	type: "cv" | "portfolio";
 	createdAt: string;
 };
 
-export default function ListProfiles({ profiles }: { profiles: string }) {
-	const arrProfiles: ProfileProps[] = JSON.parse(profiles);
-	const [cvs, setCVs] = useState<ProfileProps[]>(arrProfiles);
+export default function ListProfiles({ profilesRaw }: { profilesRaw: string }) {
+	const arrProfiles: ProfileProps[] = JSON.parse(profilesRaw);
+	const [profiles, setCVs] = useState<ProfileProps[]>(arrProfiles);
 	const [dateCreated, setDateCreated] = useState<string>("");
 	const [findingCvName, setFindingCvName] = useState("");
 	useEffect(() => {
 		setCVs(arrProfiles);
-	}, [profiles]);
+	}, [profilesRaw]);
 	useEffect(() => {
 		if (findingCvName === "") {
 			setCVs(arrProfiles);
@@ -48,7 +49,7 @@ export default function ListProfiles({ profiles }: { profiles: string }) {
 			<div className='flex justify-end m-1'>
 				<CreateProfile />
 			</div>
-			<div className='grid grid-cols-[50px_1fr_250px_100px] items-center bg-orange-400 text-white'>
+			<div className='grid grid-cols-[50px_1fr_100px_250px_100px] items-center bg-orange-400 text-white'>
 				<div className='p-2 text-center'>#</div>
 				<div className='p-2 flex items-center gap-1'>
 					<div>Tên</div>
@@ -71,6 +72,7 @@ export default function ListProfiles({ profiles }: { profiles: string }) {
 						</div>
 					</div>
 				</div>
+				<div className='text-center'>Loại hồ sơ</div>
 				<div className='flex gap-1 items-center p-2'>
 					<div>Tạo lúc</div>
 					<div className='flex bg-white items-center'>
@@ -94,24 +96,21 @@ export default function ListProfiles({ profiles }: { profiles: string }) {
 				</div>
 				<div className='p-2'>Thao tác</div>
 			</div>
-			{cvs.map((cv: ProfileProps, index: number) => (
-				<div key={cv._id} className='grid grid-cols-[50px_1fr_250px_100px] items-center hover:bg-slate-100'>
+			{profiles.map((profile: ProfileProps, index: number) => (
+				<div key={profile._id} className='grid grid-cols-[50px_1fr_100px_250px_100px] items-center hover:bg-slate-100'>
 					<div className='p-2 text-center'>{index + 1}</div>
-					<Link className='p-2 underline hover:text-blue-500 whitespace-nowrap' href={`/candidate/profile/${cv._id}`}>
+					<Link className='p-2 underline hover:text-blue-500 whitespace-nowrap' href={`/candidate/profile/${profile._id}`}>
 						<div
 							dangerouslySetInnerHTML={{
-								__html: cv.name,
+								__html: profile.name,
 							}}
 						></div>
 					</Link>
-					<div className='p-2 whitespace-nowrap text-center'>{moment(cv.createdAt).format("DD-MM-YYYY / HH:mm")}</div>
-					{cv.default === false && (
+					<div className='text-center'>{profile.type}</div>
+					<div className='p-2 whitespace-nowrap text-center'>{moment(profile.createdAt).format("DD-MM-YYYY / HH:mm")}</div>
+					{profile.default === false && (
 						<div className='flex gap-2 align-bottom'>
-							<div className='p-2 cursor-pointer hover:bg-slate-300'>
-								<RxEyeClosed />
-								{/* <RxEyeOpen /> */}
-							</div>
-							<DeleteProfile _id={cv._id} name={cv.name} />
+							<DeleteProfile _id={profile._id} name={profile.name} />
 						</div>
 					)}
 				</div>

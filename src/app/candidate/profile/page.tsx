@@ -13,9 +13,9 @@ export default async function Profile() {
 		accountId: session?.user._id,
 	})
 		.sort({ updatedAt: 1 })
-		.select("name default createdAt");
+		.select("name default type createdAt");
 
 	if (candidateProfiles === null) return <NoData />;
 
-	return <ListProfiles profiles={JSON.stringify(candidateProfiles)} />;
+	return <ListProfiles profilesRaw={JSON.stringify(candidateProfiles)} />;
 }

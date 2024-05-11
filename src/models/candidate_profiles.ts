@@ -5,6 +5,7 @@ export type CandidateProfileModelType = {
 	_id?: ObjectId;
 	accountId: ObjectId;
 	name: string;
+	type: string;
 	data: Object;
 	default: boolean;
 };
@@ -16,6 +17,10 @@ const candidateProfileSchema = new mongoose.Schema(
 			require: true,
 		},
 		name: {
+			type: String,
+			require: true,
+		},
+		type: {
 			type: String,
 			require: true,
 		},
