@@ -2,7 +2,7 @@ import { V01AHead, V01AGoal, V01AExperience, V01AProject, V01AEducation, V01ASki
 import { UserData } from "@/types/userData";
 import Columns from "../symmetric/columns";
 
-function A01Template(data: UserData) {
+export default function A01Template(data: UserData) {
 	return (
 		<div className='p-4 bg-white'>
 			<div id='sectionParent' className='flex flex-col gap-4'>
@@ -28,5 +28,3 @@ function A01Template(data: UserData) {
 		</div>
 	);
 }
-
-export default A01Template;
