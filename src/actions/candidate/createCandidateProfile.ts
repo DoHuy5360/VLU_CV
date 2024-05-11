@@ -1,23 +1,28 @@
 "use server";
 
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
+import { CreateProfileDataForm } from "@/app/candidate/profile/_component/createProfile";
+import { getDataPortfolio } from "@/entities/getDataPortfolio";
 import { getUserDataCV } from "@/entities/userDataCV";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import Candidate_Profile, { CandidateProfileModelType } from "@/models/candidate_profiles";
-import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
 import { revalidateTag } from "next/cache";
 
-export default async function createCandidateProfile(profileName: string) {
+export default async function createCandidateProfile(profile: CreateProfileDataForm) {
 	const session = await getServerSession(authOptions);
 	await connectToDatabase();
 	const newCandidateProfile = new Candidate_Profile<CandidateProfileModelType>({
-		accountId: new ObjectId(session?.user._id as string),
-		data: getUserDataCV({
-			name: "",
-			template: "Root",
-		}),
-		name: profileName,
+		accountId: session?.user._id,
+		data:
+			profile.type === "cv"
+				? getUserDataCV({
+						name: "",
+						template: "Root",
+				  })
+				: getDataPortfolio(),
+		name: profile.name,
+		type: profile.type,
 		default: false,
 	});
 

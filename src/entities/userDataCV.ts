@@ -1,4 +1,4 @@
-import { Head, UserData } from "@/types/userData";
+import { UserData } from "@/types/userData";
 
 export const getUserDataCV = ({
 	name,

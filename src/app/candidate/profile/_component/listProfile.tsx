@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
-import { RxEyeClosed } from "react-icons/rx";
 import moment from "moment";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineClear } from "react-icons/ai";
 import DeleteProfile from "./deleteProfile";
 import CreateProfile from "./createProfile";
+import BlueCreate from "@/components/button/blueCreate";
 
 export type ProfileProps = {
 	_id: string;
@@ -44,10 +44,20 @@ export default function ListProfiles({ profilesRaw }: { profilesRaw: string }) {
 			setCVs(cvsFiltered);
 		}
 	}, [dateCreated]);
+	const [isShowCreateProfileDialog, setShowCreateProfileDialog] = useState(false);
 	return (
-		<div className='flex-grow text-sm flex flex-col h-full'>
+		<div className='flex-grow text-sm flex flex-col h-full relative'>
 			<div className='flex justify-end m-1'>
-				<CreateProfile />
+				<div
+					onClick={() => {
+						setShowCreateProfileDialog(true);
+					}}
+				>
+					<BlueCreate />
+				</div>
+				<div className={`${isShowCreateProfileDialog ? "" : "hidden"}`}>
+					<CreateProfile setShowCreateProfileDialog={setShowCreateProfileDialog} />
+				</div>
 			</div>
 			<div className='grid grid-cols-[50px_1fr_100px_250px_100px] items-center bg-orange-400 text-white'>
 				<div className='p-2 text-center'>#</div>
