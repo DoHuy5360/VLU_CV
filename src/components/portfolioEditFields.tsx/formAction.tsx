@@ -1,20 +1,11 @@
 import { UseFieldArrayReturn } from "react-hook-form";
 import { BiTrash } from "react-icons/bi";
 import { LuMoveDown, LuMoveUp } from "react-icons/lu";
-import { UserDataForm } from "../view/editCV/_component/editCvForm";
+import { PortfolioFormData } from "@/entities/getDataPortfolio";
 
 export default function FormAction<
-	T extends
-		| "attrs.experience.works"
-		| "attrs.project.products"
-		| "attrs.education.classes"
-		| "attrs.skill.skills"
-		| "attrs.badge.achievements"
-		| "attrs.certificate.certificates"
-		| "attrs.reference.references"
-		| "attrs.activity.activities"
-		| "attrs.hobby.hobbies"
->({ actions, index, length }: { actions: UseFieldArrayReturn<UserDataForm, T>; index: number; length: number }) {
+	T extends "skills" | "experiences" | "projects" | "about.images" | `experiences.${number}.images` | `projects.${number}.images` | `projects.${number}.technologies`
+>({ actions, index, length }: { actions: UseFieldArrayReturn<PortfolioFormData, T>; index: number; length: number }) {
 	return (
 		<div className='flex gap-2 text-xs'>
 			<div

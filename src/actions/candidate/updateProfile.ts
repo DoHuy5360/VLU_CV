@@ -10,8 +10,8 @@ export default async function updateProfile(_id: string, data: string) {
 	await connectToDatabase();
 	const { acknowledged } = await Candidate_Profile.updateOne(
 		{
-			_id: new ObjectId(_id),
-			accountId: new ObjectId(session?.user._id as string),
+			_id,
+			accountId: session?.user._id,
 		},
 		{
 			$set: {

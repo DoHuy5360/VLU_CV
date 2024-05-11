@@ -1,22 +1,42 @@
 import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
-import { UseFormGetValues, UseFormRegisterReturn, UseFormSetValue, UseFormTrigger } from "react-hook-form";
+import { ImageSchema } from "@/entities/getDataPortfolio";
+import { FieldValues, UseFormGetValues, UseFormRegisterReturn, UseFormSetValue, UseFormTrigger } from "react-hook-form";
+import { z } from "zod";
 
 export type InputUIParams = {
 	label?: string;
 	index?: number;
 	register: UseFormRegisterReturn;
-	errors: string | undefined;
+	errors?: string;
 };
 
-export type AvatarUIParams = {
+// export type AvatarUIParams = {
+// 	label?: string;
+// 	errors: string;
+// 	setValue: UseFormSetValue<UserDataForm>;
+// 	getValues: UseFormGetValues<UserDataForm>;
+// 	trigger: UseFormTrigger<UserDataForm>;
+// };
+export type AvatarUIParams<T extends FieldValues> = {
 	label?: string;
-	errors: string;
-	setValue: UseFormSetValue<UserDataForm>;
-	getValues: UseFormGetValues<UserDataForm>;
-	trigger: UseFormTrigger<UserDataForm>;
+	errors?: string;
+	setValue: UseFormSetValue<T>;
+	getValues: UseFormGetValues<T>;
+	trigger: UseFormTrigger<T>;
 };
 
-export type AvatarUI = ({ label, errors, setValue, getValues }: AvatarUIParams) => JSX.Element;
+export type ImageUIParams<T extends FieldValues> = {
+	label?: string;
+	errors?: string;
+	setValue: UseFormSetValue<T>;
+	getValues: UseFormGetValues<T>;
+	trigger: UseFormTrigger<T>;
+	index: number;
+};
+
+export type ImageUI<T extends FieldValues> = ({ label, errors, setValue, getValues }: ImageUIParams<T>) => JSX.Element;
+
+export type AvatarUI<T extends FieldValues> = ({ label, errors, setValue, getValues }: AvatarUIParams<T>) => JSX.Element;
 
 export type InputUI = ({ label, register, errors, index }: InputUIParams) => JSX.Element;
 

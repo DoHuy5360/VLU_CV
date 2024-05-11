@@ -3,6 +3,7 @@ import { useCallback, useContext } from "react";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ProfileTabContext } from "./preHandler";
 export default function Tab({ title, name, isError }: { title: string; name: string; isError: any }) {
+	console.log(isError);
 	const { setCurrentTab, toggle } = useContext(ProfileTabContext);
 	const setFootprint = useCallback((tab: string) => {
 		const queryParams = new URLSearchParams(window.location.search);
