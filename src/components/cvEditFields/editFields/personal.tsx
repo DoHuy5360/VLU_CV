@@ -2,7 +2,7 @@ import { useFormContext } from "react-hook-form";
 import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
 import { AvatarUI, InputUI, WrapperUI } from "./type";
 
-export default function Personal({ Wrapper, Input, Avatar, hideField }: { Wrapper: WrapperUI; Input: InputUI; Avatar: AvatarUI; hideField?: { fileName?: boolean } }) {
+export default function Personal({ Wrapper, Input, Avatar, hideField }: { Wrapper: WrapperUI; Input: InputUI; Avatar: AvatarUI<UserDataForm>; hideField?: { fileName?: boolean } }) {
 	const {
 		register,
 		setValue,

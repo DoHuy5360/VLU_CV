@@ -1,6 +1,6 @@
 import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
 import { ImageSchema } from "@/entities/getDataPortfolio";
-import { FieldValues, UseFormGetValues, UseFormRegisterReturn, UseFormSetValue, UseFormTrigger } from "react-hook-form";
+import { Control, FieldValues, UseFormGetValues, UseFormRegisterReturn, UseFormSetValue, UseFormTrigger } from "react-hook-form";
 import { z } from "zod";
 
 export type InputUIParams = {
@@ -34,6 +34,13 @@ export type ImageUIParams<T extends FieldValues> = {
 	index: number;
 };
 
+export type SelectUIParams<T extends FieldValues> = {
+	label?: string;
+	index: number;
+};
+
+export type SelectUI<T extends FieldValues> = ({ label, index }: SelectUIParams<T>) => JSX.Element;
+
 export type ImageUI<T extends FieldValues> = ({ label, errors, setValue, getValues }: ImageUIParams<T>) => JSX.Element;
 
 export type AvatarUI<T extends FieldValues> = ({ label, errors, setValue, getValues }: AvatarUIParams<T>) => JSX.Element;
@@ -52,4 +59,5 @@ export interface WrapperUI {
 	T02: WrapperT<JSX.Element[]>;
 	T03: WrapperT<JSX.Element[]>;
 	T04: WrapperT<JSX.Element>;
+	T05: WrapperT<JSX.Element[]>;
 }

@@ -52,6 +52,8 @@ const skills = z.array(
 		name: z.string(),
 	})
 );
+export type SkillDataForm = z.infer<typeof skills>;
+
 export const image = z.object({
 	id: z.string(),
 	label: z.string(),
@@ -75,12 +77,7 @@ const projects = z.array(
 		id: z.string(),
 		name: z.string(),
 		time: z.string(),
-		technologies: z.array(
-			z.object({
-				label: z.string(),
-				name: z.string(),
-			})
-		),
+		technologies: skills,
 		images: z.array(image),
 		tasks: z.string(),
 	})
@@ -95,4 +92,5 @@ export const portfolioData = z.object({
 	experiences,
 	projects,
 });
+
 export type PortfolioFormData = z.infer<typeof portfolioData>;

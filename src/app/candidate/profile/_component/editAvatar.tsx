@@ -1,3 +1,4 @@
+import SelectFile from "@/components/button/selectFile";
 import { AvatarUIParams } from "@/components/cvEditFields/editFields/type";
 import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
 import { imageFileToBase64 } from "@/utils/generateB64Image";
@@ -11,6 +12,7 @@ export default function EditAvatar({ label, setValue, getValues, trigger, errors
 					{label}
 				</label>
 				<div className='flex flex-col gap-1 border-slate-200 border-[1px] p-1'>
+					<SelectFile htmlFor='avatar' name='Thay đổi ảnh đại diện' />
 					<input
 						accept='image/*'
 						onChange={async (e) => {
@@ -20,6 +22,7 @@ export default function EditAvatar({ label, setValue, getValues, trigger, errors
 						}}
 						type='file'
 						id='avatar'
+						className='hidden'
 					/>
 					<Image src={getValues("attrs.head.avatar") || "/image/user.jpg"} width={80} height={0} alt='avatar' draggable={false} />
 				</div>

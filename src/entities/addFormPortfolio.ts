@@ -13,3 +13,21 @@ export const aboutImageFormSample = () => ({
 	label: "",
 	src: "",
 });
+export const skillFormSample = () => ({
+	id: getTimeId(),
+	icon: "",
+	name: "",
+});
+export const projectFormSample = () => ({
+	id: getTimeId(),
+	name: "",
+	time: "",
+	technologies: [],
+	images: [],
+	tasks: "",
+});
+export const projectTechnologiesFormSample = () => ({
+	id: getTimeId(),
+	icon: "",
+	name: "",
+});

@@ -10,15 +10,18 @@ export const Wrapper: WrapperUI = {
 				<button onClick={data.prepend} className='px-2 py-1 bg-blue-300 rounded-sm w-fit ml-auto' type='button'>
 					Add
 				</button>
-				<div className='flex flex-col gap-1'>{children}</div>
+				<div className='flex flex-col gap-2'>{children}</div>
 			</div>
 		);
 	},
 
 	T03: ({ children, data }: WrapperP<JSX.Element[]>) => {
-		return <div className='flex flex-col gap-1 border-[1px] border-slate-200 p-2 rounded-sm'>{children}</div>;
+		return <div className='flex flex-col gap-2 border-[1px] border-slate-200 p-2 rounded-sm bg-slate-50'>{children}</div>;
 	},
 	T04: ({ children, data }: WrapperP<JSX.Element>) => {
 		return <div>{children}</div>;
+	},
+	T05: ({ children, data }: WrapperP<JSX.Element[]>) => {
+		return <div className='flex gap-2 items-baseline'>{children}</div>;
 	},
 };

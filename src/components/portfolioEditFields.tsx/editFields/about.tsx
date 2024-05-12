@@ -1,7 +1,6 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { ImageUI, InputUI, WrapperUI } from "@/components/cvEditFields/editFields/type";
 import { ImageSchema, PortfolioFormData } from "@/entities/getDataPortfolio";
-import FormAction from "../formAction";
 import { aboutImageFormSample, experienceFormSample } from "@/entities/addFormPortfolio";
 
 export default function About({ Wrapper, Area, Image }: { Wrapper: WrapperUI; Area: InputUI; Image: ImageUI<PortfolioFormData> }) {
