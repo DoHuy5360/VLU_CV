@@ -11,6 +11,7 @@ export default async function F({ params }: { params: { name: string } }) {
 	await connectToDatabase();
 	const candidateProfiles = await Candidate_Profile.find({
 		accountId: new ObjectId(session?.user._id as string),
+		type: "cv",
 	}).select("name data");
 	if (candidateProfiles === null) return <NoData />;
 	return (

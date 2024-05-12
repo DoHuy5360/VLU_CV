@@ -21,7 +21,6 @@ export default function PreHandler({ cvTemplateName, profiles }: { cvTemplateNam
 	const searchParams = useSearchParams();
 
 	const profileIndex = searchParams.get("profile");
-	console.log(profileIndex);
 	const [currentProfileIndex, setCurrentProfileIndex] = useState<number | null>(profileIndex === null ? null : parseInt(profileIndex));
 	const [isShowChangeProfileDialog, setShowChangeProfileDialog] = useState(profileIndex === null ? true : false);
 	if (listProfiles.current.length === 1) return <EditCvView cvObjectData={listProfiles.current[0].data} listProfiles={listProfiles.current} onSubmit={handleSubmit} cvTemplateName={cvTemplateName} />;

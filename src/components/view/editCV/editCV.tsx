@@ -12,6 +12,7 @@ import Image from "next/image";
 import { CvSchemaType } from "@/models/cv";
 import { CandidateProfileProps } from "@/app/template/cv/[name]/_component/preHandler";
 import DialogProfileSelection from "./dialogProfileSelection";
+import { GrClose } from "react-icons/gr";
 
 export const init = getUserDataCV({});
 
@@ -36,12 +37,14 @@ export default function EditCvView({
 	const [isShowSetting, setShowSetting] = useState(false);
 	const currentTemplate = formTools.getValues("template");
 	const [substituteTemplates, setSubstituteTemplates] = useState<CvSchemaType[]>([]);
+	const [isShowOtherTemplates, setShowOtherTemplates] = useState(false);
 	const handleGetTemplate = async () => {
 		setShowSetting(false);
 		if (substituteTemplates.length === 0) {
 			const res = await fetch("/api/cv");
 			setSubstituteTemplates(await res.json());
 		}
+		setShowOtherTemplates(true);
 	};
 	const [currentProfileIndex, setCurrentProfileIndex] = useState<number | null>(null);
 
@@ -79,15 +82,17 @@ export default function EditCvView({
 							<div onClick={handleGetTemplate} className={`${!isShowSetting && "hidden"} hover:bg-slate-200 px-3 py-1 whitespace-nowrap cursor-pointer`}>
 								Đổi mẫu CV
 							</div>
-							<div
-								onClick={() => {
-									setShowChangeProfileDialog(true);
-									setShowSetting(false);
-								}}
-								className={`${!isShowSetting && "hidden"} hover:bg-slate-200 px-3 py-1 whitespace-nowrap cursor-pointer`}
-							>
-								Đổi hồ sơ
-							</div>
+							{listProfiles.length > 0 && (
+								<div
+									onClick={() => {
+										setShowChangeProfileDialog(true);
+										setShowSetting(false);
+									}}
+									className={`${!isShowSetting && "hidden"} hover:bg-slate-200 px-3 py-1 whitespace-nowrap cursor-pointer`}
+								>
+									Đổi hồ sơ
+								</div>
+							)}
 						</div>
 					</div>
 				</div>
@@ -97,11 +102,21 @@ export default function EditCvView({
 							<CvRenderer cvTemplateName={cvTemplateName} />
 						</FormValuesContext.Provider>
 					</div>
-					{substituteTemplates.length > 0 && (
-						<div className='flex flex-col border-l-[1px]'>
-							<div className='flex flex-col gap-1 p-2 text-xs border-b-[1px]'>
-								<div>Mẫu đang dùng</div>
-								<div className='font-bold'>{currentTemplate}</div>
+					{isShowOtherTemplates && (
+						<div className={`${!isShowOtherTemplates && "hidden"} flex flex-col border-l-[1px]`}>
+							<div className='flex justify-between items-center'>
+								<div className='flex flex-col gap-1 p-2 text-xs border-b-[1px]'>
+									<div>Mẫu đang dùng</div>
+									<div className='font-bold'>{currentTemplate}</div>
+								</div>
+								<div
+									onClick={() => {
+										setShowOtherTemplates(false);
+									}}
+									className='p-2 mr-2 cursor-pointer hover:bg-slate-200 active:bg-slate-300'
+								>
+									<GrClose />
+								</div>
 							</div>
 							<div className='flex flex-col p-2 gap-1'>
 								{substituteTemplates.map((cv, i) => {

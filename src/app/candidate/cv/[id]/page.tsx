@@ -13,11 +13,15 @@ async function ViewCV({ params }: { params: { id: string } }) {
 		_id: params.id,
 	});
 	const recruitment = await Recruitment.find({}).populate("companyId");
-	const candidateSkills = new TextVector(
-		cv.data.attrs.skill.skills.reduce((init: { status: string }, e: { status: string }) => {
-			return init.status + ";" + e.status;
-		})
-	);
+	const isShowRecommend = cv.data.attrs.skill.skills.length !== 0;
+	let candidateSkills: TextVector | undefined;
+	if (isShowRecommend) {
+		candidateSkills = new TextVector(
+			cv.data.attrs.skill.skills.reduce((init: { status: string }, e: { status: string }) => {
+				return init.status + ";" + e.status;
+			})
+		);
+	}
 	console.log(recruitment[0].requirement);
 	return (
 		<div className='flex-grow overflow-y-hidden h-[inherit]'>
@@ -33,22 +37,24 @@ async function ViewCV({ params }: { params: { id: string } }) {
 						</div>
 					</div>
 				</div>
-				<div className='h-[inherit] flex flex-grow flex-col border-r-[1px] border-l-[1px]'>
-					<div className='text-sm border-b-[1px] p-2'>Đề xuất công việc phù hợp</div>
-					{recruitment.map((e, i) => {
-						const matchPercent = new CosineSimilarity(candidateSkills, new TextVector(recruitment[i].requirement)).getSimilarity() * 100;
-						return (
-							<div key={i} className='grid grid-cols-[40px_1fr_50px] border-b-[1px] hover:bg-slate-200 select-none cursor-pointer py-2 gap-2'>
-								<Image src='/image/user.jpg' width={40} height={40} className='p-2' alt='user avatar' />
-								<div className='flex flex-col'>
-									<div className='text-xs whitespace-nowrap'>{e.companyId.name}</div>
-									<div className='text-sm whitespace-nowrap'>{e.title}</div>
+				{candidateSkills !== undefined && (
+					<div className='h-[inherit] flex flex-grow flex-col border-r-[1px] border-l-[1px]'>
+						<div className='text-sm border-b-[1px] p-2'>Đề xuất công việc phù hợp</div>
+						{recruitment.map((e, i) => {
+							const matchPercent = new CosineSimilarity(candidateSkills, new TextVector(recruitment[i].requirement)).getSimilarity() * 100;
+							return (
+								<div key={i} className='grid grid-cols-[40px_1fr_50px] border-b-[1px] hover:bg-slate-200 select-none cursor-pointer py-2 gap-2'>
+									<Image src='/image/user.jpg' width={40} height={40} className='p-2' alt='user avatar' />
+									<div className='flex flex-col'>
+										<div className='text-xs whitespace-nowrap'>{e.companyId.name}</div>
+										<div className='text-sm whitespace-nowrap'>{e.title}</div>
+									</div>
+									<div>{matchPercent}%</div>
 								</div>
-								<div>{matchPercent}%</div>
-							</div>
-						);
-					})}
-				</div>
+							);
+						})}
+					</div>
+				)}
 			</div>
 		</div>
 	);

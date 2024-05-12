@@ -5,7 +5,7 @@ export type CandidateProfileModelType = {
 	_id?: ObjectId;
 	accountId: ObjectId;
 	name: string;
-	type: string;
+	type: "cv" | "portfolio";
 	data: Object;
 	default: boolean;
 };
