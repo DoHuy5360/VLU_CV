@@ -27,7 +27,7 @@ export default async function App() {
 				)}
 			</div>
 			<div className='flex-grow h-full w-full overflow-hidden'>
-				<div className='relative h-full overflow-y-scroll select-none'>
+				<div className='relative h-full select-none'>
 					<div className='absolute z-10 top-8 left-8 h-fit w-fit'>
 						<div className='text-slate-200 xl:text-8xl sm:text-5xl ext-4xl font-bold'>Van Lang Jobs</div>
 					</div>

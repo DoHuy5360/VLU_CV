@@ -14,7 +14,7 @@ export default function F(data: Project) {
 							return (
 								<div key={e.id} className='grid grid-cols-[100px_auto] gap-10'>
 									<div className='flex flex-col gap-1'>
-										<div className='text-nowrap font-bold'>{e.name}</div>
+										<div className='font-bold'>{e.name}</div>
 										<div className='text-nowrap'>{e.time}</div>
 										<div className='text-nowrap'>{e.where}</div>
 										<div className='text-nowrap'>{e.member}</div>

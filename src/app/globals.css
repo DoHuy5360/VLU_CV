@@ -33,3 +33,9 @@
 .landscape_overlay {
 	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%);
 }
+
+.soft_shadow {
+	box-shadow: 0 3px 24px #00000014;
+	-webkit-box-shadow: 0 3px 24px #00000014;
+	-moz-box-shadow: 0 3px 24px #00000014;
+}
