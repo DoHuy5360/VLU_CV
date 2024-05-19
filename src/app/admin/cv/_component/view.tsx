@@ -1,18 +1,17 @@
 "use client";
 import { addNewCV } from "@/actions/admin/addNewCV";
-import GreenSubmit from "@/components/button/greenSubmit";
-import SelectFile from "@/components/button/selectFile";
 import FormErrors from "@/components/notification/formErrors";
 import { Transfer } from "@/types/tranfer";
 import { UserData } from "@/types/userData";
 import { imageFileToBase64 } from "@/utils/generateB64Image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { z } from "zod";
 import GetThumbnailFromHtml from "./html2image";
+import { Buttons } from "@/components/button/buttons";
 
 const cvTemplateSchema = z.object({
 	name: z.string().min(1, "Hãy chọn mẫu CV"),
@@ -92,7 +91,9 @@ export default function View({ fileTemplates }: { fileTemplates: string[] }) {
 							</div>
 							<div className='flex flex-col gap-1'>
 								<div className='flex gap-2'>
-									<SelectFile name='Chọn ảnh bìa' htmlFor='cvThumbnail' />
+									<label htmlFor='cvThumbnail' className='w-fit'>
+										<Buttons.Solid.Yellow.Click text='Chọn ảnh bìa' />
+									</label>
 									<GetThumbnailFromHtml
 										id='previewCV'
 										display={(dataURL: string) => {
@@ -122,7 +123,7 @@ export default function View({ fileTemplates }: { fileTemplates: string[] }) {
 								<input {...register("thumbnail")} type='hidden' />
 							</div>
 						</div>
-						<GreenSubmit />
+						<Buttons.Submit.Save />
 					</form>
 				</div>
 				{getValues("name") !== "" && (

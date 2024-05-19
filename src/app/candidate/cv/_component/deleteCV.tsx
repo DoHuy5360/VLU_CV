@@ -1,6 +1,6 @@
 "use client";
 import { deleteCV } from "@/actions/candidate/deleteCV";
-import { BiTrash } from "react-icons/bi";
+import { Buttons } from "@/components/button/buttons";
 
 export default function DeleteCV({ id, name }: { id: string; name: string }) {
 	return (
@@ -10,9 +10,7 @@ export default function DeleteCV({ id, name }: { id: string; name: string }) {
 				isDelete && (await deleteCV(id));
 			}}
 		>
-			<button className='p-2 text-red-500 cursor-pointer hover:bg-slate-300' type='submit'>
-				<BiTrash />
-			</button>
+			<Buttons.Submit.Delete.Icon/>
 		</form>
 	);
 }

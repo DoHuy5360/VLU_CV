@@ -1,5 +1,6 @@
-import SelectFile from "@/components/button/selectFile";
+import { Buttons } from "@/components/button/buttons";
 import { AvatarUIParams } from "@/components/cvEditFields/editFields/type";
+import FormErrors from "@/components/notification/formErrors";
 import { PortfolioFormData } from "@/entities/getDataPortfolio";
 import { imageFileToBase64 } from "@/utils/generateB64Image";
 import Image from "next/image";
@@ -11,8 +12,10 @@ export default function EditPortfolioAvatar({ label, setValue, getValues, trigge
 				<label className='text-xs font-bold text-slate-400' htmlFor='avatar'>
 					{label}
 				</label>
-				<div className='flex flex-col gap-1 border-slate-200 border-[1px] p-1'>
-					<SelectFile htmlFor='avatar' name='Thay đổi ảnh đại diện' />
+				<div className='flex flex-col gap-1 border-slate-200 border-[1px] p-1 bg-white'>
+					<label htmlFor='avatar' className='w-fit'>
+						<Buttons.Solid.Yellow.Click text='Thay đổi ảnh đại diện' />
+					</label>
 					<input
 						accept='image/*'
 						onChange={async (e) => {
@@ -27,7 +30,7 @@ export default function EditPortfolioAvatar({ label, setValue, getValues, trigge
 					<Image src={getValues("personal.avatar") || "/image/user.jpg"} width={80} height={0} alt='avatar' draggable={false} />
 				</div>
 			</div>
-			<div className='text-xs text-red-500'>{errors}</div>
+			<FormErrors message={errors} />
 		</div>
 	);
 }

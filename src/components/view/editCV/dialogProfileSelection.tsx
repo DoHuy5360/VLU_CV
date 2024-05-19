@@ -1,7 +1,8 @@
 "use client";
 import { CandidateProfileProps } from "@/app/template/cv/[name]/_component/preHandler";
+import { Buttons } from "@/components/button/buttons";
+import { useSearchParams } from "next/navigation";
 import { useCallback } from "react";
-import { IoCloseOutline } from "react-icons/io5";
 
 export default function DialogProfileSelection({
 	listProfiles,
@@ -9,9 +10,9 @@ export default function DialogProfileSelection({
 	isShowChangeProfileDialog,
 	setShowChangeProfileDialog,
 }: {
+	listProfiles: CandidateProfileProps[];
 	isShowChangeProfileDialog: boolean;
 	setShowChangeProfileDialog: Function;
-	listProfiles: CandidateProfileProps[];
 	setCurrentProfileIndex: Function;
 }) {
 	const setFootprint = useCallback((tab: string | number) => {
@@ -19,19 +20,22 @@ export default function DialogProfileSelection({
 		queryParams.set("profile", JSON.stringify(tab));
 		window.history.replaceState(null, "", `?${queryParams.toString()}`);
 	}, []);
+	const searchParams = useSearchParams();
+	const profileIndex = searchParams.get("profile");
 	return (
 		<div className={`${isShowChangeProfileDialog ? "" : "hidden"} z-10 grid place-items-center w-full h-full absolute bg-white select-none`}>
 			<div className='flex flex-col items-center border-[1px]'>
-				<div
-					onClick={() => {
-						setShowChangeProfileDialog(false);
-					}}
-					className='flex items-center justify-between border-b-[1px] w-full text-center p-2'
-				>
+				<div className='flex items-center justify-between border-b-[1px] w-full text-center p-2 gap-2'>
 					<div>Chọn hồ sơ bạn muốn áp dụng?</div>
-					<div className='p-2 cursor-pointer hover:bg-orange-300 active:bg-orange-400'>
-						<IoCloseOutline />
-					</div>
+					{profileIndex !== null && (
+						<div
+							onClick={() => {
+								setShowChangeProfileDialog(false);
+							}}
+						>
+							<Buttons.Delete.Click.Icon />
+						</div>
+					)}
 				</div>
 				<div className='flex gap-1 p-2'>
 					{listProfiles.map((profile, i) => {
@@ -43,9 +47,8 @@ export default function DialogProfileSelection({
 									setFootprint(i);
 									setShowChangeProfileDialog(false);
 								}}
-								className='p-2 cursor-pointer bg-slate-100 hover:bg-slate-200 active:bg-slate-100'
 							>
-								<div>{profile.name}</div>
+								<Buttons.Solid.Gray.Click text={profile.name} />
 							</div>
 						);
 					})}

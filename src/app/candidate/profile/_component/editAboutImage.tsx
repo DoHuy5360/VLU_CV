@@ -30,8 +30,8 @@ export default function EditAboutImage({ label, setValue, getValues, trigger, er
 				<label className='text-xs font-bold text-slate-400' htmlFor='image'>
 					{label}
 				</label>
-				<div className='flex flex-col gap-1 border-slate-200 border-[1px] p-1'>
-					<div className='flex gap-2'>
+				<div className='gap-1 border-slate-200 border-[1px] p-2 bg-white'>
+					<div className='flex gap-2 items-center'>
 						{arrImages.map((e, imageIndex) => {
 							return (
 								<div key={e.id}>
@@ -55,8 +55,8 @@ export default function EditAboutImage({ label, setValue, getValues, trigger, er
 									<label htmlFor={e.id}>
 										<Image
 											src={getValues(`about.images.${imageIndex}.src`) || "/image/user.jpg"}
-											width={80}
-											height={120}
+											width={200}
+											height={0}
 											className='border-dashed border-[2px] hover:border-solid cursor-pointer'
 											alt='image'
 											draggable={false}

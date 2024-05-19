@@ -1,5 +1,4 @@
 import { connectToDatabase } from "@/libs/mongoosedb";
-import { ObjectId } from "mongodb";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 import NoData from "@/components/placeholder/noData";

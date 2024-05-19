@@ -1,5 +1,5 @@
+import { Buttons } from "@/components/button/buttons";
 import { UseFieldArrayPrepend } from "react-hook-form";
-import { BiPlus } from "react-icons/bi";
 
 export default function Group({ label, children, prepend }: { label: string; children: JSX.Element; prepend?: UseFieldArrayPrepend<any> }) {
 	return (
@@ -9,8 +9,8 @@ export default function Group({ label, children, prepend }: { label: string; chi
 				<div className='h-[0.5px] w-full bg-slate-300'></div>
 				<div className='flex gap-2 items-center'>
 					{prepend && (
-						<div onClick={prepend} className='p-1 rounded-sm border-[1px] border-slate-300 cursor-pointer hover:bg-slate-200'>
-							<BiPlus />
+						<div onClick={prepend}>
+							<Buttons.Create.Icon />
 						</div>
 					)}
 				</div>

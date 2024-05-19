@@ -1,7 +1,8 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
-import Link from "next/link";
+import GrayLink from "../button/grayLink";
+import { Buttons } from "../button/buttons";
 
 export default async function CandidateLayout({ children }: { children: JSX.Element }) {
 	const session = await getServerSession(authOptions);
@@ -12,26 +13,14 @@ export default async function CandidateLayout({ children }: { children: JSX.Elem
 					<Image src={session?.user.image || "/image/user.jpg"} width={40} height={40} className='object-cover' alt='Avatar' draggable={false} />
 				</div>
 				<div className='flex gap-2 items-center'>
-					<Link className='whitespace-nowrap px-2 py-1 hover:bg-slate-300' href='/home'>
-						Trang chủ
-					</Link>
-					<Link className='whitespace-nowrap px-2 py-1 hover:bg-slate-300' href='/candidate/cv'>
-						CV của tôi
-					</Link>
-					<Link className='whitespace-nowrap px-2 py-1 hover:bg-slate-300' href='/candidate/profile'>
-						Hồ sơ
-					</Link>
-					<Link className='whitespace-nowrap px-2 py-1 hover:bg-slate-300' href='/template/cv'>
-						Mẫu CV
-					</Link>
-					<Link className='whitespace-nowrap px-2 py-1 hover:bg-slate-300' href='/template/portfolio'>
-						Portfolio
-					</Link>
+					<GrayLink text="Trang chủ" href='/home' />
+					<GrayLink text="CV của tôi" href='/candidate/cv' />
+					<GrayLink text="Hồ sơ" href='/candidate/profile' />
+					<GrayLink text="Mẫu CV" href='/template/cv' />
+					<GrayLink text="Portfolio" href='/template/portfolio' />
 				</div>
 				<div className='flex items-center gap-2 text-sm'>
-					<Link className='whitespace-nowrap text-white bg-purple-500 p-2 text-xs rounded-sm' href='/api/auth/signout'>
-						Đăng Xuất
-					</Link>
+					<Buttons.Solid.Cyan text="Đăng Xuất" href='/api/auth/signout'/>
 				</div>
 			</div>
 			{children}

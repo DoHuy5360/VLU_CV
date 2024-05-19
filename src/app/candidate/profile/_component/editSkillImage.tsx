@@ -11,7 +11,7 @@ export default function EditSkillImage({ label, setValue, getValues, trigger, er
 				<label className='text-xs font-bold text-slate-400' htmlFor='image'>
 					{label}
 				</label>
-				<div className='border-slate-200 border-[1px] p-1'>
+				<div className='border-slate-200 border-[1px] p-1 bg-white'>
 					<input
 						className='hidden'
 						accept='image/*'

@@ -29,6 +29,7 @@ import { MdInfoOutline } from "react-icons/md";
 import { PiCertificate } from "react-icons/pi";
 import { BsActivity } from "react-icons/bs";
 import ReferenceEdit from "./referenceEdit";
+import { Buttons } from "@/components/button/buttons";
 
 export type UserDataForm = z.infer<typeof userDataSchema>;
 
@@ -54,7 +55,7 @@ export default function EditCvForm({ onSubmit }: { onSubmit: SubmitHandler<UserD
 				style={{
 					scrollBehavior: "smooth",
 				}}
-				className='w-full pt-2 pl-1 mb-32 h-full pb-2 flex flex-col gap-2 overflow-y-scroll border-slate-300 border-x-[1px]'
+				className='w-full p-2 mb-32 h-full flex flex-col gap-2 overflow-y-scroll border-slate-300 border-x-[1px]'
 				action={async () => {
 					handleSubmit(onSubmit)();
 				}}
@@ -97,9 +98,7 @@ export default function EditCvForm({ onSubmit }: { onSubmit: SubmitHandler<UserD
 						<Other Wrapper={Wrapper} Area={editArea} />
 					</div>
 				</div>
-				<button className='w-fit px-4 py-2 ml-auto bg-green-300 rounded-lg text-xs' type='submit'>
-					Lưu
-				</button>
+				<Buttons.Submit.Save/>
 			</form>
 		</div>
 	);

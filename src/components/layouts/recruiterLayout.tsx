@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Buttons } from "../button/buttons";
 
 export default async function RecruiterLayout({ children }: { children: JSX.Element }) {
 	return (
@@ -15,9 +16,7 @@ export default async function RecruiterLayout({ children }: { children: JSX.Elem
 						Đơn tuyển dụng của tôi
 					</Link>
 				</div>
-				<Link className='whitespace-nowrap text-white bg-purple-500 p-2 text-xs rounded-sm' href='/api/auth/signout'>
-					Đăng Xuất
-				</Link>
+				<Buttons.Solid.Cyan text="Đăng Xuất" href='/api/auth/signout'/>
 			</div>
 			{children}
 		</div>

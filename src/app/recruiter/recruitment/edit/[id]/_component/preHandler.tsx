@@ -1,8 +1,5 @@
 "use client";
-import { updateCV } from "@/actions/candidate/updateCV";
 import { updateRecruitment } from "@/actions/recruiter/updateRecruitment";
-import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
-import EditCvView from "@/components/view/editCV/editCV";
 import EditRecruitment, { RecruitmentDataForm } from "@/components/view/editRecruitment/editRecruitment";
 
 export default function PreHandler({ id, recruitmentObjectData }: { id: string; recruitmentObjectData: RecruitmentDataForm }) {

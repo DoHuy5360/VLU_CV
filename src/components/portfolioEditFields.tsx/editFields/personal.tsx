@@ -1,5 +1,4 @@
 import { useFormContext } from "react-hook-form";
-import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
 import { AvatarUI, InputUI, WrapperUI } from "@/components/cvEditFields/editFields/type";
 import { PortfolioFormData } from "@/entities/getDataPortfolio";
 

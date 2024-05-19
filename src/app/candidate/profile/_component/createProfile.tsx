@@ -1,7 +1,7 @@
 "use client";
 
 import createCandidateProfile from "@/actions/candidate/createCandidateProfile";
-import GreenSubmit from "@/components/button/greenSubmit";
+import { Buttons } from "@/components/button/buttons";
 import FormErrors from "@/components/notification/formErrors";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -90,7 +90,7 @@ export default function CreateProfile({ setShowCreateProfileDialog }: { setShowC
 								<FormErrors message={errors.type?.message} />
 							</div>
 						</div>
-						<GreenSubmit />
+						<Buttons.Submit.Save />
 					</div>
 				</div>
 			</div>

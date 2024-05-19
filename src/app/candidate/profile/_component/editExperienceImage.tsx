@@ -30,7 +30,7 @@ export default function EditExperienceImage({ label, setValue, getValues, trigge
 				<label className='text-xs font-bold text-slate-400' htmlFor='image'>
 					{label}
 				</label>
-				<div className='flex flex-col gap-1 border-slate-200 border-[1px] p-1'>
+				<div className='flex flex-col gap-1 border-slate-200 border-[1px] p-1 bg-white'>
 					<div className='flex gap-2'>
 						{arrImages.map((e, imageIndex) => {
 							return (

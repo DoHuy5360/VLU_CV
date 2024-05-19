@@ -2,10 +2,10 @@ import { Transfer } from "@/types/tranfer";
 import Candidate_CV from "@/models/candidate_cv";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import DownloadPDF from "./_downloadPDF/downloadPDF";
-import CvEditButton from "./_component/cvEditButton";
 import Recruitment from "@/models/recruitment";
 import Image from "next/image";
 import { CosineSimilarity, TextVector } from "@/utils/wordVector";
+import { Buttons } from "@/components/button/buttons";
 
 async function ViewCV({ params }: { params: { id: string } }) {
 	await connectToDatabase();
@@ -25,14 +25,12 @@ async function ViewCV({ params }: { params: { id: string } }) {
 		);
 		candidateSkills = new TextVector(mergeSkillString);
 	}
-	// console.log(recruitment[0].requirement);
-	// console.log(recruitment);
 	return (
 		<div className='flex-grow overflow-y-hidden h-[inherit]'>
 			<div className='h-[inherit] overflow-y-scroll grid lg:grid-cols-[2fr_1fr] sm:grid-cols-1 gap-2'>
 				<div className='flex h-[inherit]'>
 					<div className='flex flex-col gap-2 p-2 text-sm select-none whitespace-nowrap w-fit'>
-						<CvEditButton id={params.id} />
+						<Buttons.Solid.Yellow.Link text='Chỉnh sửa' href={`/candidate/cv/edit/${cv.name}`} />
 						<DownloadPDF fileName={cv.name} />
 					</div>
 					<div className='h-[inherit] flex-grow pb-20 pt-5 overflow-y-scroll'>

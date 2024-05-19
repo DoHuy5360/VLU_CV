@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineClear } from "react-icons/ai";
 import DeleteProfile from "./deleteProfile";
 import CreateProfile from "./createProfile";
-import BlueCreate from "@/components/button/blueCreate";
+import { Buttons } from "@/components/button/buttons";
 
 export type ProfileProps = {
 	_id: string;
@@ -53,7 +53,7 @@ export default function ListProfiles({ profilesRaw }: { profilesRaw: string }) {
 						setShowCreateProfileDialog(true);
 					}}
 				>
-					<BlueCreate />
+					<Buttons.Create.TextIcon/>
 				</div>
 				<div className={`${isShowCreateProfileDialog ? "" : "hidden"}`}>
 					<CreateProfile setShowCreateProfileDialog={setShowCreateProfileDialog} />

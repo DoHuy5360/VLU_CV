@@ -7,28 +7,18 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { createContext, useEffect, useState } from "react";
 import CvSuggestion from "./_component/cvSuggestion";
 import CvRenderer from "./_component/cvRenderer";
-import { BiCog } from "react-icons/bi";
 import Image from "next/image";
 import { CvSchemaType } from "@/models/cv";
 import { CandidateProfileProps } from "@/app/template/cv/[name]/_component/preHandler";
 import DialogProfileSelection from "./dialogProfileSelection";
 import { GrClose } from "react-icons/gr";
+import { Buttons } from "@/components/button/buttons";
 
 export const init = getUserDataCV({});
 
 export const FormValuesContext = createContext<UserDataForm>(init);
 
-export default function EditCvView({
-	cvObjectData,
-	cvTemplateName,
-	listProfiles,
-	onSubmit,
-}: {
-	cvObjectData: UserDataForm;
-	listProfiles: CandidateProfileProps[];
-	cvTemplateName: string;
-	onSubmit: SubmitHandler<UserDataForm>;
-}) {
+export default function EditCvView({ cvObjectData, listProfiles, onSubmit }: { cvObjectData: UserDataForm; listProfiles: CandidateProfileProps[]; onSubmit: SubmitHandler<UserDataForm> }) {
 	const formTools = useForm<UserDataForm>({
 		resolver: zodResolver(userDataSchema),
 		defaultValues: cvObjectData,
@@ -76,11 +66,10 @@ export default function EditCvView({
 							onClick={() => {
 								setShowSetting((pre) => !pre);
 							}}
-							className='p-2 cursor-pointer hover:bg-slate-200 active:bg-orange-400'
 						>
-							<BiCog />
+							<Buttons.Setting.Click.Icon />
 						</div>
-						<div className='absolute translate-x-[-100%] translate-y-[-50%] bg-white border-[1px] flex flex-col text-sm'>
+						<div className='absolute z-10 translate-x-[-100%] translate-y-[-50%] bg-white border-[1px] flex flex-col text-sm'>
 							<div onClick={handleGetTemplate} className={`${!isShowSetting && "hidden"} hover:bg-slate-200 px-3 py-1 whitespace-nowrap cursor-pointer`}>
 								Đổi mẫu CV
 							</div>
@@ -101,7 +90,7 @@ export default function EditCvView({
 				<div className='flex overflow-y-hidden'>
 					<div className='flex-grow overflow-y-scroll pb-24'>
 						<FormValuesContext.Provider value={formTools.watch()}>
-							<CvRenderer cvTemplateName={cvTemplateName} />
+							<CvRenderer cvTemplateName={formTools.getValues("template")} />
 						</FormValuesContext.Provider>
 					</div>
 					{isShowOtherTemplates && (
@@ -117,24 +106,26 @@ export default function EditCvView({
 									}}
 									className='p-2 mr-2 cursor-pointer hover:bg-slate-200 active:bg-slate-300'
 								>
-									<GrClose />
+									<Buttons.Delete.Click.Icon />
 								</div>
 							</div>
-							<div className='flex flex-col p-2 gap-1'>
+							<div className='flex flex-col p-2 gap-2'>
 								{substituteTemplates.map((cv, i) => {
 									return (
 										<div
 											key={i}
 											onClick={() => {
 												formTools.setValue("template", cv.name);
-												formTools.trigger();
+												formTools.trigger("template");
 											}}
 											className={`${
 												currentTemplate === cv.name && "border-orange-500"
 											} flex flex-col items-center w-32 cursor-pointer border-[1px] hover:outline-1 outline-0 outline outline-slate-300`}
 										>
-											<Image src={cv.thumbnail} className='py-2' width={100} height={200} alt={cv.name} />
-											<div>{cv.name}</div>
+											<div className='p-2'>
+												<Image src={cv.thumbnail} className='border-[1px]' width={100} height={200} alt={cv.name} />
+											</div>
+											<div className='text-xs py-2 border-t-[1px] w-full text-center'>{cv.name}</div>
 										</div>
 									);
 								})}

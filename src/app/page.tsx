@@ -3,6 +3,7 @@ import Link from "next/link";
 import { authOptions } from "./api/auth/[...nextauth]/options";
 import { randomInRange } from "@/utils/random";
 import Image from "next/image";
+import { Buttons } from "@/components/button/buttons";
 
 export default async function App() {
 	const session = await getServerSession(authOptions);
@@ -12,13 +13,9 @@ export default async function App() {
 				<Image width={100} height={24} className='w-auto h-auto' src='/image/logo/van-lang-logo-and-name.png' alt='Van Lang Logo' draggable={false} />
 				{session ? (
 					<div className='flex gap-2 items-center w-fit'>
-						<Link href='/home' className='text-white p-2 text-xs outline outline-0 hover:outline-1 outline-slate-200'>
-							Trang Chủ
-						</Link>
 						<div className='text-xs text-white'>{session.user?.name}</div>
-						<Link className='text-white p-2 text-xs outline outline-0 hover:outline-1 outline-slate-200' href='/api/auth/signout'>
-							Đăng Xuất
-						</Link>
+						<Buttons.Outline.Gray text="Trang Chủ" href="/home"/>
+						<Buttons.Solid.Cyan text="Đăng Xuất" href='/api/auth/signout'/>
 					</div>
 				) : (
 					<Link className='text-white p-2 text-xs outline outline-0 hover:outline-1 outline-slate-200' href='/auth'>

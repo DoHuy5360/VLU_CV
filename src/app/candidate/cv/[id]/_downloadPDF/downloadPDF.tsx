@@ -1,5 +1,6 @@
 "use client";
 
+import { Buttons } from "@/components/button/buttons";
 import { useCallback, useRef, useState } from "react";
 import { FiFile } from "react-icons/fi";
 const apiUrl = "https://api.tailwindstream.io";
@@ -69,9 +70,10 @@ export default function DownloadPDF({ fileName }: { fileName: string }) {
 		}
 	}, [downloadWithRetry]);
 	return (
-		<button disabled={isFetch} onClick={downloadPdf} className='flex gap-2 items-center p-2 border-l-[1px] border-slate-200 bg-orange-600 rounded-sm text-white' type='button'>
-			<FiFile />
-			<div>{isFetch ? "Đang xử lý..." : "Tải PDF"}</div>
-		</button>
+		<div onClick={()=>{
+			if(!isFetch) downloadPdf()
+		}}>
+			<Buttons.Solid.Red.Click text={isFetch ? "Đang xử lý..." : "Tải PDF"}/>
+		</div>
 	);
 }

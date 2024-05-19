@@ -1,3 +1,4 @@
+import { Buttons } from "@/components/button/buttons";
 import { SelectUIParams } from "@/components/cvEditFields/editFields/type";
 import { projectTechnologiesFormSample } from "@/entities/addFormPortfolio";
 import { PortfolioFormData } from "@/entities/getDataPortfolio";
@@ -20,15 +21,14 @@ export default function EditProjectTechnology({ label, index }: SelectUIParams<P
 	return (
 		<div className='flex flex-col gap-1'>
 			<div className='text-xs font-bold text-slate-400'>{label}</div>
-			<button
+			<div
 				onClick={() => {
 					techActions.append(projectTechnologiesFormSample());
 				}}
-				className='border-[1px] border-slate-200 cursor-pointer p-1 hover:bg-slate-200 text-red-600 w-fit'
-				type='button'
+				className='w-fit'
 			>
-				<BiPlus />
-			</button>
+				<Buttons.Create.Icon />
+			</div>
 			<div className='grid grid-cols-6 gap-1'>
 				{techActions.fields.map((tech, i) => {
 					return <input key={tech.id} {...register(`projects.${index}.technologies.${i}.name`)} className='border-[1px] px-1' type='text' />;

@@ -13,7 +13,7 @@ export default async function F({ params }: { params: { id: string } }) {
 
 	return (
 		<div className='flex-grow overflow-hidden relative'>
-			<PreHandler id={params.id} cvObjectData={cvFound.data} cvTemplateName={cvFound.data.template} />
+			<PreHandler id={params.id} cvObjectData={cvFound.data} />
 		</div>
 	);
 }

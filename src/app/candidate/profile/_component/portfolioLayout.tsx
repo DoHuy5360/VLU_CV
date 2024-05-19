@@ -40,14 +40,14 @@ export default function PortfolioLayout({ profile }: { profile: CandidateProfile
 					<Tab title='Kinh nghiệm' name='Experience' isError={formTools.formState.errors.experiences} />
 					<Tab title='Dự án' name='Project' isError={formTools.formState.errors.projects} />
 					<Tab title='Kỹ năng' name='Skill' isError={formTools.formState.errors.skills} />
-					<Tab title='Mạng lưới' name='Social' isError={formTools.formState.errors.socials} />
+					<Tab title='Liên kết' name='Social' isError={formTools.formState.errors.socials} />
 				</>
 			}
 			views={
 				<>
 					{currentTab === "Personal" && <Personal Wrapper={Wrapper} Input={editInput} Avatar={EditPortfolioAvatar} hideField={{ fileName: true }} />}
-					{currentTab === "Experience" && <Experience Wrapper={Wrapper} Input={editInput} Area={editArea} Image={EditExperienceImage} />}
 					{currentTab === "About" && <About Wrapper={Wrapper} Area={editArea} Image={EditAboutImage} />}
+					{currentTab === "Experience" && <Experience Wrapper={Wrapper} Input={editInput} Area={editArea} Image={EditExperienceImage} />}
 					{currentTab === "Project" && <Project Wrapper={Wrapper} Input={editInput} Area={editArea} Image={EditProjectImage} Select={EditProjectTechnology} />}
 					{currentTab === "Skill" && <Skill Wrapper={Wrapper} Input={editInput} Image={EditSkillImage} />}
 					{currentTab === "Social" && <Social Wrapper={Wrapper} Input={editInput} />}

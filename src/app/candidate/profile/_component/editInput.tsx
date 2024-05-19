@@ -8,7 +8,7 @@ export default function EditInput({ label, register, errors, index }: InputUIPar
 				<label className='text-xs font-bold text-slate-400' htmlFor={register.name}>
 					{label}
 				</label>
-				<input {...register} className='border-slate-200 border-[1px] p-1' type='text' id={register.name} />
+				<input {...register} className='border-slate-200 border-[1px] p-2 py-1 rounded-sm' type='text' id={register.name} />
 			</div>
 			<FormErrors message={errors} />
 		</div>

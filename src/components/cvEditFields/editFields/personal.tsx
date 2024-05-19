@@ -23,9 +23,9 @@ export default function Personal({ Wrapper, Input, Avatar, hideField }: { Wrappe
 			<Input label='Số điện thoại:' register={register("attrs.head.phone")} errors={errors.attrs?.head?.phone?.message} />
 			<Input label='Địa chỉ:' register={register("attrs.head.address")} errors={errors.attrs?.head?.address?.message} />
 			<Input label='Email:' register={register("attrs.head.email")} errors={errors.attrs?.head?.email?.message} />
-			<Input label='Ngày sinh:' register={register("attrs.head.birth")} errors={errors.attrs?.head?.email?.message} />
-			<Input label='Giới tính:' register={register("attrs.head.gender")} errors={errors.attrs?.head?.email?.message} />
-			<Input label='Website:' register={register("attrs.head.website")} errors={errors.attrs?.head?.email?.message} />
+			<Input label='Ngày sinh:' register={register("attrs.head.birth")} errors={errors.attrs?.head?.birth?.message} />
+			<Input label='Giới tính:' register={register("attrs.head.gender")} errors={errors.attrs?.head?.gender?.message} />
+			<Input label='Website:' register={register("attrs.head.website")} errors={errors.attrs?.head?.website?.message} />
 		</Wrapper.T01>
 	);
 }
