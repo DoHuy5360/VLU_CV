@@ -67,9 +67,11 @@ export default function EditCvView({
 				<EditCvForm onSubmit={onSubmit} />
 			</FormProvider>
 			<div className='flex flex-col basis-2/3 flex-grow-1 w-full h-full'>
-				<div className='flex items-center gap-2 border-b-[1px] pr-2'>
-					<CvSuggestion />
-					<div className='relative'>
+				<div className='flex items-top gap-2 border-b-[1px] pr-2'>
+					<FormValuesContext.Provider value={formTools.watch()}>
+						<CvSuggestion />
+					</FormValuesContext.Provider>
+					<div className='relative py-2'>
 						<div
 							onClick={() => {
 								setShowSetting((pre) => !pre);

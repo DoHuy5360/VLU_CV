@@ -26,7 +26,6 @@ const initRecruitment: RecruitmentDataForm = {
 
 export default function F() {
 	const handleSubmit = async (data: RecruitmentDataForm) => {
-		console.log(data);
 		const isSuccess = await createRecruitment(data);
 		isSuccess ? alert("Tạo thành công") : alert("Tạo thất bại");
 	};

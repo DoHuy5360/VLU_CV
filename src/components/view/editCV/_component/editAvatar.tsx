@@ -3,8 +3,9 @@ import { AvatarUIParams } from "@/components/cvEditFields/editFields/type";
 import { imageFileToBase64 } from "@/utils/generateB64Image";
 import Image from "next/image";
 import { IoImageOutline } from "react-icons/io5";
+import { UserDataForm } from "./editCvForm";
 
-export default function EditAvatar({ setValue, getValues, trigger, errors }: AvatarUIParams) {
+export default function EditAvatar({ setValue, getValues, trigger, errors }: AvatarUIParams<UserDataForm>) {
 	return (
 		<div className='flex flex-col gap-1'>
 			<div className='flex flex-col gap-1'>

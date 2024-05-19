@@ -12,17 +12,21 @@ async function ViewCV({ params }: { params: { id: string } }) {
 	const cv = await Candidate_CV.findOne({
 		_id: params.id,
 	});
-	const recruitment = await Recruitment.find({}).populate("companyId");
+	const recruitment = await Recruitment.find({}).populate("companyId").select("companyId requirement title");
 	const isShowRecommend = cv.data.attrs.skill.skills.length !== 0;
 	let candidateSkills: TextVector | undefined;
+
 	if (isShowRecommend) {
-		candidateSkills = new TextVector(
-			cv.data.attrs.skill.skills.reduce((init: { status: string }, e: { status: string }) => {
-				return init.status + ";" + e.status;
-			})
+		const mergeSkillString = cv.data.attrs.skill.skills.reduce(
+			(init: { status: string }, e: { status: string }) => {
+				return init.status + " " + e.status;
+			},
+			{ status: "" }
 		);
+		candidateSkills = new TextVector(mergeSkillString);
 	}
-	console.log(recruitment[0].requirement);
+	// console.log(recruitment[0].requirement);
+	// console.log(recruitment);
 	return (
 		<div className='flex-grow overflow-y-hidden h-[inherit]'>
 			<div className='h-[inherit] overflow-y-scroll grid lg:grid-cols-[2fr_1fr] sm:grid-cols-1 gap-2'>
@@ -40,19 +44,31 @@ async function ViewCV({ params }: { params: { id: string } }) {
 				{candidateSkills !== undefined && (
 					<div className='h-[inherit] flex flex-grow flex-col border-r-[1px] border-l-[1px]'>
 						<div className='text-sm border-b-[1px] p-2'>Đề xuất công việc phù hợp</div>
-						{recruitment.map((e, i) => {
-							const matchPercent = new CosineSimilarity(candidateSkills, new TextVector(recruitment[i].requirement)).getSimilarity() * 100;
-							return (
-								<div key={i} className='grid grid-cols-[40px_1fr_50px] border-b-[1px] hover:bg-slate-200 select-none cursor-pointer py-2 gap-2'>
-									<Image src='/image/user.jpg' width={40} height={40} className='p-2' alt='user avatar' />
-									<div className='flex flex-col'>
-										<div className='text-xs whitespace-nowrap'>{e.companyId.name}</div>
-										<div className='text-sm whitespace-nowrap'>{e.title}</div>
+						{recruitment
+							.map((e, i) => {
+								return {
+									dataRecruitment: e,
+									matchPercent: new CosineSimilarity(candidateSkills, new TextVector(e.requirement)).getSimilarity() * 100,
+								};
+							})
+							.sort((a, b) => {
+								return b.matchPercent - a.matchPercent;
+							})
+							.map((e, i) => {
+								return (
+									<div key={i} className='grid grid-cols-[40px_auto_100px] border-b-[1px] hover:bg-slate-200 select-none cursor-pointer py-2 gap-2 items-center p-2'>
+										<Image src='/image/user.jpg' width={40} height={40} className='p-2' alt='user avatar' />
+										<div className='flex flex-col'>
+											<div className='text-sm whitespace-nowrap font-bold'>{e.dataRecruitment.companyId.name}</div>
+											<div className='text-xs whitespace-nowrap'>{e.dataRecruitment.title}</div>
+										</div>
+										<div className='flex items-center gap-2 border-l-[1px] text-sm'>
+											<div>Khớp</div>
+											<div>{e.matchPercent}%</div>
+										</div>
 									</div>
-									<div>{matchPercent}%</div>
-								</div>
-							);
-						})}
+								);
+							})}
 					</div>
 				)}
 			</div>

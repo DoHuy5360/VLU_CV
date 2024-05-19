@@ -14,6 +14,7 @@
 		"@microsoft/microsoft-graph-client": "^3.0.7",
 		"@types/jsonwebtoken": "^9.0.6",
 		"dotenv": "^16.4.5",
+		"gpt4all": "^4.0.0",
 		"html-to-image": "^1.11.11",
 		"moment": "^2.30.1",
 		"mongodb": "^6.5.0",
