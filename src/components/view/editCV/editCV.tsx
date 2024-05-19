@@ -11,14 +11,23 @@ import Image from "next/image";
 import { CvSchemaType } from "@/models/cv";
 import { CandidateProfileProps } from "@/app/template/cv/[name]/_component/preHandler";
 import DialogProfileSelection from "./dialogProfileSelection";
-import { GrClose } from "react-icons/gr";
 import { Buttons } from "@/components/button/buttons";
 
 export const init = getUserDataCV({});
 
 export const FormValuesContext = createContext<UserDataForm>(init);
 
-export default function EditCvView({ cvObjectData, listProfiles, onSubmit }: { cvObjectData: UserDataForm; listProfiles: CandidateProfileProps[]; onSubmit: SubmitHandler<UserDataForm> }) {
+export default function EditCvView({
+	cvObjectData,
+	cvTemplateName,
+	listProfiles,
+	onSubmit,
+}: {
+	cvObjectData: UserDataForm;
+	cvTemplateName: string;
+	listProfiles: CandidateProfileProps[];
+	onSubmit: SubmitHandler<UserDataForm>;
+}) {
 	const formTools = useForm<UserDataForm>({
 		resolver: zodResolver(userDataSchema),
 		defaultValues: cvObjectData,
@@ -90,7 +99,7 @@ export default function EditCvView({ cvObjectData, listProfiles, onSubmit }: { c
 				<div className='flex overflow-y-hidden'>
 					<div className='flex-grow overflow-y-scroll pb-24'>
 						<FormValuesContext.Provider value={formTools.watch()}>
-							<CvRenderer cvTemplateName={formTools.getValues("template")} />
+							<CvRenderer cvTemplateName={formTools.getValues("template") === "Root" ? cvTemplateName : formTools.getValues("template")} />
 						</FormValuesContext.Provider>
 					</div>
 					{isShowOtherTemplates && (

@@ -5,7 +5,7 @@ import EditCvView from "@/components/view/editCV/editCV";
 import { useCreateCV } from "@/hooks/useCreateCV";
 import { UserData } from "@/types/userData";
 import { useSearchParams } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export type CandidateProfileProps = {
 	_id: string;
@@ -23,7 +23,7 @@ export default function PreHandler({ cvTemplateName, profiles }: { cvTemplateNam
 	const profileIndex = searchParams.get("profile");
 	const [currentProfileIndex, setCurrentProfileIndex] = useState<number | null>(profileIndex === null ? null : parseInt(profileIndex));
 	const [isShowChangeProfileDialog, setShowChangeProfileDialog] = useState(profileIndex === null ? true : false);
-	if (listProfiles.current.length === 1) return <EditCvView cvObjectData={listProfiles.current[0].data} listProfiles={listProfiles.current} onSubmit={handleSubmit} />;
+	if (listProfiles.current.length === 1) return <EditCvView cvTemplateName={cvTemplateName} cvObjectData={listProfiles.current[0].data} listProfiles={listProfiles.current} onSubmit={handleSubmit} />;
 
 	return (
 		<>
@@ -33,7 +33,9 @@ export default function PreHandler({ cvTemplateName, profiles }: { cvTemplateNam
 				isShowChangeProfileDialog={isShowChangeProfileDialog}
 				setShowChangeProfileDialog={setShowChangeProfileDialog}
 			/>
-			{currentProfileIndex !== null && <EditCvView cvObjectData={listProfiles.current[currentProfileIndex].data} listProfiles={listProfiles.current} onSubmit={handleSubmit} />}
+			{currentProfileIndex !== null && (
+				<EditCvView cvTemplateName={cvTemplateName} cvObjectData={listProfiles.current[currentProfileIndex].data} listProfiles={listProfiles.current} onSubmit={handleSubmit} />
+			)}
 		</>
 	);
 }
