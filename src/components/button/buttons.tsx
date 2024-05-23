@@ -75,6 +75,13 @@ export const Buttons = {
 				</button>
 			);
 		},
+		Text: ({text = "Tạo mới"}: Pick<ButtonPropsType, "text">) => {
+			return (
+				<button type='button' className={`${generaStyle} flex items-center gap-2 bg-[#4c78dd] hover:bg-[#3d60b1] active:bg-[#4c78dd]`}>
+					<div>{text}</div>
+				</button>
+			);
+		},
 		Icon: () => {
 			return (
 				<button type='button' className={`${generaStyle} flex items-center gap-2 bg-[#4c78dd] hover:bg-[#3d60b1] active:bg-[#4c78dd]`}>

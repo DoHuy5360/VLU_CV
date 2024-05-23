@@ -5,7 +5,7 @@ import Columns from "../symmetric/columns";
 export default function A01Template(data: UserData) {
 	return (
 		<div className='p-4 bg-white'>
-			<div id='sectionParent' className='flex flex-col gap-4'>
+			<div className='flex flex-col gap-4'>
 				<V01AHead {...data.attrs.head} />
 				<V01AGoal {...data.attrs.goal} />
 				<V01AExperience {...data.attrs.experience} />

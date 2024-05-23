@@ -40,7 +40,7 @@ export default function View({ fileTemplates }: { fileTemplates: string[] }) {
 	return (
 		<div className='flex-grow overflow-hidden h-full'>
 			<div className='flex gap-2 h-full'>
-				<div className='flex flex-grow basis-1/2'>
+				<div className='flex flex-grow xl:basis-1/2 sm:basis-1/3'>
 					<form
 						ref={formRef}
 						action={() => {
@@ -119,7 +119,7 @@ export default function View({ fileTemplates }: { fileTemplates: string[] }) {
 									}}
 								/>
 								<FormErrors message={errors.thumbnail?.message} />
-								<Image src={getValues("thumbnail") || "/image/user.jpg"} className='border-[1px] h-fit' width={300} height={350} alt='cv thumbnail' />
+								<Image src={getValues("thumbnail") || "/image/user.jpg"} className='border-[1px] h-fit' width={600} height={0} alt='cv thumbnail' />
 								<input {...register("thumbnail")} type='hidden' />
 							</div>
 						</div>
@@ -127,7 +127,7 @@ export default function View({ fileTemplates }: { fileTemplates: string[] }) {
 					</form>
 				</div>
 				{getValues("name") !== "" && (
-					<div className='flex-grow basis-1/2 overflow-y-scroll h-full'>
+					<div className='flex-grow xl:basis-1/2 sm:basis-2/3 overflow-y-scroll h-full'>
 						<div id='previewCV'>{Transfer[getValues("name")](temporaryDataCV)}</div>
 					</div>
 				)}
@@ -136,33 +136,33 @@ export default function View({ fileTemplates }: { fileTemplates: string[] }) {
 	);
 }
 const temporaryDataCV: UserData = {
-	name: "Placeholder",
-	template: "Placeholder",
+	name: "Candidate A",
+	template: "Root",
 	attrs: {
 		head: {
-			name: "Placeholder",
+			name: "Do Huy",
 			avatar: "/image/user.jpg",
-			position: "Placeholder",
-			phone: "Placeholder",
-			email: "Placeholder",
-			address: "Placeholder",
-			website: "Placeholder",
-			birth: "Placeholder",
-			gender: "Placeholder",
+			position: "Web Developer - Fullstack",
+			phone: "0963758993",
+			email: "dohuy.200276@gmail.com",
+			address: "Ho Chi Minh City, Binh Chanh District.",
+			website: "https://github.com/DoHuy5360",
+			birth: "17/08/2002",
+			gender: "Male",
 		},
 		goal: {
 			title: "Goal",
-			content: "Placeholder",
+			content: "I am a [Name], with [number of years] years of experience in the field of software development. Throughout my career, I have been involved in many complex software projects, from design, programming, to deployment and system maintenance.",
 		},
 		experience: {
 			title: "Experience",
 			works: [
 				{
 					id: "Placeholder",
-					name: "Placeholder",
-					position: "Placeholder",
-					tasks: "Placeholder",
-					time: "Placeholder",
+					name: "Urban Corporation",
+					position: "Team lead, Backend",
+					tasks: "Team management, Report, Daily meeting.",
+					time: "3 months",
 				},
 			],
 		},
@@ -171,13 +171,13 @@ const temporaryDataCV: UserData = {
 			products: [
 				{
 					id: "Placeholder",
-					name: "Placeholder",
-					time: "Placeholder",
-					where: "Placeholder",
-					member: "Placeholder",
-					position: "Placeholder",
-					tasks: "Placeholder",
-					techs: "Placeholder",
+					name: "LinKer Chat Application",
+					time: "4 months",
+					where: "Personal",
+					member: "1 member",
+					position: "Fullstack",
+					tasks: "I do all tasks.",
+					techs: "React, Socket.io, MongoDB, Firebase.",
 				},
 			],
 		},
@@ -186,10 +186,10 @@ const temporaryDataCV: UserData = {
 			classes: [
 				{
 					id: "Placeholder",
-					time: "Placeholder",
-					major: "Placeholder",
-					school: "Placeholder",
-					status: "Placeholder",
+					time: "2020 - 2024",
+					major: "Information Technology",
+					school: "Van Lang University",
+					status: "Continues",
 				},
 			],
 		},
@@ -198,8 +198,13 @@ const temporaryDataCV: UserData = {
 			skills: [
 				{
 					id: "Placeholder",
-					name: "Placeholder",
-					status: "Placeholder",
+					name: "HTML, CSS, Javascript",
+					status: "I'm pro at combo HTML, CSS and Javascript, this is group of basic technology used to learn at the beginning.",
+				},
+				{
+					id: "Placeholder",
+					name: "React",
+					status: "I have critical experience at React. I had work on many projects that using React",
 				},
 			],
 		},
@@ -208,9 +213,9 @@ const temporaryDataCV: UserData = {
 			achievements: [
 				{
 					id: "Placeholder",
-					time: "Placeholder",
-					name: "Placeholder",
-					where: "Placeholder",
+					time: "3000",
+					name: "Imagine World Champion",
+					where: "Mars",
 				},
 			],
 		},
@@ -219,9 +224,9 @@ const temporaryDataCV: UserData = {
 			certificates: [
 				{
 					id: "Placeholder",
-					time: "Placeholder",
-					name: "Placeholder",
-					where: "Placeholder",
+					time: "2023",
+					name: "C# Foundation",
+					where: "Microsoft, freeCodeCamp",
 				},
 			],
 		},
@@ -230,9 +235,9 @@ const temporaryDataCV: UserData = {
 			references: [
 				{
 					id: "Placeholder",
-					name: "Placeholder",
-					where: "Placeholder",
-					phone: "Placeholder",
+					name: "Ho Thi Ngoc",
+					where: "ABC company",
+					phone: "0900xxxxx0",
 				},
 			],
 		},
@@ -241,10 +246,10 @@ const temporaryDataCV: UserData = {
 			activities: [
 				{
 					id: "Placeholder",
-					time: "Placeholder",
-					name: "Placeholder",
-					position: "Placeholder",
-					tasks: "Placeholder",
+					time: "1 months",
+					name: "Startup 2022",
+					position: "Tech leader",
+					tasks: "Manage Core of Project",
 				},
 			],
 		},
@@ -253,14 +258,14 @@ const temporaryDataCV: UserData = {
 			hobbies: [
 				{
 					id: "Placeholder",
-					name: "Placeholder",
-					status: "Placeholder",
+					name: "Play video games",
+					status: "I play video games in my free time.",
 				},
 			],
 		},
 		other: {
 			title: "Other",
-			content: "Placeholder",
+			content: "Open for job.",
 		},
 	},
 };

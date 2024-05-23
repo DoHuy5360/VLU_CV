@@ -3,7 +3,6 @@ import View from "./_component/view";
 import CV from "@/models/cv";
 import NoData from "@/components/placeholder/noData";
 import { getAllFileNameInFolder } from "@/utils/getAllFileNameInFolder";
-// import { cvTemplateNames } from "@/utils/getAllFileNameInFolder";
 
 export const cvTemplateNames = getAllFileNameInFolder("/src/components/layouts/templates");
 

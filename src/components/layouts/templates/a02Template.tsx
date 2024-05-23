@@ -20,7 +20,7 @@ import Rows from "../symmetric/rows";
 function A02Template(data: UserData) {
 	return (
 		<div className='w-full p-4 bg-white'>
-			<div id='sectionParent' className='flex flex-col gap-4'>
+			<div className='flex flex-col gap-4'>
 				<Column>
 					<Rows>
 						<V01AHead {...data.attrs.head} />

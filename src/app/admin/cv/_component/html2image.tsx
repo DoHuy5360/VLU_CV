@@ -1,4 +1,5 @@
 "use client";
+import { Buttons } from "@/components/button/buttons";
 import * as htmlToImage from "html-to-image";
 
 export default function getThumbnailFromHtml({ id, display }: { id: string; display: Function }) {
@@ -16,8 +17,8 @@ export default function getThumbnailFromHtml({ id, display }: { id: string; disp
 	};
 
 	return (
-		<button onClick={handleCreateImageFromHTML} className='text-xs text-center bg-[#EFEFEF] hover:bg-[#E5E5E5] border-[1px] border-[#767676] rounded-sm p-1 w-fit cursor-pointer' type='button'>
-			Tạo ảnh bìa
-		</button>
+		<div onClick={handleCreateImageFromHTML}>
+			<Buttons.Create.Text text="Tạo ảnh bìa"/>	
+		</div>
 	);
 }
