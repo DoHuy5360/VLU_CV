@@ -39,13 +39,26 @@ export const Buttons = {
 		},
 	},
 	Outline: {
-		Gray: ({ text, href }: ButtonPropsType) => {
-			return (
-				<Link href={href} className={`${generaStyle} bg-transparent border-[1px]`}>
-					{text}
-				</Link>
-			);
+		Hover: {
+			Gray: ({ text, href }: ButtonPropsType) => {
+				return (
+					<Link href={href} className={`${generaStyle} bg-transparent border-[1px] border-transparent hover:border-slate-100`}>
+						{text}
+					</Link>
+				);
+			},
 		},
+		Solid: {
+			Gray: {
+				Click: ({ text}: Pick<ButtonPropsType, 'text'>) => {
+					return (
+						<button type="button" className='text-black font-bold p-2 text-xs w-fit rounded-sm cursor-pointer bg-transparent border-[1px]'>
+							{text}
+						</button>
+					);
+				}
+			},
+		}
 	},
 	Submit: {
 		Save: () => {

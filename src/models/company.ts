@@ -8,7 +8,7 @@ const companySchema = new Schema(
 			type: String,
 			require: true,
 		},
-		convince: {
+		province: {
 			type: String,
 			require: true,
 		},

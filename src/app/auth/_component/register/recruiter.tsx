@@ -79,27 +79,27 @@ export default function RecruiterRegisterAccountForm() {
 							<div className='flex flex-col gap-2'>
 								<div className='flex flex-col w-fit gap-1'>
 									<label htmlFor=''>Họ và tên</label>
-									<input {...formTools.register("name")} className='border-[1px] px-1 border-slate-200' type='text' />
+									<input {...formTools.register("name")} className='border-[1px] px-1 border-slate-200 p-1' type='text' />
 									<div className='text-red-500 text-xs'>{formTools.formState.errors.name?.message}</div>
 								</div>
 								<div className='flex flex-col w-fit gap-1'>
 									<label htmlFor=''>Số điện thoại</label>
-									<input {...formTools.register("phone")} className='border-[1px] px-1 border-slate-200' type='text' />
+									<input {...formTools.register("phone")} className='border-[1px] px-1 border-slate-200 p-1' type='text' />
 									<div className='text-red-500 text-xs'>{formTools.formState.errors.phone?.message}</div>
 								</div>
 								<div className='flex flex-col w-fit gap-1'>
 									<label htmlFor=''>Email</label>
-									<input {...formTools.register("email")} className='border-[1px] px-1 border-slate-200' type='text' />
+									<input {...formTools.register("email")} className='border-[1px] px-1 border-slate-200 p-1' type='text' />
 									<div className='text-red-500 text-xs'>{formTools.formState.errors.email?.message}</div>
 								</div>
 								<div className='flex flex-col w-fit gap-1'>
 									<label htmlFor=''>Mật khẩu</label>
-									<input {...formTools.register("password")} className='border-[1px] px-1 border-slate-200' type='password' />
+									<input {...formTools.register("password")} className='border-[1px] px-1 border-slate-200 p-1' type='password' />
 									<div className='text-red-500 text-xs'>{formTools.formState.errors.password?.message}</div>
 								</div>
 								<div className='flex flex-col w-fit gap-1'>
 									<label htmlFor=''>Nhập lại mật khẩu</label>
-									<input {...formTools.register("rePassword")} className='border-[1px] px-1 border-slate-200' type='password' />
+									<input {...formTools.register("rePassword")} className='border-[1px] px-1 border-slate-200 p-1' type='password' />
 									<div className='text-red-500 text-xs'>{formTools.formState.errors.rePassword?.message}</div>
 								</div>
 							</div>
@@ -120,7 +120,7 @@ export default function RecruiterRegisterAccountForm() {
 						<div className='flex flex-col gap-2'>
 							<div className='flex flex-col w-fit gap-1'>
 								<label htmlFor=''>Tên công ty</label>
-								<textarea {...formTools.register("company")} className='border-[1px] px-1 border-slate-200 resize-none' />
+								<textarea {...formTools.register("company")} className='border-[1px] px-1 border-slate-200 p-1 resize-none' />
 								<div className='text-red-500 text-xs'>{formTools.formState.errors.company?.message}</div>
 							</div>
 							<Company />

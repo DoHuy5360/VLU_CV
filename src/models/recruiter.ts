@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 export type RecruiterModelType = {
 	_id?: ObjectId;
 	accountId: ObjectId;
+	companyId: ObjectId;
 	name: string;
 	phone: string;
 	gender: string;
@@ -13,6 +14,10 @@ export type RecruiterModelType = {
 const recruiterSchema = new mongoose.Schema(
 	{
 		accountId: {
+			type: ObjectId,
+			require: true,
+		},
+		companyId: {
 			type: ObjectId,
 			require: true,
 		},

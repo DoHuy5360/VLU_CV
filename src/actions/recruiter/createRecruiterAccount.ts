@@ -3,9 +3,17 @@ import { RecruiterDataForm } from "@/app/auth/_component/register/recruiter";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import { createAccount } from "../general/createAccount";
 import Recruiter from "@/models/recruiter";
+import Company from "@/models/company";
 
 export async function createRecruiterAccount(data: RecruiterDataForm) {
 	await connectToDatabase();
+	const newCompany = new Company({
+		name: data.name,
+		province: data.province,
+		district: data.district,
+	})
+	const newCompanyDoc = await newCompany.save();
+
 	const newAccountDoc = await createAccount({
 		email: data.email,
 		password: data.password,
@@ -14,6 +22,7 @@ export async function createRecruiterAccount(data: RecruiterDataForm) {
 	});
 	const newRecruiter = new Recruiter({
 		accountId: newAccountDoc._id,
+		companyId: newCompanyDoc._id,
 		name: data.name,
 		phone: data.phone,
 		gender: data.gender,

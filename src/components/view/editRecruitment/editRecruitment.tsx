@@ -8,6 +8,7 @@ import { createContext } from "react";
 import { z } from "zod";
 import RecruitmentRenderer from "./_component/recruitmentRenderer";
 import { addDate, dateParser } from "@/utils/dateHandler";
+import { Buttons } from "@/components/button/buttons";
 
 const recruitmentSchema = z
 	.object({
@@ -236,7 +237,7 @@ export default function EditRecruitment({
 							<div className='flex flex-col gap-1 w-full'>
 								<input
 									{...formTools.register("startAt")}
-									className='border-[1px]'
+									className='p-1 cursor-pointer border-[1px]'
 									type='date'
 									id='startAt'
 									min={formTools.getValues("startAt")}
@@ -257,7 +258,7 @@ export default function EditRecruitment({
 							Hết hạn lúc
 						</label>
 						<div className='flex flex-col gap-1 w-full'>
-							<input min={closeDateRange.minCloseDate} max={closeDateRange.maxCloseDate} {...formTools.register("closeAt")} className='border-[1px]' type='date' id='closeAt' />
+							<input min={closeDateRange.minCloseDate} max={closeDateRange.maxCloseDate} {...formTools.register("closeAt")} className='p-1 cursor-pointer border-[1px]' type='date' id='closeAt' />
 							<div className='text-xs text-red-500'>{formTools.formState.errors.closeAt?.message}</div>
 						</div>
 					</div>
@@ -266,26 +267,24 @@ export default function EditRecruitment({
 						<div className='py-1'>Trạng thái</div>
 						<div className='flex flex-col gap-1'>
 							<div className='flex gap-2 items-center'>
-								<button
+								<div
 									onClick={() => {
 										formTools.setValue("isHide", false);
 										formTools.trigger("isHide");
 									}}
-									className={`${!isHide && "bg-orange-400"} border-[1px] p-1`}
-									type='button'
+									className={`${!isHide && "bg-orange-400"} rounded-md`}
 								>
-									Hiển thị
-								</button>
-								<button
+									<Buttons.Outline.Solid.Gray.Click text="Hiển thị"/>
+								</div>
+								<div
 									onClick={() => {
 										formTools.setValue("isHide", true);
 										formTools.trigger("isHide");
 									}}
-									className={`${isHide && "bg-orange-400"} border-[1px] p-1`}
-									type='button'
+									className={`${isHide && "bg-orange-400"} rounded-md`}
 								>
-									Tạm ẩn
-								</button>
+									<Buttons.Outline.Solid.Gray.Click text="Tạm ẩn"/>
+								</div>
 							</div>
 							<div className='text-xs text-red-500'>{formTools.formState.errors.isHide?.message}</div>
 						</div>
