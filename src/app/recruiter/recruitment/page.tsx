@@ -11,7 +11,7 @@ export default async function F() {
 	const session = await getServerSession(authOptions);
 	await connectToDatabase();
 	const arrRecruitment = await Recruitment.find({
-		recruiterId: new ObjectId(session?.user._id as string),
+		accountId: session?.user._id,
 	})
 		.sort({ updatedAt: -1 })
 		.select("_id title createAt");

@@ -1,9 +1,10 @@
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
-export type RecruimentSchemaType = {
+export type RecruitmentSchemaType = {
 	_id?: ObjectId;
-	recruiterId: ObjectId;
+	accountId: ObjectId;
+	companyId: ObjectId;
 	title: string;
 	position: string;
 	description: string;
@@ -28,9 +29,9 @@ const experienceSchema = new mongoose.Schema(
 );
 const recruitmentSchema = new mongoose.Schema(
 	{
-		recruiterId: {
+		accountId: {
 			type: ObjectId,
-			ref: "recruiters",
+			ref: "accounts",
 			require: true,
 		},
 		companyId: {

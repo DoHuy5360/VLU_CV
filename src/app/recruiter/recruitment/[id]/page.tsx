@@ -12,8 +12,8 @@ export default async function F({ params }: { params: { id: string } }) {
 	const session = await getServerSession(authOptions);
 	await connectToDatabase();
 	const recruitmentFound = await Recruitment.findOne({
-		_id: new ObjectId(params.id),
-		recruiterId: new ObjectId(session?.user._id as string),
+		_id: params.id,
+		accountId: new ObjectId(session?.user._id as string),
 	});
 	const initRecruitment = getRecruitmentEntity(recruitmentFound);
 	return (

@@ -38,12 +38,12 @@ export default function SignInWithVLJ() {
 			<Image src='/image/logo/van-lang-logo.png' width={32} height={32} alt='van lang logo' draggable={false} />
 			<div className='flex flex-col gap-1'>
 				<label htmlFor=''>Email</label>
-				<input {...register("email")} className='px-1 border-[1px]' type='text' />
+				<input {...register("email")} className='px-1 border-[1px] p-1' type='text' />
 				<div className='text-red-500 text-xs'>{errors.email?.message}</div>
 			</div>
 			<div className='flex flex-col gap-1'>
 				<label htmlFor=''>Mật khẩu</label>
-				<input {...register("password")} className='px-1 border-[1px]' type='password' />
+				<input {...register("password")} className='px-1 border-[1px] p-1' type='password' />
 				<div className='text-red-500 text-xs'>{errors.password?.message}</div>
 			</div>
 			<button className='px-2 py-1 bg-green-300 rounded-full' type='submit'>
