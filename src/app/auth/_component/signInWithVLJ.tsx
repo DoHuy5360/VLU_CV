@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
+import { Buttons } from "@/components/button/buttons";
 
 const vljLoginSchema = z.object({
 	email: z.string().min(1, "Hãy nhập email."),
@@ -33,7 +34,7 @@ export default function SignInWithVLJ() {
 	};
 
 	return (
-		<form onSubmit={handleSubmit(validate)} className='flex flex-col text-sm gap-2 border-[1px] p-4 items-center rounded-sm select-none'>
+		<form onSubmit={handleSubmit(validate)} className='flex flex-col text-sm gap-3 border-[1px] p-4 items-center rounded-sm select-none w-full'>
 			{error && <div className='text-red-500 text-xs'>Đăng nhập thất bại.</div>}
 			<Image src='/image/logo/van-lang-logo.png' width={32} height={32} alt='van lang logo' draggable={false} />
 			<div className='flex flex-col gap-1'>
@@ -46,9 +47,7 @@ export default function SignInWithVLJ() {
 				<input {...register("password")} className='px-1 border-[1px] p-1' type='password' />
 				<div className='text-red-500 text-xs'>{errors.password?.message}</div>
 			</div>
-			<button className='px-2 py-1 bg-green-300 rounded-full' type='submit'>
-				Đăng nhập
-			</button>
+			<Buttons.Submit.Login.Text/>
 		</form>
 	);
 }

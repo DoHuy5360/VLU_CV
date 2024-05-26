@@ -13,6 +13,7 @@ async function ViewCV({ params }: { params: { id: string } }) {
 		_id: params.id,
 	});
 	const recruitment = await Recruitment.find({}).populate("companyId").select("companyId requirement title");
+	console.log(recruitment);
 	const isShowRecommend = cv.data.attrs.skill.skills.length !== 0;
 	let candidateSkills: TextVector | undefined;
 

@@ -290,9 +290,16 @@ export default function EditRecruitment({
 						</div>
 					</div>
 				</div>
-				<button className='p-2 rounded-sm text-sm bg-green-300' type='submit'>
-					Lưu
-				</button>
+				<div className="flex gap-2 justify-between border-t-[1px] pt-2">
+					<div onClick={()=>{
+						setYearExpRequired("Không yêu cầu kinh nghiệm")
+						formTools.reset(recruitmentObjectData)
+					}
+					}>
+						<Buttons.Reset.Click.Text/>
+					</div>
+				<Buttons.Submit.Save/>
+				</div>
 			</form>
 			<RecruitmentFormContext.Provider value={formTools.watch()}>
 				<RecruitmentRenderer />

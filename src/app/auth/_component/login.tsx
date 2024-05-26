@@ -1,3 +1,4 @@
+import { Buttons } from "@/components/button/buttons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -34,9 +35,7 @@ export default function Login() {
 							<div className='text-red-500 text-xs'>{errors.password?.message}</div>
 						</div>
 					</div>
-					<button className='bg-green-300 px-4 py-2 rounded-full text-sm w-fit' type='submit'>
-						Đăng nhập
-					</button>
+					<Buttons.Submit.Login.Text/>
 				</form>
 			</div>
 		</div>
