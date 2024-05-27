@@ -1,6 +1,4 @@
 "use client";
-import EditCvForm, { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
-import { getUserDataCV } from "@/entities/userDataCV";
 import { userDataSchema } from "@/validation/userData";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
@@ -9,13 +7,15 @@ import CvSuggestion from "./_component/cvSuggestion";
 import CvRenderer from "./_component/cvRenderer";
 import Image from "next/image";
 import { CvSchemaType } from "@/models/cv";
-import { CandidateProfileProps } from "@/app/template/cv/[name]/_component/preHandler";
-import DialogProfileSelection from "./dialogProfileSelection";
 import { Buttons } from "@/components/button/buttons";
+import { PortfolioFormData, getDataPortfolio } from "@/entities/getDataPortfolio";
+import EditCvForm from "./_component/editCvForm";
+import DialogProfileSelection from "./dialogProfileSelection";
+import { CandidateProfileProps } from "@/app/template/portfolio/[name]/_component/preHandler";
 
-export const init = getUserDataCV({});
+export const init = getDataPortfolio();
 
-export const FormValuesContext = createContext<UserDataForm>(init);
+export const FormValuesContext = createContext<PortfolioFormData>(init);
 
 export default function EditCvView({
 	cvObjectData,
@@ -23,12 +23,12 @@ export default function EditCvView({
 	listProfiles,
 	onSubmit,
 }: {
-	cvObjectData: UserDataForm;
+	cvObjectData: PortfolioFormData;
 	cvTemplateName: string;
 	listProfiles: CandidateProfileProps[];
-	onSubmit: SubmitHandler<UserDataForm>;
+	onSubmit: SubmitHandler<PortfolioFormData>;
 }) {
-	const formTools = useForm<UserDataForm>({
+	const formTools = useForm<PortfolioFormData>({
 		resolver: zodResolver(userDataSchema),
 		defaultValues: cvObjectData,
 	});
@@ -66,11 +66,11 @@ export default function EditCvView({
 				<EditCvForm onSubmit={onSubmit} />
 			</FormProvider>
 			<div className='flex flex-col basis-2/3 flex-grow-1 w-full h-full'>
-				<div className='flex items-top gap-2 border-b-[1px] pr-2'>
-					<FormValuesContext.Provider value={formTools.watch()}>
+				<div className='flex items-top justify-end gap-2 border-b-[1px] pr-2'>
+					{/* <FormValuesContext.Provider value={formTools.watch()}>
 						<CvSuggestion />
-					</FormValuesContext.Provider>
-					<div className='relative py-2'>
+					</FormValuesContext.Provider> */}
+					<div className='relative p-2'>
 						<div
 							onClick={() => {
 								setShowSetting((pre) => !pre);
@@ -99,7 +99,7 @@ export default function EditCvView({
 				<div className='flex overflow-y-hidden'>
 					<div className='flex-grow overflow-y-scroll pb-24'>
 						<FormValuesContext.Provider value={formTools.watch()}>
-							<CvRenderer cvTemplateName={(listProfiles.length>1)?formTools.getValues("template") === "Root" ? cvTemplateName : formTools.getValues("template"): cvTemplateName} />
+							<CvRenderer cvTemplateName={listProfiles.length > 1 ? (formTools.getValues("template") === "Root" ? cvTemplateName : formTools.getValues("template")) : cvTemplateName} />
 						</FormValuesContext.Provider>
 					</div>
 					{isShowOtherTemplates && (

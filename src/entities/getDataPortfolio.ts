@@ -1,8 +1,9 @@
 import { z } from "zod";
 
-export function getDataPortfolio() {
+export function getDataPortfolio(): PortfolioFormData {
 	return {
 		name: "",
+		template: "Root",
 		socials: {
 			gitHub: "",
 			linkedIn: "",
@@ -14,6 +15,10 @@ export function getDataPortfolio() {
 			phone: "",
 			address: "",
 		},
+		greeting: {
+			images: [],
+			content: "",
+		},
 		about: {
 			images: [],
 			content: "",
@@ -23,7 +28,12 @@ export function getDataPortfolio() {
 		projects: [],
 	};
 }
-const name = z.string();
+
+export const image = z.object({
+	id: z.string(),
+	label: z.string(),
+	src: z.string(),
+});
 const socials = z.object({
 	gitHub: z.string(),
 	linkedIn: z.string(),
@@ -36,13 +46,11 @@ const personal = z.object({
 	address: z.string(),
 });
 const about = z.object({
-	images: z.array(
-		z.object({
-			id: z.string(),
-			label: z.string(),
-			src: z.string(),
-		})
-	),
+	images: z.array(image),
+	content: z.string(),
+});
+const greeting = z.object({
+	images: z.array(image),
 	content: z.string(),
 });
 const skills = z.array(
@@ -54,11 +62,6 @@ const skills = z.array(
 );
 export type SkillDataForm = z.infer<typeof skills>;
 
-export const image = z.object({
-	id: z.string(),
-	label: z.string(),
-	src: z.string(),
-});
 export type ImageSchema = z.infer<typeof image>;
 
 const experiences = z.array(
@@ -84,7 +87,9 @@ const projects = z.array(
 );
 
 export const portfolioData = z.object({
-	name,
+	name: z.string(),
+	template: z.string(),
+	greeting,
 	socials,
 	personal,
 	about,

@@ -1,8 +1,8 @@
+import { PortfolioFormData } from "@/entities/getDataPortfolio";
 import Image from "next/image";
 import { BsFacebook, BsGithub, BsLinkedin } from "react-icons/bs";
 import { IoLocationSharp } from "react-icons/io5";
-
-export default function B01Template() {
+export default function B01Template(data: PortfolioFormData) {
 	return (
 		<div>
 			<div className='flex flex-col'>
@@ -16,17 +16,14 @@ export default function B01Template() {
 					<div className='flex items-center'>
 						<div className='flex flex-col gap-6'>
 							<div className='flex flex-col'>
-								<div className='whitespace-nowrap'>Hello, I'm Huy</div>
-								<div className='w-2/3'>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident quaerat aliquam esse consectetur ea incidunt consequatur quia sint, sit, iure excepturi eius nemo cum fugiat alias
-									aliquid omnis? Modi, nostrum.
-								</div>
+								<div className='whitespace-nowrap'>Hello, I'm {data.personal.name}</div>
+								<div className='w-2/3'>{data.greeting?.content}</div>
 							</div>
 							<div className='flex items-baseline gap-2'>
 								<div>
 									<IoLocationSharp />
 								</div>
-								<div>TP.HCM, Binh Chanh district</div>
+								<div>{data.personal.address}</div>
 							</div>
 							<div className='flex gap-2'>
 								<div>
@@ -41,29 +38,18 @@ export default function B01Template() {
 							</div>
 						</div>
 						<div className='flex-grow basis-1/2 grid place-items-center'>
-							<Image src='/image/user.jpg' width={200} height={200} className='outline outline-4 outline-slate-200' alt='avatar' />
+							<Image src={data.personal.avatar || "/image/user.jpg"} width={200} height={200} className='outline outline-4 outline-slate-200' alt='avatar' />
 						</div>
 					</div>
 					<div className='flex items-center'>
 						<div className='flex-grow basis-1/2 grid place-items-center'>
-							<Image src='/image/user.jpg' width={200} height={200} className='outline outline-4 outline-slate-200' alt='avatar' />
+							{data.about.images.map((i) => (
+								<Image key={i.id} src={i.src || "/image/user.jpg"} width={200} height={200} className='outline outline-4 outline-slate-200' alt={i.label} />
+							))}
 						</div>
 						<div className='flex-grow basis-1/2 flex flex-col gap-4'>
 							<div>About me</div>
-							<div className='flex flex-col gap-3'>
-								<div>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure aliquid doloribus error sapiente praesentium dolorem eligendi odit totam repudiandae nam repellendus consectetur
-									eveniet,ipsum illum voluptas nemo, reiciendis ad aperiam?{" "}
-								</div>
-								<div>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure aliquid doloribus error sapiente praesentium dolorem eligendi odit totamrepudiandae nam repellendus consectetur eveniet,
-									ipsum illum voluptas nemo, reiciendis ad aperiam?{" "}
-								</div>
-								<div>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure aliquid doloribus errorsapiente praesentium dolorem eligendi odit totam repudiandae nam repellendus consectetur eveniet,
-									ipsum illum voluptas nemo, reiciendis ad aperiam?
-								</div>
-							</div>
+							<div className='flex flex-col gap-3 whitespace-pre-line'>{data.about.content}</div>
 						</div>
 					</div>
 					<div className='flex flex-col items-center gap-3'>

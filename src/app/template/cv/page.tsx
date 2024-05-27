@@ -2,7 +2,6 @@ import { Buttons } from "@/components/button/buttons";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import CV from "@/models/cv";
 import Image from "next/image";
-import Link from "next/link";
 
 type Template = {
 	_id: string;

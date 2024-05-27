@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useRef, useState } from "react";
+import { useContext } from "react";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,6 +29,8 @@ export default function PortfolioLayout({ profile }: { profile: CandidateProfile
 		resolver: zodResolver(portfolioData),
 		defaultValues: profile.data,
 	});
+	console.log(profile.data);
+	console.log(formTools.formState.errors);
 	return (
 		<ViewLayout
 			formTools={formTools}
