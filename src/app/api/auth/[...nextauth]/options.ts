@@ -2,6 +2,7 @@ import { createCandidateAccount } from "@/actions/candidate/createCandidateAccou
 import { CandidateDataForm } from "@/app/auth/_component/register/candidate";
 import { connectToDatabase } from "@/libs/mongoosedb";
 import Account, { AccountModelType } from "@/models/account";
+import Candidate from "@/models/candidate";
 import Recruiter, { RecruiterModelType } from "@/models/recruiter";
 import { ObjectId } from "mongodb";
 import { NextAuthOptions, User } from "next-auth";
@@ -72,6 +73,18 @@ export const authOptions: NextAuthOptions = {
 										image: accountFound.image,
 									} as User;
 								}
+							case "candidate":
+								const candidateFound: RecruiterModelType | null = await Candidate.findOne({ accountId: accountFound._id });
+								if (candidateFound !== null) {
+									return {
+										_id: accountFound._id?.toString(),
+										id: accountFound._id?.toString(),
+										name: candidateFound.name,
+										email: accountFound.email,
+										role: accountFound.role,
+										image: accountFound.image,
+									} as User;
+								}
 							default:
 								return null;
 						}
@@ -99,12 +112,11 @@ export const authOptions: NextAuthOptions = {
 					password: "",
 					rePassword: "",
 				};
-				const accountCreated: {
-					_id: ObjectId & Omit<AccountModelType, "_id">;
-				} | null = await createCandidateAccount(data);
+				let accountCreated: {_id: ObjectId & Omit<AccountModelType, "_id">} |  string | null = await createCandidateAccount(data);
 				if (accountCreated === null) {
 					return false;
 				} else {
+					accountCreated = JSON.parse(accountCreated) as {_id: ObjectId & Omit<AccountModelType, "_id">}
 					user._id = accountCreated._id!.toString();
 					user.role = "candidate"; // default role, apply for sign in only
 				}

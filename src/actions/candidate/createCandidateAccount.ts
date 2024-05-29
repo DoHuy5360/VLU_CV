@@ -4,7 +4,7 @@ import { createAccount } from "../general/createAccount";
 import Candidate, { CandidateModelType } from "@/models/candidate";
 import { getUserDataCV } from "@/entities/userDataCV";
 import { CandidateDataForm } from "@/app/auth/_component/register/candidate";
-import Candidate_Profile, { CandidateProfileModelType } from "@/models/candidate_profiles";
+import Candidate_Profile from "@/models/candidate_profiles";
 
 export async function createCandidateAccount(data: CandidateDataForm) {
 	await connectToDatabase();
@@ -21,7 +21,7 @@ export async function createCandidateAccount(data: CandidateDataForm) {
 		phone: data.phone,
 		gender: data.gender,
 	});
-	const newCandidateProfile = new Candidate_Profile<CandidateProfileModelType>({
+	const newCandidateProfile = new Candidate_Profile({
 		name: "Hồ sơ mặc định",
 		accountId: newAccountDoc._id,
 		data: getUserDataCV({
@@ -39,6 +39,6 @@ export async function createCandidateAccount(data: CandidateDataForm) {
 	if (candidateObject === null || candidateProfileObject === null) {
 		return null;
 	} else {
-		return newAccountDoc;
+		return JSON.stringify(newAccountDoc);
 	}
 }

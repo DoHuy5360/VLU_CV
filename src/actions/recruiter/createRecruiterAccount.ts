@@ -20,6 +20,8 @@ export async function createRecruiterAccount(data: RecruiterDataForm) {
 		role: "recruiter",
 		image: "",
 	});
+	if(newAccountDoc=== null) return false;
+
 	const newRecruiter = new Recruiter({
 		accountId: newAccountDoc._id,
 		companyId: newCompanyDoc._id,
@@ -32,6 +34,6 @@ export async function createRecruiterAccount(data: RecruiterDataForm) {
 	if (newRecruiterDoc === null) {
 		return false;
 	} else {
-		return newRecruiterDoc;
+		return true;
 	}
 }
