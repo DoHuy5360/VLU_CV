@@ -8,7 +8,7 @@ export default function EditArea({ label, register, errors, index }: InputUIPara
 				<label className='text-xs font-bold text-slate-400' htmlFor={register.name}>
 					{label}
 				</label>
-				<textarea {...register} className='border-slate-200 min-h-28 max-h-52 border-[1px] p-1' id={register.name} />
+				<textarea {...register} className='border-slate-200 min-h-64 max-h-96 border-[1px] p-1' id={register.name} />
 			</div>
 			<FormErrors message={errors} />
 		</div>

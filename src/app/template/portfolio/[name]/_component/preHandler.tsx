@@ -1,11 +1,11 @@
 "use client";
 
+import createPortfolio from "@/actions/candidate/createPortfolio";
 import DialogProfileSelection from "@/components/view/editPortfolio/dialogProfileSelection";
 import EditCvView from "@/components/view/editPortfolio/editCV";
 import { PortfolioFormData } from "@/entities/getDataPortfolio";
-import { useCreateCV } from "@/hooks/useCreateCV";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 export type CandidateProfileProps = {
 	_id: string;
@@ -18,8 +18,8 @@ export type CandidateProfileProps = {
 export default function PreHandler({ cvTemplateName, profiles }: { cvTemplateName: string; profiles: string }) {
 	const handleSubmit = async (data: PortfolioFormData) => {
 		console.log(data);
-		// const isSuccess = await createReplica(cvTemplateName, data);
-		// isSuccess ? alert("Tạo CV thành công") : alert("Tạo CV thất bại - Vui lòng kiểm tra lại tên CV");
+		const isSuccess = await createPortfolio(cvTemplateName, data);
+		isSuccess ? alert("Tạo Portfolio thành công") : alert("Tạo CV thất bại - Vui lòng kiểm tra lại tên Portfolio");
 	};
 	const listProfiles = useRef<CandidateProfileProps[]>(JSON.parse(profiles));
 	const searchParams = useSearchParams();

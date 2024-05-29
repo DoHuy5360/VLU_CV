@@ -1,14 +1,12 @@
 "use client";
-import { userDataSchema } from "@/validation/userData";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { createContext, useEffect, useState } from "react";
-import CvSuggestion from "./_component/cvSuggestion";
 import CvRenderer from "./_component/cvRenderer";
 import Image from "next/image";
 import { CvSchemaType } from "@/models/cv";
 import { Buttons } from "@/components/button/buttons";
-import { PortfolioFormData, getDataPortfolio } from "@/entities/getDataPortfolio";
+import { PortfolioFormData, getDataPortfolio, portfolioSchemaRequireFull } from "@/entities/getDataPortfolio";
 import EditCvForm from "./_component/editCvForm";
 import DialogProfileSelection from "./dialogProfileSelection";
 import { CandidateProfileProps } from "@/app/template/portfolio/[name]/_component/preHandler";
@@ -29,7 +27,7 @@ export default function EditCvView({
 	onSubmit: SubmitHandler<PortfolioFormData>;
 }) {
 	const formTools = useForm<PortfolioFormData>({
-		resolver: zodResolver(userDataSchema),
+		resolver: zodResolver(portfolioSchemaRequireFull),
 		defaultValues: cvObjectData,
 	});
 
@@ -97,7 +95,7 @@ export default function EditCvView({
 					</div>
 				</div>
 				<div className='flex overflow-y-hidden'>
-					<div className='flex-grow overflow-y-scroll pb-24'>
+					<div className='flex-grow overflow-y-scroll scroll-smooth' >
 						<FormValuesContext.Provider value={formTools.watch()}>
 							<CvRenderer cvTemplateName={listProfiles.length > 1 ? (formTools.getValues("template") === "Root" ? cvTemplateName : formTools.getValues("template")) : cvTemplateName} />
 						</FormValuesContext.Provider>

@@ -50,7 +50,7 @@ export default function EditCvForm({ onSubmit }: { onSubmit: SubmitHandler<Portf
 			>
 				<div className='flex flex-col gap-2'>
 					<div id='Personal'>
-						<Personal Wrapper={Wrapper} Input={editInput} Avatar={EditPortfolioAvatar} hideField={{ fileName: true }} />
+						<Personal Wrapper={Wrapper} Input={editInput} Avatar={EditPortfolioAvatar} hideField={{ fileName: false }} />
 					</div>
 					{/* <div id='Greeting'>
 						<About Wrapper={Wrapper} Area={editArea} Image={EditAboutImage} />

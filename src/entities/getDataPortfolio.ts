@@ -86,7 +86,7 @@ const projects = z.array(
 	})
 );
 
-export const portfolioData = z.object({
+export const portfolioSchema = z.object({
 	name: z.string(),
 	template: z.string(),
 	greeting,
@@ -97,5 +97,16 @@ export const portfolioData = z.object({
 	experiences,
 	projects,
 });
+export const portfolioSchemaRequireFull = z.object({
+	name: z.string().min(1, "Hãy điền thông tin cho mục này."),
+	template: z.string(),
+	greeting,
+	socials,
+	personal,
+	about,
+	skills,
+	experiences,
+	projects,
+});
 
-export type PortfolioFormData = z.infer<typeof portfolioData>;
+export type PortfolioFormData = z.infer<typeof portfolioSchema>;

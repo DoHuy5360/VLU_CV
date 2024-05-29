@@ -7,7 +7,7 @@ import { revalidateTag } from "next/cache";
 export async function deleteCV(id: string) {
 	await connectToDatabase();
 	const { acknowledged } = await Candidate_CV.deleteOne({
-		_id: new ObjectId(id),
+		_id: id,
 	});
 	if (acknowledged) {
 		revalidateTag("/candidate/cv");

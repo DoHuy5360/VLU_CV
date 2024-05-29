@@ -14,10 +14,11 @@ export default async function CandidateLayout({ children }: { children: JSX.Elem
 				</div>
 				<div className='flex gap-2 items-center'>
 					<GrayLink text="Trang chủ" href='/home' />
-					<GrayLink text="CV của tôi" href='/candidate/cv' />
 					<GrayLink text="Hồ sơ" href='/candidate/profile' />
+					<GrayLink text="CV của tôi" href='/candidate/cv' />
 					<GrayLink text="Mẫu CV" href='/template/cv' />
-					<GrayLink text="Portfolio" href='/template/portfolio' />
+					<GrayLink text="Portfolio của tôi" href='/candidate/portfolio' />
+					<GrayLink text="Mẫu Portfolio" href='/template/portfolio' />
 				</div>
 				<div className='flex items-center gap-2 text-sm'>
 					<Buttons.Solid.Cyan text="Đăng Xuất" href='/api/auth/signout'/>

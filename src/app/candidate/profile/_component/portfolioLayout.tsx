@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Tab from "./tab";
-import { PortfolioFormData, portfolioData } from "@/entities/getDataPortfolio";
+import { PortfolioFormData, portfolioSchema } from "@/entities/getDataPortfolio";
 import ViewLayout, { CandidateProfileProp } from "./viewLayout";
 import { Wrapper } from "./wrapper";
 import editArea from "./editArea";
@@ -26,7 +26,7 @@ import { ProfileTabContext } from "@/contexts/profileTabContext";
 export default function PortfolioLayout({ profile }: { profile: CandidateProfileProp }) {
 	const { currentTab } = useContext(ProfileTabContext);
 	const formTools = useForm<PortfolioFormData>({
-		resolver: zodResolver(portfolioData),
+		resolver: zodResolver(portfolioSchema),
 		defaultValues: profile.data,
 	});
 	console.log(profile.data);

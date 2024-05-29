@@ -3,9 +3,10 @@ import A02Template from "@/components/layouts/templates/a02Template";
 import A03Template from "@/components/layouts/templates/a03template";
 import B01Template from "@/components/layouts/templates/b01Template";
 import { UserDataForm } from "@/components/view/editCV/_component/editCvForm";
+import { PortfolioFormData } from "@/entities/getDataPortfolio";
 
 export interface TransferType {
-	[key: string]: (data: UserDataForm) => JSX.Element;
+	[key: string]: (data: any) => JSX.Element;
 }
 export const Transfer: TransferType = {
 	A01TEMPLATE: A01Template,

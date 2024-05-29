@@ -93,7 +93,7 @@ export default function ListCV({ listCV }: { listCV: string }) {
 			{cvs.map((cv: ListCvProps, index: number) => (
 				<div key={cv._id} className='grid grid-cols-[50px_1fr_250px_100px] items-center hover:bg-slate-100'>
 					<div className='p-2 text-center'>{index + 1}</div>
-					<Link className='p-2 underline hover:text-blue-500 whitespace-nowrap' href={`/candidate/cv/${cv._id}`}>
+					<Link className='p-2 underline hover:text-blue-500 whitespace-nowrap' href={`/candidate/portfolio/${cv._id}`}>
 						<div
 							dangerouslySetInnerHTML={{
 								__html: cv.name,
@@ -102,7 +102,7 @@ export default function ListCV({ listCV }: { listCV: string }) {
 					</Link>
 					<div className='p-2 whitespace-nowrap text-center'>{moment(cv.createdAt).format("DD-MM-YYYY / HH:mm")}</div>
 					<div className='flex gap-2 align-bottom'>
-						<Buttons.Edit.Link.Icon href={`/candidate/cv/edit/${cv._id}`} />
+						<Buttons.Edit.Link.Icon href={`/candidate/portfolio/edit/${cv._id}`} />
 						<DeleteCV id={cv._id} name={cv.name} />
 					</div>
 				</div>

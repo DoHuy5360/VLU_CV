@@ -8,5 +8,5 @@ export default function PreHandler({ id, cvObjectData }: { id: string; cvObjectD
 		const isSuccess = await updateCV({ id, data });
 		isSuccess ? alert("Cập nhật thành công") : alert("Cập nhật thất bại");
 	};
-	return <EditCvView cvTemplateName={cvObjectData.name} listProfiles={[]} cvObjectData={cvObjectData} onSubmit={handleSubmit} />;
+	return <EditCvView cvTemplateName={cvObjectData.template} listProfiles={[]} cvObjectData={cvObjectData} onSubmit={handleSubmit} />;
 }
