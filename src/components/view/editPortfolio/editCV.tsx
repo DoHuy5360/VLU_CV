@@ -38,7 +38,7 @@ export default function EditCvView({
 	const handleGetTemplate = async () => {
 		setShowSetting(false);
 		if (substituteTemplates.length === 0) {
-			const res = await fetch("/api/cv");
+			const res = await fetch("/api/portfolio");
 			setSubstituteTemplates(await res.json());
 		}
 		setShowOtherTemplates(true);
@@ -78,9 +78,9 @@ export default function EditCvView({
 						</div>
 						<div className='absolute z-10 translate-x-[-100%] translate-y-[-50%] bg-white border-[1px] flex flex-col text-sm'>
 							<div onClick={handleGetTemplate} className={`${!isShowSetting && "hidden"} hover:bg-slate-200 px-3 py-1 whitespace-nowrap cursor-pointer`}>
-								Đổi mẫu CV
+								Đổi mẫu Portfolio
 							</div>
-							{listProfiles.length > 0 && (
+							{listProfiles.length > 1 && (
 								<div
 									onClick={() => {
 										setShowChangeProfileDialog(true);
@@ -102,8 +102,8 @@ export default function EditCvView({
 					</div>
 					{isShowOtherTemplates && (
 						<div className={`${!isShowOtherTemplates && "hidden"} flex flex-col border-l-[1px]`}>
-							<div className='flex justify-between items-center'>
-								<div className='flex flex-col gap-1 p-2 text-xs border-b-[1px]'>
+							<div className='flex justify-between items-center border-b-[1px]'>
+								<div className='flex flex-col gap-1 p-2 text-xs'>
 									<div>Mẫu đang dùng</div>
 									<div className='font-bold'>{currentTemplate}</div>
 								</div>
@@ -111,12 +111,12 @@ export default function EditCvView({
 									onClick={() => {
 										setShowOtherTemplates(false);
 									}}
-									className='p-2 mr-2 cursor-pointer hover:bg-slate-200 active:bg-slate-300'
+									className='pr-2'
 								>
 									<Buttons.Delete.Click.Icon />
 								</div>
 							</div>
-							<div className='flex flex-col p-2 gap-2'>
+							<div className='flex flex-col p-2 gap-2 overflow-y-scroll'>
 								{substituteTemplates.map((cv, i) => {
 									return (
 										<div

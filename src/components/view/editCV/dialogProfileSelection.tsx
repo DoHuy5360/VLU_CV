@@ -23,7 +23,7 @@ export default function DialogProfileSelection({
 	const searchParams = useSearchParams();
 	const profileIndex = searchParams.get("profile");
 	return (
-		<div className={`${isShowChangeProfileDialog ? "" : "hidden"} z-10 grid place-items-center w-full h-full absolute bg-white select-none`}>
+		<div className={`${isShowChangeProfileDialog ? "" : "hidden"} z-50 grid place-items-center w-full h-full absolute bg-white select-none`}>
 			<div className='flex flex-col items-center border-[1px]'>
 				<div className='flex items-center justify-between border-b-[1px] w-full text-center p-2 gap-2'>
 					<div>Chọn hồ sơ bạn muốn áp dụng?</div>

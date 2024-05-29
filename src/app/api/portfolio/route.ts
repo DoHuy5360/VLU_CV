@@ -3,13 +3,12 @@ import CV from "@/models/cv";
 import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
+import Template from "@/models/template";
 
 export async function GET(req: Request, res: Response) {
 	const session = await getServerSession(authOptions);
 	await connectToDatabase();
-	const userFound = await CV.find({
-		type: null
-	});
+	const userFound = await Template.find({});
 	if (userFound === null) return Response.json({ error: true }, { status: 200 });
 	return Response.json(userFound, { status: 200 });
 }
