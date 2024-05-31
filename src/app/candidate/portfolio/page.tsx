@@ -19,7 +19,7 @@ export default async function CV() {
 			<div className='grid place-items-center h-full'>
 				<div className="flex flex-col gap-2 items-center">
                     <div>Bạn chưa có Portfolio</div>
-                    <Link className='px-2 w-fit py-1 rounded-sm bg-green-200 text-xs' href='/template/cv'>
+                    <Link className='px-2 w-fit py-1 rounded-sm bg-green-200 text-xs' href='/template/portfolio'>
                         Tạo ngay
                     </Link>
                 </div>
