@@ -2,8 +2,8 @@
 import { AvatarUIParams } from "@/components/cvEditFields/editFields/type";
 import { imageFileToBase64 } from "@/utils/generateB64Image";
 import Image from "next/image";
-import { UserDataForm } from "./editCvForm";
 import { Buttons } from "@/components/button/buttons";
+import { UserDataForm } from "../../editCV/_component/editCvForm";
 
 export default function EditAvatar({ setValue, getValues, trigger, errors }: AvatarUIParams<UserDataForm>) {
 	return (

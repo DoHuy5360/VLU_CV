@@ -20,7 +20,7 @@ export default function ListCV({ listCV }: { listCV: string }) {
 	const [findingCvName, setFindingCvName] = useState("");
 	useEffect(() => {
 		setCVs(arrCVs);
-	}, [listCV]);
+	}, [listCV, arrCVs]);
 	useEffect(() => {
 		if (findingCvName === "") {
 			setCVs(arrCVs);
@@ -31,7 +31,7 @@ export default function ListCV({ listCV }: { listCV: string }) {
 			});
 			setCVs(cvsFiltered);
 		}
-	}, [findingCvName]);
+	}, [findingCvName, arrCVs]);
 	useEffect(() => {
 		if (dateCreated === "") {
 			setCVs(arrCVs);
@@ -41,7 +41,7 @@ export default function ListCV({ listCV }: { listCV: string }) {
 			});
 			setCVs(cvsFiltered);
 		}
-	}, [dateCreated]);
+	}, [dateCreated, arrCVs]);
 	return (
 		<div className='text-sm flex flex-col h-full'>
 			<div className='grid grid-cols-[50px_1fr_250px_100px] items-center bg-orange-400 text-white'>

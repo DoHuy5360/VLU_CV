@@ -4,7 +4,7 @@ import CV from "@/models/cv";
 import NoData from "@/components/placeholder/noData";
 import { getAllFileNameInFolder } from "@/utils/getAllFileNameInFolder";
 
-export const cvTemplateNames = getAllFileNameInFolder("/src/components/layouts/templates");
+const cvTemplateNames = getAllFileNameInFolder("/src/components/layouts/templates");
 
 async function getUnAddedCvTemplate() {
 	await connectToDatabase();

@@ -22,7 +22,7 @@ export default function ListProfiles({ profilesRaw }: { profilesRaw: string }) {
 	const [findingCvName, setFindingCvName] = useState("");
 	useEffect(() => {
 		setCVs(arrProfiles);
-	}, [profilesRaw]);
+	}, [profilesRaw, arrProfiles]);
 	useEffect(() => {
 		if (findingCvName === "") {
 			setCVs(arrProfiles);
@@ -33,7 +33,7 @@ export default function ListProfiles({ profilesRaw }: { profilesRaw: string }) {
 			});
 			setCVs(cvsFiltered);
 		}
-	}, [findingCvName]);
+	}, [findingCvName, arrProfiles]);
 	useEffect(() => {
 		if (dateCreated === "") {
 			setCVs(arrProfiles);
@@ -43,7 +43,7 @@ export default function ListProfiles({ profilesRaw }: { profilesRaw: string }) {
 			});
 			setCVs(cvsFiltered);
 		}
-	}, [dateCreated]);
+	}, [dateCreated, arrProfiles]);
 	const [isShowCreateProfileDialog, setShowCreateProfileDialog] = useState(false);
 	return (
 		<div className='flex-grow text-sm flex flex-col h-full relative'>
@@ -53,7 +53,7 @@ export default function ListProfiles({ profilesRaw }: { profilesRaw: string }) {
 						setShowCreateProfileDialog(true);
 					}}
 				>
-					<Buttons.Create.TextIcon/>
+					<Buttons.Create.TextIcon />
 				</div>
 				<div className={`${isShowCreateProfileDialog ? "" : "hidden"}`}>
 					<CreateProfile setShowCreateProfileDialog={setShowCreateProfileDialog} />
