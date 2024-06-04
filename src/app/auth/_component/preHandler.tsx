@@ -1,6 +1,5 @@
 "use client";
 import { ClientSafeProvider, getProviders, signIn, useSession } from "next-auth/react";
-import { getServerSession } from "next-auth/next";
 import { Suspense, useEffect, useState } from "react";
 import { LiteralUnion } from "react-hook-form";
 import { BuiltInProviderType } from "next-auth/providers/index";

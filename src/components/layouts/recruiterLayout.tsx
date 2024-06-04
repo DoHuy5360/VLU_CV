@@ -16,7 +16,7 @@ export default async function RecruiterLayout({ children }: { children: JSX.Elem
 						Đơn tuyển dụng của tôi
 					</Link>
 				</div>
-				<Buttons.Solid.Cyan text="Đăng Xuất" href='/api/auth/signout'/>
+				<Buttons.Solid.Cyan.Link text='Đăng Xuất' href='/api/auth/signout' />
 			</div>
 			{children}
 		</div>

@@ -14,8 +14,8 @@ export default async function App() {
 				{session ? (
 					<div className='flex gap-2 items-center w-fit'>
 						<div className='text-xs text-white'>{session.user?.name}</div>
-						<Buttons.Outline.Hover.Gray text="Trang Chủ" href="/home"/>
-						<Buttons.Solid.Cyan text="Đăng Xuất" href='/api/auth/signout'/>
+						<Buttons.Outline.Hover.Gray text='Trang Chủ' href='/home' />
+						<Buttons.Solid.Cyan.Link text='Đăng Xuất' href='/api/auth/signout' />
 					</div>
 				) : (
 					<Link className='text-white p-2 text-xs outline outline-0 hover:outline-1 outline-slate-200' href='/auth'>

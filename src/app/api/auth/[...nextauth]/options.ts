@@ -112,11 +112,11 @@ export const authOptions: NextAuthOptions = {
 					password: "",
 					rePassword: "",
 				};
-				let accountCreated: {_id: ObjectId & Omit<AccountModelType, "_id">} |  string | null = await createCandidateAccount(data);
+				let accountCreated: { _id: ObjectId & Omit<AccountModelType, "_id"> } | string | null = await createCandidateAccount(data);
 				if (accountCreated === null) {
 					return false;
 				} else {
-					accountCreated = JSON.parse(accountCreated) as {_id: ObjectId & Omit<AccountModelType, "_id">}
+					accountCreated = JSON.parse(accountCreated) as { _id: ObjectId & Omit<AccountModelType, "_id"> };
 					user._id = accountCreated._id!.toString();
 					user.role = "candidate"; // default role, apply for sign in only
 				}
@@ -145,6 +145,7 @@ export const authOptions: NextAuthOptions = {
 	// adapter: MongoDBAdapter(clientPromise) as Adapter,
 	debug: false,
 	pages: {
-		signIn: "/auth",
+		signIn: "/auth/signIn",
+		signOut: "/auth/signOut",
 	},
 };

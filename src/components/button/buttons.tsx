@@ -14,11 +14,18 @@ const generaStyle = "text-white font-bold p-2 text-xs w-fit rounded-sm cursor-po
 
 export const Buttons = {
 	Solid: {
-		Cyan: ({ text, href }: ButtonPropsType) => (
-			<Link href={href} className={`${generaStyle} bg-[#0891B2] hover:bg-[#06748e] active:bg-[#0891B2]`}>
-				{text}
-			</Link>
-		),
+		Cyan: {
+			Link: ({ text, href }: ButtonPropsType) => (
+				<Link href={href} className={`${generaStyle} bg-[#0891B2] hover:bg-[#06748e] active:bg-[#0891B2]`}>
+					{text}
+				</Link>
+			),
+			Click: ({ text }: Pick<ButtonPropsType, "text">) => (
+				<button type='button' className={`${generaStyle} bg-[#0891B2] hover:bg-[#06748e] active:bg-[#0891B2]`}>
+					{text}
+				</button>
+			),
+		},
 		Yellow: {
 			Link: ({ text, href }: ButtonPropsType) => (
 				<Link href={href} className={`${generaStyle} bg-[#d5c10a] hover:bg-[#b5a409] active:bg-[#d5c10a]`}>
@@ -50,29 +57,35 @@ export const Buttons = {
 		},
 		Solid: {
 			Gray: {
-				Click: ({ text}: Pick<ButtonPropsType, 'text'>) => {
+				Click: ({ text }: Pick<ButtonPropsType, "text">) => {
 					return (
-						<button type="button" className='text-black font-bold p-2 text-xs w-fit rounded-sm cursor-pointer bg-transparent border-[1px]'>
+						<button type='button' className='text-black font-bold p-2 text-xs w-fit rounded-sm cursor-pointer bg-transparent border-[1px]'>
 							{text}
 						</button>
 					);
-				}
+				},
 			},
-		}
+		},
 	},
 	Submit: {
-		Save: () => <button className={`${generaStyle}  bg-[#65A30D] hover:bg-[#51820a] active:bg-[#65A30]`} type='submit'>
-			Lưu
-		</button>,
+		Save: () => (
+			<button className={`${generaStyle}  bg-[#65A30D] hover:bg-[#51820a] active:bg-[#65A30]`} type='submit'>
+				Lưu
+			</button>
+		),
 		Delete: {
-			Icon: () => <button className={`${generaStyle} bg-[#DC2626] hover:bg-[#b01e1e] active:bg-[#DC2626]`} type='submit'>
-			<CgClose />
-		</button>,
+			Icon: () => (
+				<button className={`${generaStyle} bg-[#DC2626] hover:bg-[#b01e1e] active:bg-[#DC2626]`} type='submit'>
+					<CgClose />
+				</button>
+			),
 		},
 		Login: {
-			Text: ({text = "Đăng nhập"}: Pick<ButtonPropsType, "text">)=> <button className={`${generaStyle}  bg-[#0891B2] hover:bg-[#06748e] active:bg-[#0891B2]`} type='submit'>
-			{text}
-		</button>
+			Text: ({ text = "Đăng nhập" }: Pick<ButtonPropsType, "text">) => (
+				<button className={`${generaStyle}  bg-[#0891B2] hover:bg-[#06748e] active:bg-[#0891B2]`} type='submit'>
+					{text}
+				</button>
+			),
 		},
 	},
 	Create: {
@@ -84,7 +97,7 @@ export const Buttons = {
 				</button>
 			);
 		},
-		Text: ({text = "Tạo mới"}: Pick<ButtonPropsType, "text">) => {
+		Text: ({ text = "Tạo mới" }: Pick<ButtonPropsType, "text">) => {
 			return (
 				<button type='button' className={`${generaStyle} flex items-center gap-2 bg-[#4c78dd] hover:bg-[#3d60b1] active:bg-[#4c78dd]`}>
 					<div>{text}</div>
@@ -144,8 +157,8 @@ export const Buttons = {
 	},
 	Reset: {
 		Click: {
-			Text: ({text = "Làm mới"}: Pick<ButtonPropsType, "text">) => (
-				<button type="button" className={`${generaStyle} bg-[#DC2626] hover:bg-[#b01e1e] active:bg-[#DC2626]`}>
+			Text: ({ text = "Làm mới" }: Pick<ButtonPropsType, "text">) => (
+				<button type='button' className={`${generaStyle} bg-[#DC2626] hover:bg-[#b01e1e] active:bg-[#DC2626]`}>
 					{text}
 				</button>
 			),
