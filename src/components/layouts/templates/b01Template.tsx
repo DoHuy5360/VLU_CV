@@ -26,7 +26,7 @@ export default function B01Template(data: PortfolioFormData) {
 				<div id='P-Contact' className='flex items-center'>
 					<div className='flex flex-col gap-6'>
 						<div className='flex flex-col'>
-							<div className='whitespace-nowrap'>Hello, I&apos;m {data.personal.name}</div>
+							<div className='whitespace-nowrap'>Hello, I&apos;m {data.personal?.name}</div>
 							<div className='w-2/3'>{data.greeting?.content}</div>
 						</div>
 						<div className='flex items-baseline gap-2'>
