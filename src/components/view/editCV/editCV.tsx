@@ -99,7 +99,9 @@ export default function EditCvView({
 				<div className='flex overflow-y-hidden'>
 					<div className='flex-grow overflow-y-scroll pb-24'>
 						<FormValuesContext.Provider value={formTools.watch()}>
-							<CvRenderer cvTemplateName={listProfiles.length > 1 ? (formTools.getValues("template") === "Root" ? cvTemplateName : formTools.getValues("template")) : cvTemplateName} />
+							<CvRenderer
+								cvTemplateName={listProfiles.length > 1 ? (formTools.getValues("template") === "Root" ? cvTemplateName : formTools.getValues("template")) : formTools.getValues("template")}
+							/>
 						</FormValuesContext.Provider>
 					</div>
 					{isShowOtherTemplates && (

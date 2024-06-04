@@ -22,7 +22,7 @@ export default function ListProfiles({ profilesRaw }: { profilesRaw: string }) {
 	const [findingCvName, setFindingCvName] = useState("");
 	useEffect(() => {
 		setCVs(arrProfiles);
-	}, [profilesRaw, arrProfiles]);
+	}, [profilesRaw]);
 	useEffect(() => {
 		if (findingCvName === "") {
 			setCVs(arrProfiles);
@@ -33,7 +33,7 @@ export default function ListProfiles({ profilesRaw }: { profilesRaw: string }) {
 			});
 			setCVs(cvsFiltered);
 		}
-	}, [findingCvName, arrProfiles]);
+	}, [findingCvName]);
 	useEffect(() => {
 		if (dateCreated === "") {
 			setCVs(arrProfiles);
@@ -43,7 +43,7 @@ export default function ListProfiles({ profilesRaw }: { profilesRaw: string }) {
 			});
 			setCVs(cvsFiltered);
 		}
-	}, [dateCreated, arrProfiles]);
+	}, [dateCreated]);
 	const [isShowCreateProfileDialog, setShowCreateProfileDialog] = useState(false);
 	return (
 		<div className='flex-grow text-sm flex flex-col h-full relative'>
