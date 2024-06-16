@@ -1,4 +1,4 @@
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import CV from "@/models/cv";
 import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";

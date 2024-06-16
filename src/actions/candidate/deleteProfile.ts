@@ -1,5 +1,5 @@
 "use server";
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import Candidate_Profile from "@/models/candidate_profiles";
 import { ObjectId } from "mongodb";
 import { revalidateTag } from "next/cache";

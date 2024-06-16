@@ -1,7 +1,7 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import RecruitmentTemplate from "@/components/view/editRecruitment/_component/recruitmentTemplate";
 import { getRecruitmentEntity } from "@/entities/recruimentEntity";
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import Recruitment from "@/models/recruitment";
 import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";

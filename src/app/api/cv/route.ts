@@ -1,4 +1,4 @@
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import CV from "@/models/cv";
 import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
@@ -8,7 +8,7 @@ export async function GET(req: Request, res: Response) {
 	const session = await getServerSession(authOptions);
 	await connectToDatabase();
 	const userFound = await CV.find({
-		type: null
+		type: null,
 	});
 	if (userFound === null) return Response.json({ error: true }, { status: 200 });
 	return Response.json(userFound, { status: 200 });

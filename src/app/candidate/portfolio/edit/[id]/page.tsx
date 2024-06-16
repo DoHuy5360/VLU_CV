@@ -1,5 +1,5 @@
 import PreHandler from "../_component/preHandler";
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import Candidate_Portfolio from "@/models/candidate_portfolio";
 import { ObjectId } from "mongodb";
 

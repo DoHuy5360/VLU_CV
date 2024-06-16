@@ -4,7 +4,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { CreateProfileDataForm } from "@/app/candidate/profile/_component/createProfile";
 import { getDataPortfolio } from "@/entities/getDataPortfolio";
 import { getUserDataCV } from "@/entities/userDataCV";
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import Candidate_Profile, { CandidateProfileModelType } from "@/models/candidate_profiles";
 import { getServerSession } from "next-auth";
 import { revalidateTag } from "next/cache";

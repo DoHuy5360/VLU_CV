@@ -1,7 +1,7 @@
 "use server";
 
 import { CvDataForm } from "@/app/admin/cv/_component/view";
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import CV from "@/models/cv";
 import { revalidateTag } from "next/cache";
 import { ZodError, z } from "zod";

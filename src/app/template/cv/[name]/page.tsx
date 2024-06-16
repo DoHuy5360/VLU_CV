@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import { ObjectId } from "mongodb";
 import PreHandler from "./_component/preHandler";
 import Candidate_Profile from "@/models/candidate_profiles";

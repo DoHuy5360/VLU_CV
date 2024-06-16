@@ -1,14 +1,14 @@
-'use server'
+"use server";
 
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { PortfolioFormData } from "@/entities/getDataPortfolio";
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import Candidate_Portfolio from "@/models/candidate_portfolio";
 import { getServerSession } from "next-auth";
 import { revalidateTag } from "next/cache";
 
-export default async function createPortfolio(cvName: string, userData: PortfolioFormData){
-    await connectToDatabase();
+export default async function createPortfolio(cvName: string, userData: PortfolioFormData) {
+	await connectToDatabase();
 	const session = await getServerSession(authOptions);
 	userData.template = cvName;
 	const data = {

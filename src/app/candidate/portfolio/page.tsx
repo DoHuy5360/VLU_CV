@@ -1,5 +1,5 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import ListCV from "./_component/listCV";
@@ -17,12 +17,12 @@ export default async function CV() {
 	if (cvs.length === 0)
 		return (
 			<div className='grid place-items-center h-full'>
-				<div className="flex flex-col gap-2 items-center">
-                    <div>Bạn chưa có Portfolio</div>
-                    <Link className='px-2 w-fit py-1 rounded-sm bg-green-200 text-xs' href='/template/portfolio'>
-                        Tạo ngay
-                    </Link>
-                </div>
+				<div className='flex flex-col gap-2 items-center'>
+					<div>Bạn chưa có Portfolio</div>
+					<Link className='px-2 w-fit py-1 rounded-sm bg-green-200 text-xs' href='/template/portfolio'>
+						Tạo ngay
+					</Link>
+				</div>
 			</div>
 		);
 	return <ListCV listCV={JSON.stringify(cvs)} />;

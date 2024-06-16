@@ -1,4 +1,4 @@
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import Account, { AccountModelType } from "@/models/account";
 import Recruiter, { RecruiterModelType } from "@/models/recruiter";
 

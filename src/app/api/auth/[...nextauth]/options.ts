@@ -1,6 +1,6 @@
 import { createCandidateAccount } from "@/actions/candidate/createCandidateAccount";
 import { CandidateDataForm } from "@/app/auth/_component/register/candidate";
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import Account, { AccountModelType } from "@/models/account";
 import Candidate from "@/models/candidate";
 import Recruiter, { RecruiterModelType } from "@/models/recruiter";

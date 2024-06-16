@@ -1,6 +1,6 @@
 "use server";
 import { RecruiterDataForm } from "@/app/auth/_component/register/recruiter";
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import { createAccount } from "../general/createAccount";
 import Recruiter from "@/models/recruiter";
 import Company from "@/models/company";
@@ -11,7 +11,7 @@ export async function createRecruiterAccount(data: RecruiterDataForm) {
 		name: data.name,
 		province: data.province,
 		district: data.district,
-	})
+	});
 	const newCompanyDoc = await newCompany.save();
 
 	const newAccountDoc = await createAccount({
@@ -20,7 +20,7 @@ export async function createRecruiterAccount(data: RecruiterDataForm) {
 		role: "recruiter",
 		image: "",
 	});
-	if(newAccountDoc=== null) return false;
+	if (newAccountDoc === null) return false;
 
 	const newRecruiter = new Recruiter({
 		accountId: newAccountDoc._id,

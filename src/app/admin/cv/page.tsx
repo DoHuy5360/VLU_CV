@@ -1,4 +1,4 @@
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import View from "./_component/view";
 import CV from "@/models/cv";
 import NoData from "@/components/placeholder/noData";

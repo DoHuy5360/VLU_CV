@@ -6,6 +6,12 @@ import { imageFileToBase64 } from "@/utils/generateB64Image";
 import Image from "next/image";
 
 export default function EditAvatar({ label, setValue, getValues, trigger, errors }: AvatarUIParams<UserDataForm>) {
+	try {
+		new URL(getValues("attrs.head.avatar"));
+	} catch (error) {
+		setValue("attrs.head.avatar", "/image/user.jpg");
+		trigger("attrs.head.avatar");
+	}
 	return (
 		<div className='flex flex-col gap-1'>
 			<div className='flex flex-col gap-1'>
@@ -20,14 +26,25 @@ export default function EditAvatar({ label, setValue, getValues, trigger, errors
 						accept='image/*'
 						onChange={async (e) => {
 							const file = e.target.files?.[0];
-							file ? setValue("attrs.head.avatar", await imageFileToBase64(file)) : undefined;
+							if(file){
+								const data = new FormData()
+								data.set('file', file)
+								const result = await fetch("/api/file", {
+									method: "post",
+									body: data
+								})
+								const response = await result.json()
+								if(response.success){
+									setValue("attrs.head.avatar", response.url)
+								}
+							}
 							trigger("attrs.head.avatar");
 						}}
 						type='file'
 						id='profileAvatar'
 						className='hidden'
 					/>
-					<Image src={getValues("attrs.head.avatar") || "/image/user.jpg"} width={80} height={0} alt='avatar' draggable={false} />
+					<Image src={getValues("attrs.head.avatar") == "null" ? "/image/user.jpg" : getValues("attrs.head.avatar")} width={80} height={0} alt='avatar' draggable={false} />
 				</div>
 			</div>
 			<FormErrors message={errors} />

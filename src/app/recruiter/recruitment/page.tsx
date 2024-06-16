@@ -1,5 +1,5 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import Recruitment from "@/models/recruitment";
 import moment from "moment";
 import { ObjectId } from "mongodb";

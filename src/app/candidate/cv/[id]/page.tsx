@@ -1,6 +1,6 @@
 import { Transfer } from "@/types/tranfer";
 import Candidate_CV from "@/models/candidate_cv";
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import DownloadPDF from "./_downloadPDF/downloadPDF";
 import Recruitment from "@/models/recruitment";
 import Image from "next/image";
@@ -54,19 +54,19 @@ async function ViewCV({ params }: { params: { id: string } }) {
 								return b.matchPercent - a.matchPercent;
 							})
 							.map((e, i) => {
-								if(e.matchPercent===0){
-									return <></>
+								if (e.matchPercent === 0) {
+									return <></>;
 								}
 								return (
 									<div key={i} className='grid grid-cols-[40px_auto_200px] border-b-[1px] hover:bg-slate-200 select-none cursor-pointer py-2 gap-2 items-center p-2'>
 										<Image src='/image/user.jpg' width={40} height={40} className='p-2' alt='user avatar' />
 										<div className='flex flex-col gap-1'>
 											<div className='text-sm whitespace-nowrap font-bold'>{e.dataRecruitment.companyId.name}</div>
-											<div className="text-xs whitespace-break-spaces p-1 rounded-lg w-fit bg-slate-200">{e.dataRecruitment.title}</div>
+											<div className='text-xs whitespace-break-spaces p-1 rounded-lg w-fit bg-slate-200'>{e.dataRecruitment.title}</div>
 										</div>
 										<div className='flex items-center justify-end gap-2 border-l-[1px] text-sm'>
 											<div>Khớp</div>
-											<div className={`p-1 rounded-lg ${e.matchPercent<30 ? "bg-orange-400" : e.matchPercent< 60 ? "bg-yellow-300": "bg-green-300"}`}>{e.matchPercent}%</div>
+											<div className={`p-1 rounded-lg ${e.matchPercent < 30 ? "bg-orange-400" : e.matchPercent < 60 ? "bg-yellow-300" : "bg-green-300"}`}>{e.matchPercent}%</div>
 											<div>với yêu cầu</div>
 										</div>
 									</div>

@@ -1,4 +1,4 @@
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import Recruitment from "@/models/recruitment";
 import { ObjectId } from "mongodb";
 import PreHandler from "./_component/preHandler";

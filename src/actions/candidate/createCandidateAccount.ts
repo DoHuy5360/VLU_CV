@@ -1,5 +1,5 @@
 "use server";
-import { connectToDatabase } from "@/libs/mongoosedb";
+import { connectToDatabase } from "@/services/mongoosedb";
 import { createAccount } from "../general/createAccount";
 import Candidate, { CandidateModelType } from "@/models/candidate";
 import { getUserDataCV } from "@/entities/userDataCV";
