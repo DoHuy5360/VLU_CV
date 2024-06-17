@@ -55,7 +55,7 @@ export default function EditCvForm({ onSubmit }: { onSubmit: SubmitHandler<UserD
 				style={{
 					scrollBehavior: "smooth",
 				}}
-				className='w-full p-2 mb-32 h-full flex flex-col gap-2 overflow-y-scroll border-slate-300 border-x-[1px]'
+				className='w-full p-2 pr-0 mb-32 h-full flex flex-col gap-2 overflow-y-scroll border-slate-300 border-x-[1px]'
 				action={async () => {
 					handleSubmit(onSubmit)();
 				}}

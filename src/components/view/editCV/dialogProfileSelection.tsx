@@ -24,9 +24,9 @@ export default function DialogProfileSelection({
 	const profileIndex = searchParams.get("profile");
 	return (
 		<div className={`${isShowChangeProfileDialog ? "" : "hidden"} z-50 grid place-items-center w-full h-full absolute bg-white select-none`}>
-			<div className='flex flex-col items-center border-[1px]'>
+			<div className='flex flex-col items-center border-[1px] shadow-md h-[300px] w-[300px]'>
 				<div className='flex items-center justify-between border-b-[1px] w-full text-center p-2 gap-2'>
-					<div>Chọn hồ sơ bạn muốn áp dụng?</div>
+					<div className="text-lg">Đổi hồ sơ</div>
 					{profileIndex !== null && (
 						<div
 							onClick={() => {
@@ -37,7 +37,7 @@ export default function DialogProfileSelection({
 						</div>
 					)}
 				</div>
-				<div className='flex gap-1 p-2'>
+				<div className='flex flex-wrap gap-2 p-4'>
 					{listProfiles.map((profile, i) => {
 						return (
 							<div
@@ -47,6 +47,7 @@ export default function DialogProfileSelection({
 									setFootprint(i);
 									setShowChangeProfileDialog(false);
 								}}
+								className="rounded-full overflow-hidden"
 							>
 								<Buttons.Solid.Gray.Click text={profile.name} />
 							</div>

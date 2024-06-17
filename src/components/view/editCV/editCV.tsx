@@ -78,7 +78,7 @@ export default function EditCvView({
 						>
 							<Buttons.Setting.Click.Icon />
 						</div>
-						<div className='absolute z-10 translate-x-[-100%] translate-y-[-50%] bg-white border-[1px] flex flex-col text-sm'>
+						<div className='absolute z-10 translate-x-[-100%] translate-y-[-50%] bg-white border-[1px] flex flex-col text-sm select-none shadow-md'>
 							<div onClick={handleGetTemplate} className={`${!isShowSetting && "hidden"} hover:bg-slate-200 px-3 py-1 whitespace-nowrap cursor-pointer`}>
 								Đổi mẫu CV
 							</div>

@@ -12,12 +12,12 @@ export const Wrapper: WrapperUI = {
 	T02: ({ children, data }: WrapperP<JSX.Element[]>) => {
 		return (
 			<Group label={data.label} prepend={data.prepend}>
-				<div className='flex flex-col gap-1 bg-[#F1F5F9] rounded-sm'>{children}</div>
+				<div className='flex flex-col gap-3 rounded-sm'>{children}</div>
 			</Group>
 		);
 	},
 	T03: ({ children, data }: WrapperP<JSX.Element[]>) => {
-		return <div className='text-xs flex flex-col gap-1 border-[1px] border-slate-200 p-1 bg-[#F1F5F9] rounded-sm'>{children}</div>;
+		return <div className='text-xs flex flex-col gap-1 border-[1px] border-slate-200 p-1 rounded-sm bg-[#F1F5F9]'>{children}</div>;
 	},
 	T04: ({ children, data }: WrapperP<JSX.Element>) => {
 		return <Group label={data.label}>{children}</Group>;
