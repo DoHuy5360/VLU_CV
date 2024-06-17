@@ -18,7 +18,7 @@ export default function EditAvatar({ label, setValue, getValues, trigger, errors
 				<label className='text-xs font-bold text-slate-400' htmlFor='avatar'>
 					{label}
 				</label>
-				<div className='flex flex-col gap-1 border-slate-200 border-[1px] p-1'>
+				<div className='flex flex-col gap-1 border-slate-200 border-[1px] p-1 bg-white w-fit pb-2 items-center'>
 					<label htmlFor='profileAvatar' className='w-fit'>
 						<Buttons.Solid.Yellow.Click text='Thay đổi ảnh đại diện' />
 					</label>
@@ -44,7 +44,7 @@ export default function EditAvatar({ label, setValue, getValues, trigger, errors
 						id='profileAvatar'
 						className='hidden'
 					/>
-					<Image src={getValues("attrs.head.avatar") == "null" ? "/image/user.jpg" : getValues("attrs.head.avatar")} width={80} height={0} alt='avatar' draggable={false} />
+					<Image src={getValues("attrs.head.avatar") == "null" ? "/image/user.jpg" : getValues("attrs.head.avatar")} className="border-[1px]" width={120} height={0} alt='avatar' draggable={false} />
 				</div>
 			</div>
 			<FormErrors message={errors} />
