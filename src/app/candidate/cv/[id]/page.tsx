@@ -34,8 +34,8 @@ async function ViewCV({ params }: { params: { id: string } }) {
 						<Buttons.Solid.Yellow.Link text='Chỉnh sửa' href={`/candidate/cv/edit/${cv._id}`} />
 						<DownloadPDF fileName={cv.name} />
 					</div>
-					<div className='h-[inherit] flex-grow pb-20 pt-5 overflow-y-scroll'>
-						<div id='cvWrapper' className='m-auto sm:w-11/12 md:w-2/3 lg:w-2/3 xl:w-3/4 p-4 bg-slate-200'>
+					<div className='h-[inherit] flex-grow pb-20 pt-5 overflow-y-scroll bg-slate-200'>
+						<div id='cvWrapper' className='m-auto sm:w-11/12 md:w-2/3 lg:w-2/3 xl:w-3/4'>
 							{Transfer[cv.data.template](cv.data)}
 						</div>
 					</div>
@@ -67,7 +67,7 @@ async function ViewCV({ params }: { params: { id: string } }) {
 										<div className='flex items-center justify-end gap-2 border-l-[1px] text-sm'>
 											<div>Khớp</div>
 											<div className={`p-1 rounded-lg ${e.matchPercent < 30 ? "bg-orange-400" : e.matchPercent < 60 ? "bg-yellow-300" : "bg-green-300"}`}>{e.matchPercent}%</div>
-											<div>với yêu cầu</div>
+											<div>với kỹ năng</div>
 										</div>
 									</div>
 								);
