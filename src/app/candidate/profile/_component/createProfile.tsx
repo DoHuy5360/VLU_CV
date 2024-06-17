@@ -44,11 +44,12 @@ export default function CreateProfile({ setShowCreateProfileDialog }: { setShowC
 					}
 				})();
 			}}
+			className="select-none"
 		>
 			<div className='absolute top-0 left-0 bg-white grid place-items-center h-full w-full'>
-				<div className='flex flex-col border-[1px] rounded-sm'>
-					<div className='flex items-center justify-between border-b-[1px]'>
-						<div className='p-2'>Tạo hồ sơ mới</div>
+				<div className='flex flex-col border-[1px] rounded-sm w-[400px] shadow-md'>
+					<div className='flex items-center justify-between border-b-[1px] w-full pr-2'>
+						<div className='p-2 text-lg'>Tạo hồ sơ mới</div>
 						<div
 							onClick={() => {
 								setShowCreateProfileDialog(false);
@@ -58,11 +59,11 @@ export default function CreateProfile({ setShowCreateProfileDialog }: { setShowC
 							<IoClose />
 						</div>
 					</div>
-					<div className='flex flex-col gap-4 p-2 items-end'>
-						<div className='flex flex-col gap-2'>
+					<div className='flex flex-col gap-4 p-2 items-end w-full'>
+						<div className='flex flex-col gap-2 w-full'>
 							<div className='flex flex-col gap-1'>
 								<label htmlFor=''>Tên hồ sơ</label>
-								<input {...register("name")} className='px-1 border-[1px]' type='text' />
+								<input {...register("name")} className='px-1 border-[1px] w-full' type='text' />
 								<FormErrors message={errors.name?.message} />
 							</div>
 							<div className='flex flex-col gap-1'>
@@ -73,7 +74,7 @@ export default function CreateProfile({ setShowCreateProfileDialog }: { setShowC
 											setValue("type", "cv");
 											trigger("type");
 										}}
-										className={`${getValues("type") === "cv" ? "bg-orange-300" : "bg-slate-200"} p-2 cursor-pointer hover:bg-orange-400 active:bg-orange-300 border-[1px]`}
+										className={`${getValues("type") === "cv" ? "bg-orange-300" : "bg-slate-200"} p-2 cursor-pointer hover:bg-orange-400 active:bg-orange-300 border-[1px] rounded-full`}
 									>
 										CV
 									</div>
@@ -82,7 +83,7 @@ export default function CreateProfile({ setShowCreateProfileDialog }: { setShowC
 											setValue("type", "portfolio");
 											trigger("type");
 										}}
-										className={`${getValues("type") === "portfolio" ? "bg-orange-300" : "bg-slate-200"} p-2 cursor-pointer hover:bg-orange-400 active:bg-orange-300 border-[1px]`}
+										className={`${getValues("type") === "portfolio" ? "bg-orange-300" : "bg-slate-200"} p-2 cursor-pointer hover:bg-orange-400 active:bg-orange-300 border-[1px] rounded-full`}
 									>
 										Portfolio
 									</div>
