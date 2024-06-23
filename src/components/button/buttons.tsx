@@ -68,9 +68,9 @@ export const Buttons = {
 		},
 	},
 	Submit: {
-		Save: () => (
+		Save: ({ text = "Lưu" }: Pick<ButtonPropsType, "text">) => (
 			<button className={`${generaStyle}  bg-[#65A30D] hover:bg-[#51820a] active:bg-[#65A30]`} type='submit'>
-				Lưu
+				{text}
 			</button>
 		),
 		Delete: {
