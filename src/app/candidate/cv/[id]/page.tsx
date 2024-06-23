@@ -35,7 +35,7 @@ async function ViewCV({ params }: { params: { id: string } }) {
 						<DownloadPDF fileName={cv.name} />
 					</div>
 					<div className='h-[inherit] flex-grow pb-20 pt-5 overflow-y-scroll bg-slate-200'>
-						<div id='cvWrapper' className='m-auto sm:w-11/12 md:w-2/3 lg:w-2/3 xl:w-3/4'>
+						<div id='cvWrapper' className='m-auto sm:w-11/12 md:w-2/3 lg:w-2/3 xl:w-3/4 shadow-lg'>
 							{Transfer[cv.data.template](cv.data)}
 						</div>
 					</div>
