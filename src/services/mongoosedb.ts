@@ -1,3 +1,4 @@
+import Account from "@/models/account";
 import Applicant from "@/models/applicant";
 import Candidate from "@/models/candidate";
 import Candidate_CV from "@/models/candidate_cv";
@@ -48,5 +49,6 @@ export async function connectToDatabase() {
 	Candidate;
 	Portfolio;
 	CV;
+	Account;
 	return cached.conn;
 }

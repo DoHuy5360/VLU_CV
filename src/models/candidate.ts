@@ -1,6 +1,5 @@
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
-import { nullable } from "zod";
 
 export type CandidateModelType = {
 	_id?: ObjectId;
@@ -15,6 +14,7 @@ const candidateSchema = new mongoose.Schema(
 		accountId: {
 			type: ObjectId,
 			require: true,
+			ref: "accounts",
 		},
 		name: {
 			type: String,

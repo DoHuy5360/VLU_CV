@@ -10,8 +10,7 @@ export default async function page() {
 	await connectToDatabase();
 	const session = await getServerSession(authOptions);
 	let applicants = await Applicant.find({
-		candidateId: session?.user._id,
-		isDeleted: false,
+		accountId: session?.user._id,
 	})
 		.sort({ createdAt: -1 })
 		.populate("recruitmentId")

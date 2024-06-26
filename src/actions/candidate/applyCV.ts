@@ -12,6 +12,7 @@ export default async function applyCV(candidateCvId: string, recruitmentId: stri
 	await connectToDatabase();
 	const candidate = await Candidate.findOne({ accountId: session?.user._id });
 	const newApplicant = new Applicant({
+		accountId: session?.user._id,
 		candidateId: candidate._id,
 		recruitmentId,
 		candidateCvId,

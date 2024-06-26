@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 export type ApplicantModelType = {
 	_id?: ObjectId;
+	accountId: ObjectId;
 	candidateId: ObjectId;
 	recruitmentId: ObjectId;
 	candidateCvId: ObjectId;
@@ -14,6 +15,11 @@ export type ApplicantModelType = {
 
 const applicantSchema = new Schema(
 	{
+		accountId: {
+			type: ObjectId,
+			ref: "accounts",
+			require: true,
+		},
 		candidateId: {
 			type: ObjectId,
 			ref: "candidates",
