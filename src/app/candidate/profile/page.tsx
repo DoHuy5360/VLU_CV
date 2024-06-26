@@ -11,7 +11,7 @@ export default async function Profile() {
 	const candidateProfiles = await CandidateProfile.find({
 		accountId: session?.user._id,
 	})
-		.sort({ updatedAt: 1 })
+		.sort({ updatedAt: -1 })
 		.select("name default type createdAt");
 
 	if (candidateProfiles === null) return <NoData />;

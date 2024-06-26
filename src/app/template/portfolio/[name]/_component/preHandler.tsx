@@ -17,7 +17,6 @@ export type CandidateProfileProps = {
 
 export default function PreHandler({ cvTemplateName, profiles }: { cvTemplateName: string; profiles: string }) {
 	const handleSubmit = async (data: PortfolioFormData) => {
-		console.log(data);
 		const isSuccess = await createPortfolio(cvTemplateName, data);
 		isSuccess ? alert("Tạo Portfolio thành công") : alert("Tạo CV thất bại - Vui lòng kiểm tra lại tên Portfolio");
 	};

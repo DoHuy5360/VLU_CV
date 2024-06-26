@@ -47,6 +47,7 @@ export default function EditCvView({
 
 	useEffect(() => {
 		if (currentProfileIndex !== null && listProfiles !== undefined) {
+			listProfiles[currentProfileIndex].data.template = formTools.getValues("template");
 			formTools.reset(listProfiles[currentProfileIndex].data);
 		}
 	}, [currentProfileIndex, listProfiles, formTools]);
@@ -97,7 +98,9 @@ export default function EditCvView({
 				<div className='flex overflow-y-hidden'>
 					<div className='flex-grow overflow-y-scroll scroll-smooth'>
 						<FormValuesContext.Provider value={formTools.watch()}>
-							<CvRenderer cvTemplateName={listProfiles.length > 1 ? (formTools.getValues("template") === "Root" ? cvTemplateName : formTools.getValues("template")) : cvTemplateName} />
+							<CvRenderer
+								cvTemplateName={listProfiles.length > 1 ? (formTools.getValues("template") === "Root" ? cvTemplateName : formTools.getValues("template")) : formTools.getValues("template")}
+							/>
 						</FormValuesContext.Provider>
 					</div>
 					{isShowOtherTemplates && (
