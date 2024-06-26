@@ -5,6 +5,7 @@ import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { BiDollar } from "react-icons/bi";
 
 type DataRecord = {
 	_id: string;
@@ -12,6 +13,7 @@ type DataRecord = {
 	requirement: string;
 	title: string;
 	createdAt: string;
+	salary: string;
 };
 
 export default function Data({ listOfRecruitment }: { listOfRecruitment: string }) {
@@ -75,15 +77,34 @@ export default function Data({ listOfRecruitment }: { listOfRecruitment: string 
 					</div>
 					<div className='flex flex-col gap-2'>
 						{records.map((e, i) => {
+							const postDay = moment(e.createdAt);
+							const toDay = moment();
+							const gapDay = toDay.diff(postDay, "days");
 							return (
-								<Link href={`/general/jobs/recruitment/${e._id}`}>
-									<div key={i} className='h-fit mx-2 rounded grid grid-cols-[40px_auto_150px] border-[1px] hover:bg-slate-50 bg-white select-none cursor-pointer py-2 gap-2 items-center p-2'>
+								<Link key={i} href={`/general/jobs/recruitment/${e._id}`}>
+									<div className='h-fit mx-2 rounded grid grid-cols-[40px_auto_150px] border-[1px] hover:bg-slate-50 bg-white select-none cursor-pointer py-2 gap-2 items-center p-2'>
 										<Image src='/image/user.jpg' width={40} height={40} className='p-2' alt='user avatar' />
 										<div className='flex flex-col gap-1'>
-											<div className='text-sm whitespace-nowrap font-bold'>{e.companyId.name}</div>
+											<div className='flex gap-2 items-baseline'>
+												<div className='whitespace-nowrap font-bold'>{e.companyId.name}</div>
+												<div className='flex gap-1 text-xs'>
+													<div>{e.companyId.province}</div>
+													<div>-</div>
+													<div>{e.companyId.district}</div>
+												</div>
+											</div>
 											<div className='text-xs whitespace-break-spaces p-1 rounded-lg w-fit bg-slate-200'>{e.title}</div>
+											<div className='text-sm flex gap-1 items-center'>
+												<div className='text-green-500'>
+													<BiDollar />
+												</div>
+												<div>{e.salary}</div>
+											</div>
 										</div>
-										<div className='text-sm text-center'>{moment(e.createdAt).format("DD-MM-YYYY")}</div>
+										<div className='text-sm text-center flex flex-col items-center gap-1'>
+											<div>{postDay.format("DD-MM-YYYY")}</div>
+											<div className='bg-slate-100 rounded-sm p-1 w-fit'>{gapDay} ngày trước</div>
+										</div>
 									</div>
 								</Link>
 							);

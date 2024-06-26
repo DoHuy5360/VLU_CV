@@ -4,9 +4,8 @@ import RecruitmentTemplate from "@/components/view/editRecruitment/_component/re
 import { Transfer } from "@/types/tranfer";
 import { useRef, useState } from "react";
 import { BsEye } from "react-icons/bs";
-import { CgClose } from "react-icons/cg";
 
-export default function View({ data }: { data: string }) {
+export default function View({ displayText, data }: { displayText?: string; data: string }) {
 	const dataRef = useRef(JSON.parse(data));
 	const [isShowDetail, setShowDetail] = useState(false);
 	return (
@@ -42,8 +41,9 @@ export default function View({ data }: { data: string }) {
 				onClick={() => {
 					setShowDetail(true);
 				}}
-				className='text-red-400 cursor-pointer hover:bg-red-300 p-2 hover:text-white rounded-full'
+				className='text-white font-bold p-2 text-xs w-fit rounded-sm cursor-pointer bg-green-600 hover:bg-green-500 active:bg-green-600'
 			>
+				{displayText}
 				<BsEye />
 			</div>
 		</div>

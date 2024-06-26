@@ -8,6 +8,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 import Candidate_CV from "@/models/candidate_cv";
 import Applicant from "@/models/applicant";
+import View from "@/app/candidate/applicant/_component/view";
 
 export default async function page({ params }: { params: { id: string } }) {
 	const session = await getServerSession(authOptions);
@@ -16,7 +17,8 @@ export default async function page({ params }: { params: { id: string } }) {
 	const appliedApplicant = await Applicant.findOne({
 		candidateId: session?.user._id,
 		recruitmentId: params.id,
-	});
+	}).populate("candidateCvId");
+
 	if (appliedApplicant === null) {
 		myCVs = await Candidate_CV.find({
 			userId: session?.user._id,
@@ -27,6 +29,9 @@ export default async function page({ params }: { params: { id: string } }) {
 	const recruitmentFound = await Recruitment.findOne({
 		_id: params.id,
 	});
+	if (appliedApplicant !== null) {
+		appliedApplicant.recruitmentId = recruitmentFound;
+	}
 	const initRecruitment = getRecruitmentEntity(recruitmentFound);
 
 	return (
@@ -35,7 +40,17 @@ export default async function page({ params }: { params: { id: string } }) {
 				<RecruitmentTemplate data={initRecruitment} />
 			</div>
 			<div className='sticky p-2 top-0 flex flex-col text-sm whitespace-nowrap border-l-[1px]'>
-				{appliedApplicant ? <div>Bạn đã ứng tuyển</div> : <Apply listOfCVs={JSON.stringify(myCVs)} recruitmentId={params.id} />}
+				{appliedApplicant ? (
+					<div className='flex flex-col gap-2 items-center'>
+						<div>Bạn đã ứng tuyển</div>
+						<div className='flex items-center gap-2'>
+							<div>Xem</div>
+							<View data={JSON.stringify(appliedApplicant)} />
+						</div>
+					</div>
+				) : (
+					<Apply listOfCVs={JSON.stringify(myCVs)} recruitmentId={params.id} />
+				)}
 			</div>
 		</div>
 	);
