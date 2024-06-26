@@ -1,10 +1,8 @@
 "use server";
 
-import { UserData } from "@/types/userData";
-
 export default async function getSuggestion(data: any) {
 	const { head, ...rest } = data.attrs;
-	const dataFetch = await fetch("http://localhost:4000/ai", {
+	const dataFetch = await fetch(process.env.AI_REVIEW_API as string, {
 		method: "POST",
 		headers: {
 			Accept: "application/json",
