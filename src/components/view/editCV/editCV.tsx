@@ -49,6 +49,7 @@ export default function EditCvView({
 
 	useEffect(() => {
 		if (currentProfileIndex !== null && listProfiles !== undefined) {
+			listProfiles[currentProfileIndex].data.template = formTools.getValues("template");
 			formTools.reset(listProfiles[currentProfileIndex].data);
 		}
 	}, [currentProfileIndex, listProfiles, formTools]);
