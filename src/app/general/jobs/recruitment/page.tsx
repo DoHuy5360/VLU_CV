@@ -18,7 +18,7 @@ export default async function page() {
 			<div className='grid grid-cols-2 gap-4 w-9/12 mx-auto p-2 bg-slate-100 mt-10'>
 				{recruitment.map((e, i) => {
 					return (
-						<Link href={`/general/jobs/recruitment/${e._id}`} target='_blank'>
+						<Link href={`/general/jobs/recruitment/${e._id}`}>
 							<div key={i} className='h-full rounded grid grid-cols-[40px_auto] border-[1px] hover:bg-slate-50 bg-white select-none cursor-pointer py-2 gap-2 items-center p-2'>
 								<Image src='/image/user.jpg' width={40} height={40} className='p-2' alt='user avatar' />
 								<div className='flex flex-col gap-1'>

@@ -1,4 +1,7 @@
+import Applicant from "@/models/applicant";
+import Candidate_CV from "@/models/candidate_cv";
 import Company from "@/models/company";
+import Recruitment from "@/models/recruitment";
 import mongoose, { Mongoose } from "mongoose";
 
 type Cached = {
@@ -35,6 +38,9 @@ export async function connectToDatabase() {
 	}
 	cached.conn = await cached.promise;
 	console.log("DB connected");
+	Applicant;
+	Candidate_CV;
 	Company;
+	Recruitment;
 	return cached.conn;
 }

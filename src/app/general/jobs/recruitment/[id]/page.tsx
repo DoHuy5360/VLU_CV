@@ -7,26 +7,35 @@ import Apply from "./_component/apply";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 import Candidate_CV from "@/models/candidate_cv";
+import Applicant from "@/models/applicant";
 
 export default async function page({ params }: { params: { id: string } }) {
 	const session = await getServerSession(authOptions);
 	await connectToDatabase();
-	const cvs = await Candidate_CV.find({
-		userId: session?.user._id,
-	})
-		.sort({ updatedAt: -1 })
-		.select("_id name template data createdAt");
-
+	let myCVs;
+	const appliedApplicant = await Applicant.findOne({
+		candidateId: session?.user._id,
+		recruitmentId: params.id,
+	});
+	if (appliedApplicant === null) {
+		myCVs = await Candidate_CV.find({
+			userId: session?.user._id,
+		})
+			.sort({ createdAt: 1 })
+			.select("_id name template data createdAt");
+	}
 	const recruitmentFound = await Recruitment.findOne({
 		_id: params.id,
 	});
-
 	const initRecruitment = getRecruitmentEntity(recruitmentFound);
+
 	return (
 		<div className='flex flex-grow overflow-y-scroll'>
-			<RecruitmentTemplate data={initRecruitment} />
+			<div className='p-6 flex-grow bg-slate-200 overflow-y-scroll'>
+				<RecruitmentTemplate data={initRecruitment} />
+			</div>
 			<div className='sticky p-2 top-0 flex flex-col text-sm whitespace-nowrap border-l-[1px]'>
-				<Apply listOfCVs={JSON.stringify(cvs)} recruitmentId={params.id} />
+				{appliedApplicant ? <div>Bạn đã ứng tuyển</div> : <Apply listOfCVs={JSON.stringify(myCVs)} recruitmentId={params.id} />}
 			</div>
 		</div>
 	);

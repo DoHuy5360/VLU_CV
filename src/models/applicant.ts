@@ -5,13 +5,20 @@ const Schema = mongoose.Schema;
 
 export type ApplicantModelType = {
 	_id?: ObjectId;
+	candidateId: ObjectId;
 	recruitmentId: ObjectId;
 	candidateCvId: ObjectId;
 	message: string;
+	isDeleted?: boolean;
 };
 
 const applicantSchema = new Schema(
 	{
+		candidateId: {
+			type: ObjectId,
+			ref: "candidates",
+			require: true,
+		},
 		recruitmentId: {
 			type: ObjectId,
 			ref: "recruitments",
@@ -24,6 +31,10 @@ const applicantSchema = new Schema(
 		},
 		message: {
 			type: String,
+			require: false,
+		},
+		isDeleted: {
+			type: Boolean,
 			require: false,
 		},
 	},

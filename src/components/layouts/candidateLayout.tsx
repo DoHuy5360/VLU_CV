@@ -19,6 +19,7 @@ export default async function CandidateLayout({ children }: { children: JSX.Elem
 					<GrayLink text='Mẫu CV' href='/template/cv' />
 					<GrayLink text='Portfolio của tôi' href='/candidate/portfolio' />
 					<GrayLink text='Mẫu Portfolio' href='/template/portfolio' />
+					<GrayLink text='Ứng tuyển' href='/candidate/applicant' />
 				</div>
 				<div className='flex items-center gap-2 text-sm'>
 					<Buttons.Solid.Cyan.Link text='Đăng Xuất' href='/api/auth/signout' />

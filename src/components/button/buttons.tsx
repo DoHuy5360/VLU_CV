@@ -67,6 +67,13 @@ export const Buttons = {
 			},
 		},
 	},
+	Close: {
+		Icon: () => (
+			<button className={`${generaStyle} bg-[#DC2626] hover:bg-[#b01e1e] active:bg-[#DC2626]`} type='button'>
+				<CgClose />
+			</button>
+		),
+	},
 	Submit: {
 		Save: ({ text = "Lưu" }: Pick<ButtonPropsType, "text">) => (
 			<button className={`${generaStyle}  bg-[#65A30D] hover:bg-[#51820a] active:bg-[#65A30]`} type='submit'>
