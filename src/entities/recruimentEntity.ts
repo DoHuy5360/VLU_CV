@@ -33,7 +33,7 @@ export const getRecruitmentEntity = ({
 		salary,
 		isHide,
 		isClose,
-		startAt: moment(startAt).format("YYYY-MM-DD"),
-		closeAt: moment(closeAt).format("YYYY-MM-DD"),
+		startAt: moment(startAt).format("DD-MM-YYYY"),
+		closeAt: moment(closeAt).format("DD-MM-YYYY"),
 	};
 };

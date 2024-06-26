@@ -2,6 +2,7 @@
 
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import Applicant from "@/models/applicant";
+import Candidate from "@/models/candidate";
 import { connectToDatabase } from "@/services/mongoosedb";
 import { getServerSession } from "next-auth";
 import { revalidateTag } from "next/cache";
@@ -9,8 +10,9 @@ import { revalidateTag } from "next/cache";
 export default async function applyCV(candidateCvId: string, recruitmentId: string, message: string) {
 	const session = await getServerSession(authOptions);
 	await connectToDatabase();
+	const candidate = await Candidate.findOne({ accountId: session?.user._id });
 	const newApplicant = new Applicant({
-		candidateId: session?.user._id,
+		candidateId: candidate._id,
 		recruitmentId,
 		candidateCvId,
 		message,

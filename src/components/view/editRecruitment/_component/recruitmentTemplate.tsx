@@ -1,3 +1,4 @@
+import moment from "moment";
 import { RecruitmentDataForm } from "../editRecruitment";
 
 export default function RecruitmentTemplate({ data }: { data: RecruitmentDataForm }) {
@@ -45,11 +46,11 @@ export default function RecruitmentTemplate({ data }: { data: RecruitmentDataFor
 			</div>
 			<div className='grid grid-cols-[150px_1fr] gap-2 border-b-[1px] p-2'>
 				<div className='justify-self-end text-right font-bold'>Đăng tuyển lúc:</div>
-				<div className='whitespace-pre-line'>{data.startAt}</div>
+				<div className='whitespace-pre-line'>{moment(data.startAt).format("DD/MM/YYYY")}</div>
 			</div>
 			<div className='grid grid-cols-[150px_1fr] gap-2 border-b-[1px] p-2'>
 				<div className='justify-self-end text-right font-bold'>Hết hạn lúc:</div>
-				<div className='whitespace-pre-line'>{data.closeAt}</div>
+				<div className='whitespace-pre-line'>{moment(data.closeAt).format("DD/MM/YYYY")}</div>
 			</div>
 			<div className='grid grid-cols-[150px_1fr] gap-2 border-b-[1px] p-2'>
 				<div className='justify-self-end text-right font-bold'>Trạng thái hiển thị</div>

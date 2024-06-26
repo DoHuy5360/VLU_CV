@@ -1,6 +1,6 @@
 "use client";
 import { deleteRecruitment } from "@/actions/recruiter/deleteRecruitment";
-import { BiTrash } from "react-icons/bi";
+import { Buttons } from "@/components/button/buttons";
 
 export default function DeleteRecruitment({ id, name }: { id: string; name: string }) {
 	return (
@@ -10,9 +10,7 @@ export default function DeleteRecruitment({ id, name }: { id: string; name: stri
 				if (isDelete) await deleteRecruitment(id);
 			}}
 		>
-			<button className='text-red-500' type='submit'>
-				<BiTrash />
-			</button>
+			<Buttons.Delete.Click.Icon />
 		</form>
 	);
 }

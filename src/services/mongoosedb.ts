@@ -1,6 +1,9 @@
 import Applicant from "@/models/applicant";
+import Candidate from "@/models/candidate";
 import Candidate_CV from "@/models/candidate_cv";
 import Company from "@/models/company";
+import CV from "@/models/cv";
+import Portfolio from "@/models/portfolio";
 import Recruitment from "@/models/recruitment";
 import mongoose, { Mongoose } from "mongoose";
 
@@ -42,5 +45,8 @@ export async function connectToDatabase() {
 	Candidate_CV;
 	Company;
 	Recruitment;
+	Candidate;
+	Portfolio;
+	CV;
 	return cached.conn;
 }
