@@ -2,10 +2,10 @@ import { PortfolioFormData } from "@/entities/getDataPortfolio";
 import Image from "next/image";
 import { BsFacebook, BsGithub, BsLinkedin } from "react-icons/bs";
 import { IoLocationSharp } from "react-icons/io5";
-export default function B01Template(data: PortfolioFormData) {
+export default function B02Template(data: PortfolioFormData) {
 	return (
-		<div className='flex flex-col relative bg-white'>
-			<div className='flex items-center justify-center sticky top-0 bg-white border-b-[1px]'>
+		<div className='flex relative bg-white h-dvh'>
+			<div className='flex flex-col basis-2 p-2 h-full justify-center bg-slate-200 border-r-[1px]'>
 				<a href='#P-Contact' className='p-2 cursor-pointer'>
 					Contacts
 				</a>
@@ -22,12 +22,12 @@ export default function B01Template(data: PortfolioFormData) {
 					Projects
 				</a>
 			</div>
-			<div className='flex flex-col p-32 gap-24' style={{ scrollBehavior: "smooth" }}>
+			<div className='noScrollbar overflow-y-scroll flex basis-10 flex-grow flex-col p-10 gap-24' style={{ scrollBehavior: "smooth" }}>
 				<div id='P-Contact' className='flex items-center'>
-					<div className='flex flex-col gap-6'>
+					<div className='flex flex-col gap-6 basis-6 flex-grow'>
 						<div className='flex flex-col'>
 							<div className='whitespace-nowrap'>Hello, I&apos;m {data.personal?.name}</div>
-							<div className='w-2/3'>{data.greeting?.content}</div>
+							<div className=''>{data.greeting?.content}</div>
 						</div>
 						<div className='flex items-baseline gap-2'>
 							<div>
@@ -47,7 +47,7 @@ export default function B01Template(data: PortfolioFormData) {
 							</div>
 						</div>
 					</div>
-					<div className='flex-grow basis-1/2 grid place-items-center'>
+					<div className='flex-grow basis-6 grid place-items-center'>
 						<Image src={data.personal.avatar || "/image/user.jpg"} width={200} height={200} className='outline outline-4 outline-slate-200' alt='avatar' />
 					</div>
 				</div>

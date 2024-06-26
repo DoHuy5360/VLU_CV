@@ -12,6 +12,8 @@ import { RiArrowDownSFill } from "react-icons/ri";
 import { z } from "zod";
 import GetThumbnailFromHtml from "./html2image";
 import { Buttons } from "@/components/button/buttons";
+import { PortfolioFormData } from "@/entities/getDataPortfolio";
+import { addNewPortfolio } from "@/actions/admin/addNewPortfolio";
 
 const cvTemplateSchema = z.object({
 	name: z.string().min(1, "Hãy chọn mẫu CV"),
@@ -45,7 +47,12 @@ export default function View({ fileTemplates }: { fileTemplates: string[] }) {
 						ref={formRef}
 						action={() => {
 							handleSubmit(async (data: CvDataForm) => {
-								const isSuccess = await addNewCV(data);
+								let isSuccess;
+								if (getValues("name").startsWith("A")) {
+									isSuccess = await addNewCV(data);
+								} else {
+									isSuccess = await addNewPortfolio(data);
+								}
 								if (isSuccess) {
 									setValue("name", "");
 									setValue("thumbnail", "");
@@ -90,51 +97,140 @@ export default function View({ fileTemplates }: { fileTemplates: string[] }) {
 								</div>
 							</div>
 							<div className='flex flex-col gap-1'>
-								<div className='flex gap-2'>
-									<label htmlFor='cvThumbnail' className='w-fit'>
-										<Buttons.Solid.Yellow.Click text='Chọn ảnh bìa' />
-									</label>
-									<GetThumbnailFromHtml
-										id='previewCV'
-										display={(dataURL: string) => {
-											setValue("thumbnail", dataURL);
-											trigger("thumbnail");
+								<div className=''>
+									<div className='flex gap-2'>
+										<label htmlFor='cvThumbnail' className='w-fit'>
+											<Buttons.Solid.Yellow.Click text='Chọn ảnh bìa' />
+										</label>
+										<GetThumbnailFromHtml
+											id='previewCV'
+											display={(dataURL: string) => {
+												setValue("thumbnail", dataURL);
+												trigger("thumbnail");
+											}}
+										/>
+										<Buttons.Submit.Save />
+									</div>
+									<input
+										className='hidden'
+										id='cvThumbnail'
+										type='file'
+										onChange={async (e) => {
+											if (e.target.files !== null) {
+												const file = e.target.files[0];
+												try {
+													setValue("thumbnail", await imageFileToBase64(file));
+													trigger("thumbnail");
+												} catch (error) {
+													console.error("Error converting image to Base64:", error);
+												}
+											}
 										}}
 									/>
 								</div>
-								<input
-									className='hidden'
-									id='cvThumbnail'
-									type='file'
-									onChange={async (e) => {
-										if (e.target.files !== null) {
-											const file = e.target.files[0];
-											try {
-												setValue("thumbnail", await imageFileToBase64(file));
-												trigger("thumbnail");
-											} catch (error) {
-												console.error("Error converting image to Base64:", error);
-											}
-										}
-									}}
-								/>
-								<FormErrors message={errors.thumbnail?.message} />
-								<Image src={getValues("thumbnail") || "/image/user.jpg"} className='border-[1px] h-fit' width={600} height={0} alt='cv thumbnail' />
-								<input {...register("thumbnail")} type='hidden' />
+								<div className='flex-grow'>
+									<FormErrors message={errors.thumbnail?.message} />
+									<Image src={getValues("thumbnail") || "/image/user.jpg"} className='border-[1px] h-fit' width={600} height={0} alt='thumbnail' />
+									<div className=''></div>
+									<input {...register("thumbnail")} type='hidden' />
+								</div>
 							</div>
 						</div>
-						<Buttons.Submit.Save />
 					</form>
 				</div>
 				{getValues("name") !== "" && (
-					<div className='flex-grow xl:basis-1/2 sm:basis-2/3 overflow-y-scroll h-full'>
-						<div id='previewCV'>{Transfer[getValues("name")](temporaryDataCV)}</div>
+					<div className='flex-grow xl:basis-1/2 sm:basis-2/3 overflow-y-hidden'>
+						<div className='overflow-y-scroll h-full'>
+							<div id='previewCV'>{Transfer[getValues("name")](getValues("name").startsWith("A") ? temporaryDataCV : temporaryDataPortfolio)}</div>
+						</div>
 					</div>
 				)}
 			</div>
 		</div>
 	);
 }
+const temporaryDataPortfolio: PortfolioFormData = {
+	name: "",
+	template: "",
+	greeting: {
+		images: [
+			{
+				id: "Placeholder",
+				label: "",
+				src: "",
+			},
+		],
+		content:
+			"I am a [Name], with [number of years] years of experience in the field of software development. Throughout my career, I have been involved in many complex software projects, from design, programming, to deployment and system maintenance.",
+	},
+	socials: {
+		email: "",
+		gitHub: "",
+		linkedIn: "",
+	},
+	personal: {
+		name: "",
+		address: "",
+		avatar: "",
+		phone: "0963758993",
+	},
+	about: {
+		images: [
+			{
+				id: "Placeholder",
+				label: "",
+				src: "",
+			},
+		],
+		content:
+			"I am a [Name], with [number of years] years of experience in the field of software development. Throughout my career, I have been involved in many complex software projects, from design, programming, to deployment and system maintenance.",
+	},
+	skills: [
+		{
+			id: "Placeholder",
+			icon: "",
+			name: "React",
+		},
+	],
+	experiences: [
+		{
+			id: "Placeholder",
+			images: [
+				{
+					id: "Placeholder",
+					label: "",
+					src: "",
+				},
+			],
+			name: "CTV",
+			position: "Fullstack",
+			tasks: "Manage",
+			time: "01/01/2002",
+		},
+	],
+	projects: [
+		{
+			id: "Placeholder",
+			name: "",
+			technologies: [
+				{
+					id: "Placeholder",
+					icon: "",
+					name: "React",
+				},
+			],
+			images: [
+				{
+					id: "Placeholder",
+					label: "",
+					src: "",
+				},
+			],
+			tasks: "I do all thing",
+			time: "2023",
+		},
+	],
+};
 const temporaryDataCV: UserData = {
 	name: "Candidate A",
 	template: "Root",
@@ -152,7 +248,8 @@ const temporaryDataCV: UserData = {
 		},
 		goal: {
 			title: "Goal",
-			content: "I am a [Name], with [number of years] years of experience in the field of software development. Throughout my career, I have been involved in many complex software projects, from design, programming, to deployment and system maintenance.",
+			content:
+				"I am a [Name], with [number of years] years of experience in the field of software development. Throughout my career, I have been involved in many complex software projects, from design, programming, to deployment and system maintenance.",
 		},
 		experience: {
 			title: "Experience",

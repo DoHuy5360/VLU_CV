@@ -1,7 +1,15 @@
+import { UserData } from "@/types/userData";
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
+
+export type CandidateCVModelType = {
+	userId?: ObjectId;
+	name: string;
+	template: string;
+	data: UserData;
+};
 
 const candidateCvSchema = new Schema(
 	{

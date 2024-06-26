@@ -1,6 +1,14 @@
+import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
+
+export type CompanyDataModel = {
+	_id?: ObjectId;
+	name: string;
+	province: string;
+	district: string;
+};
 
 const companySchema = new Schema(
 	{

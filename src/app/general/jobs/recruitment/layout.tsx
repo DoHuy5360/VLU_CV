@@ -7,7 +7,7 @@ export default async function layout({ children }: { children: JSX.Element }) {
 	return (
 		<div className='h-dvh flex flex-col'>
 			<div className='p-2 border-b-[1px]'>
-				{session?.user.role === "candidate" && <GrayLink href='/candidate/applicant' text='Quay lại danh sách ứng tuyển' />}
+				{session?.user.role === "candidate" && <GrayLink href='/candidate/applicant' text='Danh sách ứng tuyển của tôi' />}
 				<GrayLink href='/general/jobs/recruitment' text='Danh sách tuyển dụng' />
 			</div>
 			{children}

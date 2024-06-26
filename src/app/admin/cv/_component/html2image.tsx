@@ -9,6 +9,7 @@ export default function getThumbnailFromHtml({ id, display }: { id: string; disp
 			htmlToImage
 				.toPng(node)
 				.then(function (dataUrl) {
+					console.log(dataUrl);
 					display(dataUrl);
 				})
 				.catch(function (error) {
@@ -18,7 +19,7 @@ export default function getThumbnailFromHtml({ id, display }: { id: string; disp
 
 	return (
 		<div onClick={handleCreateImageFromHTML}>
-			<Buttons.Create.Text text="Tạo ảnh bìa"/>	
+			<Buttons.Create.Text text='Tạo ảnh bìa' />
 		</div>
 	);
 }

@@ -39,3 +39,8 @@
 	-webkit-box-shadow: 0 3px 24px #00000014;
 	-moz-box-shadow: 0 3px 24px #00000014;
 }
+
+.noScrollbar::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+}
