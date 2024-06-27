@@ -4,6 +4,7 @@ import { z } from "zod";
 import { usePathname } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { createCandidateAccount } from "@/actions/candidate/createCandidateAccount";
+import { Buttons } from "@/components/button/buttons";
 
 const candidateSchema = z
 	.object({
@@ -36,7 +37,7 @@ export default function CandidateRegisterAccountForm() {
 	const pathName = usePathname();
 	return (
 		<FormProvider {...formTools}>
-			<div className='flex flex-col gap-2 border-[1px] border-slate-200 select-none'>
+			<div className='flex flex-col gap-2 border-[1px] border-slate-200 select-none shadow-md'>
 				<div className='text-4xl p-2 border-b-[1px] border-slate-200'>Tạo tài khoản ứng viên</div>
 				<form
 					action={() => {
@@ -100,9 +101,7 @@ export default function CandidateRegisterAccountForm() {
 							</div>
 						</div>
 					</div>
-					<button className='ml-auto bg-green-300 px-4 py-2 rounded-full text-sm w-fit' type='submit'>
-						Xác nhận
-					</button>
+					<Buttons.Submit.Save text='Xác nhận' />
 				</form>
 			</div>
 		</FormProvider>

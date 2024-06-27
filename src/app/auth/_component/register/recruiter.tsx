@@ -6,6 +6,7 @@ import { positions } from "../constant/position";
 import { usePathname } from "next/navigation";
 import { createRecruiterAccount } from "@/actions/recruiter/createRecruiterAccount";
 import { signIn } from "next-auth/react";
+import { Buttons } from "@/components/button/buttons";
 
 const recruiterSchema = z
 	.object({
@@ -54,7 +55,7 @@ export default function RecruiterRegisterAccountForm() {
 	const pathName = usePathname();
 	return (
 		<FormProvider {...formTools}>
-			<div className='flex flex-col gap-2 border-[1px] border-slate-200 select-none'>
+			<div className='flex flex-col gap-2 border-[1px] border-slate-200 select-none shadow-md'>
 				<div className='text-4xl p-2 border-b-[1px] border-slate-200'>Tạo tài khoản tuyển dụng</div>
 				<form
 					action={() => {
@@ -126,9 +127,7 @@ export default function RecruiterRegisterAccountForm() {
 							<Company />
 						</div>
 					</div>
-					<button className='ml-auto bg-green-300 px-4 py-2 rounded-full text-sm w-fit' type='submit'>
-						Xác nhận
-					</button>
+					<Buttons.Submit.Save text='Xác nhận' />
 				</form>
 			</div>
 		</FormProvider>
