@@ -7,18 +7,23 @@ export type PortfolioSchemaType = {
 	thumbnail: string;
 };
 
-const portfolioSchema = new mongoose.Schema({
-	name: {
-		type: String,
-		require: true,
-		unique: true,
+const portfolioSchema = new mongoose.Schema(
+	{
+		name: {
+			type: String,
+			require: true,
+			unique: true,
+		},
+		thumbnail: {
+			type: String,
+			require: true,
+			unique: false,
+		},
 	},
-	thumbnail: {
-		type: String,
-		require: true,
-		unique: false,
-	},
-});
+	{
+		timestamps: true,
+	}
+);
 
 const Portfolio = mongoose.models.portfolios || mongoose.model("portfolios", portfolioSchema);
 export default Portfolio;

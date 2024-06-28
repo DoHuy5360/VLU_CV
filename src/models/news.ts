@@ -1,23 +1,25 @@
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
-export type CvSchemaType = {
+export type NewsSchemaType = {
 	_id?: ObjectId;
 	name: string;
 	thumbnail: string;
 };
 
-const cvSchema = new mongoose.Schema(
+const newsSchema = new mongoose.Schema(
 	{
-		name: {
+		title: {
 			type: String,
 			require: true,
-			unique: true,
 		},
 		thumbnail: {
 			type: String,
 			require: true,
-			unique: false,
+		},
+		content: {
+			type: String,
+			require: true,
 		},
 	},
 	{
@@ -25,5 +27,5 @@ const cvSchema = new mongoose.Schema(
 	}
 );
 
-const CV = mongoose.models.CV || mongoose.model("CV", cvSchema);
-export default CV;
+const News = mongoose.models.news || mongoose.model("news", newsSchema);
+export default News;

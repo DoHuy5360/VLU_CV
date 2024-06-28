@@ -8,12 +8,12 @@ import { FormValuesContext } from "../editCV";
 export default function CvSuggestion() {
 	const formValues = useContext(FormValuesContext);
 	const [isShowSuggest, setShowSuggest] = useState(false);
-	const [suggestValue, setSuggestion] = useState("Đang xử lý...");
+	const [suggestValue, setSuggestion] = useState("");
 	return (
 		<div className='flex flex-grow flex-col gap-1 p-2'>
 			<div className='flex items-center gap-1'>
 				<label className='text-xs whitespace-nowrap' htmlFor='suggestion'>
-					Gợi ý
+					Đánh giá
 				</label>
 				{isShowSuggest ? (
 					<div className='flex items-center gap-1'>
@@ -27,6 +27,7 @@ export default function CvSuggestion() {
 						</div>
 						<form
 							action={async () => {
+								setSuggestion("Đang xử lý...");
 								const suggestion = await getSuggestion(formValues);
 								setSuggestion(suggestion.toString());
 							}}
@@ -47,7 +48,7 @@ export default function CvSuggestion() {
 					</div>
 				)}
 			</div>
-			<div className={`${!isShowSuggest && "hidden p-0"} p-2 w-full border-slate-200 border-[1px] outline-none text-sm`}>{suggestValue}</div>
+			<div className={`${!isShowSuggest && "hidden p-0"} p-2 w-full border-slate-200 border-[1px] outline-none text-sm text-justify`}>{suggestValue}</div>
 		</div>
 	);
 }

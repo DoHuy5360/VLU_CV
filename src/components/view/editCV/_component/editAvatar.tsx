@@ -15,7 +15,18 @@ export default function EditAvatar({ setValue, getValues, trigger, errors }: Ava
 						accept='image/*'
 						onChange={async (e) => {
 							const file = e.target.files?.[0];
-							file ? setValue("attrs.head.avatar", await imageFileToBase64(file)) : undefined;
+							if (file) {
+								const data = new FormData();
+								data.set("file", file);
+								const result = await fetch("/api/file", {
+									method: "post",
+									body: data,
+								});
+								const response = await result.json();
+								if (response.success) {
+									setValue("attrs.head.avatar", response.url);
+								}
+							}
 							trigger("attrs.head.avatar");
 						}}
 						type='file'
